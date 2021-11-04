@@ -3,7 +3,7 @@ package main
 import data.compliance.cis
 
 # input is a resource
-# data is configuration
+# data is policy/configuration
 # output is findings
 
 resource = input
