@@ -2,7 +2,7 @@
 
 ## Local Evaluation
 Add the following configuration files into the root folder
-### `data.yaml`
+#### `data.yaml`
 should contain the list of rules you want to evaluate (also supports json)
 
 ```yaml
@@ -11,7 +11,7 @@ activated_rules:
   cis_1_1_2: true
 ```
 
-### `input.json`
+#### `input.json`
 should contain an beat/agent output, e.g. OSQuery
 
 ```json
