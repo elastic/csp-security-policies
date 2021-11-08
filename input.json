@@ -1,9 +1,0 @@
-{
-  "osquery": {
-    "mode": "0700",
-    "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-    "uid": "etc",
-    "filename": "kube-apiserver.yaml",
-    "gid": "root"
-  }
-}
