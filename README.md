@@ -31,3 +31,46 @@ should contain an beat/agent output, e.g. OSQuery
 
 ### Evaluate findings only
 `opa eval data.main.findings --format pretty -i input.json -b . > output.json`
+
+#### Example output
+```json
+[
+  {
+    "evaluation": "violation",
+    "fields": [
+      {
+        "key": "filemode",
+        "value": "0700"
+      }
+    ],
+    "rule_name": "Ensure that the API server pod specification file permissions are set to 644 or more restrictive",
+    "tags": [
+      "CIS",
+      "CIS v1.6.0",
+      "Kubernetes",
+      "CIS 1.1.1"
+    ]
+  },
+  {
+    "evaluation": "violation",
+    "fields": [
+      {
+        "key": "uid",
+        "value": "etc"
+      },
+      {
+        "key": "gid",
+        "value": "root"
+      }
+    ],
+    "rule_name": "Ensure that the API server pod specification file ownership is set to root:root",
+    "tags": [
+      "CIS",
+      "CIS v1.6.0",
+      "Kubernetes",
+      "CIS 1.1.2"
+    ]
+  }
+]
+
+```
