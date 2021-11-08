@@ -5,7 +5,7 @@ import data.compliance.lib.common
 import data.compliance.cis
 
 
-# Ensure that the API server pod specification file ownership is set to root:root
+# Ensure that the API server pod specification file ownership is set to root:root (Automated)
 finding = {"evaluation": evaluation, "rule_name": rule_name, "fields": fields, "tags": tags} {
     osquery.filename == "kube-apiserver.yaml"
     rule_evaluation := osquery.file_ownership_match("root", "root")
