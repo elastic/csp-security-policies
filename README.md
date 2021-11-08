@@ -32,7 +32,9 @@ should contain an beat/agent output, e.g. OSQuery
 ### Evaluate findings only
 `opa eval data.main.findings --format pretty -i input.json -b . > output.json`
 
-#### Example output
+<details> 
+<summary>Example output</summary>
+  
 ```json
 [
   {
@@ -74,3 +76,5 @@ should contain an beat/agent output, e.g. OSQuery
 ]
 
 ```
+  
+</details>
