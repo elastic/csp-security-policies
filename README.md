@@ -3,7 +3,7 @@
 ## Local Evaluation
 Add the following configuration files into the root folder
 ### `data.yaml`
-should contain the list of rules you want to evaluate (json)
+should contain the list of rules you want to evaluate (also supports json)
 
 ```yaml
 activated_rules:
