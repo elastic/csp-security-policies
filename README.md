@@ -1,8 +1,19 @@
 # Cloud Security Posture security policies 
-
+    .
+    ├── compliance                             # Compliance policy
+    │   ├── lib                                # Load and stress tests
+    │   ├── rules/cis                          # End-to-end, integration tests 
+    │   │   ├── cis_1_1_1                      # package per rule
+    │   │   │   ├── cis_1_1_1.rego             # rule implementation in rego
+    │   │   │   ├── test                       # tests folder per rule
+    │   │   │   │   └── cis_1_1_1_test.rego
+    │   │   └── ...
+    │   └── cis.rego                           # Handles rule evalutation at the CIS policy
+    └── main.rego                              # Evaluate all policies and returns the findings
+    
 ## Local Evaluation
 Add the following configuration files into the root folder
-#### `data.yaml`
+##### `data.yaml`
 should contain the list of rules you want to evaluate (also supports json)
 
 ```yaml
@@ -11,7 +22,7 @@ activated_rules:
   cis_1_1_2: true
 ```
 
-#### `input.json`
+##### `input.json`
 should contain an beat/agent output, e.g. OSQuery
 
 ```json
