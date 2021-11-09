@@ -1,18 +1,17 @@
 # Cloud Security Posture security policies 
     .
-    ├── compliance                             # Compliance policies
+    ├── compliance                         # Compliance policies
     │   ├── lib
-    │   │   ├── common.rego                    # Common functions
-    │   │   ├── osquery.rego                   # OSQuery input parser
+    │   │   ├── common.rego                # Common functions
+    │   │   ├── data_adapter.rego          # Input data adapter
     │   │   └── ...
     │   ├── rules/cis
-    │   │   ├── cis_1_1_1                      # package per rule
-    │   │   │   ├── cis_1_1_1.rego             # rule implementation in rego
-    │   │   │   ├── test                       # tests folder per rule
-    │   │   │   │   └── cis_1_1_1_test.rego
+    │   │   ├── cis_1_1_1                  # rule package 
+    │   │   │   ├── rule.rego
+    │   │   │   └── test.rego
     │   │   └── ...
-    │   └── cis.rego                           # Handles rule evalutation at the CIS policy
-    └── main.rego                              # Evaluate all policies and returns the findings
+    │   └── cis.rego                       # Handles all CIS rules evalutations
+    └── main.rego                          # Evaluate all policies and returns the findings
     
 ## Local Evaluation
 Add the following configuration files into the root folder
