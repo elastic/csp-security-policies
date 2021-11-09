@@ -1,7 +1,10 @@
 # Cloud Security Posture security policies 
     .
-    ├── compliance                             # Compliance policy
-    │   ├── lib                                # Load and stress tests
+    ├── compliance                             # Compliance policies
+    │   ├── lib
+    │   │   ├── common.rego                    # Common functions
+    │   │   ├── osquery.rego                   # OSQuery input parser
+    │   │   └── ...
     │   ├── rules/cis                          # End-to-end, integration tests 
     │   │   ├── cis_1_1_1                      # package per rule
     │   │   │   ├── cis_1_1_1.rego             # rule implementation in rego
