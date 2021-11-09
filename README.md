@@ -78,3 +78,7 @@ should contain an beat/agent output, e.g. OSQuery
 ```
   
 </details>
+
+## Local Testing
+### Test entire policy
+`opa test -v compliance`
