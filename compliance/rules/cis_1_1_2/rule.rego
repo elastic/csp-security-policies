@@ -14,7 +14,7 @@ finding = {"evaluation": evaluation, "rule_name": rule_name, "evidence": evidenc
 
     # set result
     evaluation := common.calculate_result(rule_evaluation)
-    evidence := [{"uid" : uid, "gid" : gid}]
+    evidence := {"uid" : uid, "gid" : gid}
     rule_name := "Ensure that the API server pod specification file ownership is set to root:root"
     tags := array.concat(cis.tags, ["CIS 1.1.2"])
 }
