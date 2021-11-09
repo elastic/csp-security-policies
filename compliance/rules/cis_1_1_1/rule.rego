@@ -13,7 +13,7 @@ finding = result {
     # set result
     result := {
         "evaluation" : common.calculate_result(rule_evaluation),
-        "evidence" : [{ "key": "filemode", "value": filemode }],
+        "evidence" : [{ "filemode" : filemode }],
         "rule_name" : "Ensure that the API server pod specification file permissions are set to 644 or more restrictive",
         "tags" : array.concat(cis.tags, ["CIS 1.1.1"])
     }
