@@ -4,13 +4,13 @@
     │   ├── lib
     │   │   ├── common.rego                # Common functions
     │   │   ├── data_adapter.rego          # Input data adapter
-    │   │   └── ...
+    │   │   └── test.rego                  # Common Test functions
     │   ├── rules/cis
     │   │   ├── cis_1_1_1                  # rule package 
     │   │   │   ├── rule.rego
     │   │   │   └── test.rego
     │   │   └── ...
-    │   └── cis.rego                       # Handles all CIS rules evalutations
+    │   └── cis_k8s.rego                   # Handles all Kubernetes CIS rules evalutations
     └── main.rego                          # Evaluate all policies and returns the findings
     
 ## Local Evaluation
@@ -20,8 +20,9 @@ should contain the list of rules you want to evaluate (also supports json)
 
 ```yaml
 activated_rules:
-  cis_1_1_1: true
-  cis_1_1_2: true
+  cis_k8s:
+    cis_1_1_1: true
+    cis_1_1_2: true
 ```
 
 ##### `input.json`
@@ -52,12 +53,9 @@ should contain an beat/agent output, e.g. OSQuery
 [
   {
     "evaluation": "violation",
-    "fields": [
-      {
-        "key": "filemode",
-        "value": "0700"
-      }
-    ],
+    "evidence": {
+      "filemode": "0700"
+    },
     "rule_name": "Ensure that the API server pod specification file permissions are set to 644 or more restrictive",
     "tags": [
       "CIS",
@@ -68,16 +66,10 @@ should contain an beat/agent output, e.g. OSQuery
   },
   {
     "evaluation": "violation",
-    "fields": [
-      {
-        "key": "uid",
-        "value": "etc"
-      },
-      {
-        "key": "gid",
-        "value": "root"
-      }
-    ],
+    "evidence": {
+      "gid": "root",
+      "uid": "etc"
+    },
     "rule_name": "Ensure that the API server pod specification file ownership is set to root:root",
     "tags": [
       "CIS",
@@ -87,6 +79,7 @@ should contain an beat/agent output, e.g. OSQuery
     ]
   }
 ]
+
 
 ```
   
