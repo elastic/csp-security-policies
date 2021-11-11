@@ -1,4 +1,4 @@
-package compliance.cis.rules.cis_1_1_2
+package compliance.cis.rules.cis_1_1_6
 
 import data.lib.test
 
@@ -14,8 +14,8 @@ test_pass {
 
 rule_input(uid, gid) = {"osquery": {
 	"mode": "0644",
-	"path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+	"path": "/etc/kubernetes/manifests/kube-scheduler.yaml",
 	"uid": uid,
-	"filename": "kube-apiserver.yaml",
+	"filename": "kube-scheduler.yaml",
 	"gid": gid,
 }}
