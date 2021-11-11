@@ -1,7 +1,14 @@
-repos:
-- repo: https://github.com/anderseknert/pre-commit-opa
-  rev: v1.4.1
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
   hooks:
-  - id: opa-fmt
-  - id: opa-check
-  - id: opa-test
+    - id: check-yaml
+    - id: check-json
+    - id: pretty-format-json
+    - id: check-added-large-files
+
+#repos:
+#  - repo: https://github.com/anderseknert/pre-commit-opa
+#    rev: v1.4.1
+#    hooks:
+#      - id: opa-fmt
+#      - id: opa-test

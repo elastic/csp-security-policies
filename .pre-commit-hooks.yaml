@@ -1,12 +1,3 @@
-- id: opa-test
-  name: OPA test
-  description: Runs OPA unit tests on rego source files
-  entry: opa test
-  args: ['.']
-  pass_filenames: false
-  language: system
-  files: (\.rego)$
-
 - id: opa-fmt
   name: OPA fmt
   description: Formats Rego policy using opa fmt
@@ -23,3 +14,12 @@
   pass_filenames: false
   language: system
   files: (\.rego)$
+
+- id: opa-test
+  name: OPA test
+  description: Runs OPA unit tests on rego source files
+  entry: opa test?
+  args: ['-v', 'compliance']
+  pass_filenames: false
+  language: system
+#  files: (\.rego)$
