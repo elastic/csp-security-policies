@@ -1,4 +1,4 @@
-package compliance.lib.osquery
+package compliance.lib.data_adapter
 
 is_osquery {
     input.osquery
@@ -28,8 +28,3 @@ owner_group_id = gid {
     is_file
     gid = input.osquery.gid
 }
-
-file_ownership_match(requierd_uid, requierd_gid) {
-    owner_user_id == requierd_uid
-    owner_group_id == requierd_gid
-} else = false
