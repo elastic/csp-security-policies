@@ -90,4 +90,8 @@ should contain an beat/agent output, e.g. OSQuery
 `opa test -v compliance`
 
 ### Pre-commit hooks
-`pre-commit run --all-files --verbose`
+see [pre-commit](https://pre-commit.com/) package
+
+- Install the package `brew install pre-commit`
+- Then run `pre-commit install`
+- Finally `pre-commit run --all-files --verbose`
