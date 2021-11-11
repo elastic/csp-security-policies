@@ -1,14 +1,27 @@
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v2.3.0
-  hooks:
-    - id: check-yaml
-    - id: check-json
-    - id: pretty-format-json
-    - id: check-added-large-files
+repos:
+  - repo: local
+    hooks:
+      - id: opa-fmt
+        name: OPA fmt
+        description: Formats Rego policy using opa fmt
+        entry: opa fmt
+        args: [ -w ]
+        language: system
+        files: (\.rego)$
 
-#repos:
-#  - repo: https://github.com/anderseknert/pre-commit-opa
-#    rev: v1.4.1
-#    hooks:
-#      - id: opa-fmt
-#      - id: opa-test
+      - id: opa-check
+        name: OPA check
+        description: Check syntax of staged Rego files
+        entry: opa check
+        args: [ 'compliance' ]
+        pass_filenames: false
+        language: system
+        files: (\.rego)$
+
+      - id: opa-test
+        name: OPA test
+        description: Runs OPA unit tests on rego source files
+        entry: opa test
+        args: [ '-v', 'compliance' ]
+        pass_filenames: false
+        language: system
