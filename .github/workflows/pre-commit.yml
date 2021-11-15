@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
     
     - name: Set up Python
-    - uses: actions/setup-python@v2
+      uses: actions/setup-python@v2
     
     - name: Download OPA Binary
       run: |
@@ -21,4 +21,4 @@ jobs:
         chmod 755 ./opa
     
     - name: Run Pre-Commit hooks
-    - uses: pre-commit/action@v2.0.3
+      uses: pre-commit/action@v2.0.3
