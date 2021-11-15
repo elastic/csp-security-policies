@@ -16,6 +16,9 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
     
+    - name: Print OPA version
+      run: opa version
+    
 #     - name: Download OPA Binary
 #       run: |
 #         curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
