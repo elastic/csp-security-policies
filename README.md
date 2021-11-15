@@ -88,6 +88,9 @@ should contain an beat/agent output, e.g. OSQuery
 ### Test entire policy
 `opa test -v compliance`
 
+### Test specific rule
+`opa test -v compliance/lib compliance/rules/cis_1_1_1`
+
 ### Pre-commit hooks
 see [pre-commit](https://pre-commit.com/) package
 
