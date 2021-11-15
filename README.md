@@ -89,7 +89,7 @@ should contain an beat/agent output, e.g. OSQuery
 `opa test -v compliance`
 
 ### Test specific rule
-`opa test -v compliance/lib compliance/rules/cis_1_1_1`
+`opa test -v compliance/lib compliance/cis_k8s.rego compliance/rules/cis_1_1_2`
 
 ### Pre-commit hooks
 see [pre-commit](https://pre-commit.com/) package
