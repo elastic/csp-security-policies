@@ -1,6 +1,7 @@
 package compliance.cis_k8s.rules.cis_1_1_17
 
-import data.cis_k8s.test
+import data.cis_k8s.test_data
+import data.lib.test
 
 test_violation {
 	test.rule_violation(finding) with input as rule_input("0700")
@@ -14,5 +15,5 @@ rule_input(filemode) = filesystem_input {
 	filename := "controller-manager.conf"
 	uid := "root"
 	gid := "root"
-	filesystem_input = test.generate_filesystem_input(filename, filemode, uid, gid)
+	filesystem_input = test_data.filesystem_input(filename, filemode, uid, gid)
 }

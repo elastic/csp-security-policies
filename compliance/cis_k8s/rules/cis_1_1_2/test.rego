@@ -1,6 +1,7 @@
 package compliance.cis_k8s.rules.cis_1_1_2
 
-import data.cis_k8s.test
+import data.cis_k8s.test_data
+import data.lib.test
 
 test_violation {
 	test.rule_violation(finding) with input as rule_input("root", "user")
@@ -15,5 +16,5 @@ test_pass {
 rule_input(uid, gid) = filesystem_input {
 	filename := "kube-apiserver.yaml"
 	filemode := "0644"
-	filesystem_input = test.generate_filesystem_input(filename, filemode, uid, gid)
+	filesystem_input = test_data.filesystem_input(filename, filemode, uid, gid)
 }
