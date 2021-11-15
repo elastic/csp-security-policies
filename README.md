@@ -5,12 +5,13 @@
     │   │   ├── common.rego                # Common functions
     │   │   ├── data_adapter.rego          # Input data adapter
     │   │   └── test.rego                  # Common Test functions
-    │   ├── rules/cis
-    │   │   ├── cis_1_1_1                  # rule package 
+    │   ├── cis_k8s/rules
+    │   |   ├── cis_k8s.rego               # Handles all Kubernetes CIS rules evalutations
+    │   |   ├── test_data.rego             # CIS Test data functions 
+    │   │   ├── cis_1_1_1                  # CIS 1.1.1 rule package 
     │   │   │   ├── rule.rego
     │   │   │   └── test.rego
     │   │   └── ...
-    │   └── cis_k8s.rego                   # Handles all Kubernetes CIS rules evalutations
     └── main.rego                          # Evaluate all policies and returns the findings
     
 ## Local Evaluation
@@ -30,13 +31,12 @@ should contain an beat/agent output, e.g. OSQuery
 
 ```json
 {
-  "osquery": {
+    "type": "filesystem",
     "mode": "0700",
     "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
     "uid": "etc",
     "filename": "kube-apiserver.yaml",
     "gid": "root"
-  }
 }
 ```
 
@@ -90,4 +90,8 @@ should contain an beat/agent output, e.g. OSQuery
 `opa test -v compliance`
 
 ### Pre-commit hooks
-`pre-commit run --all-files --verbose`
+see [pre-commit](https://pre-commit.com/) package
+
+- Install the package `brew install pre-commit`
+- Then run `pre-commit install`
+- Finally `pre-commit run --all-files --verbose`

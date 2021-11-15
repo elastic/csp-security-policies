@@ -1,6 +1,6 @@
 package compliance.cis_k8s
 
-import data.compliance.cis.rules
+import data.compliance.cis_k8s.rules
 
 default_tags := ["CIS", "CIS v1.6.0", "Kubernetes"]
 

@@ -1,5 +1,6 @@
-package compliance.cis.rules.cis_1_1_8
+package compliance.cis.rules.cis_1_1_6
 
+import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
@@ -12,10 +13,8 @@ test_pass {
 	test.rule_pass(finding) with input as rule_input("root", "root")
 }
 
-rule_input(uid, gid) = {"osquery": {
-	"mode": "0644",
-	"path": "/etc/kubernetes/manifests/etcd.yaml",
-	"uid": uid,
-	"filename": "etcd.yaml",
-	"gid": gid,
-}}
+rule_input(uid, gid) = filesystem_input {
+	filename := "kube-scheduler.yaml"
+	filemode := "0644"
+	filesystem_input = test_data.filesystem_input(filename, filemode, uid, gid)
+}
