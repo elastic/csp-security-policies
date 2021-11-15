@@ -30,7 +30,7 @@ should contain an beat/agent output, e.g. OSQuery
 
 ```json
 {
-    "type": "file",
+    "type": "filesystem",
     "mode": "0700",
     "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
     "uid": "etc",
