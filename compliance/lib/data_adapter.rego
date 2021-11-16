@@ -14,6 +14,11 @@ filemode = file_mode {
 	file_mode = input.mode
 }
 
+file_path = path {
+	is_filesystem
+	path = input.path
+}
+
 owner_user_id = uid {
 	is_filesystem
 	uid = input.uid

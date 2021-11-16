@@ -50,35 +50,78 @@ should contain an beat/agent output, e.g. OSQuery
 <summary>Example output</summary>
   
 ```json
-[
-  {
-    "evaluation": "violation",
-    "evidence": {
-      "filemode": "0700"
-    },
-    "rule_name": "Ensure that the API server pod specification file permissions are set to 644 or more restrictive",
-    "tags": [
-      "CIS",
-      "CIS v1.6.0",
-      "Kubernetes",
-      "CIS 1.1.1"
+{
+  "findings": [
+    [
+      {
+        "evaluation": "violation",
+        "evidence": {
+          "filemode": "0700"
+        },
+        "remediation": "chmod 644 /hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+        "tags": [
+          "CIS",
+          "CIS v1.6.0",
+          "Kubernetes",
+          "CIS 1.1.1",
+          "Master Node Configuration"
+        ]
+      },
+      {
+        "rule_metadata": {
+          "benchmark": "CIS Kubernetes",
+          "description": "The API server pod specification file controls various parameters that set the behavior of the API server. You should restrict its file permissions to maintain the integrity of the file. The file should be writable by only the administrators on the system.",
+          "impact": "None",
+          "name": "Ensure that the API server pod specification file permissions are set to 644 or more restrictive",
+          "tags": [
+            "CIS 1.1.1",
+            "Master Node Configuration"
+          ],
+          "version": "Version 6"
+        }
+      }
+    ],
+    [
+      {
+        "evaluation": "passed",
+        "evidence": {
+          "gid": "root",
+          "uid": "root"
+        },
+        "remediation": "chown root:root /hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+        "tags": [
+          "CIS",
+          "CIS v1.6.0",
+          "Kubernetes",
+          "CIS 1.1.2",
+          "Master Node Configuration"
+        ]
+      },
+      {
+        "rule_metadata": {
+          "benchmark": "CIS Kubernetes",
+          "description": "The API server pod specification file controls various parameters that set the behavior of the API server. You should set its file ownership to maintain the integrity of the file. The file should be owned by root:root.",
+          "impact": "None",
+          "name": "Ensure that the API server pod specification file ownership is set to root:root",
+          "tags": [
+            "CIS 1.1.2",
+            "Master Node Configuration"
+          ],
+          "version": "Version 6"
+        }
+      }
     ]
-  },
-  {
-    "evaluation": "violation",
-    "evidence": {
-      "gid": "root",
-      "uid": "etc"
-    },
-    "rule_name": "Ensure that the API server pod specification file ownership is set to root:root",
-    "tags": [
-      "CIS",
-      "CIS v1.6.0",
-      "Kubernetes",
-      "CIS 1.1.2"
-    ]
+  ],
+  "resource": {
+    "filename": "kube-apiserver.yaml",
+    "gid": "root",
+    "mode": "0700",
+    "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+    "type": "filesystem",
+    "uid": "root"
   }
-]
+}
+
 
 
 ```
