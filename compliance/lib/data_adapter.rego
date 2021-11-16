@@ -23,3 +23,12 @@ owner_group_id = gid {
 	is_filesystem
 	gid = input.gid
 }
+
+is_process {
+	input.type == "process"
+}
+
+command_args = args {
+	is_process
+	args = input.command
+}
