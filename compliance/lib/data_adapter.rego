@@ -25,7 +25,7 @@ owner_group_id = gid {
 }
 
 is_process {
-	input.type == "process"
+	input.type == "api_server"
 }
 
 command_args = args {
