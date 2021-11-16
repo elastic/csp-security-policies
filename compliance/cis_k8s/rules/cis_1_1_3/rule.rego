@@ -14,7 +14,11 @@ finding = result {
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {"filemode": filemode},
-		"rule_name": "Ensure that the controller manager pod specification file permissions are set to 644 or more restrictive",
-		"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.3"]),
+		"tags": array.concat(cis_k8s.default_tags, metadata.tags),
 	}
+}
+
+metadata = {
+	"rule_name": "Ensure that the controller manager pod specification file permissions are set to 644 or more restrictive",
+	"tags": ["CIS 1.1.3", "Master Node Configuration"],
 }

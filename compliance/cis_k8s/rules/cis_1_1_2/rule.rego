@@ -15,7 +15,11 @@ finding = result {
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {"uid": uid, "gid": gid},
-		"rule_name": "Ensure that the API server pod specification file ownership is set to root:root",
-		"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.2"]),
+		"tags": array.concat(cis_k8s.default_tags, metadata.tags),
 	}
+}
+
+metadata = {
+	"rule_name": "Ensure that the API server pod specification file ownership is set to root:root",
+	"tags": ["CIS 1.1.2", "Master Node Configuration"],
 }
