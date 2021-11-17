@@ -15,6 +15,7 @@ finding = result {
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {"uid": uid, "gid": gid},
+		"rule_name": "Ensure that the API server pod specification file ownership is set to root:root",
 		"tags": array.concat(cis_k8s.default_tags, metadata.tags),
 		"remediation": sprintf("chown root:root %s", [data_adapter.file_path]),
 	}
