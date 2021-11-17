@@ -15,7 +15,15 @@ finding = result {
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {"uid": uid, "gid": gid},
-		"rule_name": "Ensure that the scheduler pod specification file ownership is set to root:root",
-		"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.6"]),
+		"remediation": sprintf("chown root:root %s", [data_adapter.file_path]),
 	}
+}
+
+metadata = {
+	"name": "Ensure that the scheduler pod specification file ownership is set to root:root",
+	"description": "The scheduler pod specification file controls various parameters that set the behavior of the kube-scheduler service in the master node. You should set its file ownership to maintain the integrity of the file. The file should be owned by root:root.",
+	"impact": "None",
+	"version": "Version 6",
+	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.6", "Master Node Configuration"]),
+	"benchmark": "CIS Kubernetes",
 }

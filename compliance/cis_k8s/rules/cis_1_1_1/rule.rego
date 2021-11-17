@@ -14,7 +14,6 @@ finding = result {
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {"filemode": filemode},
-		"tags": array.concat(cis_k8s.default_tags, metadata.tags),
 		"remediation": sprintf("chmod 644 %s", [data_adapter.file_path]),
 	}
 }
@@ -24,6 +23,6 @@ metadata = {
 	"description": "The API server pod specification file controls various parameters that set the behavior of the API server. You should restrict its file permissions to maintain the integrity of the file. The file should be writable by only the administrators on the system.",
 	"impact": "None",
 	"version": "Version 6",
-	"tags": ["CIS 1.1.1", "Master Node Configuration"],
+	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.1", "Master Node Configuration"]),
 	"benchmark": "CIS Kubernetes",
 }

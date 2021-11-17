@@ -59,14 +59,7 @@ should contain an beat/agent output, e.g. filesystem data
         "evidence": {
           "filemode": "0700"
         },
-        "remediation": "chmod 644 /hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-        "tags": [
-          "CIS",
-          "CIS v1.6.0",
-          "Kubernetes",
-          "CIS 1.1.1",
-          "Master Node Configuration"
-        ]
+        "remediation": "chmod 644 /hostfs/etc/kubernetes/manifests/kube-apiserver.yaml"
       },
       {
         "rule_metadata": {
@@ -75,6 +68,9 @@ should contain an beat/agent output, e.g. filesystem data
           "impact": "None",
           "name": "Ensure that the API server pod specification file permissions are set to 644 or more restrictive",
           "tags": [
+            "CIS",
+            "CIS v1.6.0",
+            "Kubernetes",
             "CIS 1.1.1",
             "Master Node Configuration"
           ],
@@ -89,14 +85,7 @@ should contain an beat/agent output, e.g. filesystem data
           "gid": "root",
           "uid": "root"
         },
-        "remediation": "chown root:root /hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-        "tags": [
-          "CIS",
-          "CIS v1.6.0",
-          "Kubernetes",
-          "CIS 1.1.2",
-          "Master Node Configuration"
-        ]
+        "remediation": "chown root:root /hostfs/etc/kubernetes/manifests/kube-apiserver.yaml"
       },
       {
         "rule_metadata": {
@@ -105,6 +94,9 @@ should contain an beat/agent output, e.g. filesystem data
           "impact": "None",
           "name": "Ensure that the API server pod specification file ownership is set to root:root",
           "tags": [
+            "CIS",
+            "CIS v1.6.0",
+            "Kubernetes",
             "CIS 1.1.2",
             "Master Node Configuration"
           ],
@@ -122,8 +114,6 @@ should contain an beat/agent output, e.g. filesystem data
     "uid": "root"
   }
 }
-
-
 
 ```
   
