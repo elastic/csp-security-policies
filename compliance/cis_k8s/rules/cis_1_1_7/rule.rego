@@ -14,7 +14,6 @@ finding = result {
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {"filemode": filemode},
-		"remediation": sprintf("chmod 644 %s", [data_adapter.file_path]),
 	}
 }
 
@@ -24,5 +23,6 @@ metadata = {
 	"impact": "None",
 	"version": "Version 6",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.7", "Master Node Configuration"]),
-	"benchmark": "CIS Kubernetes",
+	"benchmark": cis_k8s.benchmark_name,
+	"remediation": "chmod 644 /etc/kubernetes/manifests/etcd.yaml",
 }

@@ -15,7 +15,6 @@ finding = result {
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {"uid": uid, "gid": gid},
-		"remediation": sprintf("chown root:root %s", [data_adapter.file_path]),
 	}
 }
 
@@ -25,5 +24,6 @@ metadata = {
 	"impact": "None",
 	"version": "Version 6",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.14", "Master Node Configuration"]),
-	"benchmark": "CIS Kubernetes",
+	"benchmark": cis_k8s.benchmark_name,
+	"remediation": "chown root:root /etc/kubernetes/admin.conf",
 }
