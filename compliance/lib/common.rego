@@ -36,7 +36,7 @@ get_arg_value(arguments, key) = value {
 }
 
 # checks if a argument is set to greater value then minimum
-value_greater_than(arguments, key, minimum) {
+arg_at_least(arguments, key, minimum) {
 	value := get_arg_value(arguments, key)
 	to_number(value) >= minimum
 } else = false {
