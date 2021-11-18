@@ -21,3 +21,24 @@ file_permission_match(filemode, user, group, other) {
 } else = false {
 	true
 }
+
+array_contains(array, key) {
+	contains(array[_], key)
+} else = false {
+	true
+}
+
+# gets argument's value
+get_arg_value(arguments, key) = value {
+	contains(arguments[i], key)
+	argument := arguments[i]
+	[_, value] := split(argument, "=")
+}
+
+# checks if a argument is set to greater value then minimum
+value_greater_than(arguments, key, minimum) {
+	value := get_arg_value(arguments, key)
+	to_number(value) >= minimum
+} else = false {
+	true
+}

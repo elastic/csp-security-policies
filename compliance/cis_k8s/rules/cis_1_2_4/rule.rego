@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --kubelet-https argument is set to true (Automated)
 finding = result {
 	command_args := data_adapter.command_args
-	rule_evaluation = contains(command_args, "--kubelet-https=false") == false # if not set to false explictly -> rule pass
+	rule_evaluation = common.array_contains(command_args, "--kubelet-https=false") == false # if not set to false explictly -> rule pass
 
 	# set result
 	result := {

@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --token-auth-file parameter is not set (Automated)
 finding = result {
 	command_args := data_adapter.command_args
-	rule_evaluation := contains(command_args, "--token-auth-file") == false
+	rule_evaluation := common.array_contains(command_args, "--token-auth-file") == false
 
 	# set result
 	result := {

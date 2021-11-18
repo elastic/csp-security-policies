@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --authorization-mode argument is not set to AlwaysAllow (Automated)
 finding = result {
 	command_args := data_adapter.command_args
-	rule_evaluation = contains(command_args, "--authorization-mode=AlwaysAllow") == false
+	rule_evaluation = common.array_contains(command_args, "--authorization-mode=AlwaysAllow") == false
 
 	# set result
 	result := {
