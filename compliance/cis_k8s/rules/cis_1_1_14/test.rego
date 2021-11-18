@@ -1,12 +1,12 @@
-package compliance.cis.rules.cis_1_1_14
+package compliance.cis_k8s.rules.cis_1_1_14
 
 import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_violation(finding) with input as rule_input("admin.conf", "root", "user")
-	test.assert_violation(finding) with input as rule_input("admin.conf", "user", "root")
-	test.assert_violation(finding) with input as rule_input("admin.conf", "user", "user")
+	test.assert_fail(finding) with input as rule_input("admin.conf", "root", "user")
+	test.assert_fail(finding) with input as rule_input("admin.conf", "user", "root")
+	test.assert_fail(finding) with input as rule_input("admin.conf", "user", "user")
 }
 
 test_pass {
