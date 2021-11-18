@@ -4,11 +4,13 @@ import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("etcd", "0710")
+	test.assert_fail(finding) with input as rule_input("var/lib/etcd/", "0710")
+	test.assert_fail(finding) with input as rule_input("var/lib/etcd/some_file.txt", "0710")
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("etcd", "0600")
+	test.assert_pass(finding) with input as rule_input("var/lib/etcd/", "0600")
+	test.assert_pass(finding) with input as rule_input("var/lib/etcd/some_file.txt", "0600")
 }
 
 test_not_evaluated {

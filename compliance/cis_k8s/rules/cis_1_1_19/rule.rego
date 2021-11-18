@@ -6,7 +6,7 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the Kubernetes PKI directory and file ownership is set to root:root
 finding = result {
-	data_adapter.filename == "pki"
+	contains(data_adapter.file_path, "etc/kubernetes/pki")
 	uid = data_adapter.owner_user_id
 	gid = data_adapter.owner_group_id
 	rule_evaluation := common.file_ownership_match(uid, gid, "root", "root")

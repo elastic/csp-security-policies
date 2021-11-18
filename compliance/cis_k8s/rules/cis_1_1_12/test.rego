@@ -4,13 +4,15 @@ import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("etcd", "root", "root")
-	test.assert_fail(finding) with input as rule_input("etcd", "etcd", "root")
-	test.assert_fail(finding) with input as rule_input("etcd", "root", "etcd")
+	test.assert_fail(finding) with input as rule_input("var/lib/etcd/", "root", "root")
+	test.assert_fail(finding) with input as rule_input("var/lib/etcd/", "etcd", "root")
+	test.assert_fail(finding) with input as rule_input("var/lib/etcd/", "root", "etcd")
+	test.assert_fail(finding) with input as rule_input("var/lib/etcd/some_file.txt", "root", "etcd")
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("etcd", "etcd", "etcd")
+	test.assert_pass(finding) with input as rule_input("var/lib/etcd/", "etcd", "etcd")
+	test.assert_pass(finding) with input as rule_input("var/lib/etcd/some_file.txt", "etcd", "etcd")
 }
 
 test_not_evaluated {

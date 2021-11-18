@@ -6,7 +6,7 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the etcd data directory permissions are set to 700 or more restrictive
 finding = result {
-	data_adapter.filename == "etcd"
+	contains(data_adapter.file_path, "/var/lib/etcd")
 	filemode := data_adapter.filemode
 	rule_evaluation := common.file_permission_match(filemode, 7, 0, 0)
 
