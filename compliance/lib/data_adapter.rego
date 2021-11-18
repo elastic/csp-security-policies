@@ -1,7 +1,7 @@
 package compliance.lib.data_adapter
 
 is_filesystem {
-	input.type == "filesystem"
+	input.type == "file-system"
 }
 
 filename = file_name {

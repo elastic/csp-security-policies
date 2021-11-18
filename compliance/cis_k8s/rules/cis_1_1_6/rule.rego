@@ -1,4 +1,4 @@
-package compliance.cis.rules.cis_1_1_6
+package compliance.cis_k8s.rules.cis_1_1_6
 
 import data.compliance.cis_k8s
 import data.compliance.lib.common

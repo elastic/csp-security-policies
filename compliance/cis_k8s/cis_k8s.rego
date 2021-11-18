@@ -4,9 +4,11 @@ import data.compliance.cis_k8s.rules
 
 default_tags := ["CIS", "CIS v1.6.0", "Kubernetes"]
 
-findings[{finding, metadata}] {
+findings[finding] {
 	some rule_id
 	data.activated_rules.cis_k8s[rule_id]
-	finding = rules[rule_id].finding
-	metadata = {"rule_metadata": rules[rule_id].metadata}
+	finding = {
+	    "result": rules[rule_id].finding,
+	    "rule": rules[rule_id].metadata,
+	}
 }
