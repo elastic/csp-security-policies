@@ -4,11 +4,11 @@ import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
-	test.rule_violation(finding) with input as rule_input("0710")
+	test.assert_violation(finding) with input as rule_input("0710")
 }
 
 test_pass {
-	test.rule_pass(finding) with input as rule_input("0600")
+	test.assert_pass(finding) with input as rule_input("0600")
 }
 
 rule_input(filemode) = filesystem_input {
