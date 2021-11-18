@@ -1,12 +1,10 @@
 package compliance.lib.common
 
 # set the rule result
-default evaluation = "violation"
-
 calculate_result(evaluation) = "passed" {
-	evaluation == true
+	evaluation
 } else = "violation" {
-	evaluation == false
+	true
 }
 
 file_ownership_match(uid, gid, requierd_uid, requierd_gid) {

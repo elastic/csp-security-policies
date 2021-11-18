@@ -4,11 +4,15 @@ import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
-	test.rule_violation(finding) with input as rule_input("--basic-auth-file")
+	test.assert_violation(finding) with input as rule_input("api_server", "--basic-auth-file")
 }
 
 test_pass {
-	test.rule_pass(finding) with input as rule_input("")
+	test.assert_pass(finding) with input as rule_input("api_server", "")
 }
 
-rule_input(argument) = test_data.api_server_input([argument])
+test_not_evaluated {
+	not finding with input as rule_input("some_process", "")
+}
+
+rule_input(process_type, argument) = test_data.api_server_input(process_type, [argument])
