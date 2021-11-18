@@ -21,7 +21,6 @@ metadata = {
 	"name": "Ensure that the admin.conf file permissions are set to 644 or more restrictive",
 	"description": "The admin.conf is the administrator kubeconfig file defining various settings for the administration of the cluster. You should restrict its file permissions to maintain the integrity of the file. The file should be writable by only the administrators on the system.",
 	"impact": "None",
-	"version": "Version 6",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.13", "Master Node Configuration"]),
 	"benchmark": cis_k8s.benchmark_name,
 	"remediation": "chmod 644 /etc/kubernetes/admin.conf",

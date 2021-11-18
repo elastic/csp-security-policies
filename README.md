@@ -72,8 +72,7 @@ should contain an beat/agent output, e.g. filesystem data
           "Kubernetes",
           "CIS 1.1.1",
           "Master Node Configuration"
-        ],
-        "version": "Version 6"
+        ]
       }
     },
     {
@@ -96,8 +95,7 @@ should contain an beat/agent output, e.g. filesystem data
           "Kubernetes",
           "CIS 1.1.2",
           "Master Node Configuration"
-        ],
-        "version": "Version 6"
+        ]
       }
     }
   ],
@@ -110,7 +108,6 @@ should contain an beat/agent output, e.g. filesystem data
     "uid": "root"
   }
 }
-
 ```
   
 </details>
