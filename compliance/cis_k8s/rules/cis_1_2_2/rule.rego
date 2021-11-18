@@ -13,8 +13,6 @@ finding = result {
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {"command_args": command_args},
-		"tags": array.concat(cis_k8s.default_tags, metadata.tags),
-		"remediation": "Follow the documentation and configure alternate mechanisms for authentication. Then, edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and remove the --basic-auth-file=<filename> parameter.",
 	}
 }
 
@@ -22,7 +20,7 @@ metadata = {
 	"name": "Ensure that the --basic-auth-file argument is not set",
 	"description": "Basic authentication uses plaintext credentials for authentication. Currently, the basic authentication credentials last indefinitely, and the password cannot be changed without restarting the API server. The basic authentication is currently supported for convenience. Hence, basic authentication should not be used.",
 	"impact": "You will have to configure and use alternate authentication mechanisms such as tokens and certificates. Username and password for basic authentication could no longer be used.",
-	"version": "Version 7",
-	"tags": ["CIS 1.2.2", "API Server"],
+	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.2", "API Server"]),
 	"benchmark": "CIS Kubernetes",
+	"remediation": "Follow the documentation and configure alternate mechanisms for authentication. Then, edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and remove the --basic-auth-file=<filename> parameter.",
 }
