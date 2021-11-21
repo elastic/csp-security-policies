@@ -1,15 +1,15 @@
-package compliance.cis_k8s.rules.cis_1_3_2
+package compliance.cis_k8s.rules.cis_1_3_6
 
 import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("controller_manager", "")
-	test.assert_fail(finding) with input as rule_input("controller_manager", "--profiling=true")
+	test.assert_fail(finding) with input as rule_input("controller_manager", "RotateKubeletServerCertificate=false")
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("controller_manager", "--profiling=false")
+	test.assert_pass(finding) with input as rule_input("controller_manager", "RotateKubeletServerCertificate=true")
 }
 
 test_not_evaluated {

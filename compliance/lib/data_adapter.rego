@@ -35,5 +35,5 @@ is_controller_manager_process {
 
 controller_manager_args = args {
 	is_controller_manager_process
-	args = input.command
+	args = split(input.command, " ")
 }

@@ -6,8 +6,6 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --profiling argument is set to false (Automated)
 finding = result {
-	print(data_adapter.controller_manager_args)
-	print(common.array_contains(data_adapter.controller_manager_args, "--profiling=false"))
 	command_args := data_adapter.controller_manager_args
 	rule_evaluation := common.array_contains(command_args, "--profiling=false")
 

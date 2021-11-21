@@ -1,15 +1,15 @@
-package compliance.cis_k8s.rules.cis_1_3_2
+package compliance.cis_k8s.rules.cis_1_3_7
 
 import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("controller_manager", "")
-	test.assert_fail(finding) with input as rule_input("controller_manager", "--profiling=true")
+	test.assert_fail(finding) with input as rule_input("controller_manager", "--bind-address=127.0.0.2")
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("controller_manager", "--profiling=false")
+	test.assert_pass(finding) with input as rule_input("controller_manager", "--bind-address=127.0.0.1")
 }
 
 test_not_evaluated {
