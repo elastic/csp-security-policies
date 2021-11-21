@@ -28,3 +28,12 @@ owner_group_id = gid {
 	is_filesystem
 	gid = input.gid
 }
+
+is_etcd_process {
+	input.type == "etcd"
+}
+
+etcd_args = args {
+	is_etcd_process
+	args = split(input.command, " ")
+}

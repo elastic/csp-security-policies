@@ -21,3 +21,9 @@ file_permission_match(filemode, user, group, other) {
 } else = false {
 	true
 }
+
+array_contains(array, key) {
+	contains(array[_], key)
+} else = false {
+	true
+}
