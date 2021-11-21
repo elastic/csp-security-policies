@@ -6,8 +6,8 @@
     │   │   ├── data_adapter.rego          # Input data adapter
     │   │   └── test.rego                  # Common Test functions
     │   ├── cis_k8s
-    │   |   ├── cis_k8s.rego               # Handles all Kubernetes CIS rules evalutations
-    │   |   ├── test_data.rego             # CIS Test data functions
+    │   │   ├── cis_k8s.rego               # Handles all Kubernetes CIS rules evalutations
+    │   │   ├── test_data.rego             # CIS Test data functions
     │   │   ├── rules
     │   │   │   ├── cis_1_1_1                  # CIS 1.1.1 rule package 
     │   │   │   │   ├── rule.rego
