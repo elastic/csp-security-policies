@@ -28,3 +28,12 @@ owner_group_id = gid {
 	is_filesystem
 	gid = input.gid
 }
+
+is_scheduler_process {
+	input.type == "scheduler"
+}
+
+scheduler_args = args {
+	is_scheduler_process
+	args = split(input.command, " ")
+}
