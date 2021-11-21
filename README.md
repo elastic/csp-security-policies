@@ -1,4 +1,4 @@
-# Cloud Security Posture security policies 
+# Cloud Security Posture - Rego policies 
     .
     ├── compliance                         # Compliance policies
     │   ├── lib
