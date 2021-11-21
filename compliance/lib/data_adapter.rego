@@ -28,3 +28,12 @@ owner_group_id = gid {
 	is_filesystem
 	gid = input.gid
 }
+
+is_controller_manager_process {
+	input.type == "controller_manager"
+}
+
+controller_manager_args = args {
+	is_controller_manager_process
+	args = input.command
+}

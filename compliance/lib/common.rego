@@ -21,3 +21,13 @@ file_permission_match(filemode, user, group, other) {
 } else = false {
 	true
 }
+
+array_contains(array, key) {
+	print("array_contains")
+	print(array)
+	print(array[0])
+	print(array[1])
+	contains(array[_], key)
+} else = false {
+	true
+}
