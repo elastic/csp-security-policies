@@ -28,3 +28,13 @@ owner_group_id = gid {
 	is_filesystem
 	gid = input.gid
 }
+
+is_kublet_process {
+	input.type == "kublet"
+}
+
+# split the process args string into an array
+kublet_args = args {
+	is_kublet_process
+	args = split(input.command, " ")
+}
