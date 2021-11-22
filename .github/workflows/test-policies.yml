@@ -32,5 +32,8 @@ jobs:
           echo ${{ steps.opa_test.outputs }}
           echo ${{ steps.opa_test.outputs.raw }}
           echo ${{ steps.opa_test.outputs.digest }}
+          
+          echo ${{ fromJson(steps.opa_test) }}
+          echo ${{ fromJson(steps.opa_test.outputs) }}
 
 
