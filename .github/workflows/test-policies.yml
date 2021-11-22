@@ -28,18 +28,27 @@ jobs:
           chmod +x opa
           ./opa -h
       
-      - name: Run opa test
+      - name: Run opa test coverage
         run: |
-          ./opa test --ignore=*.yaml --ignore=*.json -v -c compliance
+          echo "::set-output results=/opa test --ignore=*.yaml --ignore=*.json -v -c compliance"
+        id: coverage
         
-#       - name: Use the value
-#         run: |
-#           echo ${{ steps.opa_test }}
-#           echo ${{ steps.opa_test.outputs }}
-#           echo ${{ steps.opa_test.outputs.raw }}
-#           echo ${{ steps.opa_test.outputs.digest }}
-          
-#           echo ${{ fromJson(steps.opa_test) }}
-#           echo ${{ fromJson(steps.opa_test.outputs) }}
+      - name: Echo results
+        run: |
+          echo ${{ steps.coverage.results }}
+          echo ${{ fromJson(steps.coverage.results) }}
+        
+      - name: Create Coverage Badge
+        uses: schneegans/dynamic-badges-action@v1.1.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: a7160df46e48dff45b24096de9302d38
+          filename: csp-security-policies_coverage.json
+          label: coverage
+#           message: ${{ env.COVERAGE }}
+          message: 87
+          namedLogo: Elastic
+          color: green
+          logoColor: lightblue
 
 
