@@ -29,17 +29,16 @@ jobs:
           ./opa -h
       
       - name: OPA test coverage
+#         run: |
+#           echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
         run: |
-          echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
+          echo "::set-output name=results::FOO"
         id: coverage
         
       - name: Echo results
         run: |
           echo ${{ steps.coverage.outputs.results }}
-          
-      - name: Json
-        run: |
-          echo ${{ fromJson(steps.coverage.outputs.results) }}
+
         
       - name: Create Coverage Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
