@@ -30,10 +30,7 @@ jobs:
       
       - name: OPA test coverage
         run: |
-          RESULT=$(./opa test -v -c compliance)
-          echo "RESULT<<EOF" >> $GITHUB_ENV
-          echo "$RESULT" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
         id: coverage
 
         
@@ -44,7 +41,7 @@ jobs:
           gistID: a7160df46e48dff45b24096de9302d38
           filename: csp-security-policies_coverage.json
           label: coverage
-          message: ${{ fromJson(env.RESULT).coverage }}
+          message: ${{ fromJson(steps.coverage.results).coverage }}
           namedLogo: Elastic
           color: green
           logoColor: lightblue
