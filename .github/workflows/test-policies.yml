@@ -30,13 +30,10 @@ jobs:
       
       - name: OPA test coverage
         run: |
-          echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
-        id: coverage
-        
-      - name: Display result from prev step
-        run: |
-          echo "${{ steps.coverage.outputs.results }}"
-
+          RESULT=$(./opa test -v -c compliance)
+          echo "RESULT<<EOF" >> $GITHUB_ENV
+          echo "$RESULT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
         
       - name: Create Coverage Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
@@ -45,7 +42,7 @@ jobs:
           gistID: a7160df46e48dff45b24096de9302d38
           filename: csp-security-policies_coverage.json
           label: coverage
-          message: ${{ fromJson(steps.coverage.outputs.results).coverage }}
+          message: ${{ fromJson(env.RESULT).coverage }}
           namedLogo: Elastic
           color: green
           logoColor: lightblue
