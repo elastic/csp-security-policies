@@ -13,5 +13,5 @@ filesystem_input(filename, mode, uid, gid) = {
 # Recivies an array of arguments representing the API Server command
 api_server_input(process_type, arguments) = {
 	"type": process_type,
-	"command": concat(" ", array.concat(["kube-apiserver --allow-privileged=true"], arguments)),
+	"command": concat(" ", array.concat(["kube-apiserver"], arguments)),
 }

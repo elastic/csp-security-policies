@@ -33,7 +33,8 @@ is_process {
 	input.type == "api_server"
 }
 
+# split the process args string into an array
 command_args = args {
 	is_process
-	args = input.command
+	args = split(input.command, " ")
 }
