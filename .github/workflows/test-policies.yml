@@ -32,6 +32,10 @@ jobs:
         run: |
           echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
         id: coverage
+        
+      - name: Display result from prev step
+        run: |
+          echo "${{ steps.coverage.results }}"
 
         
       - name: Create Coverage Badge
