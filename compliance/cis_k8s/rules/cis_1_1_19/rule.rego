@@ -6,7 +6,6 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the Kubernetes PKI directory and file ownership is set to root:root
 finding = result {
-	print(sprintf("%s match = %s", [data_adapter.file_path, glob.match("**/etc/kubernetes/pki**", ["/"], data_adapter.file_path)]))
 	common.file_in_path("/etc/kubernetes/pki/", data_adapter.file_path)
 
 	uid = data_adapter.owner_user_id
