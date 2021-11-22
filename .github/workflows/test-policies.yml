@@ -36,6 +36,10 @@ jobs:
       - name: Echo results
         run: |
           echo ${{ steps.coverage.outputs.results }}
+          
+      - name: Json
+        run: |
+          echo ${{ fromJson(steps.coverage.outputs.results) }}
         
       - name: Create Coverage Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
