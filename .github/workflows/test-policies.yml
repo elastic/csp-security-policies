@@ -35,7 +35,7 @@ jobs:
         
       - name: Display result from prev step
         run: |
-          echo "${{ steps.coverage.results }}"
+          echo "${{ steps.coverage.outputs.results }}"
 
         
       - name: Create Coverage Badge
@@ -45,7 +45,7 @@ jobs:
           gistID: a7160df46e48dff45b24096de9302d38
           filename: csp-security-policies_coverage.json
           label: coverage
-          message: ${{ fromJson(steps.coverage.results).coverage }}
+          message: ${{ fromJson(steps.coverage.outputs.results).coverage }}
           namedLogo: Elastic
           color: green
           logoColor: lightblue
