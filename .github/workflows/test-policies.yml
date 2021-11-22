@@ -39,7 +39,7 @@ jobs:
         
       - name: Echo results
         run: |
-          echo ${{ env.RESULT }}
+          echo "${{ env.RESULT }}"
 
         
       - name: Create Coverage Badge
