@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  test-rego-policies:
+  opa:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,6 +17,7 @@ jobs:
         uses: b4b4r07/action-opa@master
         with:
           path: compliance
+          coverage: 0%
         id: opa
         
       - name: Print Test results
