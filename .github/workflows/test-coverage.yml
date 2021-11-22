@@ -16,7 +16,6 @@ jobs:
       - name: Run opa test
         uses: b4b4r07/action-opa@master
         with:
-          path: compliance
           coverage: 0%
         id: opa
         
