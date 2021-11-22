@@ -21,6 +21,8 @@ jobs:
         
       - name: Print Stuff
         run: |
+          echo pwd
+          echo ls
           echo "Dir files: ${{ steps.dir.outputs.changed }}"
           echo "Dir: ${{ steps.dir.outputs }}"
 
