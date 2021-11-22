@@ -1,0 +1,43 @@
+name: Code Coverage Badge
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test-rego-policies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+#       - name: Pull OPA Docker image and run opa test
+#         uses: docker://openpolicyagent/opa
+#         with:
+#           args: "test --ignore=*.yaml --ignore=*.json -v -c compliance"
+#         run: |
+#           SUMMARY="$(test --ignore=*.yaml --ignore=*.json -v -c compliance)"
+#           TOKENS=($SUMMARY)
+#           echo "COVERAGE=$(echo ${TOKENS[2]})" >> $GITHUB_ENV
+      
+      - name: Run opa test against changed files
+        uses: b4b4r07/action-opa@master
+        with:
+#           coverage: 80%
+          path: compliance
+        id: opa
+        
+      - name: Get PR number
+        run: |
+          echo "Test Results: ${{ steps.opa.outputs.result }}"
+
+      - name: Create Coverage Badge
+        uses: schneegans/dynamic-badges-action@v1.1.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: a7160df46e48dff45b24096de9302d38
+          filename: csp-security-policies_coverage.json
+          label: coverage
+          message: ${{ env.COVERAGE }}
+          namedLogo: jest
+          color: green
+          logoColor: lightblue
