@@ -29,10 +29,8 @@ jobs:
           ./opa -h
       
       - name: Run opa test
-        uses: docker://openpolicyagent/opa
-        with:
-          args: "./opa test --ignore=*.yaml --ignore=*.json -v -c compliance"
-        id: opa_test
+        run: |
+          ./opa test --ignore=*.yaml --ignore=*.json -v -c compliance
         
 #       - name: Use the value
 #         run: |
