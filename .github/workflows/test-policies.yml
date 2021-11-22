@@ -40,6 +40,11 @@ jobs:
       - name: Echo results
         run: |
           echo "${{ env.RESULT }}"
+          
+      - name: Echo Coverage
+        run: |
+          echo "${{ fromJson(env.RESULT) }}"
+          echo "${{ fromJson(env.RESULT).coverage }}"
 
         
       - name: Create Coverage Badge
