@@ -30,7 +30,7 @@ jobs:
       
       - name: OPA test coverage
         run: |
-          echo "::set-output results=/opa test --ignore=*.yaml --ignore=*.json -v -c compliance"
+          echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
         id: coverage
         
       - name: Echo results
