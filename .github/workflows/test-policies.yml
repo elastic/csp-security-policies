@@ -28,15 +28,18 @@ jobs:
           chmod +x opa
           ./opa -h
       
+#          echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
       - name: OPA test coverage
         run: |
-          echo "::set-output name=results::'{ "test": "json" }'"
-#          echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
+          RESULT=$(./opa test -v -c compliance)
+          echo "RESULT<<EOF" >> $GITHUB_ENV
+          echo "$RESULT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
         id: coverage
         
       - name: Echo results
         run: |
-          echo ${{ steps.coverage.outputs.results }}
+          echo ${{ env.RESULT }}
 
         
       - name: Create Coverage Badge
