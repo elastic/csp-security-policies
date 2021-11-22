@@ -27,6 +27,10 @@ jobs:
           args: "test --ignore=*.yaml --ignore=*.json -v -c compliance"
         id: opa_test
       - name: Use the value
-        run: echo ${{ steps.opa_test.outputs.digest }}
+        run: |
+          echo ${{ steps.opa_test }}
+          echo ${{ steps.opa_test.outputs }}
+          echo ${{ steps.opa_test.outputs.raw }}
+          echo ${{ steps.opa_test.outputs.digest }}
 
 
