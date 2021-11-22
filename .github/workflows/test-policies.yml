@@ -23,7 +23,6 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Download OPA Binary
-        if: startsWith(matrix.os, 'ubuntu')
         run: |
           curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
           chmod +x opa
