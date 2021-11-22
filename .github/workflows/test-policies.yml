@@ -29,15 +29,9 @@ jobs:
           ./opa -h
       
       - name: OPA test coverage
-#         run: |
-#           echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
         run: |
-          echo "::set-output name=results::FOO"
+          echo "::set-output name=results::$(./opa test --ignore=*.yaml --ignore=*.json -v -c compliance)"
         id: coverage
-        
-      - name: Echo results
-        run: |
-          echo ${{ steps.coverage.outputs.results }}
 
         
       - name: Create Coverage Badge
@@ -47,8 +41,7 @@ jobs:
           gistID: a7160df46e48dff45b24096de9302d38
           filename: csp-security-policies_coverage.json
           label: coverage
-#           message: ${{ env.COVERAGE }}
-          message: 87
+          message: ${{ fromJson(steps.coverage.results).coverage }}
           namedLogo: Elastic
           color: green
           logoColor: lightblue
