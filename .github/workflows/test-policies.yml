@@ -21,19 +21,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Pull OPA Docker image and run opa test
+      
+      - name: Download OPA Binary
+        if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+          chmod +x opa
+          ./opa -h
+      
+      - name: Run opa test
         uses: docker://openpolicyagent/opa
         with:
-          args: "test --ignore=*.yaml --ignore=*.json -v -c compliance"
+          args: "./opa test --ignore=*.yaml --ignore=*.json -v -c compliance"
         id: opa_test
-      - name: Use the value
-        run: |
-          echo ${{ steps.opa_test }}
-          echo ${{ steps.opa_test.outputs }}
-          echo ${{ steps.opa_test.outputs.raw }}
-          echo ${{ steps.opa_test.outputs.digest }}
+        
+#       - name: Use the value
+#         run: |
+#           echo ${{ steps.opa_test }}
+#           echo ${{ steps.opa_test.outputs }}
+#           echo ${{ steps.opa_test.outputs.raw }}
+#           echo ${{ steps.opa_test.outputs.digest }}
           
-          echo ${{ fromJson(steps.opa_test) }}
-          echo ${{ fromJson(steps.opa_test.outputs) }}
+#           echo ${{ fromJson(steps.opa_test) }}
+#           echo ${{ fromJson(steps.opa_test.outputs) }}
 
 
