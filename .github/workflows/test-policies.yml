@@ -24,7 +24,7 @@ jobs:
       - name: Pull OPA Docker image and run opa test
         uses: docker://openpolicyagent/opa
         with:
-          args: "test --ignore=*.yaml --ignore=*.json -v -c compliance >> $GITHUB_ENV"
+          args: "test --ignore=*.yaml --ignore=*.json -v -c compliance > $GITHUB_ENV"
       - name: Use the value
         run: |
             echo "${{ env }}"
