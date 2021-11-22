@@ -18,6 +18,11 @@ jobs:
         with:
           dirname: 'compliance'
         id: dir
+        
+      - name: Print Stuff
+        run: |
+          echo "Dir files: ${{ steps.dir.outputs.changed }}"
+          echo "Dir: ${{ steps.dir.outputs }}"
 
       - name: OPA test
         uses: b4b4r07/action-opa@master
