@@ -28,7 +28,7 @@ jobs:
           chmod +x opa
           ./opa -h
       
-      - name: Run opa test coverage
+      - name: OPA test coverage
         run: |
           echo "::set-output results=/opa test --ignore=*.yaml --ignore=*.json -v -c compliance"
         id: coverage
@@ -36,7 +36,6 @@ jobs:
       - name: Echo results
         run: |
           echo ${{ steps.coverage.results }}
-          echo ${{ fromJson(steps.coverage.results) }}
         
       - name: Create Coverage Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
