@@ -23,5 +23,4 @@ metadata = {
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.2", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
 	"remediation": "Follow the documentation and configure alternate mechanisms for authentication. Then, edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and remove the --basic-auth-file=<filename> parameter.",
-	"opa_version": common.opa_version,
 }

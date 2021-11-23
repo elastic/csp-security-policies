@@ -1,5 +1,7 @@
 package compliance.lib.common
 
+metadata = {"opa_version": opa_version}
+
 # get OPA version
 opa_version := opa.runtime().version
 

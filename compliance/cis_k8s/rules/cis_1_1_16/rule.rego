@@ -25,5 +25,4 @@ metadata = {
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.16", "Master Node Configuration"]),
 	"benchmark": cis_k8s.benchmark_name,
 	"remediation": "chown root:root /etc/kubernetes/scheduler.conf",
-	"opa_version": common.opa_version,
 }
