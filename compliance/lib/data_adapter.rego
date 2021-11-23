@@ -29,21 +29,21 @@ owner_group_id = gid {
 	gid = input.gid
 }
 
-get_process_args = args {
-    args = {arg: value | [arg, value] = split(controller_manager_args_list[_], "=")}
+process_args_list = args_list {
+	args_list = split(input.command, " ")
+}
+
+process_args(args_list) = args {
+    args = {arg: value | [arg, value] = split(args_list[_], "=")}
 }
 
 is_controller_manager_process {
 	input.type == "controller_manager"
 }
 
-controller_manager_args_list = args {
-	is_controller_manager_process
-	args = get_process_args
-}
-
 controller_manager_args = args {
 	is_controller_manager_process
+    args = process_args(process_args_list)
 }
 
 is_api_server_process {
@@ -52,5 +52,5 @@ is_api_server_process {
 
 api_server_command_args = args {
 	is_api_server_process
-	args = get_process_args
+	args = process_args(process_args_list)
 }
