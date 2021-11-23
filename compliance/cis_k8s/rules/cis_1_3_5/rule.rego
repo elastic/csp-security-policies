@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --root-ca-file argument is set as appropriate (Automated)
 finding = result {
 	command_args := data_adapter.controller_manager_args
-	rule_evaluation := common.array_contains(command_args, "--root-ca-file=")
+	rule_evaluation := common.contains_key(command_args, "--root-ca-file")
 
 	# set result
 	result := {
@@ -22,5 +22,5 @@ metadata = {
 	"impact": "You need to setup and maintain root certificate authority file.",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.3.5", "Controller Manager"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the Controller Manager pod specification file /etc/kubernetes/manifests/kube- controller-manager.yaml on the master node and set the --root-ca-file parameter to the certificate bundle file` --root-ca-file=<path/to/file>",
+	"remediation": "Edit the Controller Manager pod specification file /etc/kubernetes/manifests/kube-controller-manager.yaml on the master node and set the --root-ca-file parameter to the certificate bundle file` --root-ca-file=<path/to/file>",
 }

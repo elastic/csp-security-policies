@@ -33,7 +33,12 @@ is_controller_manager_process {
 	input.type == "controller_manager"
 }
 
-controller_manager_args = args {
+controller_manager_args_list = args {
 	is_controller_manager_process
 	args = split(input.command, " ")
+}
+
+controller_manager_args = args {
+	is_controller_manager_process
+	args = {arg: value | [arg, value] = split(controller_manager_args_list[_], "=")}
 }

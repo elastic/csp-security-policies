@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --bind-address argument is set to 127.0.0.1 (Automated)
 finding = result {
 	command_args := data_adapter.controller_manager_args
-	rule_evaluation := common.array_contains(command_args, "--bind-address=127.0.0.1")
+	rule_evaluation := common.contains_key_with_value(command_args, "--bind-address", "127.0.0.1")
 
 	# set result
 	result := {
@@ -22,5 +22,5 @@ metadata = {
 	"impact": "None",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.3.7", "Controller Manager"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the Controller Manager pod specification file /etc/kubernetes/manifests/kube- controller-manager.yaml on the master node and ensure the correct value for the -- bind-address parameter",
+	"remediation": "Edit the Controller Manager pod specification file /etc/kubernetes/manifests/kube-controller-manager.yaml on the master node and ensure the correct value for the --bind-address parameter",
 }

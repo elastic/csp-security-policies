@@ -27,3 +27,15 @@ array_contains(array, key) {
 } else = false {
 	true
 }
+
+contains_key(object, key) {
+	object[key]
+} else = false {
+	true
+}
+
+contains_key_with_value(object, key, value) {
+	object[key] = value
+} else = false {
+	true
+}

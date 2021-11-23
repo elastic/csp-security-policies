@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --profiling argument is set to false (Automated)
 finding = result {
 	command_args := data_adapter.controller_manager_args
-	rule_evaluation := common.array_contains(command_args, "--profiling=false")
+	rule_evaluation := common.contains_key_with_value(command_args, "--profiling", "false")
 
 	# set result
 	result := {
@@ -22,5 +22,5 @@ metadata = {
 	"impact": "Profiling information would not be available.",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.3.2", "Controller Manager"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the Controller Manager pod specification file /etc/kubernetes/manifests/kube- controller-manager.yaml on the master node and set to --profiling=false",
+	"remediation": "Edit the Controller Manager pod specification file /etc/kubernetes/manifests/kube-controller-manager.yaml on the master node and set to --profiling=false",
 }
