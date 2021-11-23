@@ -25,4 +25,5 @@ metadata = {
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.4", "Master Node Configuration"]),
 	"benchmark": cis_k8s.benchmark_name,
 	"remediation": "chown root:root /etc/kubernetes/manifests/kube-controller-manager.yaml",
+	"opa_version": common.opa_version,
 }

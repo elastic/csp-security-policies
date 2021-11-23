@@ -24,4 +24,5 @@ metadata = {
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.13", "Master Node Configuration"]),
 	"benchmark": cis_k8s.benchmark_name,
 	"remediation": "chmod 644 /etc/kubernetes/admin.conf",
+	"opa_version": common.opa_version,
 }

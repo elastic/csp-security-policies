@@ -25,4 +25,5 @@ metadata = {
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.12", "Master Node Configuration"]),
 	"benchmark": cis_k8s.benchmark_name,
 	"remediation": "chown etcd:etcd /var/lib/etcd",
+	"opa_version": common.opa_version,
 }

@@ -1,5 +1,8 @@
 package compliance.lib.common
 
+# get OPA version
+opa_version := opa.runtime().version
+
 # set the rule result
 calculate_result(evaluation) = "passed" {
 	evaluation
