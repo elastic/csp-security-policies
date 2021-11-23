@@ -22,5 +22,5 @@ metadata = {
 	"impact": "You will have to configure and use alternate authentication mechanisms such as tokens and certificates. Username and password for basic authentication could no longer be used.",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.3", "API Server"]),
 	"benchmark": "CIS Kubernetes",
-	"remediation": "Follow the documentation and configure alternate mechanisms for authentication. Then, edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and remove the --basic-auth-file=<filename> parameter.",
+	"remediation": "Follow the documentation and configure alternate mechanisms for authentication. Then, edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and remove the --basic-auth-file=<filename> parameter.",
 }

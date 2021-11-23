@@ -22,5 +22,5 @@ metadata = {
 	"impact": "The corresponding private key must be provided to the controller manager. You would need to securely maintain the key file and rotate the keys based on your organization's key rotation policy.",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.28", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and set the below parameter. --service-account-lookup=true",
+	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and set the below parameter. --service-account-lookup=true",
 }

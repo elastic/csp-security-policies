@@ -29,5 +29,5 @@ metadata = {
 	"impact": "None",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.14", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Follow the documentation and create ServiceAccount objects as per your environment. Then, edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and ensure that the --disable-admission-plugins parameter is set to a value that does not include ServiceAccount.",
+	"remediation": "Follow the documentation and create ServiceAccount objects as per your environment. Then, edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and ensure that the --disable-admission-plugins parameter is set to a value that does not include ServiceAccount.",
 }

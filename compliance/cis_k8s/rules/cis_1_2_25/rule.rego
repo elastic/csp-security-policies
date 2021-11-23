@@ -22,5 +22,5 @@ metadata = {
 	"impact": "None",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.25", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and set the --audit-log-maxsize parameter to an appropriate size in MB. For example, to set it as 100 MB: --audit-log-maxsize=100",
+	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and set the --audit-log-maxsize parameter to an appropriate size in MB. For example, to set it as 100 MB: --audit-log-maxsize=100",
 }

@@ -22,5 +22,5 @@ metadata = {
 	"impact": "Profiling information would not be available.",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.21", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and set --profiling=false",
+	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and set --profiling=false",
 }

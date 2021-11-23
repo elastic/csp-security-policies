@@ -29,5 +29,5 @@ metadata = {
 	"impact": "None",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.15", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and set the --disable-admission-plugins parameter to ensure it does not include NamespaceLifecycle.",
+	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and set the --disable-admission-plugins parameter to ensure it does not include NamespaceLifecycle.",
 }

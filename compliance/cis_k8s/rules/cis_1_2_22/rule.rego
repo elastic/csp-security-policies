@@ -22,5 +22,5 @@ metadata = {
 	"impact": "None",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.22", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and set the --audit-log-path parameter to a suitable path and file where you would like audit logs to be written, for example: --audit-log-path=/var/log/apiserver/audit.log",
+	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and set the --audit-log-path parameter to a suitable path and file where you would like audit logs to be written, for example: --audit-log-path=/var/log/apiserver/audit.log",
 }

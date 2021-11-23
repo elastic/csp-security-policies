@@ -39,7 +39,7 @@ get_arg_value(arguments, key) = value {
 arg_values_contains(arguments, key, value) {
 	argument := get_arg_value(arguments, key)
 	values := split(argument, ",")
-	value = values[_]
+	values[_] == value
 } else = false {
 	true
 }

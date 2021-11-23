@@ -22,5 +22,5 @@ metadata = {
 	"impact": "You need to set the API Server up with the right TLS certificates.",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.20", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and either remove the --secure-port parameter or set it to a different (non-zero) desired port.",
+	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and either remove the --secure-port parameter or set it to a different (non-zero) desired port.",
 }

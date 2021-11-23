@@ -22,5 +22,5 @@ metadata = {
 	"impact": "None",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.2.24", "API Server"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube- apiserver.yaml on the master node and set the --audit-log-maxbackup parameter to 10 or to an appropriate value --audit-log-maxbackup=10",
+	"remediation": "Edit the API server pod specification file /etc/kubernetes/manifests/kube-apiserver.yaml on the master node and set the --audit-log-maxbackup parameter to 10 or to an appropriate value --audit-log-maxbackup=10",
 }
