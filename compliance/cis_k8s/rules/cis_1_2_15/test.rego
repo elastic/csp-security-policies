@@ -6,10 +6,12 @@ import data.lib.test
 test_violation {
 	test.assert_fail(finding) with input as rule_input("api_server", "")
 	test.assert_fail(finding) with input as rule_input("api_server", "--disable-admission-plugins=NamespaceLifecycle")
+	test.assert_fail(finding) with input as rule_input("api_server", "--disable-admission-plugins=PodNodeSelector,NamespaceLifecycle")
 }
 
 test_pass {
 	test.assert_pass(finding) with input as rule_input("api_server", "--disable-admission-plugins=AlwaysDeny")
+	test.assert_pass(finding) with input as rule_input("api_server", "--disable-admission-plugins=PodNodeSelector,AlwaysDeny")
 }
 
 test_not_evaluated {

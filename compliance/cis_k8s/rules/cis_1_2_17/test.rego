@@ -6,10 +6,12 @@ import data.lib.test
 test_violation {
 	test.assert_fail(finding) with input as rule_input("api_server", "")
 	test.assert_fail(finding) with input as rule_input("api_server", "--enable-admission-plugins=AlwaysDeny")
+	test.assert_fail(finding) with input as rule_input("api_server", "--enable-admission-plugins=NamespaceLifecycle,AlwaysDeny")
 }
 
 test_pass {
 	test.assert_pass(finding) with input as rule_input("api_server", "--enable-admission-plugins=NodeRestriction")
+	test.assert_pass(finding) with input as rule_input("api_server", "--enable-admission-plugins=NamespaceLifecycle,NodeRestriction")
 }
 
 test_not_evaluated {
