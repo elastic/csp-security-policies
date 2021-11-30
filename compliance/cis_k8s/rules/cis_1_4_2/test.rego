@@ -5,11 +5,11 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("scheduler", "")
-	test.assert_fail(finding) with input as rule_input("scheduler", "-bind-address=0.0.0.0")
+	test.assert_fail(finding) with input as rule_input("scheduler", "--bind-address=0.0.0.0")
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("scheduler", "-bind-address=127.0.0.1")
+	test.assert_pass(finding) with input as rule_input("scheduler", "--bind-address=127.0.0.1")
 }
 
 test_not_evaluated {

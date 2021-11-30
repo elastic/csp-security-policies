@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --profiling argument is set to false (Automated)
 finding = result {
 	command_args := data_adapter.scheduler_args
-	rule_evaluation := common.array_contains(command_args, "--profiling=false")
+	rule_evaluation := common.contains_key_with_value(command_args, "--profiling", "false")
 
 	# set result
 	result := {
@@ -22,5 +22,5 @@ metadata = {
 	"impact": "Profiling information would not be available.",
 	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.4.1", "Scheduler"]),
 	"benchmark": cis_k8s.benchmark_name,
-	"remediation": "Edit the Scheduler pod specification file /etc/kubernetes/manifests/kube- scheduler.yaml file on the master node and set to --profiling=false",
+	"remediation": "Edit the Scheduler pod specification file /etc/kubernetes/manifests/kube-scheduler.yaml file on the master node and set to --profiling=false",
 }
