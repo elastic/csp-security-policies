@@ -40,7 +40,6 @@ contains_key_with_value(object, key, value) {
 	true
 }
 
-
 # checks if argument contains value (argument format is csv)
 arg_values_contains(arguments, key, value) {
 	argument := arguments[key]

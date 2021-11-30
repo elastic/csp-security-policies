@@ -34,7 +34,7 @@ process_args_list = args_list {
 }
 
 process_args(args_list) = args {
-    args = {arg: value | [arg, value] = split(args_list[_], "=")}
+	args = {arg: value | [arg, value] = split(args_list[_], "=")}
 }
 
 is_controller_manager_process {
@@ -43,7 +43,7 @@ is_controller_manager_process {
 
 controller_manager_args = args {
 	is_controller_manager_process
-    args = process_args(process_args_list)
+	args = process_args(process_args_list)
 }
 
 is_api_server_process {

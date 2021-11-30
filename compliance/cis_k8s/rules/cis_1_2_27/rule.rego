@@ -8,13 +8,14 @@ import data.compliance.lib.data_adapter
 
 # Verify that if the --service-account-lookup argument exists it is set to true.
 command_args := data_adapter.api_server_command_args
-default rule_evaluation = false
-rule_evaluation {
-    common.contains_key_with_value(command_args, "--service-account-lookup", "true")
-} else {
-    common.contains_key(command_args, "--service-account-lookup") == false
-}
 
+default rule_evaluation = false
+
+rule_evaluation {
+	common.contains_key_with_value(command_args, "--service-account-lookup", "true")
+} else {
+	common.contains_key(command_args, "--service-account-lookup") == false
+}
 
 finding = result {
 	# set result
