@@ -6,8 +6,8 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --profiling argument is set to false (Automated)
 finding = result {
-	command_args := data_adapter.command_args
-	rule_evaluation = common.array_contains(command_args, "--profiling=false")
+	command_args := data_adapter.api_server_command_args
+	rule_evaluation = common.contains_key_with_value(command_args, "--profiling", "false")
 
 	# set result
 	result := {

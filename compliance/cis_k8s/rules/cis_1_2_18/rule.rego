@@ -6,8 +6,8 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --insecure-bind-address argument is not set (Automated)
 finding = result {
-	command_args := data_adapter.command_args
-	rule_evaluation := common.array_contains(command_args, "--insecure-bind-address=") == false
+	command_args := data_adapter.api_server_command_args
+	rule_evaluation := common.contains_key(command_args, "--insecure-bind-address") == false
 
 	# set result
 	result := {

@@ -6,8 +6,8 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --etcd-cafile argument is set as appropriate (Automated)
 finding = result {
-	command_args := data_adapter.command_args
-	rule_evaluation = common.array_contains(command_args, "--etcd-cafile=")
+	command_args := data_adapter.api_server_command_args
+	rule_evaluation := common.contains_key(command_args, "--etcd-cafile")
 
 	# set result
 	result := {

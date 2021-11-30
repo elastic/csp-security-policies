@@ -6,8 +6,8 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the admission control plugin AlwaysAdmit is not set (Automated)
 finding = result {
-	command_args := data_adapter.command_args
-	rule_evaluation := common.array_contains(command_args, "--enable-admission-plugins=AlwaysAdmit") == false
+	command_args := data_adapter.api_server_command_args
+	rule_evaluation := common.arg_values_contains(command_args, "--enable-admission-plugins", "AlwaysAdmit") == false
 
 	# set result
 	result := {

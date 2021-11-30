@@ -5,11 +5,11 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the --kubelet-client-certificate and --kubelet-client-key arguments are set as appropriate (Automated)
-command_args := data_adapter.command_args
+command_args := data_adapter.api_server_command_args
 
 rule_evaluation {
-	common.array_contains(command_args, "--kubelet-client-certificate=")
-	common.array_contains(command_args, "--kubelet-client-key=")
+	command_args["--kubelet-client-certificate"]
+	command_args["--kubelet-client-key"]
 } else = false {
 	true
 }

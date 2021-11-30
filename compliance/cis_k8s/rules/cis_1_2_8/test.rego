@@ -10,7 +10,7 @@ test_violation {
 
 test_pass {
 	test.assert_pass(finding) with input as rule_input("api_server", "--authorization-mode=Node")
-	test.assert_pass(finding) with input as rule_input("api_server", "--authorization-mode=Node,RBAC")
+	test.assert_pass(finding) with input as rule_input("api_server", "--authorization-mode=RBAC,Node")
 }
 
 test_not_evaluated {

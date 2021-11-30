@@ -6,8 +6,8 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --secure-port argument is not set to 0 (Automated)
 finding = result {
-	command_args := data_adapter.command_args
-	rule_evaluation = common.array_contains(command_args, "--secure-port=0") == false
+	command_args := data_adapter.api_server_command_args
+	rule_evaluation = common.contains_key_with_value(command_args, "--secure-port", "0") == false
 
 	# set result
 	result := {

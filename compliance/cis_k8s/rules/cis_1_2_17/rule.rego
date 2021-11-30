@@ -5,17 +5,10 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the admission control plugin NodeRestriction is set (Automated)
-command_args := data_adapter.command_args
-
-rule_evaluation {
-	# Verify that the --enable-admission-plugins argument is set to a value that includes NodeRestriction..
-	common.array_contains(command_args, "--enable-admission-plugins=")
-	common.arg_values_contains(command_args, "--enable-admission-plugins", "NodeRestriction")
-} else = false {
-	true
-}
-
 finding = result {
+    command_args := data_adapter.api_server_command_args
+    rule_evaluation := common.arg_values_contains(command_args, "--enable-admission-plugins", "NodeRestriction")
+
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),

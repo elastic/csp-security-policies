@@ -28,25 +28,31 @@ array_contains(array, key) {
 	true
 }
 
-# gets argument's value
-get_arg_value(arguments, key) = value {
-	contains(arguments[i], key)
-	argument := arguments[i]
-	[_, value] := split(argument, "=")
+contains_key(object, key) {
+	object[key]
+} else = false {
+	true
 }
+
+contains_key_with_value(object, key, value) {
+	object[key] = value
+} else = false {
+	true
+}
+
 
 # checks if argument contains value (argument format is csv)
 arg_values_contains(arguments, key, value) {
-	argument := get_arg_value(arguments, key)
+	argument := arguments[key]
 	values := split(argument, ",")
-	values[_] == value
+	value == values[_]
 } else = false {
 	true
 }
 
 # checks if a argument is set to greater value then minimum
-arg_at_least(arguments, key, minimum) {
-	value := get_arg_value(arguments, key)
+greater_or_equal(arguments, key, minimum) {
+	value := arguments[key]
 	to_number(value) >= minimum
 } else = false {
 	true

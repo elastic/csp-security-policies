@@ -5,11 +5,11 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the --etcd-certfile and --etcd-keyfile arguments are set as appropriate (Automated)
-command_args := data_adapter.command_args
+command_args := data_adapter.api_server_command_args
 
 rule_evaluation {
-	common.array_contains(command_args, "--etcd-certfile=")
-	common.array_contains(command_args, "--etcd-keyfile=")
+	command_args["--etcd-certfile"]
+	command_args["--etcd-keyfile"]
 } else = false {
 	true
 }

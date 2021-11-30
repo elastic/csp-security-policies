@@ -5,17 +5,10 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the admission control plugin PodSecurityPolicy is set (Automated)
-command_args := data_adapter.command_args
-
-rule_evaluation {
-	# Verify that the --enable-admission-plugins argument is set to a value that includes PodSecurityPolicy.
-	common.array_contains(command_args, "--enable-admission-plugins=")
-	common.arg_values_contains(command_args, "--enable-admission-plugins", "PodSecurityPolicy")
-} else = false {
-	true
-}
-
 finding = result {
+	command_args := data_adapter.api_server_command_args
+	rule_evaluation := common.arg_values_contains(command_args, "--enable-admission-plugins", "PodSecurityPolicy")
+
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),

@@ -4,11 +4,11 @@ import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("api_server", "")
 	test.assert_fail(finding) with input as rule_input("api_server", "--service-account-lookup=false")
 }
 
 test_pass {
+	test.assert_pass(finding) with input as rule_input("api_server", "")
 	test.assert_pass(finding) with input as rule_input("api_server", "--service-account-lookup=true")
 }
 

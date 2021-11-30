@@ -6,7 +6,7 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --authorization-mode argument includes Node (Automated)
 finding = result {
-	command_args := data_adapter.command_args
+	command_args := data_adapter.api_server_command_args
 	rule_evaluation = common.arg_values_contains(command_args, "--authorization-mode", "Node")
 
 	# set result

@@ -4,7 +4,7 @@ import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("api_server", "--basic-auth-file")
+	test.assert_fail(finding) with input as rule_input("api_server", "--basic-auth-file=<path/to/auth/file>")
 }
 
 test_pass {

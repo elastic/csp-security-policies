@@ -6,8 +6,8 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --request-timeout argument is set as appropriate (Automated)
 finding = result {
-	command_args := data_adapter.command_args
-	rule_evaluation = common.arg_at_least(command_args, "--request-timeout", 61)
+	command_args := data_adapter.api_server_command_args
+	rule_evaluation = common.greater_or_equal(command_args, "--request-timeout", 61)
 
 	# set result
 	result := {

@@ -5,11 +5,11 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the --tls-cert-file and --tls-private-key-file arguments are set as appropriate (Automated)
-command_args := data_adapter.command_args
+command_args := data_adapter.api_server_command_args
 
 rule_evaluation {
-	common.array_contains(command_args, "--tls-cert-file=")
-	common.array_contains(command_args, "--tls-private-key-file=")
+	command_args["--tls-cert-file"]
+	command_args["--tls-private-key-file"]
 } else = false {
 	true
 }

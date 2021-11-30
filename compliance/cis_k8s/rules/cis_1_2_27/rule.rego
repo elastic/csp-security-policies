@@ -5,10 +5,18 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the --service-account-lookup argument is set to true (Automated)
-finding = result {
-	command_args := data_adapter.command_args
-	rule_evaluation = common.array_contains(command_args, "--service-account-lookup=true")
 
+# Verify that if the --service-account-lookup argument exists it is set to true.
+command_args := data_adapter.api_server_command_args
+default rule_evaluation = false
+rule_evaluation {
+    common.contains_key_with_value(command_args, "--service-account-lookup", "true")
+} else {
+    common.contains_key(command_args, "--service-account-lookup") == false
+}
+
+
+finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),

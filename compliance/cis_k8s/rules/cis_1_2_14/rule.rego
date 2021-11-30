@@ -5,11 +5,11 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the admission control plugin ServiceAccount is set (Automated)
-command_args := data_adapter.command_args
+command_args := data_adapter.api_server_command_args
 
 rule_evaluation {
 	# Verify that the --disable-admission-plugins argument is set to a value that does not includes ServiceAccount.
-	common.array_contains(command_args, "--disable-admission-plugins=")
+	command_args["--disable-admission-plugins"]
 	not common.arg_values_contains(command_args, "--disable-admission-plugins", "ServiceAccount")
 } else = false {
 	true
