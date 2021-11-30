@@ -1,5 +1,10 @@
 package compliance.lib.common
 
+metadata = {"opa_version": opa_version}
+
+# get OPA version
+opa_version := opa.runtime().version
+
 # set the rule result
 calculate_result(evaluation) = "passed" {
 	evaluation
@@ -55,4 +60,10 @@ greater_or_equal(arguments, key, minimum) {
 	to_number(value) >= minimum
 } else = false {
 	true
+}
+
+# check if file is in path
+file_in_path(path, file_path) {
+	closed_path := concat("", [file_path, "/"]) # make sure last dir name is closed by "/"
+	contains(closed_path, path)
 }
