@@ -37,3 +37,13 @@ scheduler_args = args {
 	is_scheduler_process
 	args = split(input.command, " ")
 }
+
+is_process {
+	input.type == "api_server"
+}
+
+# split the process args string into an array
+command_args = args {
+	is_process
+	args = split(input.command, " ")
+}
