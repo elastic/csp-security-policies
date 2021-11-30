@@ -12,7 +12,7 @@ command_args := data_adapter.kublet_args
 default rule_evaluation = false
 
 rule_evaluation {
-	common.array_contains(command_args, "--authorization-mode")
+	command_args["--authorization-mode"]
 	common.arg_values_contains(command_args, "--authorization-mode", "AlwaysAllow") == false
 }
 

@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --anonymous-auth argument is set to false (Automated)
 finding = result {
 	command_args := data_adapter.kublet_args
-	rule_evaluation = common.array_contains(command_args, "--anonymous-auth=false")
+	rule_evaluation = common.contains_key_with_value(command_args, "--anonymous-auth", "false")
 
 	# set result
 	result := {

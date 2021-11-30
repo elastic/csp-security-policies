@@ -6,6 +6,7 @@ import data.lib.test
 test_violation {
 	test.assert_fail(finding) with input as rule_input("kublet", "")
 	test.assert_fail(finding) with input as rule_input("kublet", "--authorization-mode=AlwaysAllow")
+	test.assert_fail(finding) with input as rule_input("kublet", "--authorization-mode=RBAC,AlwaysAllow")
 }
 
 test_pass {

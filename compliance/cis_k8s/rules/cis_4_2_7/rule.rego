@@ -9,7 +9,7 @@ import data.compliance.lib.data_adapter
 # todo: If the --make-iptables-util-chains argument does not exist, and there is a Kubelet config file specified by --config, verify that the file does not set makeIPTablesUtilChains to false.
 finding = result {
 	command_args := data_adapter.kublet_args
-	rule_evaluation = common.array_contains(command_args, "--make-iptables-util-chains=true")
+	rule_evaluation = common.contains_key_with_value(command_args, "--make-iptables-util-chains", "false") == false
 
 	# set result
 	result := {

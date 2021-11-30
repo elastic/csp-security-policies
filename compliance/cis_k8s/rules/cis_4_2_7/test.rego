@@ -4,11 +4,11 @@ import data.cis_k8s.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("kublet", "")
 	test.assert_fail(finding) with input as rule_input("kublet", "--make-iptables-util-chains=false")
 }
 
 test_pass {
+	test.assert_pass(finding) with input as rule_input("kublet", "")
 	test.assert_pass(finding) with input as rule_input("kublet", "--make-iptables-util-chains=true")
 }
 
