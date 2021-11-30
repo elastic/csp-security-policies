@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --client-cert-auth argument is set to true (Automated)
 finding = result {
 	command_args := data_adapter.etcd_args
-	rule_evaluation := common.array_contains(command_args, "--client-cert-auth=true")
+	rule_evaluation := common.contains_key_with_value(command_args, "--client-cert-auth", "true")
 
 	# set result
 	result := {

@@ -10,8 +10,8 @@ command_args := data_adapter.etcd_args
 default rule_evaluation = false
 
 rule_evaluation {
-	common.array_contains(command_args, "--cert-file=")
-	common.array_contains(command_args, "--key-file=")
+	command_args["--cert-file"]
+	command_args["--key-file"]
 }
 
 finding = result {

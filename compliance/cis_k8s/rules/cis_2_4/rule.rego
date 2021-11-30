@@ -10,8 +10,8 @@ command_args := data_adapter.etcd_args
 default rule_evaluation = false
 
 rule_evaluation {
-	common.array_contains(command_args, "--peer-cert-file=")
-	common.array_contains(command_args, "--peer-key-file=")
+	command_args["--peer-cert-file"]
+	command_args["--peer-key-file"]
 }
 
 finding = result {
