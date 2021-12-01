@@ -5,6 +5,7 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("api_server", "--enable-admission-plugins=AlwaysAdmit")
+	test.assert_fail(finding) with input as rule_input("api_server", "--enable-admission-plugins=PodNodeSelector,AlwaysAdmit")
 }
 
 test_pass {
