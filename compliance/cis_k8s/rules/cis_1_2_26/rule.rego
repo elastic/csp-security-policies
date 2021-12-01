@@ -6,10 +6,12 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --request-timeout argument is set as appropriate (Automated)
 command_args := data_adapter.api_server_command_args
+
 default rule_evaluation = false
+
 rule_evaluation {
-    value := command_args["--request-timeout"]
-    common.duration_gte(value, 61)
+	value := command_args["--request-timeout"]
+	common.duration_gt(value, "60s")
 }
 
 finding = result {

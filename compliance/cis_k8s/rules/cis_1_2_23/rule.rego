@@ -6,10 +6,12 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --audit-log-maxage argument is set to 30 or as appropriate (Automated)
 command_args := data_adapter.api_server_command_args
+
 default rule_evaluation = false
+
 rule_evaluation {
-    value := command_args["--audit-log-maxage"]
-    common.greater_or_equal(value, 30)
+	value := command_args["--audit-log-maxage"]
+	common.greater_or_equal(value, 30)
 }
 
 finding = result {

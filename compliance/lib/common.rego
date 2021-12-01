@@ -63,13 +63,25 @@ greater_or_equal(value, minimum) {
 	true
 }
 
-# checks if duration is greater or equal to a value in seconds
+# checks if duration is greater than some minimum value
 # duration: string (https://pkg.go.dev/time#ParseDuration)
-duration_gte(duration, seconds) {
-    duration_ns := time.parse_duration_ns(duration)
-    nano_seconds := seconds * NS_FACTOR
-    duration_ns >= nano_seconds
-} else = false { true }
+duration_gt(duration, min_duration) {
+	duration_ns := time.parse_duration_ns(duration)
+	min_duration_ns := time.parse_duration_ns(min_duration)
+	duration_ns >= min_duration_ns
+} else = false {
+	true
+}
+
+# checks if duration is greater or equal to some minimum value
+# duration: string (https://pkg.go.dev/time#ParseDuration)
+duration_gt(duration, min_duration) {
+	duration_ns := time.parse_duration_ns(duration)
+	min_duration_ns := time.parse_duration_ns(min_duration)
+	duration_ns > min_duration_ns
+} else = false {
+	true
+}
 
 # check if file is in path
 file_in_path(path, file_path) {

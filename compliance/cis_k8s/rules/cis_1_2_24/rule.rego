@@ -6,10 +6,12 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --audit-log-maxbackup argument is set to 10 or as appropriate (Automated)
 command_args := data_adapter.api_server_command_args
+
 default rule_evaluation = false
+
 rule_evaluation {
-    value := command_args["--audit-log-maxbackup"]
-    common.greater_or_equal(value, 10)
+	value := command_args["--audit-log-maxbackup"]
+	common.greater_or_equal(value, 10)
 }
 
 finding = result {
