@@ -1,5 +1,10 @@
 package compliance.lib.common
 
+metadata = {"opa_version": opa_version}
+
+# get OPA version
+opa_version := opa.runtime().version
+
 # set the rule result
 calculate_result(evaluation) = "passed" {
 	evaluation
@@ -40,26 +45,38 @@ contains_key_with_value(object, key, value) {
 	true
 }
 
-# gets argument's value
-get_arg_value(arguments, key) = value {
-	contains(arguments[i], key)
-	argument := arguments[i]
-	[_, value] := split(argument, "=")
-}
-
 # checks if argument contains value (argument format is csv)
 arg_values_contains(arguments, key, value) {
-	argument := get_arg_value(arguments, key)
+	argument := arguments[key]
 	values := split(argument, ",")
-	value = values[_]
+	value == values[_]
 } else = false {
 	true
 }
 
-# checks if a argument is set to greater value then minimum
-arg_at_least(arguments, key, minimum) {
-	value := get_arg_value(arguments, key)
+# checks if a value is greater or equals to a minimum value
+greater_or_equal(value, minimum) {
 	to_number(value) >= minimum
+} else = false {
+	true
+}
+
+# checks if duration is greater than some minimum value
+# duration: string (https://pkg.go.dev/time#ParseDuration)
+duration_gt(duration, min_duration) {
+	duration_ns := time.parse_duration_ns(duration)
+	min_duration_ns := time.parse_duration_ns(min_duration)
+	duration_ns >= min_duration_ns
+} else = false {
+	true
+}
+
+# checks if duration is greater or equal to some minimum value
+# duration: string (https://pkg.go.dev/time#ParseDuration)
+duration_gt(duration, min_duration) {
+	duration_ns := time.parse_duration_ns(duration)
+	min_duration_ns := time.parse_duration_ns(min_duration)
+	duration_ns > min_duration_ns
 } else = false {
 	true
 }
