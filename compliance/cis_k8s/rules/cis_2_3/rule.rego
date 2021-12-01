@@ -7,8 +7,9 @@ import data.compliance.lib.data_adapter
 # Ensure that the --auto-tls argument is not set to true (Automated)
 finding = result {
 	# Verify that if the --auto-tls argument exists, it is not set to true.
-    command_args := data_adapter.etcd_args
-    rule_evaluation := common.contains_key_with_value(command_args, "--auto-tls", "true") == false
+	command_args := data_adapter.etcd_args
+	rule_evaluation := common.contains_key_with_value(command_args, "--auto-tls", "true") == false
+
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
