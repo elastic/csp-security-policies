@@ -22,6 +22,12 @@ api_server_input(process_type, arguments) = {
 	"command": concat(" ", array.concat(["kube-apiserver"], arguments)),
 }
 
+# Recivies an array of arguments representing the kube-controller-manager command
+etcd_input(process_type, arguments) = {
+	"type": process_type,
+	"command": concat(" ", array.concat(["etcd"], arguments)),
+}
+
 # Recivies an array of arguments representing the kubelet command
 kublet_input(process_type, arguments) = {
 	"type": process_type,
