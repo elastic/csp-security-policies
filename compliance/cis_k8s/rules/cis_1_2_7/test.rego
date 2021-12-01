@@ -5,6 +5,7 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("api_server", "--authorization-mode=AlwaysAllow")
+	test.assert_fail(finding) with input as rule_input("api_server", "--authorization-mode=RBAC,AlwaysAllow")
 }
 
 test_pass {

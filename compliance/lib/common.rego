@@ -1,7 +1,5 @@
 package compliance.lib.common
 
-NS_FACTOR = 1000000000 # seconds to nano seconds factor
-
 metadata = {"opa_version": opa_version}
 
 # get OPA version
