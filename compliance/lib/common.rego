@@ -1,5 +1,7 @@
 package compliance.lib.common
 
+NS_FACTOR = 1000000000 # seconds to nano seconds factor
+
 metadata = {"opa_version": opa_version}
 
 # get OPA version
@@ -54,13 +56,20 @@ arg_values_contains(arguments, key, value) {
 	true
 }
 
-# checks if a argument is set to greater value then minimum
-greater_or_equal(arguments, key, minimum) {
-	value := arguments[key]
+# checks if a value is greater or equals to a minimum value
+greater_or_equal(value, minimum) {
 	to_number(value) >= minimum
 } else = false {
 	true
 }
+
+# checks if duration is greater or equal to a value in seconds
+# duration: string (https://pkg.go.dev/time#ParseDuration)
+duration_gte(duration, seconds) {
+    duration_ns := time.parse_duration_ns(duration)
+    nano_seconds := seconds * NS_FACTOR
+    duration_ns >= nano_seconds
+} else = false { true }
 
 # check if file is in path
 file_in_path(path, file_path) {

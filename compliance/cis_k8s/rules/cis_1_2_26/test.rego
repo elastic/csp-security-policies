@@ -5,13 +5,14 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("api_server", "")
-	test.assert_fail(finding) with input as rule_input("api_server", "--request-timeout=30")
-	test.assert_fail(finding) with input as rule_input("api_server", "--request-timeout=59")
+	test.assert_fail(finding) with input as rule_input("api_server", "--request-timeout=30s")
+	test.assert_fail(finding) with input as rule_input("api_server", "--request-timeout=59s")
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("api_server", "--request-timeout=61")
-	test.assert_pass(finding) with input as rule_input("api_server", "--request-timeout=300")
+	test.assert_pass(finding) with input as rule_input("api_server", "--request-timeout=61s")
+	test.assert_pass(finding) with input as rule_input("api_server", "--request-timeout=2m")
+	test.assert_pass(finding) with input as rule_input("api_server", "--request-timeout=1h35m2s")
 }
 
 test_not_evaluated {

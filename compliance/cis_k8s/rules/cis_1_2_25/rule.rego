@@ -5,10 +5,14 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the --audit-log-maxsize argument is set to 100 or as appropriate (Automated)
-finding = result {
-	command_args := data_adapter.api_server_command_args
-	rule_evaluation = common.greater_or_equal(command_args, "--audit-log-maxsize", 100)
+command_args := data_adapter.api_server_command_args
+default rule_evaluation = false
+rule_evaluation {
+    value := command_args["--audit-log-maxsize"]
+    common.greater_or_equal(value, 100)
+}
 
+finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
