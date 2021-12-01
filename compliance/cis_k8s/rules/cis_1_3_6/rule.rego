@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the RotateKubeletServerCertificate argument is set to true (Automated)
 finding = result {
 	command_args := data_adapter.controller_manager_args
-	rule_evaluation := common.contains_key_with_value(command_args, "RotateKubeletServerCertificate", "true")
+	rule_evaluation := common.contains_key_with_value(command_args, "--feature-gates", "RotateKubeletServerCertificate=true")
 
 	# set result
 	result := {

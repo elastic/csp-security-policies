@@ -5,11 +5,12 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("controller_manager", "")
-	test.assert_fail(finding) with input as rule_input("controller_manager", "RotateKubeletServerCertificate=false")
+	test.assert_fail(finding) with input as rule_input("controller_manager", "--feature-gates=RotateKubeletServerCertificate=false")
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("controller_manager", "RotateKubeletServerCertificate=true")
+	test.assert_pass(finding) with input as rule_input("controller_manager", "--feature-gates=RotateKubeletServerCertificate=true")
+	true
 }
 
 test_not_evaluated {
