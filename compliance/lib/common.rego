@@ -54,10 +54,29 @@ arg_values_contains(arguments, key, value) {
 	true
 }
 
-# checks if a argument is set to greater value then minimum
-greater_or_equal(arguments, key, minimum) {
-	value := arguments[key]
+# checks if a value is greater or equals to a minimum value
+greater_or_equal(value, minimum) {
 	to_number(value) >= minimum
+} else = false {
+	true
+}
+
+# checks if duration is greater than some minimum value
+# duration: string (https://pkg.go.dev/time#ParseDuration)
+duration_gt(duration, min_duration) {
+	duration_ns := time.parse_duration_ns(duration)
+	min_duration_ns := time.parse_duration_ns(min_duration)
+	duration_ns >= min_duration_ns
+} else = false {
+	true
+}
+
+# checks if duration is greater or equal to some minimum value
+# duration: string (https://pkg.go.dev/time#ParseDuration)
+duration_gt(duration, min_duration) {
+	duration_ns := time.parse_duration_ns(duration)
+	min_duration_ns := time.parse_duration_ns(min_duration)
+	duration_ns > min_duration_ns
 } else = false {
 	true
 }

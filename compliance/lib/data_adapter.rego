@@ -46,6 +46,10 @@ controller_manager_args = args {
 	args = process_args(process_args_list)
 }
 
+is_api_server_process {
+	input.type == "api_server"
+}
+
 is_scheduler_process {
 	input.type == "scheduler"
 }
@@ -55,9 +59,6 @@ scheduler_args = args {
 	args = process_args(process_args_list)
 }
 
-is_api_server_process {
-	input.type == "api_server"
-}
 
 api_server_command_args = args {
 	is_api_server_process
