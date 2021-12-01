@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --basic-auth-file argument is not set (Automated)
 finding = result {
 	command_args := data_adapter.api_server_command_args
-    rule_evaluation := common.contains_key(command_args,  "--basic-auth-file") == false
+	rule_evaluation := common.contains_key(command_args, "--basic-auth-file") == false
 
 	# set result
 	result := {
