@@ -6,13 +6,17 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --insecure-port argument is set to 0 (Automated)
 finding = result {
-	command_args := data_adapter.api_server_command_args
-	rule_evaluation := common.contains_key_with_value(command_args, "--insecure-port", "0")
+	# filter
+	data_adapter.process_name == "kube-apiserver"
+
+	# evaluate
+	process_args := data_adapter.process_args
+	rule_evaluation := common.contains_key_with_value(process_args, "--insecure-port", "0")
 
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"command_args": command_args},
+		"evidence": {"process_args": process_args},
 	}
 }
 
