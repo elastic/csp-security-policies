@@ -24,7 +24,7 @@ jobs:
           echo "$RESULT" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - run: |  
-          echo "COVERAGE=$(fromJson(env.RESULT).coverage)" >> $GITHUB_ENV
+          echo "COVERAGE=$(fromJson($RESULT).coverage)" >> $GITHUB_ENV
           
       - name: Set coverage badge color
         run: |
