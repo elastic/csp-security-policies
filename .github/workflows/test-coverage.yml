@@ -23,18 +23,6 @@ jobs:
           echo "RESULT<<EOF" >> $GITHUB_ENV
           echo "$RESULT" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-      - run: |  
-          echo "COVERAGE=$(fromJson($RESULT).coverage)" >> $GITHUB_ENV
-          
-      - name: Set coverage badge color
-        run: |
-          if (( $(echo "$COVERAGE <= 50" | bc -l) )) ; then
-            echo "COLOR=red" >> $GITHUB_ENV
-          elif (( $(echo "$COVERAGE > 80" | bc -l) )); then
-            echo "COLOR=green" >> $GITHUB_ENV
-          else
-            echo "COLOR=orange" >> $GITHUB_ENV
-          fi
         
       - name: Create Coverage Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
