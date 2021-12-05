@@ -1,6 +1,7 @@
 package compliance.cis_k8s.rules.cis_1_2_27
 
 import data.compliance.cis_k8s
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
@@ -14,7 +15,7 @@ default rule_evaluation = false
 rule_evaluation {
 	common.contains_key_with_value(command_args, "--service-account-lookup", "true")
 } else {
-	common.contains_key(command_args, "--service-account-lookup") == false
+	assert.is_false(common.contains_key(command_args, "--service-account-lookup"))
 }
 
 finding = result {

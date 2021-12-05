@@ -1,13 +1,14 @@
 package compliance.cis_k8s.rules.cis_1_2_7
 
 import data.compliance.cis_k8s
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the --authorization-mode argument is not set to AlwaysAllow (Automated)
 finding = result {
 	command_args := data_adapter.api_server_command_args
-	rule_evaluation = common.arg_values_contains(command_args, "--authorization-mode", "AlwaysAllow") == false
+	rule_evaluation = assert.is_false(common.arg_values_contains(command_args, "--authorization-mode", "AlwaysAllow"))
 
 	# set result
 	result := {

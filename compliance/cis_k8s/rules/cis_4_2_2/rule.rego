@@ -1,6 +1,7 @@
 package compliance.cis_k8s.rules.cis_4_2_2
 
 import data.compliance.cis_k8s
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
@@ -13,7 +14,7 @@ default rule_evaluation = false
 
 rule_evaluation {
 	command_args["--authorization-mode"]
-	common.arg_values_contains(command_args, "--authorization-mode", "AlwaysAllow") == false
+	assert.is_false(common.arg_values_contains(command_args, "--authorization-mode", "AlwaysAllow"))
 }
 
 # todo: If it is not present check that there is a Kubelet config file specified by --config, and that file sets authorization: mode to something other than AlwaysAllow.
