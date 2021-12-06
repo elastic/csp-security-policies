@@ -31,7 +31,7 @@ jobs:
           gistID: a7160df46e48dff45b24096de9302d38
           filename: csp-security-policies_coverage.json
           label: coverage
-          message: ${{ env.COLOR }}
+          message: ${{ fromJson(env.RESULT).coverage }}
           namedLogo: Elastic
           color: green
           logoColor: lightblue
