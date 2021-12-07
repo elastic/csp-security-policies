@@ -18,7 +18,7 @@
     │   │   │   │   ├── rule.rego
     │   │   │   │   └── test.rego
     │   │   │   └── ...
-    └── main.rego                          # Evaluate all policies and returns the findings
+    └── main.rego                          # Evaluates all policies and returns the findings
     
 ## Local Evaluation
 Add the following configuration files into the root folder
