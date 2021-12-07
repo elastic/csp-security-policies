@@ -47,11 +47,15 @@ should contain an beat/agent output, e.g. filesystem data
 ```
 
 ### Evaluate entire policy into output.json
-- `opa eval data.main --format pretty -i input.json -b . > output.json`
+```console
+opa eval data.main --format pretty -i input.json -b . > output.json
+```
 
 ### Evaluate findings only
-- `opa eval data.main.findings --format pretty -i input.json -b . > output.json`
-- `opa eval data.main --format pretty -i input.json -b . -s compliance/cis_k8s/schemas/input_schema.json` # eval with input schema
+```console
+opa eval data.main.findings --format pretty -i input.json -b . > output.json
+```
+
 <details> 
 <summary>Example output</summary>
   
@@ -117,12 +121,27 @@ should contain an beat/agent output, e.g. filesystem data
   
 </details>
 
+### Evaluate with input schema
+
+```console
+❯ opa eval data.main --format pretty -i input.json -b . -s compliance/cis_k8s/schemas/input_schema.json
+1 error occurred: compliance/lib/data_adapter.rego:11: rego_type_error: undefined ref: input.filenames
+        input.filenames
+              ^
+              have: "filenames"
+              want (one of): ["command" "filename" "gid" "mode" "path" "type" "uid"]
+
+```
 ## Local Testing
 ### Test entire policy
-- `opa test -v compliance`
+```console
+opa test -v compliance
+```
 
 ### Test specific rule
-- `opa test -v compliance/lib compliance/cis_k8s.rego compliance/rules/cis_1_1_2`
+```console
+opa test -v compliance/lib compliance/cis_k8s.rego compliance/rules/cis_1_1_2
+```
 
 ### Pre-commit hooks
 see [pre-commit](https://pre-commit.com/) package
