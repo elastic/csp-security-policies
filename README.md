@@ -11,8 +11,8 @@
     │   ├── cis_k8s
     │   │   ├── cis_k8s.rego               # Handles all Kubernetes CIS rules evalutations
     │   │   ├── test_data.rego             # CIS Test data generators
-    |   │   ├── schemas                    # Benchmark's schemas
-    |   │   │   └── input_scehma.rego      
+    │   │   ├── schemas                    # Benchmark's schemas
+    │   │   │   └── input_scehma.rego      
     │   │   ├── rules
     │   │   │   ├── cis_1_1_1              # CIS 1.1.1 rule package 
     │   │   │   │   ├── rule.rego
