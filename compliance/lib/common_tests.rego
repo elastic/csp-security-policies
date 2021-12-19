@@ -192,6 +192,15 @@ test_split_key_value {
 	value == "some_value=true"
 }
 
+test_split_key_value_multiple_values {
+	key_value_string := "--my-arg-name=first,second"
+	[arg, value] = split_key_value(key_value_string)
+	args = {arg: value}
+	key = "--my-arg-name"
+	arg_values_contains(args, key, "first")
+	arg_values_contains(args, key, "second")
+}
+
 test_validate_metadata_invalid_remediation {
 	invalid_metadata := {
 		"name": "rule name",
