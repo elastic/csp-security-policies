@@ -7,13 +7,17 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --basic-auth-file argument is not set (Automated)
 finding = result {
-	command_args := data_adapter.api_server_command_args
-	rule_evaluation := assert.is_false(common.contains_key(command_args, "--basic-auth-file"))
+	# filter
+	data_adapter.is_kube_apiserver
+
+	# evaluate
+	process_args := data_adapter.process_args
+	rule_evaluation := assert.is_false(common.contains_key(process_args, "--basic-auth-file"))
 
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"command_args": command_args},
+		"evidence": {"process_args": process_args},
 	}
 }
 

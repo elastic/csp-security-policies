@@ -7,13 +7,17 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --secure-port argument is not set to 0 (Automated)
 finding = result {
-	command_args := data_adapter.api_server_command_args
-	rule_evaluation = assert.is_false(common.contains_key_with_value(command_args, "--secure-port", "0"))
+	# filter
+	data_adapter.is_kube_apiserver
+
+	# evaluate
+	process_args := data_adapter.process_args
+	rule_evaluation = assert.is_false(common.contains_key_with_value(process_args, "--secure-port", "0"))
 
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"command_args": command_args},
+		"evidence": {"process_args": process_args},
 	}
 }
 

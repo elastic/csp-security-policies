@@ -7,14 +7,19 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the --auto-tls argument is not set to true (Automated)
 finding = result {
+	# filter
+	data_adapter.is_etcd
+
 	# Verify that if the --auto-tls argument exists, it is not set to true.
-	command_args := data_adapter.etcd_args
-	rule_evaluation := assert.is_false(common.contains_key_with_value(command_args, "--auto-tls", "true"))
+
+	# evaluate
+	process_args := data_adapter.process_args
+	rule_evaluation := assert.is_false(common.contains_key_with_value(process_args, "--auto-tls", "true"))
 
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"command_args": command_args},
+		"evidence": {"process_args": process_args},
 	}
 }
 
