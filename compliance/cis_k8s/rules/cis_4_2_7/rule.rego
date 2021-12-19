@@ -1,6 +1,7 @@
 package compliance.cis_k8s.rules.cis_4_2_7
 
 import data.compliance.cis_k8s
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
@@ -9,7 +10,7 @@ import data.compliance.lib.data_adapter
 # todo: If the --make-iptables-util-chains argument does not exist, and there is a Kubelet config file specified by --config, verify that the file does not set makeIPTablesUtilChains to false.
 finding = result {
 	command_args := data_adapter.kublet_args
-	rule_evaluation = common.contains_key_with_value(command_args, "--make-iptables-util-chains", "false") == false
+	rule_evaluation = assert.is_false(common.contains_key_with_value(command_args, "--make-iptables-util-chains", "false"))
 
 	# set result
 	result := {

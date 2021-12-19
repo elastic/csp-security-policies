@@ -1,13 +1,14 @@
 package compliance.cis_k8s.rules.cis_1_2_4
 
 import data.compliance.cis_k8s
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the --kubelet-https argument is set to true (Automated)
 finding = result {
 	command_args := data_adapter.api_server_command_args
-	rule_evaluation = common.contains_key_with_value(command_args, "--kubelet-https", "false") == false
+	rule_evaluation = assert.is_false(common.contains_key_with_value(command_args, "--kubelet-https", "false"))
 
 	# set result
 	result := {
