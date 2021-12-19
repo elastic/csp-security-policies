@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --profiling argument is set to false (Automated)
 finding = result {
 	# filter
-	data_adapter.process_name == "kube-controller-manager"
+	data_adapter.is_kube_controller_manger
 
 	# evaluate
 	process_args := data_adapter.process_args

@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --client-ca-file argument is set as appropriate (Automated)
 finding = result {
 	# filter
-	data_adapter.process_name == "kubelet"
+	data_adapter.is_kubelet
 
 	# evaluate
 	process_args := data_adapter.process_args

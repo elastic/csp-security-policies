@@ -22,7 +22,7 @@ rule_evaluation {
 
 finding = result {
 	# filter
-	data_adapter.process_name == "kubelet"
+	data_adapter.is_kubelet
 
 	# set result
 	result := {

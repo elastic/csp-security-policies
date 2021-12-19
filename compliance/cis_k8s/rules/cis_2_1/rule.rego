@@ -18,7 +18,7 @@ rule_evaluation {
 
 finding = result {
 	# filter
-	data_adapter.process_name == "etcd"
+	data_adapter.is_etcd
 
 	# set result
 	result := {

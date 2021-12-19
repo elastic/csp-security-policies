@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --auto-tls argument is not set to true (Automated)
 finding = result {
 	# filter
-	data_adapter.process_name == "etcd"
+	data_adapter.is_etcd
 
 	# Verify that if the --auto-tls argument exists, it is not set to true.
 

@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --client-cert-auth argument is set to true (Automated)
 finding = result {
 	# filter
-	data_adapter.process_name == "etcd"
+	data_adapter.is_etcd
 
 	# evaluate
 	process_args := data_adapter.process_args

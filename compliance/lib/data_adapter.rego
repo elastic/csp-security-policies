@@ -46,3 +46,23 @@ process_args_list = args_list {
 process_args = args {
 	args := {arg: value | [arg, value] = common.split_key_value(process_args_list[_])}
 }
+
+is_kube_apiserver {
+	process_name == "kube-apiserver"
+}
+
+is_kube_controller_manger {
+	process_name == "kube-controller-manager"
+}
+
+is_kube_scheduler {
+	process_name == "kube-scheduler"
+}
+
+is_etcd {
+	process_name == "etcd"
+}
+
+is_kubelet {
+	process_name == "kubelet"
+}

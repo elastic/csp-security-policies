@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --authorization-mode argument includes RBAC (Automated)
 finding = result {
 	# filter
-	data_adapter.process_name == "kube-apiserver"
+	data_adapter.is_kube_apiserver
 
 	# evaluate
 	process_args := data_adapter.process_args

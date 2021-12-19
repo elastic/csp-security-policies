@@ -8,7 +8,7 @@ import data.compliance.lib.data_adapter
 # todo: If the --protect-kernel-defaults argument is not present, check that there is a Kubelet config file specified by --config, and that the file sets protectKernelDefaults to true.
 finding = result {
 	# filter
-	data_adapter.process_name == "kubelet"
+	data_adapter.is_kubelet
 
 	# evaluate
 	process_args := data_adapter.process_args

@@ -19,7 +19,7 @@ rule_evaluation {
 
 finding = result {
 	# filter
-	data_adapter.process_name == "kube-apiserver"
+	data_adapter.is_kube_apiserver
 
 	# set result
 	result := {

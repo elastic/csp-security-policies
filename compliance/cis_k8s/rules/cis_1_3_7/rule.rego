@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --bind-address argument is set to 127.0.0.1 (Automated)
 finding = result {
 	# filter
-	data_adapter.process_name == "kube-controller-manager"
+	data_adapter.is_kube_controller_manger
 
 	# evaluate
 	process_args := data_adapter.process_args
