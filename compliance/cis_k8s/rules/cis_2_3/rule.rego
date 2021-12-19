@@ -1,6 +1,7 @@
 package compliance.cis_k8s.rules.cis_2_3
 
 import data.compliance.cis_k8s
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
@@ -8,7 +9,7 @@ import data.compliance.lib.data_adapter
 finding = result {
 	# Verify that if the --auto-tls argument exists, it is not set to true.
 	command_args := data_adapter.etcd_args
-	rule_evaluation := common.contains_key_with_value(command_args, "--auto-tls", "true") == false
+	rule_evaluation := assert.is_false(common.contains_key_with_value(command_args, "--auto-tls", "true"))
 
 	# set result
 	result := {

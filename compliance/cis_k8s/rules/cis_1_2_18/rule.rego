@@ -1,13 +1,14 @@
 package compliance.cis_k8s.rules.cis_1_2_18
 
 import data.compliance.cis_k8s
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Ensure that the --insecure-bind-address argument is not set (Automated)
 finding = result {
 	command_args := data_adapter.api_server_command_args
-	rule_evaluation := common.contains_key(command_args, "--insecure-bind-address") == false
+	rule_evaluation := assert.is_false(common.contains_key(command_args, "--insecure-bind-address"))
 
 	# set result
 	result := {
