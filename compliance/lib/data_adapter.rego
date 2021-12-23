@@ -36,10 +36,12 @@ is_process {
 }
 
 process_name = name {
+	is_process
 	name := process_args_list[0]
 }
 
 process_args_list = args_list {
+	is_process
 	args_list := split(input.command, " ")
 }
 
@@ -65,4 +67,8 @@ is_etcd {
 
 is_kubelet {
 	process_name == "kubelet"
+}
+
+is_kube_api {
+	input.type == "kube-api"
 }
