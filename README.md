@@ -140,7 +140,7 @@ opa test -v compliance
 
 ### Test specific rule
 ```console
-opa test -v compliance/lib compliance/cis_k8s/cis_k8s.rego compliance/lib compliance/cis_k8s/test_data.rego compliance/cis_k8s/output_validations.rego compliance/cis_k8s/rules/cis_1_1_2
+opa test -v compliance/lib compliance/cis_k8s/test_data.rego compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
 ```
 
 ### Pre-commit hooks
