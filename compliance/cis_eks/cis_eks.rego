@@ -1,4 +1,4 @@
-package compliance.cis_k8s
+package compliance.cis_eks
 
 import data.compliance.cis_eks.rules
 
