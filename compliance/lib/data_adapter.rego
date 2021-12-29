@@ -8,27 +8,27 @@ is_filesystem {
 
 filename = file_name {
 	is_filesystem
-	file_name := input.filename
+	file_name := input.resource.filename
 }
 
 filemode = file_mode {
 	is_filesystem
-	file_mode := input.mode
+	file_mode := input.resource.mode
 }
 
 file_path = path {
 	is_filesystem
-	path := input.path
+	path := input.resource.path
 }
 
 owner_user_id = uid {
 	is_filesystem
-	uid := input.uid
+	uid := input.resource.uid
 }
 
 owner_group_id = gid {
 	is_filesystem
-	gid := input.gid
+	gid := input.resource.gid
 }
 
 is_process {
@@ -40,7 +40,7 @@ process_name = name {
 }
 
 process_args_list = args_list {
-	args_list := split(input.command, " ")
+	args_list := split(input.resource.command, " ")
 }
 
 process_args = args {
