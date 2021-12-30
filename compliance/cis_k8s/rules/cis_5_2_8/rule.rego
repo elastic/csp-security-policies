@@ -7,29 +7,19 @@ import data.compliance.lib.data_adapter
 
 # Minimize the admission of containers with added capabilities (Automated)
 
-# evaluate
-default rule_evaluation = true
-
-# Verify that there are no PSPs present which have allowedCapabilities set to anything other than an empty array.
-rule_evaluation = false {
-	pod := input.resource.pods[_]
-	count(pod.spec.allowedCapabilities) > 0
-}
-
 finding = result {
 	# filter
 	data_adapter.is_kube_api
 
+    # evaluate
+    allowedCapabilities := object.get(data_adapter.pod.spec, "allowedCapabilities", [])
+    rule_evaluation := assert.array_is_empty(allowedCapabilities)
+
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {pod_evidance(pod) | pod := input.resource.pods[_]},
+		"evidence": {"pod": data_adapter.pod},
 	}
-}
-
-pod_evidance(pod) = {
-	"uid": object.get(pod.metadata, "uid", "unknown"),
-	"allowedCapabilities": object.get(pod.spec, "allowedCapabilities", "unknown"),
 }
 
 metadata = {

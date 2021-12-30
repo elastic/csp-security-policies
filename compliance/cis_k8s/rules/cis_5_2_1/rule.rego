@@ -7,10 +7,11 @@ import data.compliance.lib.data_adapter
 
 # Minimize the admission of privileged containers (Automated)
 
-default violation = false
+# evaluate
+default rule_evaluation = true
 
 # Verify that there is at least one PSP which does not return true.
-violation { # todo: change to every instead on next OPA release
+rule_evaluation = false {
 	container := data_adapter.pod.spec.containers[_]
 	common.contains_key_with_value(container.securityContext, "privileged", true)
 }
@@ -18,9 +19,6 @@ violation { # todo: change to every instead on next OPA release
 finding = result {
 	# filter
 	data_adapter.is_kube_api
-
-	# evaluate
-	rule_evaluation := assert.is_false(violation)
 
 	# set result
 	result := {

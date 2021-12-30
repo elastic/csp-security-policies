@@ -8,22 +8,19 @@ import data.compliance.lib.data_adapter
 # Minimize the admission of root containers (Automated)
 
 # evaluate
-default rule_evaluation = false
+default rule_evaluation = true
 
 # Verify that there is at least one PSP which returns MustRunAsNonRoot or MustRunAs with the range of UIDs not including 0.
-rule_evaluation {
-	# Verify that there is at least one PSP which returns MustRunAsNonRoot.
-	pod := input.resource.pods[_]
-	common.contains_key_with_value(pod.spec.runAsUser, "rule", "MustRunAsNonRoot")
+rule_evaluation = false {
+	not common.contains_key_with_value(data_adapter.pod.spec.runAsUser, "rule", "MustRunAsNonRoot")
+	common.contains_key_with_value(data_adapter.pod.spec.runAsUser, "rule", "MustRunAs")
+	range := data_adapter.pod.spec.runAsUser.ranges[_]
+	range.min <= 0
 }
 
-# or 
-rule_evaluation {
-	# Verify that there is at least one PSP which returns MustRunAs with the range of UIDs not including 0.
-	pod := input.resource.pods[_]
-	common.contains_key_with_value(pod.spec.runAsUser, "rule", "MustRunAs")
-	range := pod.spec.runAsUser.ranges[_]
-	range.min > 0
+rule_evaluation = false {
+	container := data_adapter.pod.spec.containers[_]
+	common.contains_key_with_value(container.securityContext, "runAsUser", 0)
 }
 
 finding = result {
@@ -33,13 +30,8 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {pod_evidance(pod) | pod := input.resource.pods[_]},
+		"evidence": {"pod": data_adapter.pod},
 	}
-}
-
-pod_evidance(pod) = {
-	"uid": object.get(pod.metadata, "uid", "unknown"),
-	"rule": object.get(pod.spec, "pod.spec.runAsUser", "unknown"),
 }
 
 metadata = {

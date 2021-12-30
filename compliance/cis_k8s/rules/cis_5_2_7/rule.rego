@@ -13,15 +13,13 @@ default rule_evaluation = false
 # Verify that there is at least one PSP which returns NET_RAW or ALL.
 rule_evaluation {
 	# Verify that there is at least one PSP which returns NET_RAW.
-	pod := input.resource.pods[_]
-	pod.spec.requiredDropCapabilities[_] == "NET_RAW"
+	data_adapter.pod.spec.requiredDropCapabilities[_] == "NET_RAW"
 }
 
 # or 
 rule_evaluation {
-	# Verify that there is at least one PSP which returns NET_RAW.
-	pod := input.resource.pods[_]
-	pod.spec.requiredDropCapabilities[_] == "ALL"
+	# Verify that there is at least one PSP which returns ALL.
+	data_adapter.pod.spec.requiredDropCapabilities[_] == "ALL"
 }
 
 finding = result {
@@ -31,13 +29,8 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {pod_evidance(pod) | pod := input.resource.pods[_]},
+		"evidence": {"pod": data_adapter.pod},
 	}
-}
-
-pod_evidance(pod) = {
-	"uid": object.get(pod.metadata, "uid", "unknown"),
-	"requiredDropCapabilities": object.get(pod.spec, "requiredDropCapabilities", "unknown"),
 }
 
 metadata = {

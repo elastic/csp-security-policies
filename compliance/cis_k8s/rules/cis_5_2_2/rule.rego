@@ -6,30 +6,18 @@ import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
 # Minimize the admission of containers wishing to share the host process ID namespace (Automated)
-
-# evaluate
-default rule_evaluation = false
-
-rule_evaluation {
-	# Verify that there is at least one PSP which does not return true.
-	pod := input.resource.pods[_]
-	assert.is_false(common.contains_key_with_value(pod.spec, "hostPID", true))
-}
-
 finding = result {
 	# filter
 	data_adapter.is_kube_api
 
+    # evaluate
+	rule_evaluation := assert.is_false(common.contains_key_with_value(data_adapter.pod.spec, "hostPID", true))
+
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {pod_evidance(pod) | pod := input.resource.pods[_]},
+		"evidence": {"pod": data_adapter.pod},
 	}
-}
-
-pod_evidance(pod) = {
-	"uid": object.get(pod.metadata, "uid", "unknown"),
-	"hostPID": object.get(pod.spec, "hostPID", "unknown"),
 }
 
 metadata = {
