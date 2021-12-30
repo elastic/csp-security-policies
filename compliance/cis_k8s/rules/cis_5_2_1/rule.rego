@@ -5,30 +5,28 @@ import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
-# evaluate
-default rule_evaluation = false
+# Minimize the admission of privileged containers (Automated)
 
-rule_evaluation {
-	# Verify that there is at least one PSP which does not return true.
-	pod := input.resource.pods[_]
-	assert.is_false(common.contains_key_with_value(pod.spec.securityContext, "privileged", true))
+default violation = false
+
+# Verify that there is at least one PSP which does not return true.
+violation { # todo: change to every instead on next OPA release
+	container := data_adapter.pod.spec.containers[_]
+	common.contains_key_with_value(container.securityContext, "privileged", true)
 }
 
-# Minimize the admission of privileged containers (Automated)
 finding = result {
 	# filter
 	data_adapter.is_kube_api
 
+	# evaluate
+	rule_evaluation := assert.is_false(violation)
+
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {pod_evidance(pod) | pod := input.resource.pods[_]},
+		"evidence": {"pod": data_adapter.pod},
 	}
-}
-
-pod_evidance(pod) = {
-	"uid": object.get(pod.metadata, "uid", "unknown"),
-	"securityContext": object.get(pod.spec, "securityContext", "unknown"),
 }
 
 metadata = {

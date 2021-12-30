@@ -72,3 +72,8 @@ is_kubelet {
 is_kube_api {
 	input.type == "kube-api"
 }
+
+pod = p {
+    input.resource.kind == "Pod"
+    p := input.resource
+}
