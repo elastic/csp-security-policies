@@ -15,13 +15,14 @@ test_pass {
 }
 
 test_not_evaluated {
-	not finding with input as rule_input({"kind": "not_pod"})
+	not finding with input as {"type": "no-kube-api"}
 }
 
 rule_input(resource) = test_data.kube_api_input(resource)
 
 violating_psp = {
 	"kind": "Pod",
+	"uid": "00000aa0-0aa0-00aa-00aa-00aa000a0000",
 	"spec": {"runAsUser": {
 		"rule": "MustRunAs",
 		"ranges": [{
@@ -33,23 +34,28 @@ violating_psp = {
 
 violating_psp2 = {
 	"kind": "Pod",
-	"spec": {"containers": [{"securityContext":{"runAsUser": 0}}]},
+	"uid": "00000aa0-0aa0-00aa-00aa-00aa000a0000",
+	"spec": {"containers": [{"name": "container_1", "securityContext": {"runAsUser": 0}}]},
 }
 
 violating_psp3 = {
 	"kind": "Pod",
-	"spec": {"runAsUser": {
-		"rule": "MustRunAs",
-		"ranges": [{
-			"min": 1,
-			"max": 65535,
-		}],
-	},"containers": [{"securityContext":{"runAsUser": 0}}]},
+	"uid": "00000aa0-0aa0-00aa-00aa-00aa000a0000",
+	"spec": {
+		"runAsUser": {
+			"rule": "MustRunAs",
+			"ranges": [{
+				"min": 1,
+				"max": 65535,
+			}],
+		},
+		"containers": [{"name": "container_1", "securityContext": {"runAsUser": 0}}],
+	},
 }
-
 
 non_violating_psp = {
 	"kind": "Pod",
+	"uid": "00000aa0-0aa0-00aa-00aa-00aa000a0000",
 	"spec": {"runAsUser": {
 		"rule": "MustRunAs",
 		"ranges": [{
@@ -61,7 +67,6 @@ non_violating_psp = {
 
 non_violating_psp2 = {
 	"kind": "Pod",
-	"spec": {"runAsUser": {
-		"rule": "MustRunAsNonRoot",
-	}},
+	"uid": "00000aa0-0aa0-00aa-00aa-00aa000a0000",
+	"spec": {"runAsUser": {"rule": "MustRunAsNonRoot"}},
 }

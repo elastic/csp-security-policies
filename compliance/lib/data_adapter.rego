@@ -74,6 +74,12 @@ is_kube_api {
 }
 
 pod = p {
-    input.resource.kind == "Pod"
-    p := input.resource
+	input.resource.kind == "Pod"
+	p := input.resource
+}
+
+containers = c {
+	input.resource.kind == "Pod"
+	container_types := {"containers", "initContainers"}
+	c := pod.spec[container_types[t]]
 }

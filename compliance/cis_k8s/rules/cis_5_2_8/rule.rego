@@ -11,14 +11,14 @@ finding = result {
 	# filter
 	data_adapter.is_kube_api
 
-    # evaluate
-    allowedCapabilities := object.get(data_adapter.pod.spec, "allowedCapabilities", [])
-    rule_evaluation := assert.array_is_empty(allowedCapabilities)
+	# evaluate
+	allowedCapabilities := object.get(data_adapter.pod.spec, "allowedCapabilities", [])
+	rule_evaluation := assert.array_is_empty(allowedCapabilities)
 
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"pod": data_adapter.pod},
+		"evidence": json.filter(data_adapter.pod, ["uid", "spec/allowedCapabilities"]),
 	}
 }
 

@@ -19,7 +19,7 @@ rule_evaluation = false {
 }
 
 rule_evaluation = false {
-	container := data_adapter.pod.spec.containers[_]
+	container := data_adapter.containers[_]
 	common.contains_key_with_value(container.securityContext, "runAsUser", 0)
 }
 
@@ -28,9 +28,11 @@ finding = result {
 	data_adapter.is_kube_api
 
 	# set result
+	pod := json.filter(data_adapter.pod, ["uid", "spec/runAsUser"])
+	containers := {"containers": json.filter(c, ["name", "securityContext/runAsUser"]) | c := data_adapter.containers[_]}
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"pod": data_adapter.pod},
+		"evidence": object.union(pod, containers),
 	}
 }
 

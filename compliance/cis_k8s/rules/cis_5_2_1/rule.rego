@@ -12,7 +12,7 @@ default rule_evaluation = true
 
 # Verify that there is at least one PSP which does not return true.
 rule_evaluation = false {
-	container := data_adapter.pod.spec.containers[_]
+	container := data_adapter.containers[_]
 	common.contains_key_with_value(container.securityContext, "privileged", true)
 }
 
@@ -23,7 +23,10 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"pod": data_adapter.pod},
+		"evidence": {
+			"uid": data_adapter.pod.uid,
+			"containers": {json.filter(c, ["name", "securityContext/privileged"]) | c := data_adapter.containers[_]},
+		},
 	}
 }
 

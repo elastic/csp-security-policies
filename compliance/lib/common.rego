@@ -105,11 +105,10 @@ split_key_value(key_value_string) = [key, value] {
 }
 
 ranges_smaller_than(ranges, value) {
-    range := ranges[_]
-    range < value
+	range := ranges[_]
+	range < value
 }
 
-
 ranges_gte(ranges, value) {
-    not ranges_smaller_than(ranges, value)
+	not ranges_smaller_than(ranges, value)
 }

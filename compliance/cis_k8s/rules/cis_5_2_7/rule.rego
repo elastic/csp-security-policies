@@ -29,7 +29,7 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"pod": data_adapter.pod},
+		"evidence": json.filter(data_adapter.pod, ["uid", "spec/requiredDropCapabilities"]),
 	}
 }
 

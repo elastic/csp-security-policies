@@ -10,13 +10,13 @@ finding = result {
 	# filter
 	data_adapter.is_kube_api
 
-    # evaluate
+	# evaluate
 	rule_evaluation := assert.is_false(common.contains_key_with_value(data_adapter.pod.spec, "hostPID", true))
 
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"pod": data_adapter.pod},
+		"evidence": json.filter(data_adapter.pod, ["uid", "spec/hostPID"]),
 	}
 }
 

@@ -10,8 +10,8 @@ import data.compliance.lib.data_adapter
 default rule_evaluation = true
 
 rule_evaluation = false {
-	container := data_adapter.pod.spec.containers[_]
-    capabilities := object.get(container.securityContext, "capabilities", [])
+	container := data_adapter.containers[_]
+	capabilities := object.get(container.securityContext, "capabilities", [])
 	not assert.array_is_empty(capabilities)
 }
 
@@ -22,7 +22,7 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"pod": data_adapter.pod},
+		"containers": {json.filter(c, ["name", "securityContext/capabilities"]) | c := data_adapter.containers[_]},
 	}
 }
 
