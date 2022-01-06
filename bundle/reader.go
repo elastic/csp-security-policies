@@ -1,27 +1,27 @@
 package bundle
 
 import (
+	"io/fs"
 	"os"
-	"path/filepath"
 	"strings"
-)
 
-const PoliciesRoot = "policy"
+	"github.com/elastic/csp-security-policies/policy"
+)
 
 func CISKubernetes() map[string]string {
 	filePrefixes := []string{
-		"policy/main.rego",
-		"policy/compliance/lib/",
-		"policy/compliance/cis_k8s/",
+		"main.rego",
+		"compliance/lib/",
+		"compliance/cis_k8s/",
 	}
 
-	return createPolicyMap(PoliciesRoot, filePrefixes)
+	return createPolicyMap(filePrefixes)
 }
 
-func createPolicyMap(root string, filePrefixes []string) map[string]string {
+func createPolicyMap(filePrefixes []string) map[string]string {
 	policies := make(map[string]string)
 
-	filepath.WalkDir(root, func(filePath string, info os.DirEntry, err error) error {
+	fs.WalkDir(policy.Embed, ".", func(filePath string, info os.DirEntry, err error) error {
 		if err != nil {
 			return nil
 		}
@@ -29,7 +29,7 @@ func createPolicyMap(root string, filePrefixes []string) map[string]string {
 		include := !info.IsDir() && includeFile(filePrefixes, filePath)
 
 		if include {
-			data, err := os.ReadFile(filePath)
+			data, err := fs.ReadFile(policy.Embed, filePath)
 			if err == nil {
 				policies[filePath] = string(data)
 			}
