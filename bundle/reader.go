@@ -15,13 +15,13 @@ func CISKubernetes() map[string]string {
 		"compliance/cis_k8s/",
 	}
 
-	return createPolicyMap(filePrefixes)
+	return createPolicyMap(policy.Embed, filePrefixes)
 }
 
-func createPolicyMap(filePrefixes []string) map[string]string {
+func createPolicyMap(fsys fs.FS, filePrefixes []string) map[string]string {
 	policies := make(map[string]string)
 
-	fs.WalkDir(policy.Embed, ".", func(filePath string, info os.DirEntry, err error) error {
+	fs.WalkDir(fsys, ".", func(filePath string, info os.DirEntry, err error) error {
 		if err != nil {
 			return nil
 		}
@@ -29,7 +29,7 @@ func createPolicyMap(filePrefixes []string) map[string]string {
 		include := !info.IsDir() && includeFile(filePrefixes, filePath)
 
 		if include {
-			data, err := fs.ReadFile(policy.Embed, filePath)
+			data, err := fs.ReadFile(fsys, filePath)
 			if err == nil {
 				policies[filePath] = string(data)
 			}
