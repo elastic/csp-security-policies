@@ -40,13 +40,12 @@ func (s *Server) HostBundle(name string, files map[string]string) error {
 	}
 
 	writer := NewWriter(file)
+	defer writer.Close()
 
 	for k, v := range files {
 		reader := bytes.NewReader([]byte(v))
 		writer.AddFile(k, reader, int64(len(v)))
 	}
-
-	writer.Close()
 
 	return nil
 }
