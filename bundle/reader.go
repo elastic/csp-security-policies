@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/elastic/csp-security-policies/policy"
+	policy "github.com/elastic/csp-security-policies/compliance"
 )
 
 func CISKubernetes() map[string]string {
