@@ -5,23 +5,22 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-
-	"github.com/gorilla/mux"
 )
 
 const BundlesFolder = "tmpBundles"
 const BundlePathPrefix = "/bundles/"
 
 type Server struct {
-	router *mux.Router
+	mux *http.ServeMux
 }
 
 func NewServer() *Server {
-	router := mux.NewRouter()
-	router.PathPrefix(BundlePathPrefix).Handler(http.StripPrefix(BundlePathPrefix, http.FileServer(http.Dir(BundlesFolder))))
+	mux := http.NewServeMux()
+	staticFileServer := http.FileServer(http.Dir(BundlesFolder))
+	mux.Handle(BundlePathPrefix, http.StripPrefix(BundlePathPrefix, staticFileServer))
 
 	return &Server{
-		router: router,
+		mux: mux,
 	}
 }
 
@@ -51,5 +50,5 @@ func (s *Server) HostBundle(name string, files map[string]string) error {
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	s.router.ServeHTTP(w, r)
+	s.mux.ServeHTTP(w, r)
 }
