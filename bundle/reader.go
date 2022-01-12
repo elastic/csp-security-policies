@@ -11,8 +11,8 @@ import (
 func CISKubernetes() map[string]string {
 	filePrefixes := []string{
 		"main.rego",
-		"compliance/lib/",
-		"compliance/cis_k8s/",
+		"lib/",
+		"cis_k8s/",
 	}
 
 	return createPolicyMap(policy.Embed, filePrefixes)
