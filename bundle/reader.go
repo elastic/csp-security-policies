@@ -4,8 +4,6 @@ import (
 	"io/fs"
 	"os"
 	"strings"
-
-	policy "github.com/elastic/csp-security-policies/compliance"
 )
 
 var includeFileSuffixes = []string{
@@ -17,16 +15,6 @@ var includeFileSuffixes = []string{
 
 var excludeFileSuffixes = []string{
 	".test.rego",
-}
-
-func CISKubernetes() (map[string]string, error) {
-	filePrefixes := []string{
-		"main.rego",
-		"lib/",
-		"cis_k8s/",
-	}
-
-	return createPolicyMap(policy.Embed, filePrefixes)
 }
 
 func createPolicyMap(fsys fs.FS, filePrefixes []string) (map[string]string, error) {
