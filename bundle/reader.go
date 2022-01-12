@@ -8,7 +8,7 @@ import (
 	policy "github.com/elastic/csp-security-policies/compliance"
 )
 
-func CISKubernetes() map[string]string {
+func CISKubernetes() (map[string]string, error) {
 	filePrefixes := []string{
 		"main.rego",
 		"lib/",
@@ -18,26 +18,29 @@ func CISKubernetes() map[string]string {
 	return createPolicyMap(policy.Embed, filePrefixes)
 }
 
-func createPolicyMap(fsys fs.FS, filePrefixes []string) map[string]string {
+func createPolicyMap(fsys fs.FS, filePrefixes []string) (map[string]string, error) {
 	policies := make(map[string]string)
 
-	fs.WalkDir(fsys, ".", func(filePath string, info os.DirEntry, err error) error {
+	err := fs.WalkDir(fsys, ".", func(filePath string, info os.DirEntry, err error) error {
 		if err != nil {
-			return nil
+			return err
 		}
 
 		include := !info.IsDir() && includeFile(filePrefixes, filePath)
-
-		if include {
-			data, err := fs.ReadFile(fsys, filePath)
-			if err == nil {
-				policies[filePath] = string(data)
-			}
+		if !include {
+			return nil
 		}
+
+		data, err := fs.ReadFile(fsys, filePath)
+		if err != nil {
+			return err
+		}
+
+		policies[filePath] = string(data)
 		return nil
 	})
 
-	return policies
+	return policies, err
 }
 
 func includeFile(filePrefixes []string, filePath string) bool {
