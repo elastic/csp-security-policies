@@ -19,6 +19,12 @@ func TestServer(t *testing.T) {
 	err = handler.HostBundle("otherBundle", map[string]string{"a.txt": "some text"})
 	assert.NoError(err)
 
+	err = handler.HostBundle("overridenBundle", map[string]string{})
+	assert.NoError(err)
+
+	err = handler.HostBundle("overridenBundle", map[string]string{})
+	assert.NoError(err)
+
 	server := httptest.NewServer(handler)
 
 	var tests = []struct {
@@ -33,6 +39,9 @@ func TestServer(t *testing.T) {
 		},
 		{
 			"/bundles/otherbundle", "200 OK",
+		},
+		{
+			"/bundles/overridenBundle", "200 OK",
 		},
 		{
 			"/bundles/notExistBundle", "404 Not Found",

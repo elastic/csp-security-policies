@@ -24,6 +24,8 @@ func NewServer() *Server {
 	}
 }
 
+// HostBundle writes the given bundle to the disk in order to serve it later
+// Consequent calls to HostBundle with the same name will override the file
 func (s *Server) HostBundle(name string, files map[string]string) error {
 	if _, err := os.Stat(BundlesFolder); os.IsNotExist(err) {
 		err := os.Mkdir(BundlesFolder, os.ModePerm)
