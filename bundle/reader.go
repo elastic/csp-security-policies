@@ -8,6 +8,17 @@ import (
 	policy "github.com/elastic/csp-security-policies/compliance"
 )
 
+var includeFileSuffixes = []string{
+	"data.json",
+	"data.yaml",
+	"data.yml",
+	".rego",
+}
+
+var excludeFileSuffixes = []string{
+	".test.rego",
+}
+
 func CISKubernetes() (map[string]string, error) {
 	filePrefixes := []string{
 		"main.rego",
@@ -44,16 +55,25 @@ func createPolicyMap(fsys fs.FS, filePrefixes []string) (map[string]string, erro
 }
 
 func includeFile(filePrefixes []string, filePath string) bool {
-	if !strings.HasSuffix(filePath, ".rego") {
-		return false
+	return hasPrefix(filePath, filePrefixes) &&
+		hasSuffix(filePath, includeFileSuffixes) &&
+		!hasSuffix(filePath, excludeFileSuffixes)
+}
+
+func hasPrefix(s string, prefixes []string) bool {
+	for _, p := range prefixes {
+		matched := strings.HasPrefix(s, p)
+		if matched {
+			return true
+		}
 	}
 
-	if strings.HasSuffix(filePath, "test.rego") {
-		return false
-	}
+	return false
+}
 
-	for _, p := range filePrefixes {
-		matched := strings.HasPrefix(filePath, p)
+func hasSuffix(s string, suffixes []string) bool {
+	for _, p := range suffixes {
+		matched := strings.HasSuffix(s, p)
 		if matched {
 			return true
 		}

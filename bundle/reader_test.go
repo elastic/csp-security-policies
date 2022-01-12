@@ -29,6 +29,8 @@ func TestPolicyMap(t *testing.T) {
 				"cis/main.rego":      {},
 				"cis/main.test.rego": {},
 				"cis/file.rego":      {},
+				"cis/data.json":      {},
+				"cis/data.yaml":      {},
 			},
 			filePrefixes: []string{
 				"cis",
@@ -36,6 +38,8 @@ func TestPolicyMap(t *testing.T) {
 			expected: []string{
 				"cis/main.rego",
 				"cis/file.rego",
+				"cis/data.json",
+				"cis/data.yaml",
 			},
 		},
 	}
@@ -77,6 +81,21 @@ func TestFileInclude(t *testing.T) {
 		},
 		{
 			input:        "cis/main.rego",
+			filePrefixes: []string{"cis/"},
+			expected:     true,
+		},
+		{
+			input:        "cis/data.json",
+			filePrefixes: []string{"cis/"},
+			expected:     true,
+		},
+		{
+			input:        "cis/data.yaml",
+			filePrefixes: []string{"cis/"},
+			expected:     true,
+		},
+		{
+			input:        "cis/data.yml",
 			filePrefixes: []string{"cis/"},
 			expected:     true,
 		},
