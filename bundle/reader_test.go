@@ -10,8 +10,9 @@ import (
 
 func TestCISKubernetes(t *testing.T) {
 	assert := assert.New(t)
-	policies := CISKubernetes()
+	policies, err := CISKubernetes()
 
+	assert.NoError(err)
 	assert.Greater(len(policies), 70)
 }
 
@@ -40,8 +41,10 @@ func TestPolicyMap(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		result := createPolicyMap(test.fsys, test.filePrefixes)
+		result, err := createPolicyMap(test.fsys, test.filePrefixes)
+		assert.NoError(err)
 		assert.Equal(len(test.expected), len(result))
+
 		for _, file := range test.expected {
 			_, ok := result[file]
 			assert.True(ok)
