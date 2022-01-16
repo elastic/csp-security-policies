@@ -17,3 +17,8 @@ process_input(process_name, arguments) = {"resource": {
 	"type": "process",
 	"command": concat(" ", array.concat([process_name], arguments)),
 }}
+
+kube_api_input(resource) = {
+	"type": "kube-api",
+	"resource": resource,
+}
