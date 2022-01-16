@@ -3,7 +3,7 @@ package compliance.lib.data_adapter
 import data.compliance.lib.common
 
 is_filesystem {
-	input.type == "file-system"
+	input.resource.type == "file-system"
 }
 
 filename = file_name {
@@ -32,7 +32,7 @@ owner_group_id = gid {
 }
 
 is_process {
-	input.type == "process"
+	input.resource.type == "process"
 }
 
 process_name = name {
