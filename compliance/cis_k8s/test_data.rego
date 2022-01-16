@@ -18,7 +18,4 @@ process_input(process_name, arguments) = {"resource": {
 	"command": concat(" ", array.concat([process_name], arguments)),
 }}
 
-kube_api_input(resource) = {
-	"type": "kube-api",
-	"resource": resource,
-}
+kube_api_input(resource) = {"resource": object.union({"type": "kube-api"}, resource)}

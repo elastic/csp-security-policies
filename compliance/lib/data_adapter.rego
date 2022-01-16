@@ -70,7 +70,7 @@ is_kubelet {
 }
 
 is_kube_api {
-	input.type == "kube-api"
+	input.resource.type == "kube-api"
 }
 
 pod = p {
