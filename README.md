@@ -156,3 +156,21 @@ see [pre-commit](https://pre-commit.com/) package
 ```console
 docker run --rm -p 8181:8181 -v $(pwd):/bundle openpolicyagent/opa:0.36.1 run -s -b /bundle
 ```
+
+Test it 🚀
+```curl
+curl --location --request POST 'http://localhost:8181/v1/data/main' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "input": {
+        "resource": {
+            "type": "file-system",
+            "mode": "0700",
+            "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+            "uid": "etc",
+            "filename": "kube-apiserver.yaml",
+            "gid": "root"
+        }
+    }
+}'
+```
