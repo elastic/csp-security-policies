@@ -151,3 +151,8 @@ see [pre-commit](https://pre-commit.com/) package
 - Install the package `brew install pre-commit`
 - Then run `pre-commit install`
 - Finally `pre-commit run --all-files --verbose`
+
+### Running opa server with the compliance policy
+```console
+docker run --rm -p 8181:8181 -v $(pwd):/bundle openpolicyagent/opa:0.36.1 run -s -b /bundle
+```
