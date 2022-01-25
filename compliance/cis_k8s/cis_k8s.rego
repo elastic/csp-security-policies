@@ -8,7 +8,8 @@ benchmark_name := "CIS Kubernetes"
 
 findings[finding] {
 	some rule_id
-	data.activated_rules.cis_k8s[rule_id]
+
+	# data.activated_rules.cis_k8s[rule_id]
 	finding = {
 		"result": rules[rule_id].finding,
 		"rule": rules[rule_id].metadata,
