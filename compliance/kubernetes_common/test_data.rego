@@ -1,47 +1,21 @@
 package kubernetes_common.test_data
 
 # test data generater
-filesystem_input(filename, mode, uid, gid) = {
+
+# genrates `file-system` type input data
+filesystem_input(filename, mode, uid, gid) = {"resource": {
 	"type": "file-system",
 	"path": sprintf("file/path/%s", [filename]),
 	"filename": filename,
 	"mode": mode,
 	"uid": uid,
 	"gid": gid,
-}
+}}
 
-# Recivies an array of arguments representing the kube-scheduler command
-process_input(process_name, arguments) = {
+# genrates `process` type input data
+process_input(process_name, arguments) = {"resource": {
 	"type": "process",
 	"command": concat(" ", array.concat([process_name], arguments)),
-}
+}}
 
-## Recivies an array of arguments representing the kube-scheduler command
-#process_input(process_name, arguments) = {
-#	"type": "process",
-#	"command": concat(" ", array.concat(["kube-scheduler"], arguments)),
-#}
-#
-## Recivies an array of arguments representing the kube-controller-manager command
-#controller_manager_input( arguments) = {
-#	"type": process,
-#	"command": concat(" ", array.concat(["kube-controller-manager"], arguments)),
-#}
-#
-## Recivies an array of arguments representing the API Server command
-#api_server_input(arguments) = {
-#	"type": "process",
-#	"command": concat(" ", array.concat(["kube-apiserver"], arguments)),
-#}
-#
-## Recivies an array of arguments representing the kube-controller-manager command
-#etcd_input(arguments) = {
-#	"type": process,
-#	"command": concat(" ", array.concat(["etcd"], arguments)),
-#}
-#
-## Recivies an array of arguments representing the kubelet command
-#kublet_input(process_type, arguments) = {
-#	"type": process,
-#	"command": concat(" ", array.concat(["kubelet"], arguments)),
-#}
+kube_api_input(resource) = {"resource": object.union({"type": "kube-api"}, resource)}

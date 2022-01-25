@@ -6,7 +6,7 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the kubelet configuration file ownership is set to root:root
 finding = result {
-    # filter
+	# filter
 	data_adapter.filename == "kubelet-config.json"
 
 	# evaluate
