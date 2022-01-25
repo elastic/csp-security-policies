@@ -6,7 +6,10 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the kubelet configuration file ownership is set to root:root
 finding = result {
+    # filter
 	data_adapter.filename == "kubelet-config.json"
+
+	# evaluate
 	uid = data_adapter.owner_user_id
 	gid = data_adapter.owner_group_id
 	rule_evaluation := common.file_ownership_match(uid, gid, "root", "root")
