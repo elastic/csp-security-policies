@@ -10,6 +10,6 @@ import data.compliance.lib.common
 resource = input.resource
 
 # iterating over all the benchmarks and aggregate all findings
-findings := [finding | data.compliance[_].findings[finding]]
+findings := [finding | data.compliance[benchmark].findings[finding]]
 
 metadata = common.metadata
