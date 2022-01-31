@@ -9,7 +9,12 @@ import data.compliance.lib.common
 
 resource = input.resource
 
-# iterating over all the benchmarks and aggregate all findings
-findings := [finding | data.compliance[benchmark].findings[finding]]
+findings := f {
+	# iterate over activated benchmarks
+	benchmarks := [key | data.activated_rules[key]]
+
+	# aggregate findings from activated benchmarks
+	f := [finding | data.compliance[benchmarks[_]].findings[finding]]
+}
 
 metadata = common.metadata
