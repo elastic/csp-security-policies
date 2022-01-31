@@ -9,6 +9,7 @@ import data.compliance.lib.common
 
 resource = input.resource
 
-findings = cis_k8s.findings
+# iterating over all the benchmarks and aggregate all findings
+findings := [finding | data.compliance[_].findings[finding]]
 
 metadata = common.metadata
