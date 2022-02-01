@@ -151,7 +151,7 @@ opa test -v compliance
 
 ### Test specific rule
 ```console
-opa test -v compliance/lib compliance/cis_k8s/test_data.rego compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
+opa test -v compliance/lib compliance/kubernetes_common/test_data.rego compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
 ```
 
 ### Pre-commit hooks
