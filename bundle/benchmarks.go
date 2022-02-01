@@ -7,6 +7,7 @@ func CISKubernetes() (map[string]string, error) {
 		"main.rego",
 		"lib/",
 		"cis_k8s/",
+		"cis_eks/",
 	}
 
 	return createPolicyMap(compliance.Embed, filePrefixes)
