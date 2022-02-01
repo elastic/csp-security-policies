@@ -42,11 +42,14 @@ should contain an beat/agent output, e.g. filesystem data
 {
     "type": "file-system",
     "resource": {
-        "mode": "0700",
-        "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-        "uid": "etc",
-        "filename": "kube-apiserver.yaml",
-        "gid": "root"
+        "id": "8091",
+        "data": {
+          "mode": "0700",
+          "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+          "uid": "etc",
+          "filename": "kube-apiserver.yaml",
+          "gid": "root"
+        }
     }
 }
 ```
@@ -114,12 +117,15 @@ opa eval data.main.findings --format pretty -i input.json -b . > output.json
     }
   ],
   "resource": {
-    "filename": "kube-apiserver.yaml",
-    "gid": "root",
-    "mode": "0700",
-    "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-    "type": "file-system",
-    "uid": "root"
+    "id": "8091",
+    "data": {
+      "filename": "kube-apiserver.yaml",
+      "gid": "root",
+      "mode": "0700",
+      "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+      "type": "file-system",
+      "uid": "root"
+    }
   }
 }
 ```
@@ -166,14 +172,18 @@ curl --location --request POST 'http://localhost:8181/v1/data/main' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "input": {
-        "resource": {
-            "type": "file-system",
-            "mode": "0700",
-            "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-            "uid": "etc",
-            "filename": "kube-apiserver.yaml",
-            "gid": "root"
+      "type": "file-system",
+      "resource": {
+        "id": "8091",
+        "data": {
+          "filename": "kube-apiserver.yaml",
+          "gid": "root",
+          "mode": "0700",
+          "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+          "type": "file-system",
+          "uid": "root"
         }
+      }
     }
 }'
 ```

@@ -8,27 +8,27 @@ is_filesystem {
 
 filename = file_name {
 	is_filesystem
-	file_name := input.resource.filename
+	file_name := input.resource.data.filename
 }
 
 filemode = file_mode {
 	is_filesystem
-	file_mode := input.resource.mode
+	file_mode := input.resource.data.mode
 }
 
 file_path = path {
 	is_filesystem
-	path := input.resource.path
+	path := input.resource.data.path
 }
 
 owner_user_id = uid {
 	is_filesystem
-	uid := input.resource.uid
+	uid := input.resource.data.uid
 }
 
 owner_group_id = gid {
 	is_filesystem
-	gid := input.resource.gid
+	gid := input.resource.data.gid
 }
 
 is_process {
@@ -42,7 +42,7 @@ process_name = name {
 
 process_args_list = args_list {
 	is_process
-	args_list := split(input.resource.command, " ")
+	args_list := split(input.resource.data.command, " ")
 }
 
 process_args = args {
@@ -74,12 +74,12 @@ is_kube_api {
 }
 
 pod = p {
-	input.resource.kind == "Pod"
-	p := input.resource
+	input.resource.data.kind == "Pod"
+	p := input.resource.data
 }
 
 containers = c {
-	input.resource.kind == "Pod"
+	input.resource.data.kind == "Pod"
 	container_types := {"containers", "initContainers"}
 	c := pod.spec[container_types[t]]
 }
