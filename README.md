@@ -41,8 +41,8 @@ should contain an beat/agent output, e.g. filesystem data
 ```json
 {
     "type": "file-system",
+    "id": "8091",
     "resource": {
-        "id": "8091",
         "data": {
           "mode": "0700",
           "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
@@ -117,16 +117,15 @@ opa eval data.main.findings --format pretty -i input.json -b . > output.json
     }
   ],
   "resource": {
-    "id": "8091",
-    "data": {
-      "filename": "kube-apiserver.yaml",
-      "gid": "root",
-      "mode": "0700",
-      "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-      "type": "file-system",
-      "uid": "root"
-    }
-  }
+    "filename": "kube-apiserver.yaml",
+    "gid": "root",
+    "mode": "0700",
+    "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+    "type": "file-system",
+    "uid": "root"
+  },
+  "id": "8091",
+  "type": "process"
 }
 ```
 
@@ -151,7 +150,7 @@ opa test -v compliance
 
 ### Test specific rule
 ```console
-opa test -v compliance/lib compliance/kubernetes_common/test_data.rego compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
+opa test -v compliance/lib compliance/cis_k8s/test_data.rego compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
 ```
 
 ### Pre-commit hooks
@@ -173,16 +172,15 @@ curl --location --request POST 'http://localhost:8181/v1/data/main' \
 --data-raw '{
     "input": {
       "type": "file-system",
+      "id": "8091",
       "resource": {
-        "id": "8091",
-        "data": {
-          "filename": "kube-apiserver.yaml",
-          "gid": "root",
-          "mode": "0700",
-          "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-          "type": "file-system",
-          "uid": "root"
-        }
+        "filename": "kube-apiserver.yaml",
+        "gid": "root",
+        "mode": "0700",
+        "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+        "type": "file-system",
+        "uid": "root",
+        "inode": "8091",
       }
     }
 }'
