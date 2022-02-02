@@ -7,6 +7,15 @@ func CISKubernetes() (map[string]string, error) {
 		"main.rego",
 		"lib/",
 		"cis_k8s/",
+	}
+
+	return createPolicyMap(compliance.Embed, filePrefixes)
+}
+
+func CISEks() (map[string]string, error) {
+	filePrefixes := []string{
+		"main.rego",
+		"lib/",
 		"cis_eks/",
 	}
 
