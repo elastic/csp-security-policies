@@ -7,7 +7,7 @@ import data.compliance.lib.common
 # data is policy/configuration
 # output is findings
 
-resource = input
+OpaInput = input
 
 findings = f {
 	data.activated_rules
