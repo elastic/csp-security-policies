@@ -171,16 +171,15 @@ curl --location --request POST 'http://localhost:8181/v1/data/main' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "input": {
+      "id": "8901",
       "type": "file-system",
-      "id": "8091",
       "resource": {
-        "filename": "kube-apiserver.yaml",
-        "gid": "root",
-        "mode": "0700",
-        "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-        "type": "file-system",
-        "uid": "root",
-        "inode": "8091",
+          "filename": "kube-apiserver.yaml",
+          "gid": "root",
+          "mode": "0700",
+          "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+          "type": "file-system",
+          "uid": "root"
       }
     }
 }'
