@@ -43,13 +43,11 @@ should contain an beat/agent output, e.g. filesystem data
     "type": "file-system",
     "id": "8091",
     "resource": {
-        "data": {
-          "mode": "0700",
-          "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-          "uid": "etc",
-          "filename": "kube-apiserver.yaml",
-          "gid": "root"
-        }
+      "mode": "0700",
+      "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
+      "uid": "etc",
+      "filename": "kube-apiserver.yaml",
+      "gid": "root"
     }
 }
 ```
