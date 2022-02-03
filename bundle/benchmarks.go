@@ -6,7 +6,6 @@ func CISKubernetes() (map[string]string, error) {
 	filePrefixes := []string{
 		"main.rego",
 		"lib/",
-		"kubernetes_common/",
 		"cis_k8s/",
 	}
 
@@ -17,7 +16,6 @@ func CISEks() (map[string]string, error) {
 	filePrefixes := []string{
 		"main.rego",
 		"lib/",
-		"kubernetes_common/",
 		"cis_eks/",
 	}
 

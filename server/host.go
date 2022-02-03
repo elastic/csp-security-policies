@@ -20,3 +20,18 @@ func HostCISKubernetes(path string) (http.Handler, error) {
 
 	return server, nil
 }
+
+func HostCISEks(path string) (http.Handler, error) {
+	policies, err := bundle.CISEks()
+	if err != nil {
+		return nil, err
+	}
+
+	server := bundle.NewServer()
+	err = server.HostBundle(path, policies)
+	if err != nil {
+		return nil, err
+	}
+
+	return server, nil
+}

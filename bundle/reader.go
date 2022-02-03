@@ -14,7 +14,7 @@ var includeFileSuffixes = []string{
 }
 
 var excludeFileSuffixes = []string{
-	".test.rego",
+	"_test.rego",
 }
 
 func createPolicyMap(fsys fs.FS, filePrefixes []string) (map[string]string, error) {
