@@ -1,4 +1,4 @@
-package compliance.cis_eks.rules.cis_3_1_1
+package compliance.cis_eks.rules.cis_2_1_1
 
 import data.compliance.cis_eks
 import data.compliance.lib.common
