@@ -13,8 +13,10 @@ validate_metadata(metadata) {
 	true
 }
 
+# validate every rule metadata
 test_validate_rule_metadata {
-	all_rules := compliance[benchmark].rules
+	all_rules := [rule | compliance[benchmark].rules[rule]]
 	valid_rules := [rule | validate_metadata(compliance[benchmark].rules[rule].metadata)]
+
 	count(valid_rules) == count(all_rules)
 }
