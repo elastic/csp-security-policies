@@ -1,4 +1,4 @@
-package compliance.cis_eks.rules.cis_3_1_1
+package compliance.cis_eks.rules.cis_2_1_1
 
 import data.cis_eks.test_data
 import data.kubernetes_common.test_data
