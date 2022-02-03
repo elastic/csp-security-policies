@@ -16,7 +16,7 @@ func TestCISKubernetes(t *testing.T) {
 
 func TestCISEKS(t *testing.T) {
 	assert := assert.New(t)
-	policies, err := CISKubernetes()
+	policies, err := CISEks()
 
 	assert.NoError(err)
 	assert.NotEmpty(policies)
