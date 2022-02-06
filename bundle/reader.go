@@ -14,7 +14,6 @@ var includeFileSuffixes = []string{
 }
 
 var excludeFileSuffixes = []string{
-	"_test.rego",
 	"test.rego",
 }
 
