@@ -3,20 +3,27 @@ package compliance.cis_eks.rules.cis_2_1_1
 import data.compliance.cis_eks
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
+import data.compliance.aws_data_adatper
+
+
+# evaluate
+default rule_evaluation = true
 
 # Ensure that the kubeconfig file permissions are set to 644 or more restrictive
 finding = result {
 	# filter
-	data_adapter.filename == "kubeconfig"
+	aws_data_adatper.is_aws_eks_type
 
 	# evaluate
-	filemode := data_adapter.filemode
-	rule_evaluation := common.file_permission_match(filemode, 6, 4, 4)
+	clusterLogging := input.resource.Cluster.Logging.ClusterLogging
+	// TODO - Ofir - assert
+	disabledLogs := [log |  clusterLogging[index].Enabled == false; log = clusterLogging[index].Types[_]]
+	rule_evaluation := count(disabledLogs) == 0
 
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"filemode": filemode},
+		"evidence": {"disabled_logs": disabledLogs},
 	}
 }
 
@@ -38,7 +45,7 @@ When you enable a log type, the logs are sent with a log verbosity level of 2.
 To enable or disable control plane logs with the console.
 Open the Amazon EKS console at https://console.aws.amazon.com/eks/home#/clusters.
 Amazon EKS Information in CloudTrail CloudTrail is enabled on your AWS account when you create the account.
-When activity occurs in Amazon EKS, that activity is recorded in a CloudTrail event along with other AWS service events in Event history.`
+When activity occurs in Amazon EKS, that activity is recorded in a CloudTrail event along with other AWS service events in Event history.`,
 	"benchmark": cis_eks.benchmark_name,
 	"remediation": `aws --region "${REGION_CODE}" eks describe-cluster --name "${CLUSTER_NAME}" --query 'cluster.logging.clusterLogging[?enabled==true].types`,
 }
