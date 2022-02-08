@@ -1,6 +1,6 @@
 package compliance.cis_eks
 
-import da   ta.compliance.cis_eks.rules
+import data.compliance.cis_eks.rules
 
 default_tags := ["CIS", "CIS v1.0.1", "EKS"]
 
