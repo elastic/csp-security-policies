@@ -6,17 +6,15 @@ import data.compliance.lib.data_adapter
 import data.compliance.aws_data_adatper
 
 
-# evaluate
 default rule_evaluation = true
 
-# Ensure that the kubeconfig file permissions are set to 644 or more restrictive
+# Ensure that all audit logs are enabled
 finding = result {
 	# filter
 	aws_data_adatper.is_aws_eks_type
 
 	# evaluate
 	clusterLogging := input.resource.Cluster.Logging.ClusterLogging
-	// TODO - Ofir - assert
 	disabledLogs := [log |  clusterLogging[index].Enabled == false; log = clusterLogging[index].Types[_]]
 	rule_evaluation := count(disabledLogs) == 0
 
