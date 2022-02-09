@@ -1,10 +1,10 @@
 package compliance.cis_eks.rules.cis_2_1_1
 
+import data.compliance.aws_data_adatper
 import data.compliance.cis_eks
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
-import data.compliance.aws_data_adatper
-
 
 default rule_evaluation = true
 
@@ -15,7 +15,7 @@ finding = result {
 
 	# evaluate
 	clusterLogging := input.resource.Cluster.Logging.ClusterLogging
-	disabledLogs := [log |  clusterLogging[index].Enabled == false; log = clusterLogging[index].Types[_]]
+	disabledLogs := [log | assert.is_false(clusterLogging[index].Enabled); log = clusterLogging[index].Types[_]]
 	rule_evaluation := count(disabledLogs) == 0
 
 	# set result
