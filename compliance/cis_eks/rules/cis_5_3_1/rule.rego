@@ -7,21 +7,19 @@ import data.compliance.lib.data_adapter
 
 default rule_evaluation = false
 
-# Ensure that all audit logs are enabled
+# Verify that there is a non empty encryption configuration
+rule_evaluation {
+	input.resource.Cluster.EncryptionConfig
+	assert.is_false(count(input.resource.Cluster.EncryptionConfig) == 0)
+}
+
+# Ensure there Kuberenetes secrets are encrypted
 finding = result {
 	# filter
 	aws_data_adatper.is_aws_eks_type
 
-	# evaluate
-	clusterLogging := input.resource.Cluster.Logging.ClusterLogging
-	disabledLogs := [log | clusterLogging[index].Enabled == false; log = clusterLogging[index].Types[_]]
-	rule_evaluation := count(disabledLogs) == 0
-
 	# set result
-	result := {
-		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"disabled_logs": disabledLogs},
-	}
+	result := {"evaluation": common.calculate_result(rule_evaluation)}
 }
 
 metadata = {
