@@ -24,7 +24,7 @@ finding = result {
 }
 
 metadata = {
-	"name": "5.3.1 Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed in AWS KMS",
+	"name": "Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed in AWS KMS",
 	"description": "Encrypt Kubernetes secrets, stored in etcd, using secrets encryption feature during Amazon EKS cluster creation.",
 	"rationale": `Kubernetes can store secrets that pods can access via a mounted volume.
 Today, Kubernetes secrets are stored with Base64 encoding, but encrypting is the recommended approach.
