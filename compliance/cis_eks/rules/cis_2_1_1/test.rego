@@ -10,7 +10,7 @@ test_violation {
 
 test_pass {
 	test.assert_pass(finding) with input as non_violating_input
-	test.assert_pass(finding) with input as non_violating_input
+#	test.assert_pass(finding) with input as non_violating_input_wrong_structre
 }
 
 test_not_evaluated {
