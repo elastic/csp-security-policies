@@ -6,13 +6,23 @@ import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
+default rule_evaluation = false
+
+# Verify that private access is enabled
+# Restrict access to the cluster's control plane to only an allowlist of authorized IPs.
+rule_evaluation {
+	input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
+	public_access_cidrs := input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs
+	# Ensure that publicAccessCidr has a valid filter
+	allow_all_filter := "0.0.0.0/0"
+    unvalid_filters := [filter | public_access_cidrs[index] == allow_all_filter; filter := public_access_cidrs[index]]
+    count(unvalid_filters) == 0
+}
+
 # Ensure there Kuberenetes endpoint private access is enabled
 finding = result {
 	# filter
 	aws_data_adatper.is_aws_eks_type
-
-    # evaluate
-    rule_evaluation := input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
 
 	# set result
 	result := {"evaluation": common.calculate_result(rule_evaluation)}

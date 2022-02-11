@@ -1,4 +1,4 @@
-package compliance.cis_eks.rules.cis_5_4_1
+package compliance.cis_eks.rules.cis_5_4_2
 
 import data.compliance.aws_data_adatper
 import data.compliance.cis_eks
@@ -9,14 +9,17 @@ import data.compliance.lib.data_adapter
 default rule_evaluation = false
 
 # Verify that private access is enabled
-# Restrict access to the cluster's control plane to only an allowlist of authorized IPs.
+# Verify that public access is enabled
+# Restrict the public access to the cluster's control plane to only an allowlist of authorized IPs.
 rule_evaluation {
+	input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess
 	input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
 	public_access_cidrs := input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs
+
 	# Ensure that publicAccessCidr has a valid filter
 	allow_all_filter := "0.0.0.0/0"
-    unvalid_filters := [filter | public_access_cidrs[index] == allow_all_filter; filter := public_access_cidrs[index]]
-    count(unvalid_filters) == 0
+	unvalid_filters := [filter | public_access_cidrs[index] == allow_all_filter; filter := public_access_cidrs[index]]
+	count(unvalid_filters) == 0
 }
 
 # Ensure there Kuberenetes endpoint private access is enabled
@@ -29,33 +32,22 @@ finding = result {
 }
 
 metadata = {
-	"name": "Restrict Access to the Control Plane Endpoint",
-	"description": "Enable Endpoint Private Access to restrict access to the cluster's control plane to only an allowlist of authorized IPs.",
-	"rationale": `Authorized networks are a way of specifying a restricted range of IP addresses that are permitted to access your cluster's control plane.
-Kubernetes Engine uses both Transport Layer Security (TLS) and authentication to provide secure access to your cluster's control plane from the public internet.
-This provides you the flexibility to administer your cluster from anywhere; however, you might want to further restrict access to a set of IP addresses that you control.
-You can set this restriction by specifying an authorized network.
-Restricting access to an authorized network can provide additional security benefits for your container cluster, including:
-• Better protection from outsider attacks: Authorized networks provide an additiofnal layer of security by limiting external access to a specific set of addresses you designate, such as those that originate from your premises.
-  This helps protect access to your cluster in the case of a vulnerability in the cluster's authentication or authorization mechanism.
-• Better protection from insider attacks: Authorized networks help protect your fcluster from accidental leaks of master certificates from your company's premises.
-Leaked certificates used from outside Amazon EC2 and outside the authorized IP  ranges (for example, from addresses outside your company) are still denied access.`,
-	"impact": `When implementing Endpoint Private Access, be careful to ensure all desired networks are on the allowlist (whitelist) to prevent inadvertently blocking external access to your cluster's control plane.`,
-	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.1", "AWS Key Management Service (KMS)"]),
-	"default_value": "By default, Endpoint Private Access is disabled.",
+	"name": "Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled",
+	"description": "Disable access to the Kubernetes API from outside the node network if it is not required.",
+	"rationale": `In a private cluster, the master node has two endpoints, a private and public endpoint.
+The private endpoint is the internal IP address of the master, behind an internal load balancer in the master's VPC network.
+Nodes communicate with the master using the private endpoint.
+The public endpoint enables the Kubernetes API to be accessed from outside the master's VPC network.
+Although Kubernetes API requires an authorized token to perform sensitive actions, a vulnerability could potentially expose the Kubernetes publically with unrestricted access.
+Additionally, an attacker may be able to identify the current cluster and Kubernetes API version and determine whether it is vulnerable to an attack.
+Unless required, disabling public endpoint will help prevent such threats, and require the attacker to be on the master's VPC network to perform any attack on the Kubernetes API.`,
+	"remediation": ``,
+	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.2", "AWS Key Management Service (KMS)"]),
+	"default_value": "By default, the Private Endpoint is disabled.",
 	"benchmark": cis_eks.benchmark_name,
-	"remediation": `Complete the following steps using the AWS CLI version 1.18.10 or later.
-You can check your current version with aws --version. To install or upgrade the AWS CLI, see Installing the AWS CLI.
-Update your cluster API server endpoint access with the following AWS CLI command.
-Substitute your cluster name and desired endpoint access values.
-If you set endpointPublicAccess=true, then you can (optionally) enter single CIDR block, or a comma-separated list of CIDR blocks for publicAccessCidrs.
-The blocks cannot include reserved addresses.
-If you specify CIDR blocks, then the public API server endpoint will only receive requests from the listed blocks.
-There is a maximum number of CIDR blocks that you can specify.
-For more information, see Amazon EKS Service Quotas.
-If you restrict access to your public endpoint using CIDR blocks, it is recommended that you also enable private endpoint access so that worker nodes and Fargate pods (if you use them) can communicate with the cluster.
-Without the private endpoint enabled, your public access endpoint CIDR sources must include the egress sources from your VPC.
-For example, if you have a worker node in a private subnet that communicates to the internet through a NAT Gateway, you will need to add the outbound IP address of the NAT gateway as part of a whitelisted CIDR block on your public endpoint.
-If you specify no CIDR blocks, then the public API server endpoint receives requests from all (0.0.0.0/0) IP addresses.
-Note The following command enables private access and public access from a single IP address for the API server endpoint. Replace 203.0.113.5/32 with a single CIDR block, or a comma- separated list of CIDR blocks that you want to restrict network access to.`,
+	"impact": `Configure the EKS cluster endpoint to be private. See Modifying Cluster Endpoint Access for further information on this topic.
+1. Leave the cluster endpoint public and specify which CIDR blocks can communicate with the cluster endpoint.
+The blocks are effectively a whitelisted set of public IP addresses that are allowed to access the cluster endpoint.
+2. Configure public access with a set of whitelisted CIDR blocks and set private endpoint access to enabled.
+This will allow public access from a specific range of public IPs while forcing all network traffic between the kubelets (workers) and the Kubernetes API through the cross-account ENIs that get provisioned into the cluster VPC when the control plane is provisioned.`,
 }
