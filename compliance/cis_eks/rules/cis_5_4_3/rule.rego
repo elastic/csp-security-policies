@@ -17,9 +17,7 @@ rule_evaluation = false {
 # Ensure there cluster node don't have a public IP
 finding = result {
 	# filter
-    print("before filter")
     data_adapter.is_kube_node
-    print("pass filter")
 	# set result
 	result := {"evaluation": common.calculate_result(rule_evaluation)}
 }

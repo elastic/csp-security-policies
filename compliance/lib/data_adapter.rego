@@ -74,8 +74,8 @@ is_kube_api {
 }
 
 is_kube_node {
-    is_kube_api
-    input.resource.kind == "Node"
+	is_kube_api
+	input.resource.kind == "Node"
 }
 
 pod = p {

@@ -8,5 +8,7 @@ is_aws_elb_type {
 	input.type == "aws-elb"
 }
 
-
-
+is_aws_ecr_pod_type {
+	input.type == "aws-ecr"
+	input.resource.kind == "Pod"
+}
