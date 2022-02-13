@@ -4,9 +4,6 @@ import data.compliance.aws_data_adatper
 import data.compliance.cis_eks
 import data.compliance.lib.assert
 import data.compliance.lib.common
-import data.compliance.lib.data_adapter
-
-default rule_evaluation = true
 
 # Ensure that all audit logs are enabled
 finding = result {
@@ -14,19 +11,19 @@ finding = result {
 	aws_data_adatper.is_aws_eks_type
 
 	# evaluate
-	clusterLogging := input.resource.Cluster.Logging.ClusterLogging
-	disabledLogs := [log | assert.is_false(clusterLogging[index].Enabled); log = clusterLogging[index].Types[_]]
-	rule_evaluation := count(disabledLogs) == 0
+	cluster_logging := input.resource.Cluster.Logging.ClusterLogging
+	disabled_logs := [log | assert.is_false(cluster_logging[index].Enabled); log = cluster_logging[index].Types[_]]
+	rule_evaluation := count(disabled_logs) == 0
 
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"disabled_logs": disabledLogs},
+		"evidence": {"disabled_logs": disabled_logs},
 	}
 }
 
 metadata = {
-	"name": "2.1.1 Enable audit Logs",
+	"name": "Enable audit Logs",
 	"description": `The audit logs are part of the EKS managed Kubernetes control plane logs that are managed by Amazon EKS.
 Amazon EKS is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in Amazon EKS.
 CloudTrail captures all API calls for Amazon EKS as events.
