@@ -4,7 +4,6 @@ import data.compliance.aws_data_adatper
 import data.compliance.cis_eks
 import data.compliance.lib.assert
 import data.compliance.lib.common
-import data.compliance.lib.data_adapter
 
 default rule_evaluation = false
 
@@ -17,7 +16,7 @@ rule_evaluation {
 # Ensure there Kuberenetes secrets are encrypted
 finding = result {
 	# filter
-	aws_data_adatper.is_aws_eks_type
+	aws_data_adatper.is_aws_eks
 
 	# set result
 	result := {"evaluation": common.calculate_result(rule_evaluation)}

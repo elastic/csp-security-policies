@@ -19,7 +19,7 @@ rule_evaluation = false {
 # Ensure there Kuberenetes endpoint private access is enabled
 finding = result {
 	# filter
-	aws_data_adatper.is_aws_elb_type
+	aws_data_adatper.is_aws_elb
 
 	# set result
 	result := {"evaluation": common.calculate_result(rule_evaluation)}

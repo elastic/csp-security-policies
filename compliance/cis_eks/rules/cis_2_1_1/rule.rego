@@ -8,7 +8,7 @@ import data.compliance.lib.common
 # Ensure that all audit logs are enabled
 finding = result {
 	# filter
-	aws_data_adatper.is_aws_eks_type
+	aws_data_adatper.is_aws_eks
 
 	# evaluate
 	cluster_logging := input.resource.Cluster.Logging.ClusterLogging

@@ -24,7 +24,7 @@ rule_evaluation {
 # Ensure there Kuberenetes endpoint private access is enabled
 finding = result {
 	# filter
-	aws_data_adatper.is_aws_eks_type
+	aws_data_adatper.is_aws_eks
 
 	# set result
 	result := {"evaluation": common.calculate_result(rule_evaluation)}
