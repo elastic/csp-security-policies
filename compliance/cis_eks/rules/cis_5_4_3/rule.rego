@@ -29,7 +29,7 @@ Private Nodes are nodes with no public IP addresses.`,
 	"rationale": `Disabling public IP addresses on cluster nodes restricts access to only internal networks, forcing attackers to obtain local network access before attempting to compromise the underlying Kubernetes hosts.`,
 	"remediation": "",
 	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.3", "AWS Key Management Service (KMS)"]),
-	"default_value": "",
+	"default_value": "By default, Private Nodes are disabled.",
 	"benchmark": cis_eks.benchmark_name,
 	"impact": `To enable Private Nodes, the cluster has to also be configured with a private master IP range and IP Aliasing enabled.
 Private Nodes do not have outbound access to the public internet.
