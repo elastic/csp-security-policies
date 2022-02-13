@@ -5,7 +5,7 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as violating_input_private_access_disabled
-    test.assert_fail(finding) with input as violating_input_private_access_enabled_but_unvalid_filter
+	test.assert_fail(finding) with input as violating_input_private_access_enabled_but_unvalid_filter
 }
 
 test_pass {
