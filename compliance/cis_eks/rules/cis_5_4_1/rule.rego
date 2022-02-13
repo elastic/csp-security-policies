@@ -12,10 +12,13 @@ default rule_evaluation = false
 rule_evaluation {
 	input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
 	public_access_cidrs := input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs
+
 	# Ensure that publicAccessCidr has a valid filter
 	allow_all_filter := "0.0.0.0/0"
-    unvalid_filters := [filter | public_access_cidrs[index] == allow_all_filter; filter := public_access_cidrs[index]]
-    count(unvalid_filters) == 0
+
+	# Verify there is no invalid filter
+	invalid_filters := [index | public_access_cidrs[index] == allow_all_filter]
+	count(invalid_filters) == 0
 }
 
 # Ensure there Kuberenetes endpoint private access is enabled
@@ -56,5 +59,8 @@ If you restrict access to your public endpoint using CIDR blocks, it is recommen
 Without the private endpoint enabled, your public access endpoint CIDR sources must include the egress sources from your VPC.
 For example, if you have a worker node in a private subnet that communicates to the internet through a NAT Gateway, you will need to add the outbound IP address of the NAT gateway as part of a whitelisted CIDR block on your public endpoint.
 If you specify no CIDR blocks, then the public API server endpoint receives requests from all (0.0.0.0/0) IP addresses.
-Note The following command enables private access and public access from a single IP address for the API server endpoint. Replace 203.0.113.5/32 with a single CIDR block, or a comma- separated list of CIDR blocks that you want to restrict network access to.`,
+Note The following command enables private access and public access from a single IP address for the API server endpoint.
+Replace 203.0.113.5/32 with a single CIDR block, or a comma- separated list of CIDR blocks that you want to restrict network access to.
+Example command:
+aws eks update-cluster-config --region region-code --name dev --resources-vpc-config endpointPublicAccess=true publicAccessCidrs="203.0.113.5/32" gitendpointPrivateAccess=true`,
 }
