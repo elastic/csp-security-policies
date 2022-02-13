@@ -16,7 +16,7 @@ rule_evaluation {
 
 	# Ensure that publicAccessCidr has a valid filter
 	allow_all_filter := "0.0.0.0/0"
-	unvalid_filters := [filter | public_access_cidrs[index] == allow_all_filter; filter := public_access_cidrs[index]]
+	unvalid_filters := [index | public_access_cidrs[index] == allow_all_filter]
 	count(unvalid_filters) == 0
 }
 
