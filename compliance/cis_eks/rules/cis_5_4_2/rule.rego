@@ -3,7 +3,6 @@ package compliance.cis_eks.rules.cis_5_4_2
 import data.compliance.aws_data_adatper
 import data.compliance.cis_eks
 import data.compliance.lib.common
-import data.compliance.lib.data_adapter
 
 default rule_evaluation = false
 
