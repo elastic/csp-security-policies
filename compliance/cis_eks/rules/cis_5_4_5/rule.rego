@@ -1,7 +1,7 @@
 package compliance.cis_eks.rules.cis_5_4_5
 
-import data.compliance.aws_data_adatper
 import data.compliance.cis_eks
+import data.compliance.cis_eks.data_adatper
 import data.compliance.lib.common
 
 default rule_evaluation = true
@@ -19,10 +19,12 @@ rule_evaluation = false {
 # Ensure there Kuberenetes endpoint private access is enabled
 finding = result {
 	# filter
-	aws_data_adatper.is_aws_elb
+	data_adatper.is_aws_elb
 
 	# set result
-	result := {"evaluation": common.calculate_result(rule_evaluation)}
+	result := {
+		"evaluation": common.calculate_result(rule_evaluation),
+	}
 }
 
 metadata = {

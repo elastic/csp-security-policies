@@ -1,4 +1,4 @@
-package compliance.aws_data_adatper
+package compliance.cis_eks.data_adatper
 
 is_aws_eks {
 	input.type == "aws-eks"

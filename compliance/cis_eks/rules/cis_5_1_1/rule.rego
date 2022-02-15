@@ -1,13 +1,13 @@
 package compliance.cis_eks.rules.cis_5_1_1
 
-import data.compliance.aws_data_adatper
+import data.compliance.cis_eks.data_adatper
 import data.compliance.cis_eks
 import data.compliance.lib.common
 
 # Check if image ScanOnPush is enabled
 finding = result {
 	# filter
-	aws_data_adatper.is_aws_ecr_pod
+	data_adatper.is_aws_ecr_pod
 
 	# evaluate
 	rule_evaluation := input.resource.ImageScanningConfiguration.ScanOnPush

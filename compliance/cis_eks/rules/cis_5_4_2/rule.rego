@@ -1,6 +1,6 @@
 package compliance.cis_eks.rules.cis_5_4_2
 
-import data.compliance.aws_data_adatper
+import data.compliance.cis_eks.data_adatper
 import data.compliance.cis_eks
 import data.compliance.lib.common
 
@@ -23,7 +23,7 @@ rule_evaluation {
 # Ensure there Kuberenetes endpoint private access is enabled
 finding = result {
 	# filter
-	aws_data_adatper.is_aws_eks
+	data_adatper.is_aws_eks
 
 	# set result
 	result := {"evaluation": common.calculate_result(rule_evaluation)}

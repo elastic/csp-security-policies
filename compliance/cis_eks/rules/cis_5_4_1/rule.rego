@@ -1,6 +1,6 @@
 package compliance.cis_eks.rules.cis_5_4_1
 
-import data.compliance.aws_data_adatper
+import data.compliance.cis_eks.data_adatper
 import data.compliance.cis_eks
 import data.compliance.lib.common
 
@@ -10,20 +10,19 @@ default rule_evaluation = false
 # Restrict access to the cluster's control plane to only an allowlist of authorized IPs.
 rule_evaluation {
 	input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
-	public_access_cidrs := input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs
 
 	# Ensure that publicAccessCidr has a valid filter
 	allow_all_filter := "0.0.0.0/0"
 
 	# Verify there is no invalid filter
-	invalid_filters := [index | public_access_cidrs[index] == allow_all_filter]
+	invalid_filters := [index | input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs[index] == allow_all_filter]
 	count(invalid_filters) == 0
 }
 
 # Ensure there Kuberenetes endpoint private access is enabled
 finding = result {
 	# filter
-	aws_data_adatper.is_aws_eks
+	data_adatper.is_aws_eks
 
 	# set result
 	result := {"evaluation": common.calculate_result(rule_evaluation)}
