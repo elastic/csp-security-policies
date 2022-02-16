@@ -7,7 +7,7 @@ import data.compliance.lib.common
 # Check if image ScanOnPush is enabled
 finding = result {
 	# filter
-	data_adatper.is_aws_ecr_pod
+	data_adatper.is_aws_ecr
 
 	# evaluate
 	rule_evaluation := input.resource.ImageScanningConfiguration.ScanOnPush
