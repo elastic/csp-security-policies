@@ -19,7 +19,6 @@ test_not_evaluated {
 violating_input_scan_on_push_disabled = {
 	"type": "aws-ecr",
 	"resource": {"EcrRepositories": [{
-		"kind": "Pod",
 		"CreatedAt": "2020-07-29T11:44:18Z",
 		"ImageScanningConfiguration": {"ScanOnPush": false},
 		"ImageTagMutability": "MUTABLE",
@@ -44,7 +43,6 @@ violating_input_scan_on_push_disabled_in_one_repo = {
 			"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/build.security.management",
 		},
 		{
-			"kind": "Pod",
 			"CreatedAt": "2020-07-29T11:44:18Z",
 			"ImageScanningConfiguration": {"ScanOnPush": true},
 			"ImageTagMutability": "MUTABLE",
@@ -59,7 +57,6 @@ violating_input_scan_on_push_disabled_in_one_repo = {
 valid_input = {
 	"type": "aws-ecr",
 	"resource": {"EcrRepositories": [{
-		"kind": "Pod",
 		"CreatedAt": "2020-07-29T11:44:18Z",
 		"ImageScanningConfiguration": {"ScanOnPush": true},
 		"ImageTagMutability": "MUTABLE",

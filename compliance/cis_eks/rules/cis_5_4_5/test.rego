@@ -20,7 +20,7 @@ test_not_evaluated {
 
 violating_input_use_tcp_instead_of_https := {
 	"type": "aws-elb",
-	"resource": {
+	"resource": {"LoadBalancersDescription": [{
 		"AvailabilityZones": [
 			"us-east-2b",
 			"us-east-2a",
@@ -80,12 +80,12 @@ violating_input_use_tcp_instead_of_https := {
 			"subnet-09b8d7fdb5776ab47",
 		],
 		"VPCId": "vpc-09b1bd8bbf4508a52",
-	},
+	}]},
 }
 
 violating_input_use_both_https_and_tcp := {
 	"type": "aws-elb",
-	"resource": {
+	"resource": {"LoadBalancersDescription": [{
 		"AvailabilityZones": [
 			"us-east-2b",
 			"us-east-2a",
@@ -145,12 +145,12 @@ violating_input_use_both_https_and_tcp := {
 			"subnet-09b8d7fdb5776ab47",
 		],
 		"VPCId": "vpc-09b1bd8bbf4508a52",
-	},
+	}]},
 }
 
 violating_input_use_https_only_but_no_certificate := {
 	"type": "aws-elb",
-	"resource": {
+	"resource": {"LoadBalancersDescription": [{
 		"AvailabilityZones": [
 			"us-east-2b",
 			"us-east-2a",
@@ -198,12 +198,12 @@ violating_input_use_https_only_but_no_certificate := {
 			"subnet-09b8d7fdb5776ab47",
 		],
 		"VPCId": "vpc-09b1bd8bbf4508a52",
-	},
+	}]},
 }
 
 valid_input_use_https_only_with_certificate := {
 	"type": "aws-elb",
-	"resource": {
+	"resource": {"LoadBalancersDescription": [{
 		"AvailabilityZones": [
 			"us-east-2b",
 			"us-east-2a",
@@ -251,12 +251,12 @@ valid_input_use_https_only_with_certificate := {
 			"subnet-09b8d7fdb5776ab47",
 		],
 		"VPCId": "vpc-09b1bd8bbf4508a52",
-	},
+	}]},
 }
 
 valid_input_with_two_https_listeners := {
 	"type": "aws-elb",
-	"resource": {
+	"resource": {"LoadBalancersDescription": [{
 		"AvailabilityZones": [
 			"us-east-2b",
 			"us-east-2a",
@@ -316,7 +316,7 @@ valid_input_with_two_https_listeners := {
 			"subnet-09b8d7fdb5776ab47",
 		],
 		"VPCId": "vpc-09b1bd8bbf4508a52",
-	},
+	}]},
 }
 
 not_evaluated_input = {

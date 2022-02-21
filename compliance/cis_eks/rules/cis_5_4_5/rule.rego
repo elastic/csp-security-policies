@@ -8,12 +8,12 @@ default rule_evaluation = true
 
 # Verify that all listeners has SSL Certificate
 rule_evaluation = false {
-	input.resource.ListenerDescriptions[_].Listener.SSLCertificateId == null
+	input.resource.LoadBalancersDescription[_].ListenerDescriptions[_].Listener.SSLCertificateId == null
 }
 
 # Verify that all listeners use https protocoal
 rule_evaluation = false {
-	input.resource.ListenerDescriptions[_].Listener.InstanceProtocol != "HTTPS"
+	input.resource.LoadBalancersDescription[_].ListenerDescriptions[_].Listener.InstanceProtocol != "HTTPS"
 }
 
 # Ensure there Kuberenetes endpoint private access is enabled
