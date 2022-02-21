@@ -1,16 +1,26 @@
 package compliance.cis_eks.rules.cis_5_1_1
 
-import data.compliance.cis_eks.data_adatper
 import data.compliance.cis_eks
+import data.compliance.cis_eks.data_adatper
+import data.compliance.lib.assert
 import data.compliance.lib.common
+
+default rule_evaluation = false
+
+# Checks that every repository scanOnPush is enabled
+rule_evaluation {
+	input.resource.EcrRepositories
+
+	# Verify there is no unsafe image
+	misconfigured_repositories := [index | assert.is_false(input.resource.EcrRepositories[index].ImageScanningConfiguration.ScanOnPush)]
+
+	count(misconfigured_repositories) == 0
+}
 
 # Check if image ScanOnPush is enabled
 finding = result {
 	# filter
 	data_adatper.is_aws_ecr
-
-	# evaluate
-	rule_evaluation := input.resource.ImageScanningConfiguration.ScanOnPush
 
 	# set result
 	result := {"evaluation": common.calculate_result(rule_evaluation)}

@@ -5,6 +5,7 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as violating_input_scan_on_push_disabled
+	test.assert_fail(finding) with input as violating_input_scan_on_push_disabled_in_one_repo
 }
 
 test_pass {
@@ -17,7 +18,7 @@ test_not_evaluated {
 
 violating_input_scan_on_push_disabled = {
 	"type": "aws-ecr",
-	"resource": {
+	"resource": {"EcrRepositories": [{
 		"kind": "Pod",
 		"CreatedAt": "2020-07-29T11:44:18Z",
 		"ImageScanningConfiguration": {"ScanOnPush": false},
@@ -26,12 +27,38 @@ violating_input_scan_on_push_disabled = {
 		"RepositoryArn": "arn:aws:ecr:us-east-2:704479110758:repository/build.security.management",
 		"RepositoryName": "build.security.management",
 		"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/build.security.management",
-	},
+	}]},
+}
+
+violating_input_scan_on_push_disabled_in_one_repo = {
+	"type": "aws-ecr",
+	"resource": {"EcrRepositories": [
+		{
+			"kind": "Pod",
+			"CreatedAt": "2020-07-29T11:44:18Z",
+			"ImageScanningConfiguration": {"ScanOnPush": false},
+			"ImageTagMutability": "MUTABLE",
+			"RegistryId": "704479110758",
+			"RepositoryArn": "arn:aws:ecr:us-east-2:704479110758:repository/build.security.management",
+			"RepositoryName": "build.security.management",
+			"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/build.security.management",
+		},
+		{
+			"kind": "Pod",
+			"CreatedAt": "2020-07-29T11:44:18Z",
+			"ImageScanningConfiguration": {"ScanOnPush": true},
+			"ImageTagMutability": "MUTABLE",
+			"RegistryId": "704479110758",
+			"RepositoryArn": "arn:aws:ecr:us-east-2:704479110758:repository/build.security.management",
+			"RepositoryName": "build.security.management2",
+			"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/build.security.management",
+		},
+	]},
 }
 
 valid_input = {
 	"type": "aws-ecr",
-	"resource": {
+	"resource": {"EcrRepositories": [{
 		"kind": "Pod",
 		"CreatedAt": "2020-07-29T11:44:18Z",
 		"ImageScanningConfiguration": {"ScanOnPush": true},
@@ -40,7 +67,7 @@ valid_input = {
 		"RepositoryArn": "arn:aws:ecr:us-east-2:704479110758:repository/build.security.management",
 		"RepositoryName": "build.security.management",
 		"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/build.security.management",
-	},
+	}]},
 }
 
 not_evaluated_input = {
