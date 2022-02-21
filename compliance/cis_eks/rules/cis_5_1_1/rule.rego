@@ -45,7 +45,7 @@ Use the following steps to start a manual image scan using the AWS Management Co
 3. In the navigation pane, choose Repositories.
 4. On the Repositories page, choose the repository that contains the image to scan.
 5. On the Images page, select the image to scan and then choose Scan.`,
-	"tags": array.concat(cis_eks.default_tags, ["CIS 5.1.1", "AWS Key Management Service (KMS)"]),
+	"tags": array.concat(cis_eks.default_tags, ["CIS 5.1.1", "Image Registry and Image Scanning"]),
 	"default_value": "Images are not scanned by Default.",
 	"benchmark": cis_eks.benchmark_name,
 	"impact": `If you are utilizing AWS ECR The following are common image scan failures.

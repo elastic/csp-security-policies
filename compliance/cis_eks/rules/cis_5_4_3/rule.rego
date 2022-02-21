@@ -8,9 +8,9 @@ default rule_evaluation = true
 
 # Verify that the node doesn't have an external IP
 rule_evaluation = false {
-	some i
-	input.resource.status.addresses[i].type == "ExternalIP"
-	input.resource.status.addresses[i].address != "0.0.0.0"
+	some address
+	input.resource.status.addresses[address].type == "ExternalIP"
+	input.resource.status.addresses[address].address != "0.0.0.0"
 }
 
 # Ensure there cluster node don't have a public IP
@@ -28,7 +28,7 @@ metadata = {
 Private Nodes are nodes with no public IP addresses.`,
 	"rationale": `Disabling public IP addresses on cluster nodes restricts access to only internal networks, forcing attackers to obtain local network access before attempting to compromise the underlying Kubernetes hosts.`,
 	"remediation": "",
-	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.3", "AWS Key Management Service (KMS)"]),
+	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.3", "Cluster Networking"]),
 	"default_value": "By default, Private Nodes are disabled.",
 	"benchmark": cis_eks.benchmark_name,
 	"impact": `To enable Private Nodes, the cluster has to also be configured with a private master IP range and IP Aliasing enabled.

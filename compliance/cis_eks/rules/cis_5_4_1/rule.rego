@@ -41,7 +41,7 @@ Restricting access to an authorized network can provide additional security bene
 • Better protection from insider attacks: Authorized networks help protect your fcluster from accidental leaks of master certificates from your company's premises.
 Leaked certificates used from outside Amazon EC2 and outside the authorized IP  ranges (for example, from addresses outside your company) are still denied access.`,
 	"impact": `When implementing Endpoint Private Access, be careful to ensure all desired networks are on the allowlist (whitelist) to prevent inadvertently blocking external access to your cluster's control plane.`,
-	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.1", "AWS Key Management Service (KMS)"]),
+	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.1", "Cluster Networking"]),
 	"default_value": "By default, Endpoint Private Access is disabled.",
 	"benchmark": cis_eks.benchmark_name,
 	"remediation": `Complete the following steps using the AWS CLI version 1.18.10 or later.

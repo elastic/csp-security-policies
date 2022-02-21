@@ -32,7 +32,7 @@ metadata = {
 	"description": "Encrypt traffic to HTTPS load balancers using TLS certificates.",
 	"rationale": `Encrypting traffic between users and your Kubernetes workload is fundamental to protecting data sent over the web.`,
 	"remediation": "",
-	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.5", "AWS Key Management Service (KMS)"]),
+	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.5", "Cluster Networking"]),
 	"default_value": "",
 	"benchmark": cis_eks.benchmark_name,
 	"impact": "",

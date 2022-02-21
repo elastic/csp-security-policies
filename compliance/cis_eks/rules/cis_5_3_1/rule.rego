@@ -10,7 +10,7 @@ default rule_evaluation = false
 # Verify that there is a non empty encryption configuration
 rule_evaluation {
 	input.resource.Cluster.EncryptionConfig
-	assert.is_false(count(input.resource.Cluster.EncryptionConfig) == 0)
+	count(input.resource.Cluster.EncryptionConfig) > 0
 }
 
 # Ensure there Kuberenetes secrets are encrypted
