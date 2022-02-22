@@ -19,10 +19,27 @@ file_ownership_match(uid, gid, required_uid, required_gid) {
 	true
 }
 
-# todo: compare performance of regex alternatives
 file_permission_match(filemode, user, group, other) {
-	pattern = sprintf("0[0-%d][0-%d][0-%d]", [user, group, other])
-	regex.match(pattern, filemode)
+	permission = remove_prefix(filemode)
+
+	# filemode format {user}{group}{other} e.g. 644
+	check_permission(to_number(permission[0]), user)
+	check_permission(to_number(permission[1]), group)
+	check_permission(to_number(permission[2]), other)
+} else = false {
+	true
+}
+
+# in some filemode formats the filemode starts with 0 to indicate that the value is Octal (base 8)
+# return a list of file premission [user, group, other]
+remove_prefix(filemode) = fm {
+	# if prefix exist we should start the substring from 1, else 0
+	start = count(filemode) - 3
+	fm := split(substring(filemode, start, 3), "")
+}
+
+check_permission(permission, max_permission) {
+	bits.and(permission, bits.negate(max_permission)) == 0
 } else = false {
 	true
 }
