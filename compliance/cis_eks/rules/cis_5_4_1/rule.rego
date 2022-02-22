@@ -43,7 +43,7 @@ Leaked certificates used from outside Amazon EC2 and outside the authorized IP  
 	"impact": `When implementing Endpoint Private Access, be careful to ensure all desired networks are on the allowlist (whitelist) to prevent inadvertently blocking external access to your cluster's control plane.`,
 	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.1", "Cluster Networking"]),
 	"default_value": "By default, Endpoint Private Access is disabled.",
-	"benchmark": cis_eks.benchmark_name,
+	"benchmark": cis_eks.benchmark_metadata,
 	"remediation": `Complete the following steps using the AWS CLI version 1.18.10 or later.
 You can check your current version with aws --version. To install or upgrade the AWS CLI, see Installing the AWS CLI.
 Update your cluster API server endpoint access with the following AWS CLI command.

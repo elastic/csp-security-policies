@@ -43,6 +43,6 @@ This protects against attackers in the event that they manage to gain access to 
 	"impact": `None`,
 	"tags": array.concat(cis_eks.default_tags, ["CIS 5.3.1", "AWS Key Management Service (KMS)"]),
 	"default_value": "By default, Application-layer Secrets Encryption is not enabled.",
-	"benchmark": cis_eks.benchmark_name,
+	"benchmark": cis_eks.benchmark_metadata,
 	"remediation": "Enable 'Secrets Encryption' during Amazon EKS cluster creation as described in the links within the 'References' section.",
 }

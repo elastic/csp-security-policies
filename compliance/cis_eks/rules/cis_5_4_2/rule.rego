@@ -55,7 +55,7 @@ Unless required, disabling public endpoint will help prevent such threats, and r
 	"remediation": ``,
 	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.2", "Cluster Networking"]),
 	"default_value": "By default, the Private Endpoint is disabled.",
-	"benchmark": cis_eks.benchmark_name,
+	"benchmark": cis_eks.benchmark_metadata,
 	"impact": `Configure the EKS cluster endpoint to be private. See Modifying Cluster Endpoint Access for further information on this topic.
 1. Leave the cluster endpoint public and specify which CIDR blocks can communicate with the cluster endpoint.
 The blocks are effectively a whitelisted set of public IP addresses that are allowed to access the cluster endpoint.

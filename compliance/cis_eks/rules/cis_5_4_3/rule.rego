@@ -38,7 +38,7 @@ Private Nodes are nodes with no public IP addresses.`,
 	"remediation": "",
 	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.3", "Cluster Networking"]),
 	"default_value": "By default, Private Nodes are disabled.",
-	"benchmark": cis_eks.benchmark_name,
+	"benchmark": cis_eks.benchmark_metadata,
 	"impact": `To enable Private Nodes, the cluster has to also be configured with a private master IP range and IP Aliasing enabled.
 Private Nodes do not have outbound access to the public internet.
 If you want to provide outbound Internet access for your private nodes, you can use Cloud NAT or you can manage your own NAT gateway.`,

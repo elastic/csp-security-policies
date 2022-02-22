@@ -44,6 +44,6 @@ metadata = {
 	"remediation": "",
 	"tags": array.concat(cis_eks.default_tags, ["CIS 5.4.5", "Cluster Networking"]),
 	"default_value": "",
-	"benchmark": cis_eks.benchmark_name,
+	"benchmark": cis_eks.benchmark_metadata,
 	"impact": "",
 }

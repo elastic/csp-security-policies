@@ -54,7 +54,7 @@ Use the following steps to start a manual image scan using the AWS Management Co
 5. On the Images page, select the image to scan and then choose Scan.`,
 	"tags": array.concat(cis_eks.default_tags, ["CIS 5.1.1", "Image Registry and Image Scanning"]),
 	"default_value": "Images are not scanned by Default.",
-	"benchmark": cis_eks.benchmark_name,
+	"benchmark": cis_eks.benchmark_metadata,
 	"impact": `If you are utilizing AWS ECR The following are common image scan failures.
 You can view errors like this in the Amazon ECR console by displaying the image details or through the API or AWS CLI by using the DescribeImageScanFindings API.
 UnsupportedImageError You may get an UnsupportedImageError error when attempting to scan an image that was built using an operating system that Amazon ECR doesn't support image scanning for.
