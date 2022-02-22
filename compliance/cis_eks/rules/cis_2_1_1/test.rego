@@ -27,7 +27,7 @@ violating_input_all_logs_disabled = result {
 		],
 	}]}
 
-	result = test_data.eks_input(logging)
+	result = generate_eks_input_with_log(logging)
 }
 
 violating_input_some_disabled = result {
@@ -49,7 +49,7 @@ violating_input_some_disabled = result {
 		},
 	]}
 
-	result = test_data.eks_input(logging)
+	result = generate_eks_input_with_log(logging)
 }
 
 non_violating_input = result {
@@ -64,5 +64,10 @@ non_violating_input = result {
 		],
 	}]}
 
-	result = test_data.eks_input(logging)
+	result = generate_eks_input_with_log(logging)
+}
+
+generate_eks_input_with_log(logging) = result {
+    encryption_config = {"EncryptionConfig : null"}
+    result = test_data.generate_eks_input(logging, encryption_config, true, true, [])
 }
