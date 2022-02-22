@@ -19,6 +19,10 @@ rule_evaluation {
 	unvalid_filters := [index | public_access_cidrs[index] == allow_all_filter]
 	count(unvalid_filters) == 0
 }
+rule_evaluation {
+	not input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess
+	input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
+}
 
 # Ensure there Kuberenetes endpoint private access is enabled
 finding = result {

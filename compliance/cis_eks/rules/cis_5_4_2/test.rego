@@ -6,12 +6,12 @@ import data.lib.test
 test_violation {
 	test.assert_fail(finding) with input as violating_input_private_access_disabled
 	test.assert_fail(finding) with input as violating_input_public_invalid_filter
-	test.assert_fail(finding) with input as violating_input_public_access_disabled
-	test.assert_fail(finding) with input as violating_input_private_access_disabled_and_public_access_disabled_and_unvalid_filter
+	test.assert_fail(finding) with input as violating_input_private_access_enabled_and_public_access_enabled_but_an_unvalid_filter
 }
 
 test_pass {
 	test.assert_pass(finding) with input as non_violating_input
+    test.assert_pass(finding) with input as valid_input_public_access_disabled_and_private_endpoint_endabled
 }
 
 test_not_evaluated {
@@ -55,7 +55,7 @@ violating_input_private_access_disabled = {
 	}},
 }
 
-violating_input_public_access_disabled = {
+valid_input_public_access_disabled_and_private_endpoint_endabled = {
 	"type": "aws-eks",
 	"resource": {"Cluster": {
 		"Arn": "arn:aws:somearn1234:cluster/EKS-demo",
@@ -129,7 +129,7 @@ violating_input_public_invalid_filter = {
 	}},
 }
 
-violating_input_private_access_disabled_and_public_access_disabled_and_unvalid_filter = {
+violating_input_private_access_enabled_and_public_access_enabled_but_an_unvalid_filter = {
 	"type": "aws-eks",
 	"resource": {"Cluster": {
 		"Arn": "arn:aws:somearn1234:cluster/EKS-demo",
@@ -150,8 +150,8 @@ violating_input_private_access_disabled_and_public_access_disabled_and_unvalid_f
 		}]},
 		"ResourcesVpcConfig": {
 			"ClusterSecurityGroupId": "sg-00abc463e0e831064",
-			"EndpointPrivateAccess": false,
-			"EndpointPublicAccess": false,
+			"EndpointPrivateAccess": true,
+			"EndpointPublicAccess": true,
 			"PublicAccessCidrs": ["0.0.0.0/0"],
 			"SecurityGroupIds": ["sg-01f510f46974d3b5c"],
 			"SubnetIds": [
