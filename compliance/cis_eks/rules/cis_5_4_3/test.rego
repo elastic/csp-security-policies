@@ -13,7 +13,7 @@ test_pass {
 }
 
 test_not_evaluated {
-	not finding with input as not_evaluated_input
+	not finding with input as test_data.not_evaluated_input
 }
 
 violating_input_public_ip_and_public_address = {
@@ -204,7 +204,7 @@ valid_input_no_external_IP = {
 	},
 }
 
-valid_input_external_IP_set_to_local_host= {
+valid_input_external_IP_set_to_local_host = {
 	"type": "kube-api",
 	"resource": {
 		"kind": "Node",
@@ -298,31 +298,4 @@ valid_input_external_IP_set_to_local_host= {
 			},
 		},
 	},
-}
-
-not_evaluated_input = {
-	"type": "some-type",
-	"resource": {"Cluster": {
-		"Arn": "arn:aws:somearn1234:cluster/EKS-demo",
-		"CertificateAuthority": {"Data": "some data"},
-		"ClientRequestToken": null,
-		"CreatedAt": "2021-10-27T11:08:51Z",
-		"EncryptionConfig": [{
-			"Provider": {},
-			"Resources": [],
-		}],
-		"Endpoint": "https://C07EBEDB096B808626B023DDBF7520DC.gr7.us-east-2.eks.amazonaws.com",
-		"Identity": {"Oidc": {"Issuer": "https://oidc.eks.us-east-2.amazonaws.com/id/C07EBdDB096B80AA626B023SS520SS"}},
-		"Logging": {"ClusterLogging": [{
-			"Enabled": true,
-			"Types": [
-				"api",
-				"audit",
-				"authenticator",
-				"controllerManager",
-				"scheduler",
-			],
-		}]},
-		"Name": "EKS-Elastic-agent-demo",
-	}},
 }
