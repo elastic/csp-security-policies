@@ -1,7 +1,7 @@
 package compliance.cis_eks.rules.cis_5_3_1
 
-import data.compliance.cis_eks.data_adatper
 import data.compliance.cis_eks
+import data.compliance.cis_eks.data_adatper
 import data.compliance.lib.assert
 import data.compliance.lib.common
 
@@ -13,13 +13,20 @@ rule_evaluation {
 	count(input.resource.Cluster.EncryptionConfig) > 0
 }
 
+evidence["encryption_config"] = "There is no valid encryption configuration" {
+	not rule_evaluation
+}
+
 # Ensure there Kuberenetes secrets are encrypted
 finding = result {
 	# filter
 	data_adatper.is_aws_eks
 
 	# set result
-	result := {"evaluation": common.calculate_result(rule_evaluation)}
+	result := {
+		"evaluation": common.calculate_result(rule_evaluation),
+		"evidence": evidence,
+	}
 }
 
 metadata = {
