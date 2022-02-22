@@ -1,7 +1,7 @@
 package compliance.cis_eks.rules.cis_5_4_2
 
-import data.compliance.cis_eks.data_adatper
 import data.compliance.cis_eks
+import data.compliance.cis_eks.data_adatper
 import data.compliance.lib.common
 
 default rule_evaluation = false
@@ -19,6 +19,7 @@ rule_evaluation {
 	unvalid_filters := [index | public_access_cidrs[index] == allow_all_filter]
 	count(unvalid_filters) == 0
 }
+
 rule_evaluation {
 	not input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess
 	input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
@@ -29,8 +30,16 @@ finding = result {
 	# filter
 	data_adatper.is_aws_eks
 
+
 	# set result
-	result := {"evaluation": common.calculate_result(rule_evaluation)}
+	result := {
+		"evaluation": common.calculate_result(rule_evaluation),
+		"evidence": {
+		    "endpoint_public_access" : input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess,
+		    "endpoint_private_access": input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess,
+		    "public_access_cidrs" : input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs,
+		},
+	}
 }
 
 metadata = {
