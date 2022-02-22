@@ -13,13 +13,21 @@ rule_evaluation = false {
 	input.resource.status.addresses[address].address != "0.0.0.0"
 }
 
+evidence["external_ip"] = "Your cluster node exposes a public IP" {
+	input.resource.status.addresses[addresss].type == "ExternalIP"
+	input.resource.status.addresses[addresss].address != "0.0.0.0"
+}
+
 # Ensure there cluster node don't have a public IP
 finding = result {
 	# filter
 	data_adapter.is_kube_node
 
 	# set result
-	result := {"evaluation": common.calculate_result(rule_evaluation)}
+	result := {
+		"evaluation": common.calculate_result(rule_evaluation),
+		"evidence": evidence
+	}
 }
 
 metadata = {
