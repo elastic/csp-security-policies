@@ -26,7 +26,7 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": evidence
+		"evidence": evidence,
 	}
 }
 

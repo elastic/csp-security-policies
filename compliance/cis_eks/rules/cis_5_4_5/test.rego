@@ -24,4 +24,3 @@ violating_input_use_both_https_and_tcp := test_data.generate_elb_input_with_two_
 violating_input_use_https_only_but_no_certificate := test_data.generate_elb_input_with_two_load_balancers("HTTPS", null, "HTTPS", "adjkdsajad")
 
 valid_input_with_two_https_listeners := test_data.generate_elb_input_with_two_load_balancers("HTTPS", "dsaaasdzx", "HTTPS", "adjkdsajad")
-

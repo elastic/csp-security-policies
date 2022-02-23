@@ -68,6 +68,6 @@ non_violating_input = result {
 }
 
 generate_eks_input_with_log(logging) = result {
-    encryption_config = {"EncryptionConfig : null"}
-    result = test_data.generate_eks_input(logging, encryption_config, true, true, [])
+	encryption_config = {"EncryptionConfig : null"}
+	result = test_data.generate_eks_input(logging, encryption_config, true, true, [])
 }

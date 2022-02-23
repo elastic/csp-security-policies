@@ -76,4 +76,3 @@ generate_eks_input_with_encryption_config(encryption_config) = result {
 
 	result = test_data.generate_eks_input(logging, encryption_config, true, true, [])
 }
-

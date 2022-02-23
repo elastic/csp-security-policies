@@ -30,14 +30,13 @@ finding = result {
 	# filter
 	data_adatper.is_aws_eks
 
-
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {
-		    "endpoint_public_access" : input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess,
-		    "endpoint_private_access": input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess,
-		    "public_access_cidrs" : input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs,
+			"endpoint_public_access": input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess,
+			"endpoint_private_access": input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess,
+			"public_access_cidrs": input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs,
 		},
 	}
 }

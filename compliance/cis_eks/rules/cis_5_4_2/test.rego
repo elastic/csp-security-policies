@@ -20,7 +20,7 @@ test_not_evaluated {
 
 violating_input_private_access_disabled = test_data.generate_eks_input_with_vpc_config(false, true, ["132.1.50.0/0"])
 
-valid_input_public_access_disabled_and_private_endpoint_endabled =  test_data.generate_eks_input_with_vpc_config(true, false, ["0.0.0.0/0"])
+valid_input_public_access_disabled_and_private_endpoint_endabled = test_data.generate_eks_input_with_vpc_config(true, false, ["0.0.0.0/0"])
 
 violating_input_public_invalid_filter = test_data.generate_eks_input_with_vpc_config(false, true, ["0.0.0.0/0"])
 
