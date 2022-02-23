@@ -1,6 +1,6 @@
 package compliance.cis_eks.rules.cis_2_1_1
 
-import data.kubernetes_common.test_data
+import data.cis_eks.test_data
 import data.lib.test
 
 test_violation {
