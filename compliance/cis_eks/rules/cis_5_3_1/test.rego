@@ -40,20 +40,14 @@ violating_input_no_encryption_configuration = {
 	}},
 }
 
-violating_input_empty_encryption_array = result {
-	result = generate_eks_input_with_encryption_config([])
-}
+violating_input_empty_encryption_array = generate_eks_input_with_encryption_config([])
 
-violating_input_null_encryption_array = result {
-	result = generate_eks_input_with_encryption_config(null)
-}
+violating_input_null_encryption_array = generate_eks_input_with_encryption_config(null)
 
-non_violating_input = result {
-	result = generate_eks_input_with_encryption_config([{
-		"Provider": {},
-		"Resources": [],
-	}])
-}
+non_violating_input = generate_eks_input_with_encryption_config([{
+	"Provider": {},
+	"Resources": [],
+}])
 
 generate_eks_input_with_encryption_config(encryption_config) = result {
 	logging = {"ClusterLogging": [
