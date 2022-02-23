@@ -13,7 +13,7 @@ rule_evaluation = false {
 	input.resource.status.addresses[address].address != "0.0.0.0"
 }
 
-evidence["external_ip"] = "Your cluster node exposes a public IP" {
+evidence["external_ip"] = "Your cluster node exposes an external IP" {
 	input.resource.status.addresses[addresss].type == "ExternalIP"
 	input.resource.status.addresses[addresss].address != "0.0.0.0"
 }
