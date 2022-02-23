@@ -1,5 +1,7 @@
 package compliance.lib.common
 
+import data.compliance.lib.assert
+
 metadata = {"opa_version": opa_version}
 
 # get OPA version
@@ -20,26 +22,29 @@ file_ownership_match(uid, gid, required_uid, required_gid) {
 }
 
 file_permission_match(filemode, user, group, other) {
-	permission = remove_prefix(filemode)
+	permissions = parse_permission(filemode)
 
 	# filemode format {user}{group}{other} e.g. 644
-	check_permission(to_number(permission[0]), user)
-	check_permission(to_number(permission[1]), group)
-	check_permission(to_number(permission[2]), other)
+	check_permissions(permissions, [user, group, other])
 } else = false {
 	true
 }
 
-# in some filemode formats the filemode starts with 0 to indicate that the value is Octal (base 8)
-# return a list of file premission [user, group, other]
-remove_prefix(filemode) = fm {
+# in some os filemodes starts with 0 to indicate that the value is Octal (base 8)
+# remove prefix if needed, and return a list of file premission [user, group, other]
+parse_permission(filemode) = permissions {
 	# if prefix exist we should start the substring from 1, else 0
 	start = count(filemode) - 3
-	fm := split(substring(filemode, start, 3), "")
+
+	# remove prefix (if needed) and split
+	str_permissions = split(substring(filemode, start, 3), "")
+
+	# cast to numbers
+	permissions := [to_number(p) | p = str_permissions[_]]
 }
 
-check_permission(permission, max_permission) {
-	bits.and(permission, bits.negate(max_permission)) == 0
+check_permissions(permissions, max_permissions) {
+	assert.all_true([r | r = bits.and(permissions[p], bits.negate(max_permissions[p])) == 0])
 } else = false {
 	true
 }
