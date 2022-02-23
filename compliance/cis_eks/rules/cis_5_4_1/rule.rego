@@ -7,16 +7,25 @@ import data.compliance.lib.common
 default rule_evaluation = false
 
 # Verify that private access is enabled
-# Restrict access to the cluster's control plane to only an allowlist of authorized IPs.
+# Verify that public access is enabled
+# Restrict the public access to the cluster's control plane to only an allowlist of authorized IPs.
 rule_evaluation {
 	input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
+	verify_restricted_public_access
+}
+
+verify_restricted_public_access {
+	not input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess
+}
+
+verify_restricted_public_access {
+	input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess
+	public_access_cidrs := input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs
 
 	# Ensure that publicAccessCidr has a valid filter
 	allow_all_filter := "0.0.0.0/0"
-
-	# Verify there is no invalid filter
-	invalid_filters := [index | input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs[index] == allow_all_filter]
-	count(invalid_filters) == 0
+	unvalid_filters := [index | public_access_cidrs[index] == allow_all_filter]
+	count(unvalid_filters) == 0
 }
 
 # Ensure there Kuberenetes endpoint private access is enabled
