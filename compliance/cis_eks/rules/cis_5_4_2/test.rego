@@ -6,7 +6,7 @@ import data.lib.test
 test_violation {
 	test.assert_fail(finding) with input as violating_input_private_access_disabled
 	test.assert_fail(finding) with input as violating_input_public_access_enabled
-	test.assert_fail(finding) with input as violating_input_private_access_enabled_but_public_access_enabled_and_unvalid_filter
+	test.assert_fail(finding) with input as violating_input_private_access_enabled_but_public_access_enabled_and_invalid_filter
 	test.assert_fail(finding) with input as violating_input_private_access_enabled_but_public_access_enabled_with_valid_filter
 }
 
@@ -23,7 +23,7 @@ violating_input_private_access_disabled = test_data.generate_eks_input_with_vpc_
 
 violating_input_public_access_enabled = test_data.generate_eks_input_with_vpc_config(false, true, ["0.0.0.0/0"])
 
-violating_input_private_access_enabled_but_public_access_enabled_and_unvalid_filter = test_data.generate_eks_input_with_vpc_config(true, true, ["0.0.0.0/0"])
+violating_input_private_access_enabled_but_public_access_enabled_and_invalid_filter = test_data.generate_eks_input_with_vpc_config(true, true, ["0.0.0.0/0"])
 
 violating_input_private_access_enabled_but_public_access_enabled_with_valid_filter = test_data.generate_eks_input_with_vpc_config(true, true, ["203.0.113.5/32"])
 

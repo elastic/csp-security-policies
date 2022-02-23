@@ -17,7 +17,10 @@ rule_evaluation {
 }
 
 evidence["misconfigured_repositories"] = misconfigured_repo {
-	misconfigured_repo = [repo | assert.is_false(input.resource.EcrRepositories[index].ImageScanningConfiguration.ScanOnPush); repo := input.resource.EcrRepositories[index].RepositoryName]
+	misconfigured_repo = [repo |
+		repo := input.resource.EcrRepositories[index].RepositoryName
+		assert.is_false(input.resource.EcrRepositories[index].ImageScanningConfiguration.ScanOnPush)
+	]
 }
 
 # Check if image ScanOnPush is enabled
@@ -26,7 +29,6 @@ finding = result {
 	data_adatper.is_aws_ecr
 
 	# set result
-	print(evidence)
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": evidence,

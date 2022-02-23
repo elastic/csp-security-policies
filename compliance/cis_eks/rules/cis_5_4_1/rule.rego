@@ -11,21 +11,21 @@ default rule_evaluation = false
 # Restrict the public access to the cluster's control plane to only an allowlist of authorized IPs.
 rule_evaluation {
 	input.resource.Cluster.ResourcesVpcConfig.EndpointPrivateAccess
-	verify_restricted_public_access
+	public_access_is_restricted
 }
 
-verify_restricted_public_access {
+public_access_is_restricted {
 	not input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess
 }
 
-verify_restricted_public_access {
+public_access_is_restricted {
 	input.resource.Cluster.ResourcesVpcConfig.EndpointPublicAccess
 	public_access_cidrs := input.resource.Cluster.ResourcesVpcConfig.PublicAccessCidrs
 
 	# Ensure that publicAccessCidr has a valid filter
 	allow_all_filter := "0.0.0.0/0"
-	unvalid_filters := [index | public_access_cidrs[index] == allow_all_filter]
-	count(unvalid_filters) == 0
+	invalid_filters := [index | public_access_cidrs[index] == allow_all_filter]
+	count(invalid_filters) == 0
 }
 
 # Ensure there Kuberenetes endpoint private access is enabled

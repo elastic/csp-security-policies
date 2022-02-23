@@ -5,6 +5,7 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as violating_input_all_logs_disabled
+	test.assert_fail(finding) with input as violating_input_some_disabled
 }
 
 test_pass {
