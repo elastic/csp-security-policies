@@ -13,8 +13,6 @@ rule_evaluation = false {
 	input.resource.status.addresses[address].address != "0.0.0.0"
 }
 
-evidence["external_ip"] = input.resource.status.addresses
-
 # Ensure there cluster node don't have a public IP
 finding = result {
 	# filter
@@ -23,7 +21,7 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": evidence,
+		"evidence": input.resource.status.addresses,
 	}
 }
 

@@ -13,8 +13,6 @@ rule_evaluation {
 	count(input.resource.Cluster.EncryptionConfig) > 0
 }
 
-evidence["encryption_config"] = input.resource.Cluster
-
 # Ensure there Kuberenetes secrets are encrypted
 finding = result {
 	# filter
@@ -23,7 +21,7 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": evidence,
+		"evidence": {"encryption_config": input.resource.Cluster},
 	}
 }
 
