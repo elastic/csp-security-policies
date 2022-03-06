@@ -18,7 +18,7 @@ filesystem_input(filename, mode, uid, gid) = {
 process_input(process_name, arguments) = {
 	"type": "process",
 	"resource": {
-		"command": concat(" ", arguments),
+		"command": concat(" ", array.concat([process_name], arguments)),
 		"stat": {"Name": process_name},
 	},
 }
