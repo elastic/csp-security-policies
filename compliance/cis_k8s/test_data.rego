@@ -1,4 +1,4 @@
-package kubernetes_common.test_data
+package cis_k8s.test_data
 
 # test data generater
 

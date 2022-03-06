@@ -37,7 +37,7 @@ is_process {
 
 process_name = name {
 	is_process
-	input.resource.stat.Name
+	name = input.resource.stat.Name
 }
 
 process_args_list = args_list {
