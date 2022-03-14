@@ -24,3 +24,29 @@ kube_api_input(resource) = {
 	"type": "kube-api",
 	"resource": resource,
 }
+
+kube_api_role_input(kind, api_group, resource, verb) = {
+	"type": "kube-api",
+	"resource": {
+		"kind": kind,
+		"metadata": {"name": "role-name"},
+		"rules": [{
+			"apiGroups": api_group,
+			"resources": resource,
+			"verbs": verb,
+		}],
+	},
+}
+
+kube_api_service_account_input(kind, name, automount_setting) = {
+	"type": "kube-api",
+	"resource": {
+		"kind": kind,
+		"automountServiceAccountToken": automount_setting,
+		"metadata": {"name": name},
+		"spec": {
+			"serviceAccount": name,
+			"automountServiceAccountToken": automount_setting,
+		},
+	},
+}
