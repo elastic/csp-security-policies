@@ -23,7 +23,7 @@ is_authorization_allow_all {
 }
 
 # In case both flags and configuration file are specified, the executable argument takes precedence.
-# Checks that the entry for authentication:anonymous: enabled set to false.
+# Checks that the entry for authorization:mode is not set to AlwaysAllow.
 rule_evaluation {
 	not is_authorization_allow_all
 	data_adapter.process_config.config.authorization.mode
@@ -37,7 +37,10 @@ finding = result {
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"process_args": process_args},
+		"evidence": {
+			"process_args": process_args,
+			"process_config": data_adapter.process_config,
+		},
 	}
 }
 
