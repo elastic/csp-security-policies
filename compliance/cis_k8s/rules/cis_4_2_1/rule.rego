@@ -16,7 +16,7 @@ rule_evaluation {
 # In case both flags and configuration file are specified, the executable argument takes precedence.
 # Checks that the entry for authentication:anonymous: enabled set to false.
 rule_evaluation {
-	not common.contains_key_with_value(process_args, "--anonymous-auth", "true")
+	not process_args["--anonymous-auth"]
 	assert.is_false(data_adapter.process_config.config.authentication.anonymous.enabled)
 }
 
