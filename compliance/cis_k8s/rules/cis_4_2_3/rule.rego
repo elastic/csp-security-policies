@@ -8,18 +8,13 @@ default rule_evaluation = false
 
 process_args := data_adapter.process_args
 
-contains_ca_file {
-	common.contains_key(process_args, "--client-ca-file")
-}
-
 rule_evaluation {
-	contains_ca_file
+	common.contains_key(process_args, "--client-ca-file")
 }
 
 # In case both flags and configuration file are specified, the executable argument takes precedence.
 # Checks that the entry for authentication:x509:clientCAFile: set to a valid path.
 rule_evaluation {
-	not contains_ca_file
 	data_adapter.process_config.config.authentication.x509.clientCAFile
 	not data_adapter.process_config.config.authentication.x509.clientCAFile == ""
 }
