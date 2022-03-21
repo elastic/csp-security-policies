@@ -15,9 +15,7 @@ filesystem_input(filename, mode, uid, gid) = {
 }
 
 # genrates `process` type input data
-process_input(process_name, arguments) = result {
-	result = process_input_with_external_data(process_name, arguments, {})
-}
+process_input(process_name, arguments) = process_input_with_external_data(process_name, arguments, {})
 
 # genrates `process` type input data
 process_input_with_external_data(process_name, arguments, external_data) = {
