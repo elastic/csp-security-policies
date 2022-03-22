@@ -23,8 +23,8 @@ process_input_with_external_data(process_name, arguments, external_data) = {
 	"resource": {
 		"command": concat(" ", array.concat([process_name], arguments)),
 		"stat": {"Name": process_name},
-		"external_data": external_data,
-	}
+		"external_data": external_data
+	},
 }
 
 kube_api_input(resource) = {
