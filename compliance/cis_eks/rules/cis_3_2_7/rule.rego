@@ -5,32 +5,41 @@ import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
-# Ensure that the --make-iptables-util-chains argument is set to true (Automated)
+default rule_evaluation = false
 
-# todo: If the --make-iptables-util-chains argument does not exist, and there is a Kubelet config file specified by --config, verify that the file does not set makeIPTablesUtilChains to false.
+process_args := data_adapter.process_args
+
+# Ensure that the --make-iptables-util-chains argument is set to true (Automated)
+rule_evaluation {
+	common.contains_key_with_value(process_args, "--make-iptables-util-chains", "true")
+}
+
+# In case both flags and configuration file are specified, the executable argument takes precedence.
+# Checks that the entry for makeIPTablesUtilChains does not set to true.
+rule_evaluation {
+	not process_args["--make-iptables-util-chains"]
+	data_adapter.process_config.config.makeIPTablesUtilChains
+}
+
 finding = result {
 	# filter
 	data_adapter.is_kubelet
 
-	# evaluate
-	process_args := data_adapter.process_args
-	rule_evaluation = assert.is_false(common.contains_key_with_value(process_args, "--make-iptables-util-chains", "false"))
-
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),
-		"evidence": {"process_args": process_args},
+		"evidence": {
+			"process_args": process_args,
+			"process_config": data_adapter.process_config,
+		},
 	}
 }
 
 metadata = {
 	"name": "Ensure that the --make-iptables-util-chains argument is set to true",
 	"description": "Allow Kubelet to manage iptables.",
-	"impact": `Kubelets can automatically manage the required changes to iptables based on how you choose your networking options for the pods.
-It is recommended to let kubelets manage the changes to iptables.
-This ensures that the iptables configuration remains in sync with pods networking configuration.
-Manually configuring iptables with dynamic pod network configuration changes might hamper the communication between pods/containers and to the outside world.
-You might have iptables rules too restrictive or too open.`,
+	"impact": `Kubelet would manage the iptables on the system and keep it in sync.
+If you are using any other iptables management solution, then there might be some conflicts.`,
 	"tags": array.concat(cis_eks.default_tags, ["CIS 3.2.7", "Kubelet"]),
 	"benchmark": cis_eks.benchmark_metadata,
 	"remediation": `If modifying the Kubelet config file, edit the kubelet-config.json file /etc/kubernetes/kubelet/kubelet-config.json and set the below parameter to false
