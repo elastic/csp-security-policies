@@ -23,7 +23,7 @@ rule_evaluation {
 
 finding = result {
 	# filter
-	data_adapter.is_kube_api
+	data_adapter.is_cluster_roles
 
 	# set result
 	result := {

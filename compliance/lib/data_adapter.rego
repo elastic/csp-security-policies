@@ -74,8 +74,13 @@ is_kube_api {
 	input.type == "kube-api"
 }
 
-cluster_roles := roles {
+is_cluster_roles {
+	is_kube_api
 	input.resource.kind in {"Role", "ClusterRole"}
+}
+
+cluster_roles := roles {
+	is_cluster_roles
 	roles = input.resource
 }
 
@@ -97,6 +102,10 @@ pod = p {
 	input.resource.kind == "Pod"
 	p := input.resource
 }
+
+is_service_account_or_pod = pod
+
+is_service_account_or_pod = service_account
 
 containers = c {
 	input.resource.kind == "Pod"

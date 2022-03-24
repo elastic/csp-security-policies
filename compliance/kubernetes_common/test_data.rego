@@ -1,6 +1,18 @@
 package kubernetes_common.test_data
 
-# test data generater
+# input test data generater
+
+# input data that should not get evaluated
+not_evaluated_input = {
+	"type": "input",
+	"resource": {"kind": "some_kind"},
+}
+
+# kube-api input data that should not get evaluated
+not_evaluated_kube_api_input = {
+	"type": "kube-api",
+	"resource": {"kind": "some_kind"},
+}
 
 # genrates `file-system` type input data
 filesystem_input(filename, mode, uid, gid) = {

@@ -30,7 +30,7 @@ rule_violation {
 
 finding = result {
 	# filter
-	data_adapter.is_kube_api
+	data_adapter.is_service_account_or_pod
 
 	# evaluate
 	rule_evaluation = assert.is_false(rule_violation)

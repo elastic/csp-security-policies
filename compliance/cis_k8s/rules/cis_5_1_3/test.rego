@@ -32,7 +32,8 @@ test_pass {
 }
 
 test_not_evaluated {
-	not finding with input as {"type": "input", "resource": {"kind": "not_pod"}}
+	not finding with input as test_data.not_evaluated_input
+	not finding with input as test_data.not_evaluated_kube_api_input
 }
 
 rule_input(kind, api_group, resource, verb) = test_data.kube_api_role_input(kind, api_group, resource, verb)
