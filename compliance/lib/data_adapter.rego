@@ -89,10 +89,6 @@ service_account := account {
 	account = input.resource
 }
 
-is_kube_api {
-	input.type == "kube-api"
-}
-
 is_kube_node {
 	is_kube_api
 	input.resource.kind == "Node"
