@@ -40,16 +40,18 @@ kube_api_input(resource) = {
 	"resource": resource,
 }
 
-kube_api_role_input(kind, api_group, resource, verb) = {
+kube_api_role_rule(api_group, resource, verb) = {
+	"apiGroups": api_group,
+	"resources": resource,
+	"verbs": verb,
+}
+
+kube_api_role_input(kind, rules) = {
 	"type": "kube-api",
 	"resource": {
 		"kind": kind,
 		"metadata": {"name": "role-name"},
-		"rules": [{
-			"apiGroups": api_group,
-			"resources": resource,
-			"verbs": verb,
-		}],
+		"rules": rules,
 	},
 }
 
