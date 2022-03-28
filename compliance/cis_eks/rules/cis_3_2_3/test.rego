@@ -5,7 +5,6 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("")
-	test.assert_fail(finding) with input as rule_input_with_external("", create_process_config(""))
 }
 
 test_pass {
