@@ -232,16 +232,37 @@ test_file_in_path_not_in_path {
 	assert.is_false(file_in_path(path, file_path))
 }
 
+test_split_key_value_invalid_filter {
+	key_value_string := "--my-arg-name=some_value=true"
+	not split_key_value(key_value_string, " ")
+}
+
 test_split_key_value {
 	key_value_string := "--my-arg-name=some_value=true"
-	[arg, value] = split_key_value(key_value_string)
+	[arg, value] = split_key_value(key_value_string, "=")
+	arg == "--my-arg-name"
+	value == "some_value=true"
+}
+
+test_split_key_value {
+	key_value_string := "--my-arg-name some_value=true"
+	[arg, value] = split_key_value(key_value_string, " ")
 	arg == "--my-arg-name"
 	value == "some_value=true"
 }
 
 test_split_key_value_multiple_values {
 	key_value_string := "--my-arg-name=first,second"
-	[arg, value] = split_key_value(key_value_string)
+	[arg, value] = split_key_value(key_value_string, "=")
+	args = {arg: value}
+	key = "--my-arg-name"
+	arg_values_contains(args, key, "first")
+	arg_values_contains(args, key, "second")
+}
+
+test_split_key_value_multiple_values {
+	key_value_string := "--my-arg-name first,second"
+	[arg, value] = split_key_value(key_value_string, " ")
 	args = {arg: value}
 	key = "--my-arg-name"
 	arg_values_contains(args, key, "first")
