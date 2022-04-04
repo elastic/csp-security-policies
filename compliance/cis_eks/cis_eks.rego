@@ -4,6 +4,8 @@ import data.compliance.cis_eks.rules
 
 default_tags := ["CIS", "EKS"]
 
+benchmark_name = "EKS"
+
 benchmark_metadata := {
 	"name": "CIS Amazon Elastic Kubernetes Service (EKS) Benchmark",
 	"version": "v1.0.1",

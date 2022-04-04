@@ -48,17 +48,27 @@ process_args_list = args_list {
 	# Expects format as the following: --<key><delimiter><value> for example: --config=a.json
 	# Supported delimiters are space and `=`
 	# Notice that the first argument is always the process path
-	args_list := regex.find_n("^\\S+|--\\S+=\\S+|--\\S+\\s\\S+", input.resource.command, -1)
+	args_list := regex.find_n(`^\S+|--\S+=\S+|--\S+\s\S+`, input.resource.command, -1)
 }
 
-process_args = args {
-    supported_delimiters = ["="," "]
-	args := {arg: value | [arg, value] = common.split_key_value(process_args_list[_], supported_delimiters[_])}
+process_args_list = args_list {
+	is_process
+
+	# Gets all the process argument of the current process
+	# Expects format as the following: --<key><delimiter><value> for example: --config=a.json
+	# Notice that the first argument is always the process path
+	args_list := split(input.command, " --")
+}
+
+process_args(delimiter) = {arg_key: arg_value |
+	arguments = split(process_args_list[_], delimiter)
+	arg_key = arguments[0]
+	arg_value = concat(delimiter, array.slice(arguments, 1, count(arguments) + 1))
 }
 
 process_config = config {
 	is_process
-    config := { key: value | value = input.resource.external_data[key]}
+	config := {key: value | value = input.resource.external_data[key]}
 }
 
 is_kube_apiserver {
