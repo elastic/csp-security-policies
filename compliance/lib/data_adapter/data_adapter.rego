@@ -1,6 +1,5 @@
 package compliance.lib.data_adapter
 
-import data.compliance.lib.common
 import future.keywords.in
 
 is_filesystem {
