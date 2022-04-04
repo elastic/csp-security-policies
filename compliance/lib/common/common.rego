@@ -113,10 +113,6 @@ file_in_path(path, file_path) {
 
 # splits key value string by first occurrence of =
 split_key_value(key_value_string, delimiter) = [key, value] {
-    # Validate input format
-    pattern = sprintf("--\\S+%s\\S+", [delimiter])
-	regex.match(pattern, key_value_string)
-
 	seperator_index := indexof(key_value_string, delimiter)
 
 	# extract key
