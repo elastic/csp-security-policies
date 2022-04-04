@@ -5,7 +5,7 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("--insecure-bind-address=0.0.0.0")
-#	test.assert_fail(finding) with input as rule_input("--insecure-bind-address=")
+	test.assert_fail(finding) with input as rule_input("--insecure-bind-address=")
 }
 
 test_pass {

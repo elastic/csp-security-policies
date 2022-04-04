@@ -43,15 +43,19 @@ process_name = name {
 process_args_list = args_list {
 	is_process
 
-	# Gets all the process argument of the current process
+	# Gets all the process arguments of the current process
 	# Expects format as the following: --<key><delimiter><value> for example: --config=a.json
 	# Notice that the first argument is always the process path
 	args_list := split(input.resource.command, " --")
 }
 
+# This method creates a process args object
+# The object will cotains all the process `flags` and their matching values as object key,value accordingly
 process_args(delimiter) = {arg_key: arg_value |
 	arguments = split(process_args_list[_], delimiter)
 	arg_key = concat("", ["--", arguments[0]])
+
+	# We would like to take the entire string after the first delimiter
 	arg_value = concat(delimiter, array.slice(arguments, 1, count(arguments) + 1))
 }
 
