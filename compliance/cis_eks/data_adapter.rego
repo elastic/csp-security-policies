@@ -14,6 +14,6 @@ is_aws_ecr {
 	input.type == "aws-ecr"
 }
 
-process_args = result{
-    result = data_adapter.process_args(" ")
+process_args = result {
+	result = data_adapter.process_args(" ")
 }
