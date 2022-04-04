@@ -232,7 +232,7 @@ test_file_in_path_not_in_path {
 	assert.is_false(file_in_path(path, file_path))
 }
 
-test_split_key_value_invalid_filter {
+test_split_key_value_invalid_delimiter {
 	key_value_string := "--my-arg-name=some_value=true"
 	not split_key_value(key_value_string, " ")
 }
