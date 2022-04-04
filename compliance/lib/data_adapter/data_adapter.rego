@@ -52,7 +52,7 @@ process_args_list = args_list {
 
 process_args(delimiter) = {arg_key: arg_value |
 	arguments = split(process_args_list[_], delimiter)
-	arg_key = arguments[0]
+	arg_key = concat("", ["--", arguments[0]])
 	arg_value = concat(delimiter, array.slice(arguments, 1, count(arguments) + 1))
 }
 
