@@ -17,12 +17,3 @@ finding = result {
 		"evidence": {"filemode": filemode},
 	}
 }
-
-metadata = {
-	"name": "Ensure that the kubelet.conf file has permissions of 644 or more restrictive.",
-	"description": "Ensure that the kubelet service file has permissions of 644 or more restrictive.",
-	"impact": "None",
-	"tags": array.concat(cis_k8s.default_tags, ["CIS 4.1.5", "Worker Node Configuration"]),
-	"benchmark": cis_k8s.benchmark_metadata,
-	"remediation": "Run the below command (based on the file location on your system) on the each worker node. For example, chmod 644 /etc/kubernetes/kubelet.conf",
-}

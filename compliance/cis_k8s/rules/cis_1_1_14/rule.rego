@@ -18,12 +18,3 @@ finding = result {
 		"evidence": {"uid": uid, "gid": gid},
 	}
 }
-
-metadata = {
-	"name": "Ensure that the API server pod specification file ownership is set to root:root",
-	"description": "The admin.conf file contains the admin credentials for the cluster. You should set its file ownership to maintain the integrity of the file. The file should be owned by root:root.",
-	"impact": "None",
-	"tags": array.concat(cis_k8s.default_tags, ["CIS 1.1.14", "Master Node Configuration"]),
-	"benchmark": cis_k8s.benchmark_metadata,
-	"remediation": "chown root:root /etc/kubernetes/admin.conf",
-}
