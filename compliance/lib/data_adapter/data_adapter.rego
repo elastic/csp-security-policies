@@ -46,18 +46,8 @@ process_args_list = args_list {
 
 	# Gets all the process argument of the current process
 	# Expects format as the following: --<key><delimiter><value> for example: --config=a.json
-	# Supported delimiters are space and `=`
 	# Notice that the first argument is always the process path
-	args_list := regex.find_n(`^\S+|--\S+=\S+|--\S+\s\S+`, input.resource.command, -1)
-}
-
-process_args_list = args_list {
-	is_process
-
-	# Gets all the process argument of the current process
-	# Expects format as the following: --<key><delimiter><value> for example: --config=a.json
-	# Notice that the first argument is always the process path
-	args_list := split(input.command, " --")
+	args_list := split(input.resource.command, " --")
 }
 
 process_args(delimiter) = {arg_key: arg_value |
