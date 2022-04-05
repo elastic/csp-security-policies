@@ -24,8 +24,6 @@ finding = result {
 	# filter
 	data_adapter.is_kube_apiserver
 
-	rule_evaluation := common.contains_key(process_args, "--service-account-key-file")
-
 	# set result
 	result := {
 		"evaluation": common.calculate_result(rule_evaluation),

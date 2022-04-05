@@ -13,7 +13,6 @@ default rule_evaluation = false
 
 rule_evaluation {
 	value := process_args["--audit-log-maxage"]
-	print(value)
 	common.greater_or_equal(value, 30)
 }
 
