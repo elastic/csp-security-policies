@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --kubelet-client-certificate and --kubelet-client-key arguments are set as appropriate (Automated)
 
 # evaluate
-process_args := data_adapter.process_args
+process_args := cis_k8s.data_adapter.process_args
 
 default rule_evaluation = false
 
@@ -19,10 +19,6 @@ rule_evaluation {
 finding = result {
 	# filter
 	data_adapter.is_kube_apiserver
-
-	# evaluate
-	process_args := data_adapter.process_args
-	rule_evaluation = assert.is_false(common.contains_key_with_value(process_args, "--kubelet-https", "false"))
 
 	# set result
 	result := {

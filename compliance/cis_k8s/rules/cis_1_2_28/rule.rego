@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 # Ensure that the --etcd-certfile and --etcd-keyfile arguments are set as appropriate (Automated)
 
 # evaluate
-process_args := data_adapter.process_args
+process_args := cis_k8s.data_adapter.process_args
 
 default rule_evaluation = false
 
@@ -19,10 +19,6 @@ rule_evaluation {
 finding = result {
 	# filter
 	data_adapter.is_kube_apiserver
-
-	# evaluate
-	process_args := data_adapter.process_args
-	rule_evaluation := common.contains_key(process_args, "--service-account-key-file")
 
 	# set result
 	result := {

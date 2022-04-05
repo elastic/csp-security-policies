@@ -29,8 +29,6 @@ test_process_args_list_when_value_contain_delimiters {
 	expected_result := ["kube-api", "cloud-provider aws", "config /etc/kubernetes/kubelet/kubelet-config.json", expected_arg_value]
 
 	result := process_args_list with input as process_input([arg_value], delimiter)
-	print(result)
-	print(expected_result)
 	result == expected_result
 }
 
