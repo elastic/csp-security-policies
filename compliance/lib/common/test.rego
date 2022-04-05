@@ -231,21 +231,21 @@ test_file_in_path_not_in_path {
 	assert.is_false(file_in_path(path, file_path))
 }
 
-test_split_key_value {
+test_split_key_value_with_equality_delimiter {
 	key_value_string := "--my-arg-name=some_value=true"
 	[arg, value] = split_key_value(key_value_string, "=")
 	arg == "--my-arg-name"
 	value == "some_value=true"
 }
 
-test_split_key_value {
+test_split_key_value_with_space_delimiter {
 	key_value_string := "--my-arg-name some_value=true"
 	[arg, value] = split_key_value(key_value_string, " ")
 	arg == "--my-arg-name"
 	value == "some_value=true"
 }
 
-test_split_key_value_multiple_values {
+test_split_key_value_multiple_values_with_equality_delimiter {
 	key_value_string := "--my-arg-name=first,second"
 	[arg, value] = split_key_value(key_value_string, "=")
 	args = {arg: value}
@@ -254,7 +254,7 @@ test_split_key_value_multiple_values {
 	arg_values_contains(args, key, "second")
 }
 
-test_split_key_value_multiple_values {
+test_split_key_value_multiple_values_with_space_delimiter {
 	key_value_string := "--my-arg-name first,second"
 	[arg, value] = split_key_value(key_value_string, " ")
 	args = {arg: value}

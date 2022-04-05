@@ -50,7 +50,7 @@ process_args_list = args_list {
 }
 
 # This method creates a process args object
-# The object will cotains all the process `flags` and their matching values as object key,value accordingly
+# The object will contain all the process `flags` and their matching values as object key,value accordingly
 process_args(delimiter) = {flag: value | [flag, value] = parse_argument(process_args_list[_], delimiter)}
 
 parse_argument(argument, delimiter) = [flag, value] {
