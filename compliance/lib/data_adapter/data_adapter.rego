@@ -51,12 +51,14 @@ process_args_list = args_list {
 
 # This method creates a process args object
 # The object will cotains all the process `flags` and their matching values as object key,value accordingly
-process_args(delimiter) = {arg_key: arg_value |
-	arguments = split(process_args_list[_], delimiter)
-	arg_key = concat("", ["--", arguments[0]])
+process_args(delimiter) = {flag: value | [flag, value] = parse_argument(process_args_list[_], delimiter)}
+
+parse_argument(argument, delimiter) = [flag, value] {
+	splitted_argument = split(argument, delimiter)
+	flag = concat("", ["--", splitted_argument[0]])
 
 	# We would like to take the entire string after the first delimiter
-	arg_value = concat(delimiter, array.slice(arguments, 1, count(arguments) + 1))
+	value = concat(delimiter, array.slice(splitted_argument, 1, count(splitted_argument) + 1))
 }
 
 process_config = config {
