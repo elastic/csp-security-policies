@@ -11,7 +11,7 @@ test_violation {
 }
 
 test_pass {
-#	test.assert_fail(finding) with input as rule_input("")
+	test.assert_pass(finding) with input as rule_input("")
 	test.assert_pass(finding) with input as rule_input("--streaming-connection-idle-timeout=10")
 	test.assert_pass(finding) with input as rule_input_with_external("--streaming-connection-idle-timeout=10", create_process_config(0))
 	test.assert_pass(finding) with input as rule_input_with_external("--streaming-connection-idle-timeout=10", create_process_config(10))

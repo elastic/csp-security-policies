@@ -9,6 +9,7 @@ test_violation {
 
 test_pass {
 	test.assert_pass(finding) with input as rule_input("--some-key=value")
+	test.assert_pass(finding) with input as rule_input("")
 }
 
 test_not_evaluated {

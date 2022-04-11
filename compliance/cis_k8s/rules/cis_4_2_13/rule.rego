@@ -10,12 +10,12 @@ process_args := cis_k8s.data_adapter.process_args
 
 supported_ciphers = [
 	"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
-	"TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
-	"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305","TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
-	"TLS_RSA_WITH_AES_256_GCM_SHA384","TLS_RSA_WITH_AES_128_GCM_SHA256",
+	"TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305", "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+	"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+	"TLS_RSA_WITH_AES_256_GCM_SHA384", "TLS_RSA_WITH_AES_128_GCM_SHA256",
 ]
 
-# Verify that the RotateKubeletServerCertificate argument is set to true
+# Ensure that the Kubelet only makes use of Strong Cryptographic Ciphers
 rule_evaluation = false {
 	ciphers := split(process_args["--tls-cipher-suites"], ",")
 	cipher := ciphers[_]
@@ -34,7 +34,7 @@ is_supported_cipher(cipher) {
 	supported_ciphers[_] == cipher
 }
 
-# Ensure that the --hostname-override argument is not set.
+# Ensure that the Kubelet only makes use of Strong Cryptographic Ciphers
 finding = result {
 	# filter
 	data_adapter.is_kubelet

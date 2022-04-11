@@ -8,6 +8,7 @@ default rule_evaluation = true
 
 process_args := cis_k8s.data_adapter.process_args
 
+# Ensure that the --streaming-connection-idle-timeout argument is not set to 0
 rule_evaluation = false {
 	common.contains_key_with_value(process_args, "--streaming-connection-idle-timeout", "0")
 }
