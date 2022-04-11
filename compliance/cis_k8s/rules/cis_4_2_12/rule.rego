@@ -24,7 +24,7 @@ rule_evaluation {
 	data_adapter.process_config.config.featureGates.RotateKubeletServerCertificate
 }
 
-# Ensure that the --hostname-override argument is not set.
+# Verify that the RotateKubeletServerCertificate argument is set to true
 finding = result {
 	# filter
 	data_adapter.is_kubelet
@@ -54,5 +54,5 @@ In case your kubelet certificates come from an outside authority/tool (e.g. Vaul
 Based on your system, restart the kubelet service. For example:
 systemctl daemon-reload
 systemctl restart kubelet.service`,
-	"default_value": "By default, kubelet client certificate rotation is enabled.",
+	"default_value": "By default, kubelet server certificate rotation is disabled.",
 }
