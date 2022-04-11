@@ -18,7 +18,6 @@ supported_ciphers = [
 # Verify that the RotateKubeletServerCertificate argument is set to true
 rule_evaluation = false {
 	ciphers := split(process_args["--tls-cipher-suites"], ",")
-	print(ciphers)
 	cipher := ciphers[_]
 	not is_supported_cipher(cipher)
 }

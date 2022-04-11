@@ -24,6 +24,14 @@ rule_evaluation {
 	data_adapter.process_config.config.featureGates.RotateKubeletServerCertificate
 }
 
+rule_evaluation {
+    common.contains_key_with_value(process_args,"--rotate-server-certificates", "true")
+}
+
+rule_evaluation {
+    data_adapter.process_config.config.serverTLSBootstrap
+}
+
 # Verify that the RotateKubeletServerCertificate argument is set to true
 finding = result {
 	# filter
