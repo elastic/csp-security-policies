@@ -1,5 +1,5 @@
 metadata:
-  uuid: d158ac41-2286-5e67-9ce2-9b80f644b13b
+  id: d158ac41-2286-5e67-9ce2-9b80f644b13b
   name:
     Ensure that the controller manager pod specification file permissions are
     set to 644 or more restrictive (Automated)

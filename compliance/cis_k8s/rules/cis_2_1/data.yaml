@@ -1,5 +1,5 @@
 metadata:
-  uuid: 42ae3fda-5908-5411-8ee9-f8f3ae670352
+  id: 42ae3fda-5908-5411-8ee9-f8f3ae670352
   name: Ensure that the --cert-file and --key-file arguments are set as
     appropriate (Automated)
   profile_applicability: |

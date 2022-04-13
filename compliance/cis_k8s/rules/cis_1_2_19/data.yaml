@@ -1,5 +1,5 @@
 metadata:
-  uuid: 4c3550cf-a3f8-5384-8ada-ec7c383c4f36
+  id: 4c3550cf-a3f8-5384-8ada-ec7c383c4f36
   name: Ensure that the --insecure-port argument is set to 0 (Automated)
   profile_applicability: |
     * Level 1 - Master Node

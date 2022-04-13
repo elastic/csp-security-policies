@@ -1,5 +1,5 @@
 metadata:
-  uuid: 59b5a77b-b090-5630-9a33-73eb805b2d52
+  id: 59b5a77b-b090-5630-9a33-73eb805b2d52
   name: Ensure that the API server pod specification file permissions are set to
     644 or more restrictive (Automated)
   profile_applicability: |

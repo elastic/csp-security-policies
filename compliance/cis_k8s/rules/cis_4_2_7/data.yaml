@@ -1,5 +1,5 @@
 metadata:
-  uuid: 64762605-406e-5801-8953-77f3447eff31
+  id: 64762605-406e-5801-8953-77f3447eff31
   name: Ensure that the --make-iptables-util-chains argument is set to true
     (Automated)
   profile_applicability: |

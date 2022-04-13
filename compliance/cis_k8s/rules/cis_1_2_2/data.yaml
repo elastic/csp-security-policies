@@ -1,5 +1,5 @@
 metadata:
-  uuid: ee6dc700-33d2-5799-91cb-fa397106db2d
+  id: ee6dc700-33d2-5799-91cb-fa397106db2d
   name: Ensure that the --basic-auth-file argument is not set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

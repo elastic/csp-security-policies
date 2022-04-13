@@ -1,5 +1,5 @@
 metadata:
-  uuid: a92c7d1c-1fcf-5597-ba38-6cb9c024d213
+  id: a92c7d1c-1fcf-5597-ba38-6cb9c024d213
   name: Ensure that the scheduler pod specification file ownership is set
     toroot:root (Automated)
   profile_applicability: |

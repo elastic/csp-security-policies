@@ -1,5 +1,5 @@
 metadata:
-  uuid: a17289ba-16fd-533a-be1c-2f79dffc90b2
+  id: a17289ba-16fd-533a-be1c-2f79dffc90b2
   name: Ensure that the --bind-address argument is set to 127.0.0.1 (Automated)
   profile_applicability: |
     * Level 1 - Master Node

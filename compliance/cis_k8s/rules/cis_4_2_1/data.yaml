@@ -1,5 +1,5 @@
 metadata:
-  uuid: dc235873-bac7-5b97-bec5-d1f5baa639da
+  id: dc235873-bac7-5b97-bec5-d1f5baa639da
   name: Ensure that the --anonymous-auth argument is set to false (Automated)
   profile_applicability: |
     * Level 1 - Worker Node

@@ -1,5 +1,5 @@
 metadata:
-  uuid: 6c595b13-8d46-5c74-9d49-d6c023303be5
+  id: 6c595b13-8d46-5c74-9d49-d6c023303be5
   name: Ensure that the --token-auth-file parameter is not set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

@@ -1,5 +1,5 @@
 metadata:
-  uuid: 554702a0-63bf-500f-ae7a-c73ff746c15f
+  id: 554702a0-63bf-500f-ae7a-c73ff746c15f
   name: Ensure that the admission control plugin ServiceAccount is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

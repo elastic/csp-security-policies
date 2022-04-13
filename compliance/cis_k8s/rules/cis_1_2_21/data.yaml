@@ -1,5 +1,5 @@
 metadata:
-  uuid: 3a6adba9-dd4d-562c-a861-60eee7309f07
+  id: 3a6adba9-dd4d-562c-a861-60eee7309f07
   name: Ensure that the --profiling argument is set to false (Automated)
   profile_applicability: |
     * Level 1 - Master Node

@@ -1,5 +1,5 @@
 metadata:
-  uuid: 4d21b544-ac5c-5ef1-bec8-2f6b77abdc50
+  id: 4d21b544-ac5c-5ef1-bec8-2f6b77abdc50
   name: Minimize the admission of containers wishing to share the hostIPC
     namespace (Manual)
   profile_applicability: |

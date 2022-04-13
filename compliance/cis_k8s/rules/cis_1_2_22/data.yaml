@@ -1,5 +1,5 @@
 metadata:
-  uuid: dbea59ce-10c6-5cfe-a223-8e8aa5996730
+  id: dbea59ce-10c6-5cfe-a223-8e8aa5996730
   name: Ensure that the --audit-log-path argument is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

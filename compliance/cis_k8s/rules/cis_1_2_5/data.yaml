@@ -1,5 +1,5 @@
 metadata:
-  uuid: c4c453d8-7efd-5869-90aa-7f5d588be594
+  id: c4c453d8-7efd-5869-90aa-7f5d588be594
   name: Ensure that the --kubelet-client-certificate and
     --kubelet-client-keyarguments are set as appropriate (Automated)
   profile_applicability: |

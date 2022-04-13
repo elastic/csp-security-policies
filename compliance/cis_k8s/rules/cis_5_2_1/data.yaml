@@ -1,5 +1,5 @@
 metadata:
-  uuid: e3291708-971b-5f0e-aa25-5653fb5cb907
+  id: e3291708-971b-5f0e-aa25-5653fb5cb907
   name: Minimize the admission of privileged containers (Manual)
   profile_applicability: |
     * Level 1 - Master Node

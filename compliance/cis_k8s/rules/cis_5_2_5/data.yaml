@@ -1,5 +1,5 @@
 metadata:
-  uuid: fd02c2d3-8cc3-517f-a379-b3bb8919e3c8
+  id: fd02c2d3-8cc3-517f-a379-b3bb8919e3c8
   name: Minimize the admission of containers with allowPrivilegeEscalation (Manual)
   profile_applicability: |
     * Level 1 - Master Node

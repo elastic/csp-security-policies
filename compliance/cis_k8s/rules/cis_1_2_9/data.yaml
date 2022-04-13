@@ -1,5 +1,5 @@
 metadata:
-  uuid: a00b0af6-bacc-53fb-85c6-43b2b1f135d5
+  id: a00b0af6-bacc-53fb-85c6-43b2b1f135d5
   name: Ensure that the --authorization-mode argument includes RBAC (Automated)
   profile_applicability: |
     * Level 1 - Master Node

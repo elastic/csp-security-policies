@@ -1,5 +1,5 @@
 metadata:
-  uuid: aba0102d-dab4-54a1-8f48-3137e9896540
+  id: aba0102d-dab4-54a1-8f48-3137e9896540
   name:
     Minimize the admission of containers wishing to share the host process ID
     namespace (Manual)

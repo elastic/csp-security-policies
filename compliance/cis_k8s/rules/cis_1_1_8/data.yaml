@@ -1,5 +1,5 @@
 metadata:
-  uuid: c4183c2e-8a98-5fad-bcd7-37b4acd44dbf
+  id: c4183c2e-8a98-5fad-bcd7-37b4acd44dbf
   name:
     Ensure that the etcd pod specification file ownership is set to root:root
     (Automated)

@@ -1,5 +1,5 @@
 metadata:
-  uuid: d5455740-3c75-50a8-aaba-16ca51aa3db0
+  id: d5455740-3c75-50a8-aaba-16ca51aa3db0
   name: Ensure that the --etcd-cafile argument is set as appropriate(Automated)
   profile_applicability: |
     * Level 1 - Master Node

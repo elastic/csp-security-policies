@@ -1,5 +1,5 @@
 metadata:
-  uuid: 78d44045-eb34-5c51-b78f-51d7e0f3d530
+  id: 78d44045-eb34-5c51-b78f-51d7e0f3d530
   name: Ensure that the --audit-log-maxbackup argument is set to 10 or as
     appropriate (Automated)
   profile_applicability: |

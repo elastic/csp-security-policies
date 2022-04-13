@@ -1,5 +1,5 @@
 metadata:
-  uuid: 0667965a-8c0f-5cce-9ba7-9e6e24064802
+  id: 0667965a-8c0f-5cce-9ba7-9e6e24064802
   name: Ensure that the --service-account-private-key-file argument is set as
     appropriate (Automated)
   profile_applicability: |

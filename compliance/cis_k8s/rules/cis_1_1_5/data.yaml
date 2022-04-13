@@ -1,5 +1,5 @@
 metadata:
-  uuid: 4bd09b51-e1ab-5b44-9df5-7dc2d4207cfb
+  id: 4bd09b51-e1ab-5b44-9df5-7dc2d4207cfb
   name: Ensure that the scheduler pod specification file permissions are set to
     644 or more restrictive (Automated)
   profile_applicability: |

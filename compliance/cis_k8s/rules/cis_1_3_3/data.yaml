@@ -1,5 +1,5 @@
 metadata:
-  uuid: eac06678-1697-5028-925a-7fa9f678b19a
+  id: eac06678-1697-5028-925a-7fa9f678b19a
   name: Ensure that the --use-service-account-credentials argument is setto true
     (Automated)
   profile_applicability: |

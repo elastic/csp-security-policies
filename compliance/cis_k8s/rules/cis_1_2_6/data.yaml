@@ -1,5 +1,5 @@
 metadata:
-  uuid: 6ad764be-71a5-54cf-92fc-30c4f995fdd6
+  id: 6ad764be-71a5-54cf-92fc-30c4f995fdd6
   name: Ensure that the --kubelet-certificate-authority argument is set as
     appropriate (Automated)
   profile_applicability: |

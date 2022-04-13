@@ -1,5 +1,5 @@
 metadata:
-  uuid: ef206c48-d83d-5f01-9fea-019b67724f8f
+  id: ef206c48-d83d-5f01-9fea-019b67724f8f
   name: Ensure that the --authorization-mode argument is not set to AlwaysAllow
     (Automated)
   profile_applicability: |

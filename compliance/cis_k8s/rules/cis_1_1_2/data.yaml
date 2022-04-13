@@ -1,5 +1,5 @@
 metadata:
-  uuid: 9f318d4d-2451-574a-99dc-838ed213f09b
+  id: 9f318d4d-2451-574a-99dc-838ed213f09b
   name: Ensure that the API server pod specification file ownership is set
     toroot:root (Automated)
   profile_applicability: |

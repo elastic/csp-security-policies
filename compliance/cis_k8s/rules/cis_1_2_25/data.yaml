@@ -1,5 +1,5 @@
 metadata:
-  uuid: fb1ee6c2-003d-54eb-9014-fa7ac99f5551
+  id: fb1ee6c2-003d-54eb-9014-fa7ac99f5551
   name: Ensure that the --audit-log-maxsize argument is set to 100 or as
     appropriate (Automated)
   profile_applicability: |

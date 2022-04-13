@@ -1,5 +1,5 @@
 metadata:
-  uuid: e08b172c-148d-5a9b-bad6-142d0e589ef5
+  id: e08b172c-148d-5a9b-bad6-142d0e589ef5
   name: Ensure that Service Account Tokens are only mounted where necessary (Manual)
   profile_applicability: |
     * Level 1 - Master Node

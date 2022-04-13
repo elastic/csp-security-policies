@@ -1,5 +1,5 @@
 metadata:
-  uuid: bd564e86-601e-5b48-bf74-6c9c5c23444f
+  id: bd564e86-601e-5b48-bf74-6c9c5c23444f
   name: Ensure that the kubelet --config configuration file ownership is set to
     root:root (Automated)
   profile_applicability: |

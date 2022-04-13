@@ -1,5 +1,5 @@
 metadata:
-  uuid: bbf34c25-a149-5f8a-b452-f5fad717352a
+  id: bbf34c25-a149-5f8a-b452-f5fad717352a
   name: Ensure that the admission control plugin NodeRestriction is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

@@ -1,5 +1,5 @@
 metadata:
-  uuid: d6fc4ba2-5cdf-5ef2-be01-451ec7ded8bc
+  id: d6fc4ba2-5cdf-5ef2-be01-451ec7ded8bc
   name: Ensure that the --kubelet-https argument is set to true (Automated)
   profile_applicability: |
     * Level 1 - Master Node

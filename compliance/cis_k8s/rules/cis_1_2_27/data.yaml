@@ -1,5 +1,5 @@
 metadata:
-  uuid: aae399a2-5b38-51f6-8f69-bc238eab7b4f
+  id: aae399a2-5b38-51f6-8f69-bc238eab7b4f
   name: Ensure that the --service-account-lookup argument is set to true (Automated)
   profile_applicability: |
     * Level 1 - Master Node
