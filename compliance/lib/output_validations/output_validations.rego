@@ -4,14 +4,22 @@ import data.compliance
 import future.keywords.every
 
 validate_metadata(metadata) {
+	metadata.id
 	metadata.name
+	metadata.profile_applicability
 	metadata.description
+	metadata.rationale 
+  	metadata.audit 
+  	metadata.remediation
 	metadata.impact
+	metadata.default_value
+	metadata.references
+	metadata.section
+	metadata.version
 	metadata.tags
 	metadata.benchmark
 	metadata.benchmark.name
 	metadata.benchmark.version
-	metadata.remediation
 } else = false {
 	true
 }

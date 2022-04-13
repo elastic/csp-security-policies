@@ -32,6 +32,8 @@ metadata:
     or actions.
   impact: |
     None.
+  default_value:
+  references:
   section: RBAC and Service Accounts
   version: 1.0
   tags:
