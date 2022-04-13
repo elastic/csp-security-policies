@@ -32,6 +32,7 @@ metadata:
   references: |
     1. [https://kubernetes.io/docs/reference/access-authn-authz/rbac/](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
   section: API Server
+  version: 1.0
   tags:
     - CIS
     - Kubernetes
