@@ -1,5 +1,5 @@
 metadata:
-  uuid: 87a57a0ced6e55ef104c470b5ac0c513
+  uuid: ef206c48-d83d-5f01-9fea-019b67724f8f
   name: Ensure that the --authorization-mode argument is not set to AlwaysAllow
     (Automated)
   profile_applicability: |
@@ -7,9 +7,8 @@ metadata:
   description: |
     Do not always authorize all requests.
   rationale: >
-    The API Server, can be configured to allow all requests. This mode should not
-    be used on
-    any production cluster.
+    The API Server, can be configured to allow all requests. This mode should
+    not be used on any production cluster.
   audit: |
     Run the following command on the master node:
     ```
@@ -17,7 +16,8 @@ metadata:
     ```
     Verify that the `--authorization-mode` argument exists and is not set to `AlwaysAllow`.
   remediation: |
-    Edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml` 
+    Edit the API server pod specification file
+    `/etc/kubernetes/manifests/kube-apiserver.yaml` 
     on the master node and set the `--authorization-mode` parameter to
     values other than `AlwaysAllow`. One such example could be as below.
     ```
@@ -28,8 +28,8 @@ metadata:
   default_value: |
     By default, `AlwaysAllow` is not enabled.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-apiserver/]https://kubernetes.io/docs/admin/kube-apiserver/
-    2. [https://kubernetes.io/docs/admin/authorization/]https://kubernetes.io/docs/admin/authorization/
+    1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
+    2. [https://kubernetes.io/docs/admin/authorization/](https://kubernetes.io/docs/admin/authorization/)
   section: API Server
   tags:
     - CIS

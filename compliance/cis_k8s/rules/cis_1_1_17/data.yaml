@@ -1,18 +1,18 @@
 metadata:
-  uuid: c89dd5ecb60144e2939271e089d35a0b
+  uuid: 1c5bee8d-c2a8-52a5-bdb7-811d84f9fce1
   name:
     Ensure that the controller-manager.conf file permissions are set to 644 or
     more restrictive (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
-    Ensure that the `controller-manager.conf` file has permissions of `644` or more
-    restrictive.
+    Ensure that the `controller-manager.conf` file has permissions of `644` or
+    more restrictive.
   rationale: >
     The `controller-manager.conf` file is the kubeconfig file for the Controller
-    Manager. You
-    should restrict its file permissions to maintain the integrity of the file. The file should be
-    writable by only the administrators on the system.
+    Manager. You should restrict its file permissions to maintain the integrity
+    of the file. The file should be writable by only the administrators on the
+    system.
   audit: |
     Run the following command (based on the file location on your system) on the
     master
@@ -33,7 +33,7 @@ metadata:
   default_value: |
     By default, `controller-manager.conf` has permissions of `640`.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-controller-manager/]https://kubernetes.io/docs/admin/kube-controller-manager/
+    1. [https://kubernetes.io/docs/admin/kube-controller-manager/](https://kubernetes.io/docs/admin/kube-controller-manager/)
   section: Master Node Configuration Files
   tags:
     - CIS

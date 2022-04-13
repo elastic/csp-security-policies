@@ -1,18 +1,18 @@
 metadata:
-  uuid: af806d614ea1abe6b95ac86cbb22eb7f
+  uuid: 8085df96-208e-5887-ba64-d538aed3d129
   name:
     Ensure that the controller manager pod specification file ownership is set
     to root:root (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
-    Ensure that the controller manager pod specification file ownership is set to
-    `root:root`.
+    Ensure that the controller manager pod specification file ownership is set
+    to `root:root`.
   rationale: >
-    The controller manager pod specification file controls various parameters that
-    set the
-    behavior of various components of the master node. You should set its file ownership to
-    maintain the integrity of the file. The file should be owned by `root:root`.
+    The controller manager pod specification file controls various parameters
+    that set the behavior of various components of the master node. You should
+    set its file ownership to maintain the integrity of the file. The file
+    should be owned by `root:root`.
   audit: |
     Run the below command (based on the file location on your system) on the
     master node.
@@ -30,10 +30,11 @@ metadata:
     ```
   impact: |
     None
-  default_value: |
-    By default, `kube-controller-manager.yaml` file ownership is set to `root:root`.
+  default_value: >
+    By default, `kube-controller-manager.yaml` file ownership is set to
+    `root:root`.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-controller-manager]https://kubernetes.io/docs/admin/kube-controller-manager
+    1. [https://kubernetes.io/docs/admin/kube-controller-manager](https://kubernetes.io/docs/admin/kube-controller-manager)
   section: Master Node Configuration Files
   tags:
     - CIS

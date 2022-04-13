@@ -1,20 +1,20 @@
 metadata:
-  uuid: 26e0a99756a3ce71e098178128962746
+  uuid: bd564e86-601e-5b48-bf74-6c9c5c23444f
   name: Ensure that the kubelet --config configuration file ownership is set to
     root:root (Automated)
   profile_applicability: |
     * Level 1 - Worker Node
   description: >
-    Ensure that if the kubelet refers to a configuration file with the `--config`
-    argument, that file
-    is owned by root:root.
+    Ensure that if the kubelet refers to a configuration file with the
+    `--config` argument, that file is owned by root:root.
   rationale: >
     The kubelet reads various parameters, including security settings, from a
-    config file
-    specified by the `--config` argument. If this file is specified you should restrict its file
-    permissions to maintain the integrity of the file. The file should be owned by root:root.
+    config file specified by the `--config` argument. If this file is specified
+    you should restrict its file permissions to maintain the integrity of the
+    file. The file should be owned by root:root.
   audit: |
-    Automated AAC auditing has been modified to allow CIS-CAT to input a variable
+    Automated AAC auditing has been modified to allow CIS-CAT to input a
+    variable
     for the / of
     the kubelet config yaml file.
     Please set $kubelet_config_yaml= based on the file location on your system
@@ -37,11 +37,12 @@ metadata:
     ```
   impact: |
     None
-  default_value: |
-    By default, `/var/lib/kubelet/config.yaml` file as set up by `kubeadm` is owned by
+  default_value: >
+    By default, `/var/lib/kubelet/config.yaml` file as set up by `kubeadm` is
+    owned by
     `root:root`.
   references: |
-    1. [https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/]https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/
+    1. [https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)
   section: Worker Node Configuration Files
   tags:
     - CIS

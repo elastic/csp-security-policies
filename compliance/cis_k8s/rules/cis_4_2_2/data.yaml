@@ -1,5 +1,5 @@
 metadata:
-  uuid: 31c2db43ac57b36cc8d582a77c8140a8
+  uuid: c7533dee-e7cf-5082-a72d-dcea3742080d
   name: Ensure that the --authorization-mode argument is not set to AlwaysAllow
     (Automated)
   profile_applicability: |
@@ -8,9 +8,8 @@ metadata:
     Do not allow all requests. Enable explicit authorization.
   rationale: >
     Kubelets, by default, allow all authenticated requests (even anonymous ones)
-    without
-    needing explicit authorization checks from the apiserver. You should restrict this behavior
-    and only allow explicitly authorized requests.
+    without needing explicit authorization checks from the apiserver. You should
+    restrict this behavior and only allow explicitly authorized requests.
   audit: |
     Run the following command on each node:
     ```
@@ -23,7 +22,8 @@ metadata:
     endpoint on the Kubelet API port (typically `10250/TCP`). Accessing these with appropriate
     credentials will provide details of the Kubelet's configuration.
   remediation: |
-    If using a Kubelet config file, edit the file to set `authorization: mode` to
+    If using a Kubelet config file, edit the file to set `authorization: mode`
+    to
     `Webhook`.
     If using executable arguments, edit the kubelet service file
     `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf` on each worker node and
@@ -40,9 +40,9 @@ metadata:
     Unauthorized requests will be denied.
   default_value: |
     By default, `--authorization-mode` argument is set to `AlwaysAllow`.
-  references: >
-    1. [https://kubernetes.io/docs/admin/kubelet/]https://kubernetes.io/docs/admin/kubelet/
-    2. [https://kubernetes.io/docs/admin/kubelet-authentication-authorization/#kubelet-authentication]https://kubernetes.io/docs/admin/kubelet-authentication-authorization/#kubelet-authentication
+  references: |
+    1. [https://kubernetes.io/docs/admin/kubelet/](https://kubernetes.io/docs/admin/kubelet/)
+    2. [https://kubernetes.io/docs/admin/kubelet-authentication-authorization/#kubelet-authentication](https://kubernetes.io/docs/admin/kubelet-authentication-authorization/#kubelet-authentication)
   section: Kubelet
   tags:
     - CIS

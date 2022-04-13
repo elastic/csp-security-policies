@@ -1,5 +1,5 @@
 metadata:
-  uuid: 9493b65ee3bef6948db43879274b5ae6
+  uuid: c0717726-3f52-57e8-8754-487bcb8e51c0
   name: Ensure that the --profiling argument is set to false (Automated)
   profile_applicability: |
     * Level 1 - Master Node
@@ -7,11 +7,10 @@ metadata:
     Disable profiling, if not needed.
   rationale: >
     Profiling allows for the identification of specific performance bottlenecks.
-    It generates a
-    significant amount of program data that could potentially be exploited to uncover system
-    and program details. If you are not experiencing any bottlenecks and do not need the
-    profiler for troubleshooting purposes, it is recommended to turn it off to reduce the
-    potential attack surface.
+    It generates a significant amount of program data that could potentially be
+    exploited to uncover system and program details. If you are not experiencing
+    any bottlenecks and do not need the profiler for troubleshooting purposes,
+    it is recommended to turn it off to reduce the potential attack surface.
   audit: |
     Run the following command on the master node:
     ```
@@ -28,10 +27,9 @@ metadata:
     Profiling information would not be available.
   default_value: |
     By default, profiling is enabled.
-  references: >
-    1. [https://kubernetes.io/docs/admin/kube-controller-manager/]https://kubernetes.io/docs/admin/kube-controller-manager/
-
-    2. [https://github.com/kubernetes/community/blob/master/contributors/devel/profiling.md]https://github.com/kubernetes/community/blob/master/contributors/devel/profiling.md
+  references: |
+    1. [https://kubernetes.io/docs/admin/kube-controller-manager/](https://kubernetes.io/docs/admin/kube-controller-manager/)
+    2. [https://github.com/kubernetes/community/blob/master/contributors/devel/profiling.md](https://github.com/kubernetes/community/blob/master/contributors/devel/profiling.md)
   section: Controller Manager
   tags:
     - CIS

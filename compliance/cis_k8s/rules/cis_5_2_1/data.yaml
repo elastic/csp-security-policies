@@ -1,22 +1,21 @@
 metadata:
-  uuid: 7d635157062c8d710db043f9c06aa657
+  uuid: e3291708-971b-5f0e-aa25-5653fb5cb907
   name: Minimize the admission of privileged containers (Manual)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
     Do not generally permit containers to be run with the
-    `securityContext.privileged` flag
-    set to `true`.
+    `securityContext.privileged` flag set to `true`.
   rationale: >
     Privileged containers have access to all Linux Kernel capabilities and
-    devices. A container
-    running with full privileges can do almost everything that the host can do. This flag exists
-    to allow special use-cases, like manipulating the network stack and accessing devices.
-    There should be at least one PodSecurityPolicy (PSP) defined which does not permit
-    privileged containers.
-    If you need to run privileged containers, this should be defined in a separate PSP and you
-    should carefully check RBAC controls to ensure that only limited service accounts and
-    users are given permission to access that PSP.
+    devices. A container running with full privileges can do almost everything
+    that the host can do. This flag exists to allow special use-cases, like
+    manipulating the network stack and accessing devices. There should be at
+    least one PodSecurityPolicy (PSP) defined which does not permit privileged
+    containers. If you need to run privileged containers, this should be defined
+    in a separate PSP and you should carefully check RBAC controls to ensure
+    that only limited service accounts and users are given permission to access
+    that PSP.
   audit: |
     Get the set of PSPs with the following command:
     ```
@@ -31,13 +30,12 @@ metadata:
     Create a PSP as described in the Kubernetes documentation, ensuring that the
     `.spec.privileged` field is omitted or set to `false`.
   impact: >
-    Pods defined with `spec.containers[].securityContext.privileged: true` will not
-    be
-    permitted.
+    Pods defined with `spec.containers[].securityContext.privileged: true` will
+    not be permitted.
   default_value: |
     By default, PodSecurityPolicies are not defined.
-  references: >
-    1. [https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies]https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
+  references: |
+    1. [https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies)
   section: Pod Security Policies
   tags:
     - CIS

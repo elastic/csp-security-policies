@@ -1,16 +1,17 @@
 metadata:
-  uuid: 8394bc01093662afc37421bd45ff5c72
+  uuid: a92c7d1c-1fcf-5597-ba38-6cb9c024d213
   name: Ensure that the scheduler pod specification file ownership is set
     toroot:root (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
-    Ensure that the scheduler pod specification file ownership is set to `root:root`.
+    Ensure that the scheduler pod specification file ownership is set to
+    `root:root`.
   rationale: >
-    The scheduler pod specification file controls various parameters that set the
-    behavior of
-    the `kube-scheduler` service in the master node. You should set its file ownership to
-    maintain the integrity of the file. The file should be owned by `root:root`.
+    The scheduler pod specification file controls various parameters that set
+    the behavior of the `kube-scheduler` service in the master node. You should
+    set its file ownership to maintain the integrity of the file. The file
+    should be owned by `root:root`.
   audit: |
     Run the below command (based on the file location on your system) on the
     master node.
@@ -31,7 +32,7 @@ metadata:
   default_value: |
     By default, `kube-scheduler.yaml` file ownership is set to `root:root`.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-scheduler/]https://kubernetes.io/docs/admin/kube-scheduler/
+    1. [https://kubernetes.io/docs/admin/kube-scheduler/](https://kubernetes.io/docs/admin/kube-scheduler/)
   section: Master Node Configuration Files
   tags:
     - CIS

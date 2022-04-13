@@ -1,15 +1,14 @@
 metadata:
-  uuid: 53966b2bb6a870b625bc0d3b23ec9b37
+  uuid: d6fc4ba2-5cdf-5ef2-be01-451ec7ded8bc
   name: Ensure that the --kubelet-https argument is set to true (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: |
     Use https for kubelet connections.
   rationale: >
-    Connections from apiserver to kubelets could potentially carry sensitive data
-    such as
-    secrets and keys. It is thus important to use in-transit encryption for any communication
-    between the apiserver and kubelets.
+    Connections from apiserver to kubelets could potentially carry sensitive
+    data such as secrets and keys. It is thus important to use in-transit
+    encryption for any communication between the apiserver and kubelets.
   audit: |
     Run the following command on the master node:
     ```
@@ -17,15 +16,16 @@ metadata:
     ```
     Verify that the `--kubelet-https` argument either does not exist or is set to `true`.
   remediation: |
-    Edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml` 
+    Edit the API server pod specification file
+    `/etc/kubernetes/manifests/kube-apiserver.yaml` 
     on the master node and remove the `--kubelet-https` parameter.
   impact: |
     You require TLS to be configured on apiserver as well as kubelets.
   default_value: |
     By default, kubelet connections are over https.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-apiserver/]https://kubernetes.io/docs/admin/kube-apiserver/
-    2. [https://kubernetes.io/docs/admin/kubelet-authentication-authorization/]https://kubernetes.io/docs/admin/kubelet-authentication-authorization/
+    1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
+    2. [https://kubernetes.io/docs/admin/kubelet-authentication-authorization/](https://kubernetes.io/docs/admin/kubelet-authentication-authorization/)
   section: API Server
   tags:
     - CIS

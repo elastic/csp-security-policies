@@ -1,16 +1,16 @@
 metadata:
-  uuid: 2287777d2fa6d6771bcb21d33419cf2c
+  uuid: 806841fe-40f7-556c-9589-acc4c62ea075
   name: Ensure that the --bind-address argument is set to 127.0.0.1 (Automated)
   profile_applicability: |
     * Level 1 - Master Node
-  description: |
-    Do not bind the Controller Manager service to non-loopback insecure addresses.
+  description: >
+    Do not bind the Controller Manager service to non-loopback insecure
+    addresses.
   rationale: >
-    The Controller Manager API service which runs on port 10252/TCP by default is
-    used for
-    health and metrics information and is available without authentication or encryption. As
-    such it should only be bound to a localhost interface, to minimize the cluster's attack
-    surface
+    The Controller Manager API service which runs on port 10252/TCP by default
+    is used for health and metrics information and is available without
+    authentication or encryption. As such it should only be bound to a localhost
+    interface, to minimize the cluster's attack surface
   audit: |
     Run the following command on the master node:
     ```
@@ -26,7 +26,7 @@ metadata:
   default_value: |
     By default, the `--bind-address` parameter is set to 0.0.0.0
   references: |
-    1. [https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/]https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/
+    1. [https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)
   section: Controller Manager
   tags:
     - CIS

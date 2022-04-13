@@ -1,5 +1,5 @@
 metadata:
-  uuid: 8fb00254cb3cab6f31925500d39ea4c4
+  uuid: 0a33af0f-101d-5ecd-a772-3ea0dbc3e9c9
   name: Ensure that the RotateKubeletServerCertificate argument is set to true
     (Automated)
   profile_applicability: |
@@ -7,14 +7,14 @@ metadata:
   description: |
     Enable kubelet server certificate rotation on controller-manager.
   rationale: >
-    `RotateKubeletServerCertificate` causes the kubelet to both request a serving
-    certificate
-    after bootstrapping its client credentials and rotate the certificate as its existing credentials
-    expire. This automated periodic rotation ensures that the there are no downtimes due to
-    expired certificates and thus addressing availability in the CIA security triad.
-    Note: This recommendation only applies if you let kubelets get their certificates from the
-    API server. In case your kubelet certificates come from an outside authority/tool (e.g.
-    Vault) then you need to take care of rotation yourself.
+    `RotateKubeletServerCertificate` causes the kubelet to both request a
+    serving certificate after bootstrapping its client credentials and rotate
+    the certificate as its existing credentials expire. This automated periodic
+    rotation ensures that the there are no downtimes due to expired certificates
+    and thus addressing availability in the CIA security triad. Note: This
+    recommendation only applies if you let kubelets get their certificates from
+    the API server. In case your kubelet certificates come from an outside
+    authority/tool (e.g. Vault) then you need to take care of rotation yourself.
   audit: |
     Run the following command on the master node:
     ```
@@ -33,13 +33,12 @@ metadata:
     None
   default_value: >
     By default, `RotateKubeletServerCertificate` is set to "true" this
-    recommendation verifies
-    that it has not been disabled.
-  references: >
-    1. [https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/#approval-controller]https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/#approval-controller
-    2. [https://github.com/kubernetes/features/issues/267]https://github.com/kubernetes/features/issues/267
-    3. [https://github.com/kubernetes/kubernetes/pull/45059]https://github.com/kubernetes/kubernetes/pull/45059
-    4. [https://kubernetes.io/docs/admin/kube-controller-manager/]https://kubernetes.io/docs/admin/kube-controller-manager/
+    recommendation verifies that it has not been disabled.
+  references: |
+    1. [https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/#approval-controller](https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/#approval-controller)
+    2. [https://github.com/kubernetes/features/issues/267](https://github.com/kubernetes/features/issues/267)
+    3. [https://github.com/kubernetes/kubernetes/pull/45059](https://github.com/kubernetes/kubernetes/pull/45059)
+    4. [https://kubernetes.io/docs/admin/kube-controller-manager/](https://kubernetes.io/docs/admin/kube-controller-manager/)
   section: Controller Manager
   tags:
     - CIS

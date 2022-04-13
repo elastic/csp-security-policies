@@ -1,5 +1,5 @@
 metadata:
-  uuid: f79dc16644ab42ced25c163d06122559
+  uuid: 640bd199-98c8-5932-9bdc-8b17434bdc77
   name: Ensure that the kubelet service file permissions are set to 644 or more
     restrictive (Automated)
   profile_applicability: |
@@ -8,12 +8,13 @@ metadata:
     Ensure that the `kubelet` service file has permissions of `644` or more
     restrictive.
   rationale: >
-    The `kubelet` service file controls various parameters that set the behavior of
-    the `kubelet`
-    service in the worker node. You should restrict its file permissions to maintain the integrity
-    of the file. The file should be writable by only the administrators on the system.
+    The `kubelet` service file controls various parameters that set the behavior
+    of the `kubelet` service in the worker node. You should restrict its file
+    permissions to maintain the integrity of the file. The file should be
+    writable by only the administrators on the system.
   audit: |
-    Automated AAC auditing has been modified to allow CIS-CAT to input a variable
+    Automated AAC auditing has been modified to allow CIS-CAT to input a
+    variable
     for the / of
     the kubelet service config file.
     Please set $kubelet_service_config= based on the file location on your system
@@ -29,7 +30,8 @@ metadata:
     ```
     Verify that the permissions are `644` or more restrictive.
   remediation: |
-    Run the below command (based on the file location on your system) on the each
+    Run the below command (based on the file location on your system) on the
+    each
     worker
     node. For example,
     ```
@@ -40,9 +42,9 @@ metadata:
   default_value: |
     By default, the `kubelet` service file has permissions of `640`.
   references: |
-    1. [https://kubernetes.io/docs/admin/kubelet/]https://kubernetes.io/docs/admin/kubelet/
-    2. [https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#44-joining-your-nodes]https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#44-joining-your-nodes
-    3. [https://kubernetes.io/docs/admin/kubeadm/#kubelet-drop-in]https://kubernetes.io/docs/admin/kubeadm/#kubelet-drop-in
+    1. [https://kubernetes.io/docs/admin/kubelet/](https://kubernetes.io/docs/admin/kubelet/)
+    2. [https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#44-joining-your-nodes](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#44-joining-your-nodes)
+    3. [https://kubernetes.io/docs/admin/kubeadm/#kubelet-drop-in](https://kubernetes.io/docs/admin/kubeadm/#kubelet-drop-in)
   section: Worker Node Configuration Files
   tags:
     - CIS

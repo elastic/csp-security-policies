@@ -1,5 +1,5 @@
 metadata:
-  uuid: 85179cbfa4393fb42cad11585891b22f
+  uuid: 8d3862e2-b599-5036-8c09-6dbdbb8c6f39
   name: Ensure that the --profiling argument is set to false (Automated)
   profile_applicability: |
     * Level 1 - Master Node
@@ -7,11 +7,10 @@ metadata:
     Disable profiling, if not needed.
   rationale: >
     Profiling allows for the identification of specific performance bottlenecks.
-    It generates a
-    significant amount of program data that could potentially be exploited to uncover system
-    and program details. If you are not experiencing any bottlenecks and do not need the
-    profiler for troubleshooting purposes, it is recommended to turn it off to reduce the
-    potential attack surface.
+    It generates a significant amount of program data that could potentially be
+    exploited to uncover system and program details. If you are not experiencing
+    any bottlenecks and do not need the profiler for troubleshooting purposes,
+    it is recommended to turn it off to reduce the potential attack surface.
   audit: |
     Run the following command on the master node:
     ```
@@ -19,7 +18,8 @@ metadata:
     ```
     Verify that the `--profiling` argument is set to `false`.
   remediation: |
-    Edit the Scheduler pod specification file `/etc/kubernetes/manifests/kube-scheduler.yaml` 
+    Edit the Scheduler pod specification file
+    `/etc/kubernetes/manifests/kube-scheduler.yaml` 
     file on the master node and set the below parameter.
     ```
     --profiling=false
@@ -28,9 +28,9 @@ metadata:
     Profiling information would not be available.
   default_value: |
     By default, profiling is enabled.
-  references: >
-    1. [https://kubernetes.io/docs/admin/kube-scheduler/]https://kubernetes.io/docs/admin/kube-scheduler/
-    2. [https://github.com/kubernetes/community/blob/master/contributors/devel/profiling.md]https://github.com/kubernetes/community/blob/master/contributors/devel/profiling.md
+  references: |
+    1. [https://kubernetes.io/docs/admin/kube-scheduler/](https://kubernetes.io/docs/admin/kube-scheduler/)
+    2. [https://github.com/kubernetes/community/blob/master/contributors/devel/profiling.md](https://github.com/kubernetes/community/blob/master/contributors/devel/profiling.md)
   section: Scheduler
   tags:
     - CIS

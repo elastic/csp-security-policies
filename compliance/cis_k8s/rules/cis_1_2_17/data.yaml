@@ -1,15 +1,15 @@
 metadata:
-  uuid: 1ede79f521a37e25354b64434b5d8699
+  uuid: bbf34c25-a149-5f8a-b452-f5fad717352a
   name: Ensure that the admission control plugin NodeRestriction is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: |
     Limit the `Node` and `Pod` objects that a kubelet could modify.
   rationale: >
-    Using the `NodeRestriction` plug-in ensures that the kubelet is restricted to
-    the `Node` and
-    Pod objects that it could modify as defined. Such kubelets will only be allowed to modify
-    their own `Node` API object, and only modify `Pod` API objects that are bound to their node.
+    Using the `NodeRestriction` plug-in ensures that the kubelet is restricted
+    to the `Node` and Pod objects that it could modify as defined. Such kubelets
+    will only be allowed to modify their own `Node` API object, and only modify
+    `Pod` API objects that are bound to their node.
   audit: |
     Run the following command on the master node:
     ```
@@ -18,7 +18,8 @@ metadata:
     Verify that the `--enable-admission-plugins` argument is set to a value that includes
     `NodeRestriction`.
   remediation: |
-    Follow the Kubernetes documentation and configure `NodeRestriction` plug-in on
+    Follow the Kubernetes documentation and configure `NodeRestriction` plug-in
+    on
     kubelets.
     Then, edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml` 
     on the master node and set the `--enable-admission-plugins` parameter
@@ -31,10 +32,10 @@ metadata:
   default_value: |
     By default, `NodeRestriction` is not set.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-apiserver/]https://kubernetes.io/docs/admin/kube-apiserver/
-    2. [https://kubernetes.io/docs/admin/admission-controllers/#noderestriction]https://kubernetes.io/docs/admin/admission-controllers/#noderestriction
-    3. [https://kubernetes.io/docs/admin/authorization/node/]https://kubernetes.io/docs/admin/authorization/node/
-    4. [https://acotten.com/post/kube17-security]https://acotten.com/post/kube17-security
+    1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
+    2. [https://kubernetes.io/docs/admin/admission-controllers/#noderestriction](https://kubernetes.io/docs/admin/admission-controllers/#noderestriction)
+    3. [https://kubernetes.io/docs/admin/authorization/node/](https://kubernetes.io/docs/admin/authorization/node/)
+    4. [https://acotten.com/post/kube17-security](https://acotten.com/post/kube17-security)
   section: API Server
   tags:
     - CIS

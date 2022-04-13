@@ -1,19 +1,17 @@
 metadata:
-  uuid: 4e46ef0e53f3a467ce3aa4ed16711dc8
+  uuid: 0667965a-8c0f-5cce-9ba7-9e6e24064802
   name: Ensure that the --service-account-private-key-file argument is set as
     appropriate (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
-    Explicitly set a service account private key file for service accounts on the
-    controller
-    manager.
+    Explicitly set a service account private key file for service accounts on
+    the controller manager.
   rationale: >
     To ensure that keys for service account tokens can be rotated as needed, a
-    separate
-    public/private key pair should be used for signing service account tokens. The private key
-    should be specified to the controller manager with `--service-account-private-key-file`
-    as appropriate.
+    separate public/private key pair should be used for signing service account
+    tokens. The private key should be specified to the controller manager with
+    `--service-account-private-key-file` as appropriate.
   audit: |
     Run the following command on the master node:
     ```
@@ -29,13 +27,12 @@ metadata:
     --service-account-private-key-file=<filename>
     ```
   impact: >
-    You would need to securely maintain the key file and rotate the keys based on
-    your
-    organization's key rotation policy.
+    You would need to securely maintain the key file and rotate the keys based
+    on your organization's key rotation policy.
   default_value: |
     By default, `--service-account-private-key-file` it not set.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-controller-manager/]https://kubernetes.io/docs/admin/kube-controller-manager/
+    1. [https://kubernetes.io/docs/admin/kube-controller-manager/](https://kubernetes.io/docs/admin/kube-controller-manager/)
   section: Controller Manager
   tags:
     - CIS

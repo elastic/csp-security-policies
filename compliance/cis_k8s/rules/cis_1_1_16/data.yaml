@@ -1,14 +1,14 @@
 metadata:
-  uuid: 2adf7f31c4334379f9ddf716a0bd9e9b
+  uuid: e76bec57-8d79-5222-a764-7b92940a142e
   name: Ensure that the scheduler.conf file ownership is set to root:root (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: |
     Ensure that the `scheduler.conf` file ownership is set to `root:root`.
   rationale: >
-    The `scheduler.conf` file is the kubeconfig file for the Scheduler. You should
-    set its file
-    ownership to maintain the integrity of the file. The file should be owned by `root:root`.
+    The `scheduler.conf` file is the kubeconfig file for the Scheduler. You
+    should set its file ownership to maintain the integrity of the file. The
+    file should be owned by `root:root`.
   audit: |
     Run the below command (based on the file location on your system) on the
     master node.
@@ -29,7 +29,7 @@ metadata:
   default_value: |
     By default, `scheduler.conf` file ownership is set to `root:root`.
   references: |
-    1. [https://kubernetes.io/docs/admin/kubeadm/]https://kubernetes.io/docs/admin/kubeadm/
+    1. [https://kubernetes.io/docs/admin/kubeadm/](https://kubernetes.io/docs/admin/kubeadm/)
   section: Master Node Configuration Files
   tags:
     - CIS

@@ -1,17 +1,17 @@
 metadata:
-  uuid: 972c18fedfdd8d3ec2ba833994bcb302
+  uuid: 2b17fa8d-8ec5-5f77-9555-f567cf67b317
   name:
     Ensure that the controller-manager.conf file ownership is set to root:root
     (Automated)
   profile_applicability: |
     * Level 1 - Master Node
-  description: |
-    Ensure that the `controller-manager.conf` file ownership is set to `root:root`.
+  description: >
+    Ensure that the `controller-manager.conf` file ownership is set to
+    `root:root`.
   rationale: >
     The `controller-manager.conf` file is the kubeconfig file for the Controller
-    Manager. You
-    should set its file ownership to maintain the integrity of the file. The file should be owned
-    by `root:root`.
+    Manager. You should set its file ownership to maintain the integrity of the
+    file. The file should be owned by `root:root`.
   audit: |
     Run the below command (based on the file location on your system) on the
     master node.
@@ -32,7 +32,7 @@ metadata:
   default_value: |
     By default, `controller-manager.conf` file ownership is set to `root:root`.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-controller-manager/]https://kubernetes.io/docs/admin/kube-controller-manager/
+    1. [https://kubernetes.io/docs/admin/kube-controller-manager/](https://kubernetes.io/docs/admin/kube-controller-manager/)
   section: Master Node Configuration Files
   tags:
     - CIS

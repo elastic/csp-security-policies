@@ -1,16 +1,16 @@
 metadata:
-  uuid: e3fa433bd7ac0c4b5651c7cd9f51bfa9
+  uuid: 28f4a3c7-17fa-55be-a527-9561f4d092bc
   name: Ensure that the scheduler.conf file permissions are set to 644 or more
     restrictive (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
-    Ensure that the `scheduler.conf` file has permissions of `644` or more restrictive.
+    Ensure that the `scheduler.conf` file has permissions of `644` or more
+    restrictive.
   rationale: >
-    The `scheduler.conf` file is the kubeconfig file for the Scheduler. You should
-    restrict its file
-    permissions to maintain the integrity of the file. The file should be writable by only the
-    administrators on the system.
+    The `scheduler.conf` file is the kubeconfig file for the Scheduler. You
+    should restrict its file permissions to maintain the integrity of the file.
+    The file should be writable by only the administrators on the system.
   audit: |
     Run the following command (based on the file location on your system) on the
     master
@@ -31,7 +31,7 @@ metadata:
   default_value: |
     By default, `scheduler.conf` has permissions of `640`.
   references: |
-    1. [https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/]https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
+    1. [https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)
   section: Master Node Configuration Files
   tags:
     - CIS

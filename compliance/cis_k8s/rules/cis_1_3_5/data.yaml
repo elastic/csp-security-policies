@@ -1,18 +1,19 @@
 metadata:
-  uuid: afe7c49d670ed51fad7f9a3ba6fbd394
+  uuid: 7c613860-b592-5dec-aeb7-9ce88958dabd
   name: Ensure that the --root-ca-file argument is set as appropriate (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
-    Allow pods to verify the API server's serving certificate before establishing
-    connections.
+    Allow pods to verify the API server's serving certificate before
+    establishing connections.
   rationale: >
-    Processes running within pods that need to contact the API server must verify
-    the API
-    server's serving certificate. Failing to do so could be a subject to man-in-the-middle attacks.
-    Providing the root certificate for the API server's serving certificate to the controller
-    manager with the `--root-ca-file` argument allows the controller manager to inject the
-    trusted bundle into pods so that they can verify TLS connections to the API server.
+    Processes running within pods that need to contact the API server must
+    verify the API server's serving certificate. Failing to do so could be a
+    subject to man-in-the-middle attacks. Providing the root certificate for the
+    API server's serving certificate to the controller manager with the
+    `--root-ca-file` argument allows the controller manager to inject the
+    trusted bundle into pods so that they can verify TLS connections to the API
+    server.
   audit: |
     Run the following command on the master node:
     ```
@@ -33,8 +34,8 @@ metadata:
   default_value: |
     By default, `--root-ca-file` is not set.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-controller-manager/]https://kubernetes.io/docs/admin/kube-controller-manager/
-    2. [https://github.com/kubernetes/kubernetes/issues/11000]https://github.com/kubernetes/kubernetes/issues/11000
+    1. [https://kubernetes.io/docs/admin/kube-controller-manager/](https://kubernetes.io/docs/admin/kube-controller-manager/)
+    2. [https://github.com/kubernetes/kubernetes/issues/11000](https://github.com/kubernetes/kubernetes/issues/11000)
   section: Controller Manager
   tags:
     - CIS

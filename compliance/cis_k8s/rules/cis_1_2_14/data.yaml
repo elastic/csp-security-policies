@@ -1,5 +1,5 @@
 metadata:
-  uuid: dff1251220924e669335279e3a17f77e
+  uuid: 554702a0-63bf-500f-ae7a-c73ff746c15f
   name: Ensure that the admission control plugin ServiceAccount is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node
@@ -7,9 +7,9 @@ metadata:
     Automate service accounts management.
   rationale: >
     When you create a pod, if you do not specify a service account, it is
-    automatically assigned
-    the default service account in the same namespace. You should create your own service
-    account and let the API server manage its security tokens.
+    automatically assigned the default service account in the same namespace.
+    You should create your own service account and let the API server manage its
+    security tokens.
   audit: |
     Run the following command on the master node:
     ```
@@ -28,9 +28,9 @@ metadata:
   default_value: |
     By default, `ServiceAccount` is set.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-apiserver/]https://kubernetes.io/docs/admin/kube-apiserver/
-    2. [https://kubernetes.io/docs/admin/admission-controllers/#serviceaccount]https://kubernetes.io/docs/admin/admission-controllers/#serviceaccount
-    3. [https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/]https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
+    2. [https://kubernetes.io/docs/admin/admission-controllers/#serviceaccount](https://kubernetes.io/docs/admin/admission-controllers/#serviceaccount)
+    3. [https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
   section: API Server
   tags:
     - CIS

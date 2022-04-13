@@ -1,5 +1,5 @@
 metadata:
-  uuid: 6a9036af39012966dc476e93c6cc1a6d
+  uuid: f2fdd4be-80bd-5b01-9103-700c265f0493
   name: Ensure that the --protect-kernel-defaults argument is set to true (Automated)
   profile_applicability: |
     * Level 1 - Worker Node
@@ -7,12 +7,12 @@ metadata:
     Protect tuned kernel parameters from overriding kubelet default kernel
     parameter values.
   rationale: >
-    Kernel parameters are usually tuned and hardened by the system administrators
-    before
-    putting the systems into production. These parameters protect the kernel and the system.
-    Your kubelet kernel defaults that rely on such parameters should be appropriately set to
-    match the desired secured system state. Ignoring this could potentially lead to running
-    pods with undesired kernel behavior.
+    Kernel parameters are usually tuned and hardened by the system
+    administrators before putting the systems into production. These parameters
+    protect the kernel and the system. Your kubelet kernel defaults that rely on
+    such parameters should be appropriately set to match the desired secured
+    system state. Ignoring this could potentially lead to running pods with
+    undesired kernel behavior.
   audit: |
     Run the following command on each node:
     ```
@@ -22,7 +22,8 @@ metadata:
     If the `--protect-kernel-defaults` argument is not present, check that there is a Kubelet
     config file specified by `--config`, and that the file sets `protectKernelDefaults` to `true`.
   remediation: |
-    If using a Kubelet config file, edit the file to set `protectKernelDefaults: true`.
+    If using a Kubelet config file, edit the file to set `protectKernelDefaults:
+    true`.
     If using command line arguments, edit the kubelet service file
     `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf` on each worker node and
     set the below parameter in `KUBELET_SYSTEM_PODS_ARGS` variable.
@@ -39,7 +40,7 @@ metadata:
   default_value: |
     By default, `--protect-kernel-defaults` is not set.
   references: |
-    1. [https://kubernetes.io/docs/admin/kubelet/]https://kubernetes.io/docs/admin/kubelet/
+    1. [https://kubernetes.io/docs/admin/kubelet/](https://kubernetes.io/docs/admin/kubelet/)
   section: Kubelet
   tags:
     - CIS

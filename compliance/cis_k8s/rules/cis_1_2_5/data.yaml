@@ -1,5 +1,5 @@
 metadata:
-  uuid: af24f4298e90534fa2e22b946d56a30b
+  uuid: c4c453d8-7efd-5869-90aa-7f5d588be594
   name: Ensure that the --kubelet-client-certificate and
     --kubelet-client-keyarguments are set as appropriate (Automated)
   profile_applicability: |
@@ -7,11 +7,10 @@ metadata:
   description: |
     Enable certificate based kubelet authentication.
   rationale: >
-    The apiserver, by default, does not authenticate itself to the kubelet's HTTPS
-    endpoints.
-    The requests from the apiserver are treated anonymously. You should set up certificate-
-    based kubelet authentication to ensure that the apiserver authenticates itself to kubelets
-    when submitting requests.
+    The apiserver, by default, does not authenticate itself to the kubelet's
+    HTTPS endpoints. The requests from the apiserver are treated anonymously.
+    You should set up certificate- based kubelet authentication to ensure that
+    the apiserver authenticates itself to kubelets when submitting requests.
   audit: |
     Run the following command on the master node:
     ```
@@ -20,7 +19,8 @@ metadata:
     Verify that the `--kubelet-client-certificate` and `--kubelet-client-key` arguments
     exist and they are set as appropriate.
   remediation: |
-    Follow the Kubernetes documentation and set up the TLS connection between the
+    Follow the Kubernetes documentation and set up the TLS connection between
+    the
     apiserver and kubelets. Then, edit API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` on the master node and set the
     kubelet client certificate and key parameters as below.
@@ -33,9 +33,9 @@ metadata:
   default_value: |
     By default, certificate-based kubelet authentication is not set.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-apiserver/]https://kubernetes.io/docs/admin/kube-apiserver/
-    2. [https://kubernetes.io/docs/admin/kubelet-authentication-authorization/]https://kubernetes.io/docs/admin/kubelet-authentication-authorization/
-    3. [https://kubernetes.io/docs/concepts/cluster-administration/master-node-communication/#apiserver---kubelet]https://kubernetes.io/docs/concepts/cluster-administration/master-node-communication/#apiserver---kubelet
+    1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
+    2. [https://kubernetes.io/docs/admin/kubelet-authentication-authorization/](https://kubernetes.io/docs/admin/kubelet-authentication-authorization/)
+    3. [https://kubernetes.io/docs/concepts/cluster-administration/master-node-communication/#apiserver---kubelet](https://kubernetes.io/docs/concepts/cluster-administration/master-node-communication/#apiserver---kubelet)
   section: API Server
   tags:
     - CIS

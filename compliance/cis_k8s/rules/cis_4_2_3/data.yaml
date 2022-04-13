@@ -1,5 +1,5 @@
 metadata:
-  uuid: 4abf78a501a5d96d419692add34b3f84
+  uuid: 75d9dcd6-0e64-58b0-a57c-c5b0c59490bd
   name: Ensure that the --client-ca-file argument is set as appropriate (Automated)
   profile_applicability: |
     * Level 1 - Worker Node
@@ -7,13 +7,13 @@ metadata:
     Enable Kubelet authentication using certificates.
   rationale: >
     The connections from the apiserver to the kubelet are used for fetching logs
-    for pods,
-    attaching (through kubectl) to running pods, and using the kubelet's port-forwarding
-    functionality. These connections terminate at the kubelet's HTTPS endpoint. By default, the
-    apiserver does not verify the kubelet's serving certificate, which makes the connection
-    subject to man-in-the-middle attacks, and unsafe to run over untrusted and/or public
-    networks. Enabling Kubelet certificate authentication ensures that the apiserver could
-    authenticate the Kubelet before submitting any requests.
+    for pods, attaching (through kubectl) to running pods, and using the
+    kubelet's port-forwarding functionality. These connections terminate at the
+    kubelet's HTTPS endpoint. By default, the apiserver does not verify the
+    kubelet's serving certificate, which makes the connection subject to
+    man-in-the-middle attacks, and unsafe to run over untrusted and/or public
+    networks. Enabling Kubelet certificate authentication ensures that the
+    apiserver could authenticate the Kubelet before submitting any requests.
   audit: |
     Run the following command on each node:
     ```
@@ -25,7 +25,8 @@ metadata:
     specified by `--config`, and that the file sets `authentication: x509: clientCAFile` to the
     location of the client certificate authority file.
   remediation: |
-    If using a Kubelet config file, edit the file to set `authentication: x509:clientCAFile` 
+    If using a Kubelet config file, edit the file to set `authentication:
+    x509:clientCAFile` 
     to
     the location of the client CA file.
     If using command line arguments, edit the kubelet service file
@@ -44,8 +45,8 @@ metadata:
   default_value: |
     By default, `--client-ca-file` argument is not set.
   references: |
-    1. [https://kubernetes.io/docs/admin/kubelet/]https://kubernetes.io/docs/admin/kubelet/
-    2. [https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/]https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/
+    1. [https://kubernetes.io/docs/admin/kubelet/](https://kubernetes.io/docs/admin/kubelet/)
+    2. [https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/)
   section: Kubelet
   tags:
     - CIS

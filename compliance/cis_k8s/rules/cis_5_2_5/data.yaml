@@ -1,23 +1,21 @@
 metadata:
-  uuid: 91f69cd310415de5c5e8941b8c2698c6
+  uuid: fd02c2d3-8cc3-517f-a379-b3bb8919e3c8
   name: Minimize the admission of containers with allowPrivilegeEscalation (Manual)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
-    Do not generally permit containers to be run with the `allowPrivilegeEscalation`
-    flag set
-    to true.
+    Do not generally permit containers to be run with the
+    `allowPrivilegeEscalation` flag set to true.
   rationale: >
-    A container running with the `allowPrivilegeEscalation` flag set to `true` may
-    have
-    processes that can gain more privileges than their parent.
-    There should be at least one PodSecurityPolicy (PSP) defined which does not permit
-    containers to allow privilege escalation. The option exists (and is defaulted to true) to
-    permit setuid binaries to run.
-    If you have need to run containers which use setuid binaries or require privilege escalation,
-    this should be defined in a separate PSP and you should carefully check RBAC controls to
-    ensure that only limited service accounts and users are given permission to access that
-    PSP.
+    A container running with the `allowPrivilegeEscalation` flag set to `true`
+    may have processes that can gain more privileges than their parent. There
+    should be at least one PodSecurityPolicy (PSP) defined which does not permit
+    containers to allow privilege escalation. The option exists (and is
+    defaulted to true) to permit setuid binaries to run. If you have need to run
+    containers which use setuid binaries or require privilege escalation, this
+    should be defined in a separate PSP and you should carefully check RBAC
+    controls to ensure that only limited service accounts and users are given
+    permission to access that PSP.
   audit: |
     Get the set of PSPs with the following command:
     ```
@@ -32,13 +30,12 @@ metadata:
     Create a PSP as described in the Kubernetes documentation, ensuring that the
     `.spec.allowPrivilegeEscalation` field is omitted or set to false.
   impact: >
-    Pods defined with `spec.allowPrivilegeEscalation: true` will not be permitted
-    unless
-    they are run under a specific PSP.
+    Pods defined with `spec.allowPrivilegeEscalation: true` will not be
+    permitted unless they are run under a specific PSP.
   default_value: |
     By default, PodSecurityPolicies are not defined.
   references: |
-    1. [https://kubernetes.io/docs/concepts/policy/pod-security-policy]https://kubernetes.io/docs/concepts/policy/pod-security-policy
+    1. [https://kubernetes.io/docs/concepts/policy/pod-security-policy](https://kubernetes.io/docs/concepts/policy/pod-security-policy)
   section: Pod Security Policies
   tags:
     - CIS

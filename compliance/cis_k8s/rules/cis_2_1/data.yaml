@@ -1,17 +1,15 @@
 metadata:
-  uuid: e38e03ecf8c727d1ecfcab74bc0ca304
-  name:
-    Ensure that the --cert-file and --key-file arguments are set as appropriate
-    (Automated)
+  uuid: 42ae3fda-5908-5411-8ee9-f8f3ae670352
+  name: Ensure that the --cert-file and --key-file arguments are set as
+    appropriate (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: |
     Configure TLS encryption for the etcd service.
   rationale: >
-    etcd is a highly-available key value store used by Kubernetes deployments for
-    persistent
-    storage of all of its REST API objects. These objects are sensitive in nature and should be
-    encrypted in transit.
+    etcd is a highly-available key value store used by Kubernetes deployments
+    for persistent storage of all of its REST API objects. These objects are
+    sensitive in nature and should be encrypted in transit.
   audit: |
     Run the following command on the etcd server node
     ```
@@ -31,8 +29,8 @@ metadata:
   default_value: |
     By default, TLS encryption is not set.
   references: |
-    1. [https://coreos.com/etcd/docs/latest/op-guide/security.html]https://coreos.com/etcd/docs/latest/op-guide/security.html
-    2. [https://kubernetes.io/docs/admin/etcd/]https://kubernetes.io/docs/admin/etcd/
+    1. [https://coreos.com/etcd/docs/latest/op-guide/security.html](https://coreos.com/etcd/docs/latest/op-guide/security.html)
+    2. [https://kubernetes.io/docs/admin/etcd/](https://kubernetes.io/docs/admin/etcd/)
   section: etcd
   tags:
     - CIS

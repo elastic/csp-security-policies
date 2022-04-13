@@ -1,20 +1,22 @@
 metadata:
-  uuid: 9f0c56b649b4c58d11aba8ad5d9954a2
+  uuid: 2b2a4b02-652d-5398-9571-09b419617bd0
   name: Ensure that the admission control plugin PodSecurityPolicy is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: |
     Reject creating pods that do not match Pod Security Policies.
-  rationale: >
+  rationale: |
     A Pod Security Policy is a cluster-level resource that controls the actions
-    that a pod can
-    perform and what it has the ability to access. The `PodSecurityPolicy` objects define a set of
-    conditions that a pod must run with in order to be accepted into the system. Pod Security
-    Policies are comprised of settings and strategies that control the security features a pod has
-    access to and hence this must be used to control pod access permissions.
-    **Note:** When the PodSecurityPolicy admission plugin is in use, there needs to be at least one
-    PodSecurityPolicy in place for ANY pods to be admitted. See section 5.2 for
-    recommendations on PodSecurityPolicy settings.
+    that a pod can perform and what it has the ability to access. The
+    `PodSecurityPolicy` objects define a set of conditions that a pod must run
+    with in order to be accepted into the system. Pod Security Policies are
+    comprised of settings and strategies that control the security features a
+    pod has access to and hence this must be used to control pod access
+    permissions.
+    **Note:** When the PodSecurityPolicy admission plugin is in
+    use, there needs to be at least one PodSecurityPolicy in place for ANY pods
+    to be admitted. See section 5.2 for recommendations on PodSecurityPolicy
+    settings.
   audit: |
     Run the following command on the master node:
     ```
@@ -37,10 +39,10 @@ metadata:
     allowed.
   default_value: |
     By default, `PodSecurityPolicy` is not set.
-  references: >
-    1. [https://kubernetes.io/docs/admin/kube-apiserver/]https://kubernetes.io/docs/admin/kube-apiserver/
-    2. [https://kubernetes.io/docs/admin/admission-controllers/#podsecuritypolicy]https://kubernetes.io/docs/admin/admission-controllers/#podsecuritypolicy
-    3. [https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies]https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
+  references: |
+    1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
+    2. [https://kubernetes.io/docs/admin/admission-controllers/#podsecuritypolicy](https://kubernetes.io/docs/admin/admission-controllers/#podsecuritypolicy)
+    3. [https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies)
   section: API Server
   tags:
     - CIS
