@@ -1,6 +1,7 @@
 metadata:
   id: eac06678-1697-5028-925a-7fa9f678b19a
-  name: Ensure that the --use-service-account-credentials argument is setto true
+  name:
+    Ensure that the --use-service-account-credentials argument is set to true
     (Automated)
   profile_applicability: |
     * Level 1 - Master Node
