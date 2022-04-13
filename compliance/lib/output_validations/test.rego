@@ -93,12 +93,20 @@ test_validate_metadata_invalid_remediation {
 
 test_validate_metadata_valid {
 	metadata := {
+		"id": "rule id",
 		"name": "rule name",
+		"profile_applicability": "rule profile_applicability",
 		"description": "rule description",
+		"rationale ": "rule rationale",
+		"audit ":  "rule audit",
+		"remediation": "rule remidiation",
 		"impact": "rule impact",
+		"default_value": "rule default_value",
+		"references": "rule references",
+		"section": "rule section",
+		"version": "rule version",
 		"tags": ["tag 1", "tag 2"],
 		"benchmark": {"name": "benchmark", "version": "v1.0.0"},
-		"remediation": "rule remidiation",
 	}
 
 	validate_metadata(metadata)
