@@ -3,7 +3,7 @@ package compliance.lib.output_validations
 import data.compliance
 import future.keywords.every
 
-validate_metadata(metadata) {
+validate_k8s_metadata(metadata) {
 	metadata.id
 	metadata.name
 	metadata.profile_applicability
@@ -24,11 +24,29 @@ validate_metadata(metadata) {
 	true
 }
 
+validate_eks_metadata(metadata) {
+	metadata.name
+	metadata.description
+	metadata.impact
+	metadata.tags
+	metadata.benchmark
+	metadata.benchmark.name
+	metadata.benchmark.version
+	metadata.remediation
+} else = false {
+	true
+}
+
 # validate every rule metadata
 test_validate_rule_metadata {
-	all_rules := [rule | rule := compliance[benchmark].rules[rule_id]]
+	all_k8s_rules := [rule | rule := compliance.cis_k8s.rules[rule_id]]
+	all_eks_rules := [rule | rule := compliance.cis_eks.rules[rule_id]]
 
-	every rule in all_rules {
-		validate_metadata(rule.metadata)
+	every k8s_rule in all_k8s_rules {
+		validate_k8s_metadata(k8s_rule.metadata)
+	}
+
+	every eks_rule in all_eks_rules {
+		validate_eks_metadata(eks_rule.metadata)
 	}
 }
