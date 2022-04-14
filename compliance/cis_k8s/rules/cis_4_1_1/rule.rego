@@ -1,6 +1,5 @@
 package compliance.cis_k8s.rules.cis_4_1_1
 
-import data.compliance.cis_k8s
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
