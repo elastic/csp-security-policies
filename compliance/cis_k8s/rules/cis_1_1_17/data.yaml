@@ -14,9 +14,8 @@ metadata:
     of the file. The file should be writable by only the administrators on the
     system.
   audit: |
-    Run the following command (based on the file location on your system) on the
-    master
-    node. For example,
+    Run the following command (based on the file location on your system) on the master node.
+    For example,
     ```
     stat -c %a /etc/kubernetes/controller-manager.conf
     ```
