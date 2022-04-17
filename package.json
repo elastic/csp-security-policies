@@ -1,0 +1,17 @@
+{
+  "name": "cis-benchmark-pdf-data-serialization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Evgeniy Belyi (jeniawhite92@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "pdfjs-dist": "^2.13.216",
+    "uuid": "^8.3.2",
+    "yaml": "^1.10.2"
+  }
+}
