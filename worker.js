@@ -16,19 +16,19 @@ const Y_CAP = 1000;
 const WORKER_NAMESPACE = "5d8d0dd5-acd2-4c46-b565-aa1fb03617af";
 
 const PICK_RULE_PROPERTIES = [
-  // "uuid",
-  // "name",
-  // "profile_applicability",
-  // "description",
-  // "rationale",
-  // "audit",
-  // "remediation",
-  // "impact",
-  // "default_value",
-  // "references",
-  // "section",
+  "uuid",
+  "name",
+  "profile_applicability",
+  "description",
+  "rationale",
+  "audit",
+  "remediation",
+  "impact",
+  "default_value",
+  "references",
+  "section",
   "tags",
-  // "benchmark",
+  "benchmark",
 ];
 
 const KUBERNETES_RULE_CATEGORIES = {
