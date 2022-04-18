@@ -2,7 +2,7 @@ name: Test Coverage
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test-coverage:
