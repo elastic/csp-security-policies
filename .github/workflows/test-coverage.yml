@@ -1,9 +1,9 @@
 name: Test Coverage
 
 on:
-  pull_request:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   test-coverage:
