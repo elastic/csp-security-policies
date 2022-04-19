@@ -1,15 +1,14 @@
 metadata:
-  uuid: 5fea55c8-4d83-55a4-afc5-9aa850f39ab9
+  id: 5fea55c8-4d83-55a4-afc5-9aa850f39ab9
   name: Ensure that the --rotate-certificates argument is not set to false(Manual)
   profile_applicability: |
     • Level 1 - Worker Node
   description: |
     Enable kubelet client certificate rotation.
   rationale: >
-    The --rotate-certificates setting causes the kubelet to rotate its client
-    certificates by
-
-    creating new CSRs as its existing credentials expire. This automated periodic rotation
+    The `--rotate-certificates` setting causes the kubelet to rotate its client
+    certificates by creating new CSRs as its existing credentials expire. 
+    This automated periodic rotation
 
     ensures that the there is no downtime due to expired certificates and thus addressing
 
@@ -21,60 +20,59 @@ metadata:
 
     Vault) then you need to take care of rotation yourself.
 
-    Note: This feature also require the RotateKubeletClientCertificate feature gate to be
+    Note: This feature also require the `RotateKubeletClientCertificate` feature gate to be
 
     enabled (which is the default since Kubernetes v1.7)
-  audit: >
+  audit: |
     Run the following command on each node:
-
+    ```
     ps -ef | grep kubelet
+    ```
+    
+    Verify that the `--rotate-certificates` argument is not present, or is set to `true`.
 
-    Verify that the --rotate-certificates argument is not present, or is set to true.
+    If the `--rotate-certificates` argument is not present, verify that if there is a Kubelet
 
-    If the --rotate-certificates argument is not present, verify that if there is a Kubelet
-
-    config file specified by --config, that file does not contain rotateCertificates: false.
-  remediation: >
+    config file specified by `--config`, that file does not contain `rotateCertificates: false`.
+  remediation: |
     If using a Kubelet config file, edit the file to add the line
-    rotateCertificates: true or
+    `rotateCertificates: true` or
 
     remove it altogether to use the default value.
 
     If using command line arguments, edit the kubelet service file
 
-    /etc/systemd/system/kubelet.service.d/10-kubeadm.conf on each worker node and
+    `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf` on each worker node and
 
-    remove --rotate-certificates=false argument from the KUBELET_CERTIFICATE_ARGS
+    remove `--rotate-certificates=false` argument from the `KUBELET_CERTIFICATE_ARGS`
 
     variable.
 
     Based on your system, restart the kubelet service. For example:
-
+    ```
     systemctl daemon-reload
 
     systemctl restart kubelet.service
+    ```
   impact: |
     None
   default_value: |
     By default, kubelet client certificate rotation is enabled.
-  references: >
+  references: |
     1. https://github.com/kubernetes/kubernetes/pull/41912
 
-    2. https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-
-
-    bootstrapping/#kubelet-configuration
+    2. https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/#kubelet-configuration
 
     3. https://kubernetes.io/docs/imported/release/notes/
 
-    4. https://kubernetes.io/docs/reference/command-line-tools-reference/feature-
-
-    gates/
+    4. https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/
   section: Kubelet
+  version: "1.0"
   tags:
-    - CIS
-    - Kubernetes
-    - CIS 4.2.11
-    - Kubelet
+  - CIS
+  - Kubernetes
+  - CIS 4.2.11
+  - Kubelet
   benchmark:
     name: CIS Kubernetes V1.20
     version: v1.0.0
