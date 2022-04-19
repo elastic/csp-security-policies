@@ -1,5 +1,5 @@
 metadata:
-  id: 89fcd9f5-ebc9-56b1-b34e-89dde7242104
+  id: ea8d9694-1aed-5e7a-91d0-598b397f0218
   name: Ensure that the admission control plugin AlwaysAdmit is not set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

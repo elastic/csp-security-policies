@@ -1,5 +1,5 @@
 metadata:
-  id: ceea4bd5-69b5-5e3c-9038-0b91f9bf2f08
+  id: 5d2b0fb4-32fc-565f-bf70-93700f144da0
   name: Ensure that the --anonymous-auth argument is set to false (Automated)
   profile_applicability: |
     * Level 1 - Worker Node

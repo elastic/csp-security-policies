@@ -1,5 +1,5 @@
 metadata:
-  id: b40c356d-df14-5e22-9cac-14b3c556bf55
+  id: 9fea8ee2-ca53-5721-aba3-663bd034deb3
   name: Ensure that the scheduler pod specification file permissions are set to
     644 or more restrictive (Automated)
   profile_applicability: |

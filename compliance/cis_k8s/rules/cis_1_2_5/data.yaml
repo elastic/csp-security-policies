@@ -1,5 +1,5 @@
 metadata:
-  id: fdec58e4-f1a3-51a9-a1c6-04521afc0977
+  id: 8fce5a41-142d-5077-ad4e-fc2815b40b2e
   name: Ensure that the --kubelet-certificate-authority argument is set as
     appropriate (Automated)
   profile_applicability: |

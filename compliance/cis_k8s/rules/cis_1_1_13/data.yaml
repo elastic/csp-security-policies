@@ -1,5 +1,5 @@
 metadata:
-  id: 240c94b0-c425-5d08-9c05-09e90e9e349e
+  id: 854cf350-9ce7-5c93-b934-d1c8957d1a47
   name: Ensure that the admin.conf file permissions are set to 644 or more
     restrictive (Automated)
   profile_applicability: |

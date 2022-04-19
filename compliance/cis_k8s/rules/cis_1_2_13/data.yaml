@@ -1,5 +1,5 @@
 metadata:
-  id: a6d7137d-334e-5a65-8f11-51df653cfb63
+  id: cf6ebe82-9367-5b8e-a117-c81ab11ba7d4
   name: Ensure that the admission control plugin ServiceAccount is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

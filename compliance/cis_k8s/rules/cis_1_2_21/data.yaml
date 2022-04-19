@@ -1,5 +1,5 @@
 metadata:
-  id: e05c6215-48b9-5faf-98ce-da785e2cf5c1
+  id: 8c7d61f2-700a-5822-8f6b-e36ad193f83e
   name: Ensure that the --audit-log-path argument is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

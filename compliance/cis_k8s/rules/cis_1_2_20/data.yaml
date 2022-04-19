@@ -1,5 +1,5 @@
 metadata:
-  id: fb1fff6d-2d6a-5d23-92a1-fdb7c4f28ddf
+  id: c24bf963-7d41-5b4f-9724-c53133a6d495
   name: Ensure that the --profiling argument is set to false (Automated)
   profile_applicability: |
     * Level 1 - Master Node

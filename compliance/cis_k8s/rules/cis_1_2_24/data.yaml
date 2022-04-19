@@ -1,5 +1,5 @@
 metadata:
-  id: cfb09d6e-73c6-5b9e-8c1d-7626e89c3ff7
+  id: 48f54c21-ebec-5812-ad39-ec3ab5cb53db
   name: Ensure that the --audit-log-maxsize argument is set to 100 or as
     appropriate (Automated)
   profile_applicability: |

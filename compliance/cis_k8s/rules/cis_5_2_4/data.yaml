@@ -1,5 +1,5 @@
 metadata:
-  id: 4a50a8fb-5abb-5e24-82af-d59fd16397af
+  id: 86b4d62b-c3ad-5b29-84a4-925ae258207e
   name: Minimize the admission of containers wishing to share the host network
     namespace (Automated)
   profile_applicability: |

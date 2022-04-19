@@ -1,5 +1,5 @@
 metadata:
-  id: 405eb973-8e8f-5880-b6d5-9602508ef958
+  id: 23459689-f7ad-5011-bb00-68bce4ded4af
   name: Minimize wildcard use in Roles and ClusterRoles (Manual)
   profile_applicability: |
     * Level 1 - Worker Node

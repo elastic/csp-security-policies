@@ -1,5 +1,5 @@
 metadata:
-  id: 012b9ce0-7354-50aa-85dc-c9a433c872a8
+  id: 06391584-8964-5a71-9243-55396a3a01e7
   name: Ensure that the --token-auth-file parameter is not set (Automated)
   profile_applicability: |
     * Level 1 - Master Node
