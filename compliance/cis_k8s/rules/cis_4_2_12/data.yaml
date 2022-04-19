@@ -1,13 +1,12 @@
 metadata:
-  uuid: 46b30453-180b-54c1-bef9-0e29ec996ad0
-  name: Verify that the RotateKubeletServerCertificate argument is set totrue
-    (Manual)
+  id: 46b30453-180b-54c1-bef9-0e29ec996ad0
+  name: Verify that the RotateKubeletServerCertificate argument is set to true (Manual)
   profile_applicability: |
     • Level 1 - Worker Node
   description: |
     Enable kubelet server certificate rotation.
   rationale: >
-    RotateKubeletServerCertificate causes the kubelet to both request a serving
+    `RotateKubeletServerCertificate` causes the kubelet to both request a serving
     certificate
 
     after bootstrapping its client credentials and rotate the certificate as its existing credentials
@@ -21,44 +20,43 @@ metadata:
     API server. In case your kubelet certificates come from an outside authority/tool (e.g.
 
     Vault) then you need to take care of rotation yourself.
-  audit: >
-    Ignore this check if serverTLSBootstrap is true in the kubelet config file
-    or if the --rotate-
-
-    server-certificates parameter is set on kubelet
+  audit: |
+    Ignore this check if `serverTLSBootstrap` is `true` in the kubelet config file
+    or if the `--rotate-server-certificates` parameter is set on kubelet
 
     Run the following command on each node:
-
+    ```
     ps -ef | grep kubelet
-
-    Verify that RotateKubeletServerCertificate argument exists and is set to true.
-  remediation: >
+    ```
+    Verify that `RotateKubeletServerCertificate` argument exists and is set to `true`.
+  remediation: |
     Edit the kubelet service file
-    /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+    `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf`
 
-    on each worker node and set the below parameter in KUBELET_CERTIFICATE_ARGS variable.
-
+    on each worker node and set the below parameter in `KUBELET_CERTIFICATE_ARGS` variable.
+    ```
     --feature-gates=RotateKubeletServerCertificate=true
-
+    ```
     Based on your system, restart the kubelet service. For example:
-
+    ```
     systemctl daemon-reload
 
     systemctl restart kubelet.service
+    ```
   impact: |
     None
   default_value: |
     By default, kubelet server certificate rotation is disabled.
   references: |
     1. https://github.com/kubernetes/kubernetes/pull/45059
-    2. https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/#kubelet-
-    configuration
+    2. https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/#kubelet-configuration
   section: Kubelet
+  version: "1.0"
   tags:
-    - CIS
-    - Kubernetes
-    - CIS 4.2.12
-    - Kubelet
+  - CIS
+  - Kubernetes
+  - CIS 4.2.12
+  - Kubelet
   benchmark:
     name: CIS Kubernetes V1.20
     version: v1.0.0

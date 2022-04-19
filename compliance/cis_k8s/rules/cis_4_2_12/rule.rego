@@ -46,21 +46,3 @@ finding = result {
 		},
 	}
 }
-
-metadata = {
-	"name": "Verify that the RotateKubeletServerCertificate argument is set to true",
-	"description": "Enable kubelet server certificate rotation.",
-	"rationale": `RotateKubeletServerCertificate causes the kubelet to both request a serving certificateafter bootstrapping its client credentials and rotate the certificate as its existing credentialsexpire.
-This automated periodic rotation ensures that the there are no downtimes due to expired certificates and thus addressing availability in the CIA security triad.
-Note: This recommendation only applies if you let kubelets get their certificates from the API server.
-In case your kubelet certificates come from an outside authority/tool (e.g. Vault) then you need to take care of rotation yourself.`,
-	"impact": "None",
-	"tags": array.concat(cis_k8s.default_tags, ["CIS 4.2.12", "Kubelet"]),
-	"benchmark": cis_k8s.benchmark_metadata,
-	"remediation": `Edit the kubelet service file /etc/systemd/system/kubelet.service.d/10-kubeadm.conf on each worker node and set the below parameter in KUBELET_CERTIFICATE_ARGS variable.
---feature-gates=RotateKubeletServerCertificate=true
-Based on your system, restart the kubelet service. For example:
-systemctl daemon-reload
-systemctl restart kubelet.service`,
-	"default_value": "By default, kubelet server certificate rotation is disabled.",
-}
