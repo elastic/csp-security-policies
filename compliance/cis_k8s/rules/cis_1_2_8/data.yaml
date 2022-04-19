@@ -1,46 +1,41 @@
 metadata:
-  id: dc418fc4-c306-5470-9d0e-f6ea5466a3d2
-  name: Ensure that the --client-ca-file argument is set as appropriate (Automated)
+  id: 3c31068a-4858-5d44-ab2c-53068cf8d300
+  name: Ensure that the --authorization-mode argument includes RBAC (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    • Level 1 - Master Node
   description: |
-    Setup TLS connection on the API server.
+    Turn on Role Based Access Control.
   rationale: >
-    API server communication contains sensitive parameters that should remain
-    encrypted in transit. Configure the API server to serve only HTTPS traffic.
-    If `--client-ca-file` argument is set, any request presenting a client
-    certificate signed by one of the authorities in the `client-ca-file` is
-    authenticated with an identity corresponding to the CommonName of the client
-    certificate.
+    Role Based Access Control (RBAC) allows fine-grained control over the
+    operations that
+    different entities can perform on different objects in the cluster. It is recommended to use
+    the RBAC authorization mode.
   audit: |
     Run the following command on the master node:
     ```
     ps -ef | grep kube-apiserver
     ```
-    Verify that the `--client-ca-file` argument exists and it is set as appropriate.
+    Verify that the `--authorization-mode` argument exists and is set to a value to include `RBAC`.
   remediation: |
-    Follow the Kubernetes documentation and set up the TLS connection on the
-    apiserver.
-    Then, edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the client certificate authority file.
+    Edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml
+    on the master node and set the `--authorization-mode` parameter to a
+    value that includes `RBAC`, for example:
     ```
-    --client-ca-file=<path/to/client-ca-file>
+    --authorization-mode=Node,RBAC
     ```
   impact: >
-    TLS and client certificate authentication must be configured for your
-    Kubernetes cluster deployment.
+    When RBAC is enabled you will need to ensure that appropriate RBAC settings
+    (including Roles, RoleBindings and ClusterRoleBindings) are configured to allow appropriate access.
   default_value: |
-    By default, `--client-ca-file` argument is not set.
+    By default, `RBAC` authorization is not enabled.
   references: |
-    1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
-    2. [http://rootsquash.com/2016/05/10/securing-the-kubernetes-api/](http://rootsquash.com/2016/05/10/securing-the-kubernetes-api/)
-    3. [https://github.com/kelseyhightower/docker-kubernetes-tls-guide](https://github.com/kelseyhightower/docker-kubernetes-tls-guide)
+    1. [https://kubernetes.io/docs/reference/access-authn-authz/rbac/](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
   section: API Server
   version: "1.0"
   tags:
     - CIS
     - Kubernetes
-    - CIS 1.2.30
+    - CIS 1.2.8
     - API Server
   benchmark:
     name: CIS Kubernetes V1.20
