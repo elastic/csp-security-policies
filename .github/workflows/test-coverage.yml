@@ -1,6 +1,7 @@
 name: Test Coverage
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -20,7 +21,7 @@ jobs:
 
       - name: OPA Bundle
         run: |
-          build -b . -e ./compliance
+          ./opa build -b . -e ./compliance
 
       - name: OPA test coverage
         run: |
