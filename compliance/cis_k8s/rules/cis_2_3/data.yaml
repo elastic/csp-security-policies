@@ -1,5 +1,5 @@
 metadata:
-  id: 6e5e9c9c-1155-56d8-87a6-208d9a610f35
+  id: f19b8857-721c-5c1d-8db5-e1ffd6942e47
   name: Ensure that the --auto-tls argument is not set to true (Automated)
   profile_applicability: |
     * Level 1 - Master Node

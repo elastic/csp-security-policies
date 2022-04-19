@@ -1,5 +1,5 @@
 metadata:
-  id: d158ac41-2286-5e67-9ce2-9b80f644b13b
+  id: 8f29fea4-cdfb-51c3-a835-a02118f030f4
   name:
     Ensure that the controller manager pod specification file permissions are
     set to 644 or more restrictive (Automated)

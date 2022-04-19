@@ -1,5 +1,5 @@
 metadata:
-  id: aae399a2-5b38-51f6-8f69-bc238eab7b4f
+  id: de9f92dc-97e6-56a8-a791-5a1720cdebc9
   name: Ensure that the --service-account-lookup argument is set to true (Automated)
   profile_applicability: |
     * Level 1 - Master Node

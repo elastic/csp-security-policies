@@ -1,5 +1,5 @@
 metadata:
-  id: 4dbe7add-e373-5280-84e4-6fdf80409b8e
+  id: 81433715-b03e-515b-8244-d26490fed01e
   name: Ensure that the --tls-cert-file and --tls-private-key-file arguments are
     set as appropriate (Automated)
   profile_applicability: |

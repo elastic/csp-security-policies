@@ -1,5 +1,5 @@
 metadata:
-  id: 2b2a4b02-652d-5398-9571-09b419617bd0
+  id: 01e7ea09-0a7c-5b7e-939b-6224ae702ddf
   name: Ensure that the admission control plugin PodSecurityPolicy is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

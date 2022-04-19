@@ -1,5 +1,5 @@
 metadata:
-  id: f2fdd4be-80bd-5b01-9103-700c265f0493
+  id: 28c54f3d-6a91-5155-8b59-535254651a1c
   name: Ensure that the --protect-kernel-defaults argument is set to true (Automated)
   profile_applicability: |
     * Level 1 - Worker Node

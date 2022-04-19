@@ -1,5 +1,5 @@
 metadata:
-  id: cf8b515a-8a14-58c7-acee-57d61d3bb7b0
+  id: 0f7b80fa-4af5-508e-b64a-08d3e7e64615
   name: Ensure that the --authorization-mode argument includes Node (Automated)
   profile_applicability: |
     * Level 1 - Master Node

@@ -1,5 +1,5 @@
 metadata:
-  id: c7533dee-e7cf-5082-a72d-dcea3742080d
+  id: d74e3db8-7690-5c13-8c19-61066c2052a8
   name: Ensure that the --authorization-mode argument is not set to AlwaysAllow
     (Automated)
   profile_applicability: |

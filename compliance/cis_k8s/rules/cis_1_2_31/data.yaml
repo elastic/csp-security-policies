@@ -1,5 +1,5 @@
 metadata:
-  id: d617ca06-ec94-54f5-89e2-97bbfc1bfdc7
+  id: aed7a736-5180-5f79-a56b-e7b9f2e670d8
   name: Ensure that the --etcd-cafile argument is set as appropriate (Automated)
   profile_applicability: |
     • Level 1 - Master Node

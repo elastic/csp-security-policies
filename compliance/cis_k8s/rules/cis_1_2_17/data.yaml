@@ -1,5 +1,5 @@
 metadata:
-  id: 40fe9500-a770-533b-9db1-f584385c8c5e
+  id: fc3238f2-44b6-501d-b5c8-d88df0611d65
   name: Ensure that the --insecure-bind-address argument is not set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

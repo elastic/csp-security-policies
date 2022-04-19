@@ -1,5 +1,5 @@
 metadata:
-  id: aec5c61d-09bd-5e64-92ba-886f1ceeacf8
+  id: 09c47abd-7b65-52a3-96d1-75a6d5963b96
   name: Ensure that the etcd data directory ownership is set to etcd:etcd (Automated)
   profile_applicability: |
     * Level 1 - Master Node

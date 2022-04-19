@@ -1,5 +1,5 @@
 metadata:
-  id: 42ae3fda-5908-5411-8ee9-f8f3ae670352
+  id: 4a05fc22-79a3-575c-b3f4-2224b44340fd
   name: Ensure that the --cert-file and --key-file arguments are set as
     appropriate (Automated)
   profile_applicability: |

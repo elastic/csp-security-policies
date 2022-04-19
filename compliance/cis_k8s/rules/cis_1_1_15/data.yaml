@@ -1,5 +1,5 @@
 metadata:
-  id: 28f4a3c7-17fa-55be-a527-9561f4d092bc
+  id: e41f17bd-8b95-57b9-b0d5-1f6f4ab25cd2
   name: Ensure that the scheduler.conf file permissions are set to 644 or more
     restrictive (Automated)
   profile_applicability: |
