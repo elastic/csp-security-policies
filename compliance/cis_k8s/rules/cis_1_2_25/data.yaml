@@ -1,6 +1,6 @@
 metadata:
   id: 05be3248-f136-5e7c-99fa-3b40f0b1d0dc
-  name: Ensure that the --request-timeout argument is set as appropriate (Automated)
+  name: Ensure that the --request-timeout argument is set as appropriate (Manual)
   profile_applicability: |
     * Level 1 - Master Node
   description: |
