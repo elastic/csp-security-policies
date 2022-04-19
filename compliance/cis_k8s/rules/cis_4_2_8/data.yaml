@@ -30,7 +30,7 @@ metadata:
 
     `KUBELET_SYSTEM_PODS_ARGS` variable.
 
-    Based on your system, restart the kubelet service. For example:
+    Based on your system, restart the `kubelet` service. For example:
 
     ```
     systemctl daemon-reload
