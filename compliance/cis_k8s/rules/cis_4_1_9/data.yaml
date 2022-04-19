@@ -1,5 +1,5 @@
 metadata:
-  id: cbb6d18c-e059-5eff-ba99-412953364eac
+  id: 421ce5e8-d64a-5632-9ae1-1089ecb69651
   name:
     Ensure that the kubelet --config configuration file has permissions set to
     644 or more restrictive (Automated)
