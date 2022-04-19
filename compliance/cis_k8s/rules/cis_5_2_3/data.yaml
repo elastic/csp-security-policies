@@ -1,7 +1,7 @@
 metadata:
   id: 4d21b544-ac5c-5ef1-bec8-2f6b77abdc50
   name: Minimize the admission of containers wishing to share the hostIPC
-    namespace (Manual)
+    namespace (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: >

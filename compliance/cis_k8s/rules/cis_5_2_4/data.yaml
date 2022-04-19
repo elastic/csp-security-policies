@@ -1,7 +1,7 @@
 metadata:
   id: d856f865-c10c-5b78-a378-1bfbd691fa71
   name: Minimize the admission of containers wishing to share the host network
-    namespace (Manual)
+    namespace (Automated)
   profile_applicability: |
     * Level 1 - Master Node
   description: >
