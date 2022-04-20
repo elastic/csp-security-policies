@@ -1,0 +1,23 @@
+metadata:
+  id: f74e62d4-6cff-5364-9a49-bdd8b595aa1b
+  name: Encrypt traffic to HTTPS load balancers with TLS certificates (Manual)
+  profile_applicability: |
+    • Level 2
+  description: >
+    Encrypt traffic to HTTPS load balancers using TLS certificates.  rationale: >
+  audit: ""
+  remediation: ""
+  impact: ""
+  default_value: ""
+  references: |
+    1. https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/data-protection.html
+  section: Cluster Networking
+  version: "1.0"
+  tags:
+    - CIS
+    - EKS
+    - CIS 5.4.5
+    - Cluster Networking
+  benchmark:
+    name: CIS Amazon Elastic Kubernetes Service (EKS) Benchmark
+    version: v1.0.1
