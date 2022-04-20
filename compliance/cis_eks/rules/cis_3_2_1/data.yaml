@@ -1,6 +1,6 @@
 metadata:
   id: d78c9ced-7c8e-5ba4-96fc-679f1bd345c5
-  name: Ensure that the --anonymous-auth argument is set to false(Automated)
+  name: Ensure that the --anonymous-auth argument is set to false (Automated)
   profile_applicability: |
     • Level 1
   description: |
