@@ -1,5 +1,5 @@
 metadata:
-  id: dada74e4-19b7-5d79-87b0-5ac89d140ef8
+  id: 307f370a-30f5-5174-a12e-387e4273e0c1
   name: Ensure that the --hostname-override argument is not set (Manual)
   profile_applicability: |
     * Level 1 - Worker Node
