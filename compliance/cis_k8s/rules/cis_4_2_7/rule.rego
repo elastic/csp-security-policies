@@ -4,11 +4,12 @@ import data.compliance.cis_k8s
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
+# Ensure that the --make-iptables-util-chains argument is set to true (Automated)
+
 default rule_evaluation = false
 
 process_args := cis_k8s.data_adapter.process_args
 
-# Ensure that the --make-iptables-util-chains argument is set to true (Automated)
 rule_evaluation {
 	common.contains_key_with_value(process_args, "--make-iptables-util-chains", "true")
 }

@@ -9,6 +9,7 @@ test_violation {
 	test.assert_fail(finding) with input as rule_input_with_external("", create_process_config(false, false))
 	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(false, false))
 	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(true, false))
+	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(true, false))
 }
 
 test_pass {

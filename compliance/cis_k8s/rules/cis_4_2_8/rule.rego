@@ -4,17 +4,17 @@ import data.compliance.cis_k8s
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
+# Ensure that the --hostname-override argument is not set.
+
 default rule_evaluation = true
 
 process_args := cis_k8s.data_adapter.process_args
 
-# Ensure that the --hostname-override argument is not set.
 # Note This setting is not configurable via the Kubelet config file.
 rule_evaluation = false {
 	common.contains_key(process_args, "--hostname-override")
 }
 
-# Ensure that the --hostname-override argument is not set.
 finding = result {
 	# filter
 	data_adapter.is_kubelet

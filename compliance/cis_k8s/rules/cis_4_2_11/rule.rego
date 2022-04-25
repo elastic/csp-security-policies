@@ -4,11 +4,12 @@ import data.compliance.cis_k8s
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
+# Verify that the --rotate-certificates argument is not present, or is set to true.
+
 default rule_evaluation = true
 
 process_args := cis_k8s.data_adapter.process_args
 
-# Verify that the --rotate-certificates argument is not present, or is set to true.
 rule_evaluation = false {
 	common.contains_key_with_value(process_args, "--rotate-certificates", "false")
 }
@@ -19,7 +20,6 @@ rule_evaluation = false {
 	data_adapter.process_config.config.rotateCertificates == false
 }
 
-# Ensure that the --hostname-override argument is not set.
 finding = result {
 	# filter
 	data_adapter.is_kubelet

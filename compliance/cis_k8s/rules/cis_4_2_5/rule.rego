@@ -4,11 +4,12 @@ import data.compliance.cis_k8s
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
+# Ensure that the --streaming-connection-idle-timeout argument is not set to 0
+
 default rule_evaluation = true
 
 process_args := cis_k8s.data_adapter.process_args
 
-# Ensure that the --streaming-connection-idle-timeout argument is not set to 0
 rule_evaluation = false {
 	common.contains_key_with_value(process_args, "--streaming-connection-idle-timeout", "0")
 }
@@ -19,7 +20,6 @@ rule_evaluation = false {
 	data_adapter.process_config.config.streamingConnectionIdleTimeout == 0
 }
 
-# Ensure that the --streaming-connection-idle-timeout argument is not set to 0
 finding = result {
 	# filter
 	data_adapter.is_kubelet

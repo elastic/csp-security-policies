@@ -4,6 +4,8 @@ import data.compliance.cis_k8s
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
+# Verify that the --read-only-port argument is set to 0
+
 default rule_evaluation = false
 
 process_args := cis_k8s.data_adapter.process_args
@@ -18,7 +20,6 @@ rule_evaluation {
 	data_adapter.process_config.config.readOnlyPort == 0
 }
 
-# Verify that the --read-only-port argument is set to 0
 finding = result {
 	# filter
 	data_adapter.is_kubelet

@@ -4,11 +4,12 @@ import data.compliance.cis_k8s
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
+# Verify that the RotateKubeletServerCertificate argument is set to true
+
 default rule_evaluation = false
 
 process_args := cis_k8s.data_adapter.process_args
 
-# Verify that the RotateKubeletServerCertificate argument is set to true
 rule_evaluation {
 	common.contains_key_with_value(process_args, "--feature-gates", "RotateKubeletServerCertificate=true")
 }
@@ -32,7 +33,6 @@ rule_evaluation {
     data_adapter.process_config.config.serverTLSBootstrap
 }
 
-# Verify that the RotateKubeletServerCertificate argument is set to true
 finding = result {
 	# filter
 	data_adapter.is_kubelet
