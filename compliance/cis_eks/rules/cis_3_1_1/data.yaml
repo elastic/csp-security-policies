@@ -2,7 +2,7 @@ metadata:
   id: 4b8cc635-6f7f-50dc-96da-1bcb599f1c91
   name: Ensure that the kubeconfig file permissions are set to 644 or more restrictive (Manual)
   profile_applicability: |
-    • Level 1
+    * Level 1
   description: |
     If `kubelet` is running, and if it is using a file-based kubeconfig file,
     ensure that the proxy

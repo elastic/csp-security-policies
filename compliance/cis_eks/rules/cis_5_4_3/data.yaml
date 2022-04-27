@@ -2,7 +2,7 @@ metadata:
   id: 13cd2e5b-53e5-571b-b1bf-23604af58b83
   name: Ensure clusters are created with Private Nodes (Manual)
   profile_applicability: |
-    • Level 1
+    * Level 1
   description: >
     Disable public IP addresses for cluster nodes, so that they only have
     private IP addresses.

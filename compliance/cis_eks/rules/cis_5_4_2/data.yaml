@@ -3,7 +3,7 @@ metadata:
   name: Ensure clusters are created with Private Endpoint Enabled andPublic Access
     Disabled (Manual)
   profile_applicability: |
-    • Level 2
+    * Level 2
   description: >
     Disable access to the Kubernetes API from outside the node network if it is
     not required.

@@ -2,7 +2,7 @@ metadata:
   id: 57f22327-1ce8-57d7-ae7f-47344e970031
   name: Minimize the admission of containers wishing to share the hostnetwork namespace (Automated)
   profile_applicability: |
-    • Level 1
+    * Level 1
   description: |
     Do not generally permit containers to be run with the `hostNetwork` flag set
     to true.

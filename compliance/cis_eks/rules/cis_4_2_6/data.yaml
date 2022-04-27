@@ -2,7 +2,7 @@ metadata:
   id: 70387cdd-bce8-52f8-acc6-eac01c5b405e
   name: Minimize the admission of root containers (Automated)
   profile_applicability: |
-    • Level 2
+    * Level 2
   description: |
     Do not generally permit containers to be run as the root user.
   rationale: >

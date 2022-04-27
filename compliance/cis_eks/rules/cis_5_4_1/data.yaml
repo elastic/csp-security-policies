@@ -2,7 +2,7 @@ metadata:
   id: 09971768-827f-595d-861b-408ba32cc827
   name: Restrict Access to the Control Plane Endpoint (Manual)
   profile_applicability: |
-    • Level 1
+    * Level 1
   description: >
     Enable Endpoint Private Access to restrict access to the cluster's control
     plane to only an
@@ -26,7 +26,7 @@ metadata:
 
     your container cluster, including:
 
-    • Better protection from outsider attacks: Authorized networks provide an additional
+    * Better protection from outsider attacks: Authorized networks provide an additional
 
     layer of security by limiting external access to a specific set of addresses you
 
@@ -36,7 +36,7 @@ metadata:
 
     authorization mechanism.
 
-    • Better protection from insider attacks: Authorized networks help protect your
+    * Better protection from insider attacks: Authorized networks help protect your
 
     cluster from accidental leaks of master certificates from your company's premises.
 

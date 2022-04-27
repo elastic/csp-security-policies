@@ -2,7 +2,7 @@ metadata:
   id: ca97c06c-6484-58e6-bedc-9d7f37e6d8b8
   name: Minimize the admission of privileged containers (Automated)
   profile_applicability: |
-    • Level 1
+    * Level 1
   description: |
     Do not generally permit containers to be run with the
     `securityContext.privileged` flag set to true.

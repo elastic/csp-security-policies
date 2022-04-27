@@ -2,7 +2,7 @@ metadata:
   id: 067c33b0-f259-5c8c-940c-549ecd1f2466
   name: Ensure that the --client-ca-file argument is set as appropriate (Manual)
   profile_applicability: |
-    • Level 1
+    * Level 1
   description: |
     Enable Kubelet authentication using certificates.
   rationale: >

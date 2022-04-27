@@ -2,7 +2,7 @@ metadata:
   id: 383b439d-aa57-5f22-ac46-d06ae0ad655c
   name: Minimize the admission of containers wishing to share the hostprocess ID namespace (Automated)
   profile_applicability: |
-    • Level 1
+    * Level 1
   description: |
     Do not generally permit containers to be run with the `hostPID` flag set to
     `true`.

@@ -2,7 +2,7 @@ metadata:
   id: e6d9726b-acca-54da-9d2f-9eb2648ed7ea
   name: Minimize the admission of containers with capabilities assigned (Manual)
   profile_applicability: |
-    • Level 2
+    * Level 2
   description: |
     Do not generally permit containers with capabilities
   rationale: >

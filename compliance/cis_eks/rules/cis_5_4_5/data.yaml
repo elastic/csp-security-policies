@@ -1,8 +1,8 @@
-metadata:
+  metadata:
   id: f74e62d4-6cff-5364-9a49-bdd8b595aa1b
   name: Encrypt traffic to HTTPS load balancers with TLS certificates (Manual)
   profile_applicability: |
-    • Level 2
+    * Level 2
   description: >
     Encrypt traffic to HTTPS load balancers using TLS certificates.  rationale: >
   audit: ""

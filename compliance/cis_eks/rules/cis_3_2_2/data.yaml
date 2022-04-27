@@ -2,7 +2,7 @@ metadata:
   id: 52d6142a-3cf1-5cd7-b939-170f281b4b8b
   name: Ensure that the --authorization-mode argument is not set to Always Allow (Automated)
   profile_applicability: |
-    • Level 1
+    * Level 1
   description: |
     Do not allow all requests. Enable explicit authorization.
   rationale: |
