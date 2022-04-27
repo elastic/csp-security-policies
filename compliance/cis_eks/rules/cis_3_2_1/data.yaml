@@ -8,9 +8,7 @@ metadata:
   rationale: |
     When enabled, requests that are not rejected by other configured
     authentication methods
-
     are treated as anonymous requests. These requests are then served by the Kubelet server.
-
     You should rely on authentication to authorize access and disallow anonymous requests.
   audit: |
     **Audit Method 1:**
@@ -87,11 +85,7 @@ metadata:
     See the EKS documentation for the default value.
   references: |
     1. https://kubernetes.io/docs/admin/kubelet/
-
-    2. https://kubernetes.io/docs/admin/kubelet-authentication-authorization/#kubelet-
-
-    authentication
-
+    2. https://kubernetes.io/docs/admin/kubelet-authentication-authorization/#kubelet-authentication
     3. https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/
   section: Kubelet
   version: "1.0"

@@ -8,9 +8,7 @@ metadata:
   rationale: |
     Kubelets, by default, allow all authenticated requests (even anonymous ones)
     without
-
     needing explicit authorization checks from the apiserver. You should restrict this behavior
-
     and only allow explicitly authorized requests.
   audit: |
     **Audit Method 1:**

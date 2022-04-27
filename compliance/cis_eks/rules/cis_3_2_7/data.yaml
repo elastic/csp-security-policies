@@ -7,16 +7,11 @@ metadata:
     Allow Kubelet to manage iptables.
   rationale: >
     Kubelets can automatically manage the required changes to iptables based on
-    how you
-
-    choose your networking options for the pods. It is recommended to let kubelets manage
-
+    how you choose your networking options for the pods. 
+    It is recommended to let kubelets manage
     the changes to iptables. This ensures that the iptables configuration remains in sync with
-
     pods networking configuration. Manually configuring iptables with dynamic pod network
-
     configuration changes might hamper the communication between pods/containers and to
-
     the outside world. You might have iptables rules too restrictive or too open.
   audit: |
     **Audit Method 1:**

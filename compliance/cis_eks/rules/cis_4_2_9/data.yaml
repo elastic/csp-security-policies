@@ -8,13 +8,9 @@ metadata:
   rationale: >
     Containers run with a default set of capabilities as assigned by the
     Container Runtime.
-
     Capabilities are parts of the rights generally granted on a Linux system to the root user.
-
     In many cases applications running in containers do not require any capabilities to operate,
-
     so from the perspective of the principal of least privilege use of capabilities should be
-
     minimized.
   audit: |
     Get the set of PSPs with the following command:
@@ -28,9 +24,7 @@ metadata:
   remediation: >
     Review the use of capabilites in applications runnning on your cluster.
     Where a namespace
-
     contains applicaions which do not require any Linux capabities to operate consider adding
-
     a PSP which forbids the admission of containers which do not drop all capabilities.
   impact: |
     Pods with containers require capabilities to operate will not be permitted.
@@ -38,7 +32,6 @@ metadata:
     By default, PodSecurityPolicies are not defined.
   references: |
     1.https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
-
     2. https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-unprivileged-linux-containers/
   section: Pod Security Policies
   version: "1.0"

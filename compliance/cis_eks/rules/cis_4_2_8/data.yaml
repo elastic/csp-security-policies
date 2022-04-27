@@ -9,19 +9,12 @@ metadata:
   rationale: >
     Containers run with a default set of capabilities as assigned by the
     Container Runtime.
-
     Capabilities outside this set can be added to containers which could expose them to risks of
-
     container breakout attacks.
-
     There should be at least one PodSecurityPolicy (PSP) defined which prevents containers
-
     with capabilities beyond the default set from launching.
-
     If you need to run containers with additional capabilities, this should be defined in a
-
     separate PSP and you should carefully check RBAC controls to ensure that only limited
-
     service accounts and users are given permission to access that PSP.
   audit: |
     Get the set of PSPs with the following command:
@@ -29,18 +22,14 @@ metadata:
     kubectl get psp
     ```
     Verify that there are no PSPs present which have `allowedCapabilities` set to anything
-
     other than an empty array.
   remediation: |
     Ensure that `allowedCapabilities` is not present in PSPs for the cluster
     unless it is set to an
-
     empty array.
   impact: >
     Pods with containers which require capabilities outwith the default set will
-    not be
-
-    permitted.
+    not be permitted.
   default_value: |
     By default, PodSecurityPolicies are not defined.
   references: |

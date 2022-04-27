@@ -9,37 +9,28 @@ metadata:
   rationale: >
     The kubelet reads various parameters, including security settings, from a
     config file
-
     specified by the `--config` argument. If this file is specified you should restrict its file
-
     permissions to maintain the integrity of the file. The file should be writable by only the
-
     administrators on the system.
   audit: |
     First, SSH to the relevant worker node:
-
     To check to see if the Kubelet Service is running:
     ```
     sudo systemctl status kubelet
     ```
     The output should return `Active: active (running) since..`
-
     Run the following command on each node to find the appropriate Kubelet config file:
     ```
     ps -ef | grep kubelet
     ```
     The output of the above command should return something similar to `--config`
-
     `/etc/kubernetes/kubelet/kubelet-config.json` which is the location of the Kubelet
-
     config file.
-
     Run the following command:
     ```
     stat -c %U:%G /etc/kubernetes/kubelet/kubelet-config.json
     ```
     The output of the above command is the Kubelet config file's ownership. Verify that the
-
     ownership is set to `root:root`
   remediation: |
     Run the following command (using the config file location identified in the
