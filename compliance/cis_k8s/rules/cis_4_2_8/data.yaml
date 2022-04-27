@@ -26,7 +26,6 @@ metadata:
     Based on your system, restart the `kubelet` service. For example:
     ```
     systemctl daemon-reload
-
     systemctl restart kubelet.service
     ```
   impact: |
