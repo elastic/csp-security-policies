@@ -1,5 +1,5 @@
 metadata:
-  id: 1d7ade15-2ec7-5436-b517-bf8fa815baf5
+  id: 2eaebbf1-4cd6-5e02-9f8d-fc2be36f3c86
   name: Minimize the admission of containers with allowPrivilegeEscalation (Automated)
   profile_applicability: |
     * Level 1

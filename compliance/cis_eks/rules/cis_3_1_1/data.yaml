@@ -1,5 +1,5 @@
 metadata:
-  id: 4b8cc635-6f7f-50dc-96da-1bcb599f1c91
+  id: fd3e93e3-c1c6-5dd7-a582-cf6ab65ea2f2
   name: Ensure that the kubeconfig file permissions are set to 644 or more restrictive (Manual)
   profile_applicability: |
     * Level 1

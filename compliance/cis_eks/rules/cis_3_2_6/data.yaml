@@ -1,5 +1,5 @@
 metadata:
-  id: 11d4b01d-3c65-5944-aab4-3a1733917299
+  id: 136ee092-7486-59d2-8f77-760b743c8a72
   name: Ensure that the --protect-kernel-defaults argument is set to true (Automated)
   profile_applicability: |
     * Level 1

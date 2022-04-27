@@ -1,5 +1,5 @@
 metadata:
-  id: 5b5f285a-772e-50f7-bda8-1965f7ef216c
+  id: 4c94ad80-79b7-58e3-99a0-1d761163b7d2
   name: Minimize the admission of containers with the NET_RAWcapability (Automated)
   profile_applicability: |
     * Level 1
