@@ -54,6 +54,7 @@ metadata:
     in the links
 
     within the 'References' section.
+  impact : ""
   default_value: |
     By default, Application-layer Secrets Encryption is not enabled.
   references: |
