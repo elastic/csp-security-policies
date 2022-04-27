@@ -6,7 +6,7 @@ metadata:
   description: >
     Enable Endpoint Private Access to restrict access to the cluster's control
     plane to only an allowlist of authorized IPs.
-  rationale: >
+  rationale: |
     Authorized networks are a way of specifying a restricted range of IP
     addresses that are
     permitted to access your cluster's control plane. Kubernetes Engine uses both Transport

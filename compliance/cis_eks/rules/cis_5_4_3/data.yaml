@@ -23,6 +23,7 @@ metadata:
     manage your own NAT gateway.
   default_value: |
     By default, Private Nodes are disabled.
+  references: ""
   section: Cluster Networking
   version: "1.0"
   tags:

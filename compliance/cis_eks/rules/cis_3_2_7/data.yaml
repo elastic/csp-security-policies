@@ -56,7 +56,7 @@ metadata:
     ```
     "makeIPTablesUtilChains": true
     ```
-    `Remediation Method 2:`
+    **Remediation Method 2:**
     If using executable arguments, edit the kubelet service file
     `/etc/systemd/system/kubelet.service.d/10-kubelet-args.conf` on each worker node
     and add the below parameter at the end of the `KUBELET_ARGS` variable string.

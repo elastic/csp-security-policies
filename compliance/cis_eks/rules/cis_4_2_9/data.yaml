@@ -22,16 +22,16 @@ metadata:
     kubectl get psp <name> -o=jsonpath='{.spec.requiredDropCapabilities}'
     ```
   remediation: >
-    Review the use of capabilites in applications runnning on your cluster.
+    Review the use of capabilities in applications running on your cluster.
     Where a namespace
-    contains applicaions which do not require any Linux capabities to operate consider adding
+    contains applications which do not require any Linux capabilities to operate consider adding
     a PSP which forbids the admission of containers which do not drop all capabilities.
   impact: |
     Pods with containers require capabilities to operate will not be permitted.
   default_value: |
     By default, PodSecurityPolicies are not defined.
   references: |
-    1.https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
+    1. https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
     2. https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-unprivileged-linux-containers/
   section: Pod Security Policies
   version: "1.0"

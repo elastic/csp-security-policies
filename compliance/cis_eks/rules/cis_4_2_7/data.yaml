@@ -1,6 +1,6 @@
 metadata:
-  id: 4c94ad80-79b7-58e3-99a0-1d761163b7d2
-  name: Minimize the admission of containers with the NET_RAWcapability (Automated)
+  id: a3cd45ae-ba6b-564a-bd85-810efbbe5cea
+  name: Minimize the admission of containers with the NET_RAW capability (Automated)
   profile_applicability: |
     * Level 1
   description: |
@@ -37,7 +37,7 @@ metadata:
   default_value: |
     By default, PodSecurityPolicies are not defined.
   references: |
-    1.https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
+    1. https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
     2. https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-unprivileged-linux-containers/
   section: Pod Security Policies
   version: "1.0"

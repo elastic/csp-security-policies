@@ -21,7 +21,7 @@ metadata:
     master's VPC network to perform any attack on the Kubernetes API.
   audit: ""
   remediation: ""
-  impact: >
+  impact: |
     Configure the EKS cluster endpoint to be private. See Modifying Cluster
     Endpoint Access for
     further information on this topic.
