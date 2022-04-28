@@ -42,7 +42,7 @@ metadata:
   references: |
     1. https://kubernetes.io/docs/admin/kubelet/
     2. https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/kubeletconfig/v1beta1/types.go
-  section: 'Kubelet'
+  section: Kubelet
   version: "1.0"
   tags:
   - CIS
