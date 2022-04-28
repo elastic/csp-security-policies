@@ -5,15 +5,15 @@ import data.lib.test
 
 test_violation {
 	test.assert_fail(finding) with input as rule_input("")
-	test.assert_fail(finding) with input as rule_input("--read-only-port=10")
-	test.assert_fail(finding) with input as rule_input_with_external("--read-only-port=10", create_process_config(0))
+	test.assert_fail(finding) with input as rule_input("--read-only-port 10")
+	test.assert_fail(finding) with input as rule_input_with_external("--read-only-port 10", create_process_config(0))
 	test.assert_fail(finding) with input as rule_input_with_external("", create_process_config(10))
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("--read-only-port=0")
-	test.assert_pass(finding) with input as rule_input_with_external("--read-only-port=0", create_process_config(10))
-	test.assert_pass(finding) with input as rule_input_with_external("--read-only-port=0", create_process_config(0))
+	test.assert_pass(finding) with input as rule_input("--read-only-port 0")
+	test.assert_pass(finding) with input as rule_input_with_external("--read-only-port 0", create_process_config(10))
+	test.assert_pass(finding) with input as rule_input_with_external("--read-only-port 0", create_process_config(0))
 	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(0))
 }
 
