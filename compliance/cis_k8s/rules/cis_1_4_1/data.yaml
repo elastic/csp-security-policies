@@ -2,7 +2,7 @@ metadata:
   id: 16f3d090-fe9c-5011-8be7-428c53009a26
   name: Ensure that the --profiling argument is set to false (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Disable profiling, if not needed.
   rationale: >

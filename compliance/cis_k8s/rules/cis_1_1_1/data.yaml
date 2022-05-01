@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the API server pod specification file permissions are set to
     644 or more restrictive (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     Ensure that the API server pod specification file has permissions of `644`
     or more restrictive.

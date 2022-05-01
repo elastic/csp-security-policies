@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the RotateKubeletServerCertificate argument is set to true
     (Automated)
   profile_applicability: |
-    * Level 2 - Control Plane Node
+    * Level 2 - Master Node
   description: |
     Enable kubelet server certificate rotation on controller-manager.
   rationale: >

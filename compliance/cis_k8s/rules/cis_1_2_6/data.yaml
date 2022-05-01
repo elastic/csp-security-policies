@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the --kubelet-certificate-authority argument is set as
     appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Verify kubelet's certificate before establishing connection.
   rationale: >

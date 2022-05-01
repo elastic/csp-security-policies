@@ -4,7 +4,7 @@ metadata:
     Ensure that the --peer-cert-file and --peer-key-file arguments are set as
     appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     etcd should be configured to make use of TLS encryption for peer connections.
   rationale: >

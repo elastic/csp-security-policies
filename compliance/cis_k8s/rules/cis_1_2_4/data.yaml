@@ -2,7 +2,7 @@ metadata:
   id: 615a4c44-e55c-57b1-9525-54e200e1a705
   name: Ensure that the --kubelet-https argument is set to true (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Use https for kubelet connections.
   rationale: >

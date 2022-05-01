@@ -2,7 +2,7 @@ metadata:
   id: ad6d4076-950a-5349-8951-d7148f886b22
   name: Minimize the admission of containers with added capabilities (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     Do not generally permit containers with capabilities assigned beyond the
     default set.

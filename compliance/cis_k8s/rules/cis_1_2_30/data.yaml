@@ -2,7 +2,7 @@ metadata:
   id: 793081ed-18f0-5c3f-a785-0eca54085fb9
   name: Ensure that the --client-ca-file argument is set as appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Setup TLS connection on the API server.
   rationale: >

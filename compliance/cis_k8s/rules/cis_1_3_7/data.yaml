@@ -2,7 +2,7 @@ metadata:
   id: 630b0709-ea2a-5cea-8cb3-14fa160be415
   name: Ensure that the --bind-address argument is set to 127.0.0.1 (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     Do not bind the Controller Manager service to non-loopback insecure
     addresses.

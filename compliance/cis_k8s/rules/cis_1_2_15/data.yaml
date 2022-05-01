@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the admission control plugin NamespaceLifecycle is set
     (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Reject creating objects in a namespace that is undergoing termination.
   rationale: >

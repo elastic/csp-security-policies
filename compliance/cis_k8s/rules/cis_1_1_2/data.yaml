@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the API server pod specification file ownership is set
     to root:root (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     Ensure that the API server pod specification file ownership is set to
     `root:root`.

@@ -2,7 +2,7 @@ metadata:
   id: 621c2ef4-683e-510f-9fba-8632fa186025
   name: Ensure that Service Account Tokens are only mounted where necessary (Manual)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     Service accounts tokens should not be mounted in pods except where the
     workload

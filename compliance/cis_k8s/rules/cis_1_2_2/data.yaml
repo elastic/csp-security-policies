@@ -2,7 +2,7 @@ metadata:
   id: 06391584-8964-5a71-9243-55396a3a01e7
   name: Ensure that the --token-auth-file parameter is not set (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Do not use token based authentication.
   rationale: >

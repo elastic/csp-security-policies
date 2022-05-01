@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the --audit-log-maxsize argument is set to 100 or as
     appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Rotate log files on reaching 100 MB or as appropriate.
   rationale: >

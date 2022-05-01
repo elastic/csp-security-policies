@@ -2,7 +2,7 @@ metadata:
   id: f76659e0-71ff-572a-9c9c-3d18c3a90b90
   name: Ensure that the etcd data directory ownership is set to etcd:etcd (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Ensure that the etcd data directory ownership is set to `etcd:etcd`.
   rationale: >

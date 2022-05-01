@@ -2,7 +2,7 @@ metadata:
   id: cf6ebe82-9367-5b8e-a117-c81ab11ba7d4
   name: Ensure that the admission control plugin ServiceAccount is set (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Automate service accounts management.
   rationale: >

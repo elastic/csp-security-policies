@@ -2,7 +2,7 @@ metadata:
   id: 22e49e64-aa12-5a88-9bd2-eefb2423261c
   name: Ensure that the admin.conf file ownership is set to root:root (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Ensure that the `admin.conf` file ownership is set to `root:root`.
   rationale: >

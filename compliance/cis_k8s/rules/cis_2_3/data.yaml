@@ -2,7 +2,7 @@ metadata:
   id: 7aaeeea4-1aa8-54e3-9e8d-2d59e97abebf
   name: Ensure that the --auto-tls argument is not set to true (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Do not use self-signed certificates for TLS.
   rationale: >

@@ -2,7 +2,7 @@ metadata:
   id: 0d2c3f44-85d6-53ad-947a-99b6ad1f16fe
   name: Minimize the admission of privileged containers (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     Do not generally permit containers to be run with the
     `securityContext.privileged` flag set to `true`.

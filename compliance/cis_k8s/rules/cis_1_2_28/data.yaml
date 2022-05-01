@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the --etcd-certfile and --etcd-keyfile arguments are set as
     appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     etcd should be configured to make use of TLS encryption for client
     connections.

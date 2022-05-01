@@ -3,7 +3,7 @@ metadata:
   name: Minimize the admission of containers wishing to share the host network
     namespace (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: >
     Do not generally permit containers to be run with the `hostNetwork` flag set
     to true.

@@ -4,7 +4,7 @@ metadata:
     Ensure that the --use-service-account-credentials argument is set to true
     (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Use individual service account credentials for each controller.
   rationale: >

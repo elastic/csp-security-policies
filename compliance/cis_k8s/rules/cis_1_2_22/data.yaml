@@ -4,7 +4,7 @@ metadata:
     Ensure that the --audit-log-maxage argument is set to 30 or as appropriate
     (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     Retain the logs for at least 30 days or as appropriate.
   rationale: >

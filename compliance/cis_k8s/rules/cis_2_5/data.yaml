@@ -2,7 +2,7 @@ metadata:
   id: 01889b3d-1c3b-5fe6-9a0f-d512016e05e8
   name: Ensure that the --peer-client-cert-auth argument is set to true (Automated)
   profile_applicability: |
-    * Level 1 - Control Plane Node
+    * Level 1 - Master Node
   description: |
     etcd should be configured for peer authentication.
   rationale: >
