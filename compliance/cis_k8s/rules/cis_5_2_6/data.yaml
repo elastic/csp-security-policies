@@ -2,7 +2,7 @@ metadata:
   id: 7e122766-328d-58f2-94d5-990b1521c366
   name: Minimize the admission of root containers (Automated)
   profile_applicability: |
-    * Level 2 - Master Node
+    * Level 2 - Control Plane Node
   description: |
     Do not generally permit containers to be run as the root user.
   rationale: >

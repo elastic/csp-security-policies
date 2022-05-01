@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the --kubelet-certificate-authority argument is set as
     appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Verify kubelet's certificate before establishing connection.
   rationale: >
@@ -15,7 +15,7 @@ metadata:
     man-in-the-middle attacks, and unsafe to run over untrusted and/or public
     networks.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -25,7 +25,7 @@ metadata:
     Follow the Kubernetes documentation and setup the TLS connection between the
     apiserver
     and kubelets. Then, edit the API server pod specification file
-    `/etc/kubernetes/manifests/kube-apiserver.yaml` on the master node and set the 
+    `/etc/kubernetes/manifests/kube-apiserver.yaml` on the control plane node and set the 
     `--kubelet-certificate-authority` parameter to the path to the cert file for the certificate
     authority.
     ```

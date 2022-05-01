@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the --audit-log-maxbackup argument is set to 10 or as
     appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Retain 10 or an appropriate number of old log files.
   rationale: >
@@ -13,7 +13,7 @@ metadata:
     100 MB and the number of old log files to keep as 10, you would approximate
     have 1 GB of log data that you could potentially use for your analysis.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -21,7 +21,7 @@ metadata:
   remediation: |
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the `--audit-log-maxbackup` parameter to 10
+    on the control plane node and set the `--audit-log-maxbackup` parameter to 10
     or to an appropriate value.
     ```
     --audit-log-maxbackup=10

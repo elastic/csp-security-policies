@@ -2,7 +2,7 @@ metadata:
   id: b38c72df-213c-5ab6-8f1d-d733dda8998d
   name: Ensure that the admission control plugin PodSecurityPolicy is set (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Reject creating pods that do not match Pod Security Policies.
   rationale: |
@@ -18,7 +18,7 @@ metadata:
     to be admitted. See section 5.2 for recommendations on PodSecurityPolicy
     settings.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -28,7 +28,7 @@ metadata:
     Follow the documentation and create Pod Security Policy objects as per your
     environment.
     Then, edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the --enable-admission-plugins parameter
+    on the control plane node and set the --enable-admission-plugins parameter
     to a value that includes `PodSecurityPolicy`:
     ```
     --enable-admission-plugins=...,PodSecurityPolicy,...

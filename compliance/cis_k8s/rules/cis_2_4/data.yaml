@@ -4,7 +4,7 @@ metadata:
     Ensure that the --peer-cert-file and --peer-key-file arguments are set as
     appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: >
     etcd should be configured to make use of TLS encryption for peer connections.
   rationale: >
@@ -25,7 +25,7 @@ metadata:
     appropriate
     for your etcd cluster.
     Then, edit the etcd pod specification file `/etc/kubernetes/manifests/etcd.yaml` on the
-    master node and set the below parameters.
+    control plane node and set the below parameters.
     ```
     --peer-client-file=</path/to/peer-cert-file>
     --peer-key-file=</path/to/peer-key-file>

@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the admission control plugin NamespaceLifecycle is set
     (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Reject creating objects in a namespace that is undergoing termination.
   rationale: >
@@ -13,7 +13,7 @@ metadata:
     recommended to enforce the integrity of the namespace termination process
     and also for the availability of the newer objects.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -22,7 +22,7 @@ metadata:
   remediation: |
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the `--disable-admission-plugins` parameter
+    on the control plane node and set the `--disable-admission-plugins` parameter
     to ensure it does not include `NamespaceLifecycle`.
   impact: |
     None

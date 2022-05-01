@@ -2,7 +2,7 @@ metadata:
   id: 793081ed-18f0-5c3f-a785-0eca54085fb9
   name: Ensure that the --client-ca-file argument is set as appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Setup TLS connection on the API server.
   rationale: >
@@ -13,7 +13,7 @@ metadata:
     authenticated with an identity corresponding to the CommonName of the client
     certificate.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -22,7 +22,7 @@ metadata:
     Follow the Kubernetes documentation and set up the TLS connection on the
     apiserver.
     Then, edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the client certificate authority file.
+    on the control plane node and set the client certificate authority file.
     ```
     --client-ca-file=<path/to/client-ca-file>
     ```

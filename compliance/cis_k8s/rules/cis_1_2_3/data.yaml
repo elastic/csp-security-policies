@@ -2,7 +2,7 @@ metadata:
   id: 615a4c44-e55c-57b1-9525-54e200e1a705
   name: Ensure that the --kubelet-https argument is set to true (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Use https for kubelet connections.
   rationale: >
@@ -10,7 +10,7 @@ metadata:
     data such as secrets and keys. It is thus important to use in-transit
     encryption for any communication between the apiserver and kubelets.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -18,7 +18,7 @@ metadata:
   remediation: |
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and remove the `--kubelet-https` parameter.
+    on the control plane node and remove the `--kubelet-https` parameter.
   impact: |
     You require TLS to be configured on apiserver as well as kubelets.
   default_value: |

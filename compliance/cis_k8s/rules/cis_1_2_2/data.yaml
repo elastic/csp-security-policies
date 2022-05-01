@@ -2,7 +2,7 @@ metadata:
   id: 06391584-8964-5a71-9243-55396a3a01e7
   name: Ensure that the --token-auth-file parameter is not set (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Do not use token based authentication.
   rationale: >
@@ -11,7 +11,7 @@ metadata:
     the apiserver, and cannot be revoked or rotated without restarting the
     apiserver. Hence, do not use static token-based authentication.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -20,7 +20,7 @@ metadata:
     Follow the documentation and configure alternate mechanisms for
     authentication. Then,
     edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and remove the `--token-auth-file=<filename>`
+    on the control plane node and remove the `--token-auth-file=<filename>`
     parameter.
   impact: >
     You will have to configure and use alternate authentication mechanisms such

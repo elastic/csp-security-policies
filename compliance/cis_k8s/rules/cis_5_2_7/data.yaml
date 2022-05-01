@@ -2,7 +2,7 @@ metadata:
   id: e479b6a8-1594-5904-8206-19a8f03de9c0
   name: Minimize the admission of containers with the NET_RAW capability (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: >
     Do not generally permit containers with the potentially dangerous NET_RAW
     capability.

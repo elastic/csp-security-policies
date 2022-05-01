@@ -2,7 +2,7 @@ metadata:
   id: 8c7d61f2-700a-5822-8f6b-e36ad193f83e
   name: Ensure that the --audit-log-path argument is set (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: >
     Enable auditing on the Kubernetes API Server and set the desired audit log
     path.
@@ -14,7 +14,7 @@ metadata:
     capabilities, it should be enabled. You can enable it by setting an
     appropriate audit log path.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -22,7 +22,7 @@ metadata:
   remediation: |
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the `--audit-log-path` parameter to a suitable
+    on the control plane node and set the `--audit-log-path` parameter to a suitable
     path and file where you would like audit logs to be written, for example:
     ```
     --audit-log-path=/var/log/apiserver/audit.log

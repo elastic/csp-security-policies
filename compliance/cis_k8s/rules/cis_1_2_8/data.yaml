@@ -2,7 +2,7 @@ metadata:
   id: d0711b87-897e-53b0-9cbf-64da523046ad
   name: Ensure that the --authorization-mode argument includes RBAC (Automated)
   profile_applicability: |
-    • Level 1 - Master Node
+    • Level 1 - Control Plane Node
   description: |
     Turn on Role Based Access Control.
   rationale: >
@@ -11,14 +11,14 @@ metadata:
     different entities can perform on different objects in the cluster. It is recommended to use
     the RBAC authorization mode.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
     Verify that the `--authorization-mode` argument exists and is set to a value to include `RBAC`.
   remediation: |
     Edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml
-    on the master node and set the `--authorization-mode` parameter to a
+    on the control plane node and set the `--authorization-mode` parameter to a
     value that includes `RBAC`, for example:
     ```
     --authorization-mode=Node,RBAC

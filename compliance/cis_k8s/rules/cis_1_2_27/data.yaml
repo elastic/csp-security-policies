@@ -4,7 +4,7 @@ metadata:
     Ensure that the --service-account-key-file argument is set as appropriate
     (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: >
     Explicitly set a service account public key file for service accounts on the
     apiserver.
@@ -16,7 +16,7 @@ metadata:
     be used for signing service account tokens. Hence, the public key should be
     specified to the apiserver with `--service-account-key-file`.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -24,7 +24,7 @@ metadata:
   remediation: |
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the `--service-account-key-file` parameter
+    on the control plane node and set the `--service-account-key-file` parameter
     to the public key file for service accounts:
     ```
     --service-account-key-file=<filename>

@@ -3,14 +3,14 @@ metadata:
   name: Ensure that the --authorization-mode argument is not set to AlwaysAllow
     (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Do not always authorize all requests.
   rationale: >
     The API Server, can be configured to allow all requests. This mode should
     not be used on any production cluster.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -18,7 +18,7 @@ metadata:
   remediation: |
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the `--authorization-mode` parameter to
+    on the control plane node and set the `--authorization-mode` parameter to
     values other than `AlwaysAllow`. One such example could be as below.
     ```
     --authorization-mode=RBAC

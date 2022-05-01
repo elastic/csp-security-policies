@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the RotateKubeletServerCertificate argument is set to true
     (Automated)
   profile_applicability: |
-    * Level 2 - Master Node
+    * Level 2 - Control Plane Node
   description: |
     Enable kubelet server certificate rotation on controller-manager.
   rationale: >
@@ -16,7 +16,7 @@ metadata:
     the API server. In case your kubelet certificates come from an outside
     authority/tool (e.g. Vault) then you need to take care of rotation yourself.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-controller-manager
     ```
@@ -24,7 +24,7 @@ metadata:
   remediation: |
     Edit the Controller Manager pod specification file
     `/etc/kubernetes/manifests/kube-controller-manager.yaml` 
-    on the master node and set the `--feature-gates` parameter to
+    on the control plane node and set the `--feature-gates` parameter to
     include `RotateKubeletServerCertificate=true`.
     ```
     --feature-gates=RotateKubeletServerCertificate=true

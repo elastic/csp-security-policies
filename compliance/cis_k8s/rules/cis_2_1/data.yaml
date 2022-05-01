@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the --cert-file and --key-file arguments are set as
     appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Configure TLS encryption for the etcd service.
   rationale: >
@@ -19,7 +19,7 @@ metadata:
   remediation: |
     Follow the etcd service documentation and configure TLS encryption.
     Then, edit the etcd pod specification file `/etc/kubernetes/manifests/etcd.yaml` on the
-    master node and set the below parameters.
+    control plane node and set the below parameters.
     ```
     --cert-file=</path/to/ca-file>
     --key-file=</path/to/key-file>

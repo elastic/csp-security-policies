@@ -3,7 +3,7 @@ metadata:
   name: Ensure that the --kubelet-client-certificate and
     --kubelet-client-keyarguments are set as appropriate (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Enable certificate based kubelet authentication.
   rationale: >
@@ -12,7 +12,7 @@ metadata:
     You should set up certificate- based kubelet authentication to ensure that
     the apiserver authenticates itself to kubelets when submitting requests.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -22,7 +22,7 @@ metadata:
     Follow the Kubernetes documentation and set up the TLS connection between
     the
     apiserver and kubelets. Then, edit API server pod specification file
-    `/etc/kubernetes/manifests/kube-apiserver.yaml` on the master node and set the
+    `/etc/kubernetes/manifests/kube-apiserver.yaml` on the control plane node and set the
     kubelet client certificate and key parameters as below.
     ```
     --kubelet-client-certificate=<path/to/client-certificate-file>

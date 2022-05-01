@@ -2,15 +2,15 @@ metadata:
   id: 50ae51db-6bd4-5b20-92c9-fe83fed7efa5
   name: Ensure that the --insecure-port argument is set to 0 (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Do not bind to insecure port.
   rationale: >
     Setting up the apiserver to serve on an insecure port would allow
-    unauthenticated and unencrypted access to your master node. This would allow
+    unauthenticated and unencrypted access to your control plane node. This would allow
     attackers who could access this port, to easily take control of the cluster.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -18,7 +18,7 @@ metadata:
   remediation: |
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the below parameter.
+    on the control plane node and set the below parameter.
     ```
     --insecure-port=0
     ```

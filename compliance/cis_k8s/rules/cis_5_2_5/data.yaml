@@ -2,7 +2,7 @@ metadata:
   id: c346ffdb-c68b-58e8-b9bf-f8e946cfd1fd
   name: Minimize the admission of containers with allowPrivilegeEscalation (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: >
     Do not generally permit containers to be run with the
     `allowPrivilegeEscalation` flag set to true.

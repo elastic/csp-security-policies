@@ -2,7 +2,7 @@ metadata:
   id: 01889b3d-1c3b-5fe6-9a0f-d512016e05e8
   name: Ensure that the --peer-client-cert-auth argument is set to true (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     etcd should be configured for peer authentication.
   rationale: >
@@ -21,7 +21,7 @@ metadata:
   remediation: |
     Edit the etcd pod specification file `/etc/kubernetes/manifests/etcd.yaml`
     on
-    the master
+    the control plane
     node and set the below parameter.
     ```
     --peer-client-cert-auth=true

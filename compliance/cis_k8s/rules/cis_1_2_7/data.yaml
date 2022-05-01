@@ -2,7 +2,7 @@ metadata:
   id: 45028365-2b48-5237-9ece-9804dcf536e8
   name: Ensure that the --authorization-mode argument includes Node (Automated)
   profile_applicability: |
-    * Level 1 - Master Node
+    * Level 1 - Control Plane Node
   description: |
     Restrict kubelet nodes to reading only objects associated with them.
   rationale: >
@@ -10,7 +10,7 @@ metadata:
     `ConfigMap`, `PersistentVolume`, and `PersistentVolumeClaim` objects
     associated with their nodes.
   audit: |
-    Run the following command on the master node:
+    Run the following command on the control plane node:
     ```
     ps -ef | grep kube-apiserver
     ```
@@ -18,7 +18,7 @@ metadata:
   remediation: |
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml` 
-    on the master node and set the `--authorization-mode` parameter to a
+    on the control plane node and set the `--authorization-mode` parameter to a
     value that includes `Node`.
     ```
     --authorization-mode=Node,RBAC
