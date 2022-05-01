@@ -36,7 +36,7 @@ metadata:
   tags:
     - CIS
     - Kubernetes
-    - CIS 1.2.13
+    - CIS 1.2.14
     - API Server
   benchmark:
     name: CIS Kubernetes V1.20
