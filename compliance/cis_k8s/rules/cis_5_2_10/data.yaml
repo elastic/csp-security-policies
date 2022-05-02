@@ -28,7 +28,7 @@ metadata:
   references: |
     1. https://kubernetes.io/docs/concepts/security/pod-security-standards/
     2. https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-
-  unprivileged-linux-containers/  section: Pod Security Standards
+    unprivileged-linux-containers/  section: Pod Security Standards
   version: "1.0"
   tags:
     - CIS
