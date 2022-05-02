@@ -36,13 +36,13 @@ metadata:
     By default, PodSecurityPolicies are not defined.
   references: |
     1. [https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies)
-  section: Pod Security Policies
+  section: Pod Security Standards
   version: "1.0"
   tags:
     - CIS
     - Kubernetes
     - CIS 5.2.1
-    - Pod Security Policies
+    - Pod Security Standards
   benchmark:
     name: CIS Kubernetes V1.20
     version: v1.0.0
