@@ -1,5 +1,5 @@
 metadata:
-  id: f9863b0b-a309-58e5-b882-a462cb4b9731
+  id: 0cd77c44-7420-5cac-a366-821b44bf819e
   name: Ensure that the admission control plugin NodeRestriction is set (Automated)
   profile_applicability: |
     * Level 1 - Master Node

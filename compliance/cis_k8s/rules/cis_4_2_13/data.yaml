@@ -1,5 +1,5 @@
 metadata:
-  id: 55e738a2-1a44-5716-a206-4faa9d66154d
+  id: f9d84d7f-a741-5f2a-a454-704554380bca
   name: Ensure that the Kubelet only makes use of Strong CryptographicCiphers (Manual)
   profile_applicability: |
     * Level 1 - Worker Node

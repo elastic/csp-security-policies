@@ -1,5 +1,5 @@
 metadata:
-  id: ee8e3ec7-4850-5d82-a86c-41a40d46ba0e
+  id: c3c56d62-e217-5a77-aba0-124b1dfb3d2c
   name:
     Ensure that the etcd pod specification file ownership is set to root:root
     (Automated)

@@ -1,5 +1,5 @@
 metadata:
-  id: 8f32167d-dfc6-59ee-9c87-8a2064aca533
+  id: 3b0587fb-01a3-50c2-9d3d-6675f376d509
   name: Ensure that the API server pod specification file ownership is set
     to root:root (Automated)
   profile_applicability: |

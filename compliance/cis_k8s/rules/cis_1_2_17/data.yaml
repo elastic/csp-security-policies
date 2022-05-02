@@ -1,5 +1,5 @@
 metadata:
-  id: 2c7c9ced-5a86-5a72-9688-4bc6a75ce89a
+  id: e14db7eb-4c21-5f97-826a-391266a92ced
   name: Ensure that the --secure-port argument is not set to 0 (Automated)
   profile_applicability: |
     * Level 1 - Master Node

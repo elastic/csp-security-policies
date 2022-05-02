@@ -1,5 +1,5 @@
 metadata:
-  id: 793081ed-18f0-5c3f-a785-0eca54085fb9
+  id: e60a7027-cdd7-5a35-afa2-f7a8be2dc845
   name: Ensure that the --client-ca-file argument is set as appropriate (Automated)
   profile_applicability: |
     * Level 1 - Master Node

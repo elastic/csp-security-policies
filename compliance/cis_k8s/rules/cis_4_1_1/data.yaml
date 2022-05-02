@@ -1,5 +1,5 @@
 metadata:
-  id: 4247baed-c82d-5134-adeb-c1ed6968ed36
+  id: 9144ba59-0a3e-59fb-b96e-e3f73e7aaf66
   name: Ensure that the kubelet service file permissions are set to 644 or more
     restrictive (Automated)
   profile_applicability: |

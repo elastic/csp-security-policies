@@ -1,5 +1,5 @@
 metadata:
-  id: 945f29dc-21e5-5f26-aab4-1c2dbf3daf1a
+  id: 41e05dea-5fdd-50a7-9149-5be11cd8a63e
   name: Minimize the admission of containers wishing to share the hostIPC
     namespace (Automated)
   profile_applicability: |

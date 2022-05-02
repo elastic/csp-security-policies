@@ -1,5 +1,5 @@
 metadata:
-  id: 0d2c3f44-85d6-53ad-947a-99b6ad1f16fe
+  id: c978fb31-5706-5bdf-93fb-7cb84a35c63c
   name: Minimize the admission of privileged containers (Automated)
   profile_applicability: |
     * Level 1 - Master Node

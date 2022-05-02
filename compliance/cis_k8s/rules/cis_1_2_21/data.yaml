@@ -1,5 +1,5 @@
 metadata:
-  id: d38c12e3-ea42-5104-95be-b02fe0751193
+  id: 861cb7eb-4db7-58c2-b849-19c2437c97f2
   name: Ensure that the --audit-log-maxbackup argument is set to 10 or as
     appropriate (Automated)
   profile_applicability: |

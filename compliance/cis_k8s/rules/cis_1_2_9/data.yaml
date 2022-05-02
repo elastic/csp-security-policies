@@ -1,5 +1,5 @@
 metadata:
-  id: d0711b87-897e-53b0-9cbf-64da523046ad
+  id: ed33b6ba-d276-5b5c-9cdc-85b62de52be1
   name: Ensure that the --authorization-mode argument includes RBAC (Automated)
   profile_applicability: |
     * Level 1 - Master Node

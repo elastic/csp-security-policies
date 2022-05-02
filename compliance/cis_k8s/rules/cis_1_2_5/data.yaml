@@ -1,5 +1,5 @@
 metadata:
-  id: e0b17dee-7c45-51b0-9000-ab4c821cbfcc
+  id: 5c060a65-bbc5-5af4-9a42-338717937ec4
   name: Ensure that the --kubelet-client-certificate and
     --kubelet-client-keyarguments are set as appropriate (Automated)
   profile_applicability: |

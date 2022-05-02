@@ -1,5 +1,5 @@
 metadata:
-  id: 615a4c44-e55c-57b1-9525-54e200e1a705
+  id: 8832517d-74ba-5191-8b2b-3bbc81f6f970
   name: Ensure that the --kubelet-https argument is set to true (Automated)
   profile_applicability: |
     * Level 1 - Master Node

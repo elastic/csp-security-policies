@@ -1,5 +1,5 @@
 metadata:
-  id: 564839fa-e3e8-52f3-b8db-b7f8ad9b4a59
+  id: 3e07507c-31ba-5d01-800f-cfb8c0a09787
   name: Ensure that the etcd data directory permissions are set to 700 or more
     restrictive (Automated)
   profile_applicability: |

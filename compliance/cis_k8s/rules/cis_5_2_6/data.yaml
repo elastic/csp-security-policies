@@ -1,5 +1,5 @@
 metadata:
-  id: c346ffdb-c68b-58e8-b9bf-f8e946cfd1fd
+  id: bbe88e70-e917-5e9d-8993-3b5dd61a56c9
   name: Minimize the admission of containers with allowPrivilegeEscalation (Automated)
   profile_applicability: |
     * Level 1 - Master Node

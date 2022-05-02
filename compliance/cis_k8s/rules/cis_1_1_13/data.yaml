@@ -1,5 +1,5 @@
 metadata:
-  id: 854cf350-9ce7-5c93-b934-d1c8957d1a47
+  id: fa54a7f6-30ac-5c16-9f7c-a156c78cf96a
   name: Ensure that the admin.conf file permissions are set to 600 (Automated)
   profile_applicability: |
     * Level 1 - Master Node
