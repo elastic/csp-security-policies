@@ -19,7 +19,7 @@ metadata:
     only limited service accounts and users are given permission to use that
     policy.
   audit: |
-  	List the policies in use for each namespace in the cluster, ensure that each policy disallows 
+    List the policies in use for each namespace in the cluster, ensure that each policy disallows 
     the admission of `hostPID` containers
   remediation: |
     Add policies to each namespace in the cluster which has user workloads to restrict the 

@@ -12,7 +12,7 @@ metadata:
     potentially sensitive information about the cluster.
   audit: |
     Run the following command on each node:
-    ```	
+    ```
     ps -ef | grep kubelet
     ```
     Verify that the `--read-only-port` argument exists and is set to `0`.
