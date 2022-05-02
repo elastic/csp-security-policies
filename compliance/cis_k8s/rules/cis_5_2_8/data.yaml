@@ -11,32 +11,25 @@ metadata:
     Container Runtime. By default this can include potentially dangerous
     capabilities. With Docker as the container runtime the NET_RAW capability is
     enabled which may be misused by malicious containers. Ideally, all
-    containers should drop this capability. There should be at least one
-    PodSecurityPolicy (PSP) defined which prevents containers with the NET_RAW
-    capability from launching. If you need to run containers with this
-    capability, this should be defined in a separate PSP and you should
-    carefully check RBAC controls to ensure that only limited service accounts
-    and users are given permission to access that PSP.
+    containers should drop this capability. There should be at least one admission control policy defined which does not permit 
+    containers with the NET_RAW capability. 
+    If you need to run containers with this capability, this should be defined in a separate 
+    policy and you should carefully check to ensure that only limited service accounts and 
+    users are given permission to use that policy.
   audit: |
-    Get the set of PSPs with the following command:
-    ```
-    kubectl get psp
-    ```
-    For each PSP, check whether NET_RAW is disabled:
-    ```
-    kubectl get psp <name> -o=jsonpath='{.spec.requiredDropCapabilities}'
-    ```
-    Verify that there is at least one PSP which returns NET_RAW or ALL.
+    List the policies in use for each namespace in the cluster, ensure that at least one policy 
+    disallows the admission of containers with the `NET_RAW` capability.
   remediation: |
-    Create a PSP as described in the Kubernetes documentation, ensuring that the
-    `.spec.requiredDropCapabilities` is set to include either `NET_RAW` or `ALL`.
+    Add policies to each namespace in the cluster which has user workloads to restrict the 
+    admission of containers with the `NET_RAW` capability.
   impact: >
     Pods with containers which run with the NET_RAW capability will not be
     permitted.
   default_value: |
-    By default, PodSecurityPolicies are not defined.
+    By default, there are no restrictions on the creation of containers with the `NET_RAW` 
+    capability.
   references: |
-    1. [https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies)
+    1. [https://kubernetes.io/docs/concepts/security/pod-security-standards/](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
     2. [https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-unprivileged-linux-containers/](https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-unprivileged-linux-containers/)
   section: Pod Security Standards
   version: "1.0"

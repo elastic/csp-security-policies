@@ -13,28 +13,22 @@ metadata:
     perspective of the principal of least privilege use of capabilities should
     be minimized.
   audit: |
-    Get the set of PSPs with the following command:
-    ```
-    kubectl get psp
-    ```
-    For each PSP, check whether capabilities have been forbidden:
-    ```
-    kubectl get psp <name> -o=jsonpath='{.spec.requiredDropCapabilities}'
-    ```
+    List the policies in use for each namespace in the cluster, ensure that at least one policy 
+    requires that capabilities are dropped by all containers.
   remediation: |
     Review the use of capabilites in applications runnning on your cluster.
     Where
     a namespace
     contains applicaions which do not require any Linux capabities to operate consider adding
-    a PSP which forbids the admission of containers which do not drop all capabilities.
+    a policy which forbids the admission of containers which do not drop all capabilities.
   impact: |
     Pods with containers require capabilities to operate will not be permitted.
   default_value: |
-    By default, PodSecurityPolicies are not defined.
+    By default, there are no restrictions on the creation of containers with additional capabilities
   references: |
-    1. [https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies)
-    2. [https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-unprivileged-linux-containers/](https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-unprivileged-linux-containers/)
-  section: Pod Security Standards
+    1. https://kubernetes.io/docs/concepts/security/pod-security-standards/
+    2. https://www.nccgroup.trust/uk/our-research/abusing-privileged-and-
+  unprivileged-linux-containers/  section: Pod Security Standards
   version: "1.0"
   tags:
     - CIS
