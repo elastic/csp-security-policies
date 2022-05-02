@@ -37,5 +37,5 @@ metadata:
     - CIS 5.2.4
     - Pod Security Standards
   benchmark:
-    name: CIS Kubernetes V1.20
+    name: CIS Kubernetes V1.23
     version: v1.0.0

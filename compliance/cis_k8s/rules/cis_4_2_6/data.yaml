@@ -49,5 +49,5 @@ metadata:
     - CIS 4.2.6
     - Kubelet
   benchmark:
-    name: CIS Kubernetes V1.20
+    name: CIS Kubernetes V1.23
     version: v1.0.0
