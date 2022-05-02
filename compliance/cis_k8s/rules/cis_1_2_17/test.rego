@@ -1,15 +1,16 @@
-package compliance.cis_k8s.rules.cis_1_2_24
+package compliance.cis_k8s.rules.cis_1_2_17
 
 import data.kubernetes_common.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("--service-account-lookup=false")
+	test.assert_fail(finding) with input as rule_input("--secure-port=0")
 }
 
 test_pass {
+	test.assert_pass(finding) with input as rule_input("--secure-port=1")
+	test.assert_pass(finding) with input as rule_input("--secure-port=65535")
 	test.assert_pass(finding) with input as rule_input("")
-	test.assert_pass(finding) with input as rule_input("--service-account-lookup=true")
 }
 
 test_not_evaluated {

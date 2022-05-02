@@ -1,17 +1,17 @@
-package compliance.cis_k8s.rules.cis_1_2_30
+package compliance.cis_k8s.rules.cis_1_2_18
 
 import data.compliance.cis_k8s
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
-# Ensure that the --client-ca-file argument is set as appropriate (Automated)
+# Ensure that the --profiling argument is set to false (Automated)
 finding = result {
 	# filter
 	data_adapter.is_kube_apiserver
 
 	# evaluate
 	process_args := cis_k8s.data_adapter.process_args
-	rule_evaluation := common.contains_key(process_args, "--client-ca-file")
+	rule_evaluation = common.contains_key_with_value(process_args, "--profiling", "false")
 
 	# set result
 	result := {
