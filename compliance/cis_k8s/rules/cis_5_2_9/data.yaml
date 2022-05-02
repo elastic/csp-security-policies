@@ -1,34 +1,36 @@
 metadata:
-  id: 21da5544-410e-5958-9e8d-bb2e9ab02fe5
-  name: Minimize the admission of containers with capabilities assigned (Manual)
+  id: ad6d4076-950a-5349-8951-d7148f886b22
+  name: Minimize the admission of containers with added capabilities (Automated)
   profile_applicability: |
-    * Level 2 - Master Node
-  description: |
-    Do not generally permit containers with capabilities
+    * Level 1 - Master Node
+  description: >
+    Do not generally permit containers with capabilities assigned beyond the
+    default set.
   rationale: >
     Containers run with a default set of capabilities as assigned by the
-    Container Runtime. Capabilities are parts of the rights generally granted on
-    a Linux system to the root user. In many cases applications running in
-    containers do not require any capabilities to operate, so from the
-    perspective of the principal of least privilege use of capabilities should
-    be minimized.
+    Container Runtime. Capabilities outside this set can be added to containers
+    which could expose them to risks of container breakout attacks. There should
+    be at least one PodSecurityPolicy (PSP) defined which prevents containers
+    with capabilities beyond the default set from launching. If you need to run
+    containers with additional capabilities, this should be defined in a
+    separate PSP and you should carefully check RBAC controls to ensure that
+    only limited service accounts and users are given permission to access that
+    PSP.
   audit: |
     Get the set of PSPs with the following command:
     ```
     kubectl get psp
     ```
-    For each PSP, check whether capabilities have been forbidden:
-    ```
-    kubectl get psp <name> -o=jsonpath='{.spec.requiredDropCapabilities}'
-    ```
+    Verify that there are no PSPs present which have `allowedCapabilities` set to anything
+    other than an empty array.
   remediation: |
-    Review the use of capabilites in applications runnning on your cluster.
-    Where
-    a namespace
-    contains applicaions which do not require any Linux capabities to operate consider adding
-    a PSP which forbids the admission of containers which do not drop all capabilities.
-  impact: |
-    Pods with containers require capabilities to operate will not be permitted.
+    Ensure that `allowedCapabilities` is not present in PSPs for the cluster
+    unless
+    it is set to an
+    empty array.
+  impact: >
+    Pods with containers which require capabilities outwith the default set will
+    not be permitted.
   default_value: |
     By default, PodSecurityPolicies are not defined.
   references: |
