@@ -37,7 +37,9 @@ metadata:
     Run the below command (based on the file location on your system) on the
     each worker node. 
     For example,
-    `chmod 644 <kubeconfig file>`
+    ```
+    chmod 644 <kubeconfig file>
+    ```
   impact: |
     None.
   default_value: |
