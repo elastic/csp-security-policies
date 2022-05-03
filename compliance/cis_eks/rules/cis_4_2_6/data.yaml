@@ -25,7 +25,7 @@ metadata:
     ```
     kubectl get psp <name> -o=jsonpath='{.spec.runAsUser.rule}'
     ```
-    Verify that there is at least one PSP which returns MustRunAsNonRoot or MustRunAs with the
+    Verify that there is at least one PSP which returns `MustRunAsNonRoot` or `MustRunAs` with the
     range of UIDs not including 0.
   remediation: |
     Create a PSP as described in the Kubernetes documentation, ensuring that the

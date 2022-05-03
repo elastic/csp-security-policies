@@ -1,6 +1,6 @@
 metadata:
-  id: af4cc6d6-dd53-5b13-9a13-8987e5453a16
-  name: Ensure Image Vulnerability Scanning using Amazon ECR imagescanning or a third party provider (Manual)
+  id: a8592cf4-d913-5906-8499-dc1d5a410e2f
+  name: Ensure Image Vulnerability Scanning using Amazon ECR image scanning or a third party provider (Manual)
   profile_applicability: |
     * Level 1
   description: |
