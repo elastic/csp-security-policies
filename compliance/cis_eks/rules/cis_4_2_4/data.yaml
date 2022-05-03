@@ -1,6 +1,6 @@
 metadata:
-  id: 8f13ab3c-ee3e-5c0a-857d-95214a2c3f71
-  name: Minimize the admission of containers wishing to share the hostnetwork namespace (Automated)
+  id: 4b4dc57c-c46d-5db2-822d-ad702b0dd1d1
+  name: Minimize the admission of containers wishing to share the host network namespace (Automated)
   profile_applicability: |
     * Level 1
   description: |

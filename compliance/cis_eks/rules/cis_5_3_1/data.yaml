@@ -1,6 +1,6 @@
 metadata:
-  id: 7169a9b3-0f98-5b5e-a95b-bfd1d3322817
-  name: Ensure Kubernetes Secrets are encrypted using Customer MasterKeys (CMKs) managed in AWS KMS (Automated)
+  id: fa91cef9-6c40-5644-b39d-d17e0f66d507
+  name: Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed in AWS KMS (Automated)
   profile_applicability: |
     * Level 1
   description: >

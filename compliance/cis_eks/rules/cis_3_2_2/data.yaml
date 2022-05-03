@@ -28,8 +28,8 @@ metadata:
     ```
     Verify that the `"authentication": {"webhook": { "enabled": is set to true.`
     If the `"authentication": {"mode": { argument` is present check that it is not set to
-    `AlwaysAllow`. If it is not present check that there is a Kubelet config file specified by --
-    config, and that file sets `"authentication": {"mode": { ` to something other than
+    `AlwaysAllow`. If it is not present check that there is a Kubelet config file specified by 
+    `--config`, and that file sets `"authentication": {"mode": { ` to something other than
     `AlwaysAllow`.
     **Audit Method 2:**
     If using the api configz endpoint consider searching for the status of `authentication...`

@@ -33,7 +33,7 @@ metadata:
     Verify that the `"x509": {"clientCAFile:"` argument exists and is set to the location of the
     client certificate authority file.
     If the `"x509": {"clientCAFile:"` argument is not present, check that there is a Kubelet
-    config file specified by --config, and that the file sets `"authentication": { "x509":`
+    config file specified by `--config`, and that the file sets `"authentication": { "x509":`
     `{"clientCAFile:"` to the location of the client certificate authority file.
 
     **Audit Method 2:**

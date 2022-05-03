@@ -26,8 +26,8 @@ metadata:
     Leaked certificates used from outside Amazon EC2 and outside the authorized IP
     ranges (for example, from addresses outside your company) are still denied access.
   audit: |
-    ```
     Input:
+    ```
     aws eks describe-cluster \
     --region <region> \
     --name <clustername>

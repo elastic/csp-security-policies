@@ -72,7 +72,7 @@ metadata:
     - '*'
     ```
   references: |
-    1.https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
+    1. https://kubernetes.io/docs/concepts/policy/pod-security-policy/#enabling-pod-security-policies
     2. https://aws.github.io/aws-eks-best-practices/pods/#restrict-the-containers-that-can-run-as-privileged
   section: Pod Security Policies
   version: "1.0"
