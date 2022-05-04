@@ -26,7 +26,7 @@ metadata:
     cat /etc/kubernetes/kubelet/kubelet-config.json
     ```
     Verify that the `--read-only-port argument` exists and is set to `0`.
-    If the `--read-only-port argument` is not present, check that there is a Kubelet config file
+    If the `--read-only-port` argument is not present, check that there is a Kubelet config file
     specified by `--config`. Check that if there is a `readOnlyPort` entry in the file, it is set to `0`.
   remediation: |
     If modifying the Kubelet config file, edit the kubelet-config.json file
