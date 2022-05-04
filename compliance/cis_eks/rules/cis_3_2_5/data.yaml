@@ -41,7 +41,7 @@ metadata:
     `NODE_NAME="The-Name-Of-Node-To-Extract-Configuration" from the output of`
     `"kubectl get nodes"`
     ```
-    kubectl proxy --port=8001 &`
+    kubectl proxy --port=8001 &
     export HOSTNAME_PORT=localhost:8001 (example host and port number)
     export NODE_NAME=ip-192.168.31.226.ec2.internal (example node name from
     "kubectl get nodes")
