@@ -79,7 +79,7 @@ metadata:
     curl -sSL "http://${HOSTNAME_PORT}/api/v1/nodes/${NODE_NAME}/proxy/configz"
     ```
     **For all three remediations:**
-    Based on your system, restart the kubelet service and check status
+    Based on your system, restart the `kubelet` service and check status
     ```
     systemctl daemon-reload
     systemctl restart kubelet.service
