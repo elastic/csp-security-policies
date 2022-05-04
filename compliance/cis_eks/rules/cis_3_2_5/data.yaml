@@ -1,6 +1,6 @@
 metadata:
   id: 627afe20-4027-585e-9db2-2b5f942d769c
-  name: Ensure that the --streaming-connection-idle-timeout argument isnot set to 0 (Manual)
+  name: Ensure that the --streaming-connection-idle-timeout argument is not set to 0 (Manual)
   profile_applicability: |
     * Level 1
   description: |
