@@ -1,6 +1,6 @@
 metadata:
   id: 87c7fdfd-c1f8-5794-a089-36125435bf1e
-  name: Verify that the RotateKubeletServerCertificate argument is set to true (Manual)
+  name: Verify that the RotateKubeletServerCertificate argument is set to true or it's not present (Manual)
   profile_applicability: |
     * Level 1 - Worker Node
   description: |
