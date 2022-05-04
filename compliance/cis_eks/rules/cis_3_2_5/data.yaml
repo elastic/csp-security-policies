@@ -9,7 +9,7 @@ metadata:
     Setting idle timeouts ensures that you are protected against
     Denial-of-Service attacks,
     inactive connections and running out of ephemeral ports.
-    Note: By default, `--streaming-connection-idle-timeout` is set to 4 hours which might be
+    **Note:** By default, `--streaming-connection-idle-timeout` is set to 4 hours which might be
     too high for your environment. Setting this as appropriate would additionally ensure that
     such streaming connections are timed out after serving legitimate use cases.
   audit: |
