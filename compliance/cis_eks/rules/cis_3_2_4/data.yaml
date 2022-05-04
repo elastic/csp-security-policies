@@ -30,7 +30,7 @@ metadata:
     specified by `--config`. Check that if there is a `readOnlyPort` entry in the file, it is set to `0`.
   remediation: |
     If modifying the Kubelet config file, edit the kubelet-config.json file
-    `/etc/kubernetes/kubelet/kubelet-config.json` and set the below parameter to false
+    `/etc/kubernetes/kubelet/kubelet-config.json` and set the below parameter to `false`
     ```
     readOnlyPort to 0
     ```
