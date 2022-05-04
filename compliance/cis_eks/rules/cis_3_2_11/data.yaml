@@ -30,7 +30,7 @@ metadata:
     ```
     cat /etc/kubernetes/kubelet/kubelet-config.json
     ```
-    Verify that `RotateKubeletServerCertificat`e argument exists and is set to `true`.
+    Verify that `RotateKubeletServerCertificate` argument exists and is set to `true`.
     **Audit Method 2:**
     If using the api configz endpoint consider searching for the status of
     `"RotateKubeletServerCertificate":true` by extracting the live configuration from the
