@@ -1,5 +1,5 @@
 metadata:
-  id: dd0b03d8-74e1-5841-8f3b-c295f52ac9d3
+  id: d4eef2c6-599a-57d1-99dd-490d3745161d
   name: Ensure that the --eventRecordQPS argument is set to 0 or a level which ensures appropriate event capture (Automated)
   profile_applicability: |
     * Level 2
