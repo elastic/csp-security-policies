@@ -1,5 +1,5 @@
 metadata:
-  id: 96a3c014-ab5f-5ecd-8b33-0cbe9fffb456
+  id: c6bcde81-4ca4-5f6f-9ef0-1116b4a02f4c
   name: Ensure that the RotateKubeletServerCertificate argument is set to true (Manual)
   profile_applicability: |
     * Level 1

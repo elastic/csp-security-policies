@@ -1,5 +1,5 @@
 metadata:
-  id: 13adb1b4-fe5b-5837-be1c-7370940d0baa
+  id: efb2ffa2-28a9-558e-aba3-f58243cb3bbb
   name: Ensure that the --rotate-certificates argument is not set to false (Manual)
   profile_applicability: |
     * Level 2
