@@ -1,13 +1,13 @@
 repos:
   - repo: local
     hooks:
-#      - id: opa-fmt
-#        name: OPA fmt
-#        description: Formats Rego policy using opa fmt
-#        entry: opa fmt
-#        args: [ -w ]
-#        language: system
-#        files: (\.rego)$
+      - id: opa-fmt
+        name: OPA fmt
+        description: Formats Rego policy using opa fmt
+        entry: opa fmt
+        args: [ -w ]
+        language: system
+        files: (\.rego)$
 
 #      - id: opa-bundle
 #        name: OPA bundle

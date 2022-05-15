@@ -25,7 +25,7 @@ finding = result {
 	data_adapter.is_service_account_or_pod
 
 	# evaluate
-	rule_evaluation =   assert.is_false(rule_violation)
+	rule_evaluation = assert.is_false(rule_violation)
 
 	# set result
 	result := {

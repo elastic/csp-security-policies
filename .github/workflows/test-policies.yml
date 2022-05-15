@@ -15,9 +15,13 @@ jobs:
       - name: OPA format
         uses: docker://openpolicyagent/opa
         with:
-          args: |
-            fmt . --list
-            fmt . --fail=true --diff
+          args: "fmt . --fail=true --diff"
+
+      - name: OPA format list failed files
+        uses: docker://openpolicyagent/opa
+        if: always()
+        with:
+          args: "fmt . --list"
 
       - name: OPA build
         uses: docker://openpolicyagent/opa
