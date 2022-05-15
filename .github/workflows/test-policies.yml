@@ -16,8 +16,8 @@ jobs:
         uses: docker://openpolicyagent/opa
         with:
           args: |
-            opa fmt . --list
-            opa fmt . --fail=true --diff
+            fmt . --list
+            fmt . --fail=true --diff
 
       - name: OPA build
         uses: docker://openpolicyagent/opa
