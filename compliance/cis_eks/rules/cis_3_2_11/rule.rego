@@ -1,6 +1,6 @@
-package compliance.cis_k8s.rules.cis_4_2_12
+package compliance.cis_eks.rules.cis_3_2_11
 
-import data.compliance.cis_k8s
+import data.compliance.cis_eks
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
@@ -8,10 +8,10 @@ import data.compliance.lib.data_adapter
 
 default rule_evaluation = false
 
-process_args := cis_k8s.data_adapter.process_args
+process_args := cis_eks.data_adapter.process_args
 
 rule_evaluation {
-	not common.contains_key_with_value(process_args, "--feature-gates", "RotateKubeletServerCertificate=false")
+	common.contains_key_with_value(process_args, "--feature-gates", "RotateKubeletServerCertificate=true")
 }
 
 # In case both flags and configuration file are specified, the executable argument takes precedence.

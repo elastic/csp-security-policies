@@ -1,5 +1,5 @@
 metadata:
-  id: 56d187e9-9b7b-54d4-9c22-c67078cd2ce7,
+  id: dc91f4c4-4f0e-59ba-a0e1-96e996736787,
   name: Ensure that the --tls-cert-file and --tls-private-key-file arguments are set as appropriate (Manual)
   profile_applicability: |
     * Level 1 - Worker Node
@@ -45,5 +45,5 @@ metadata:
   - CIS 4.2.10
   - Kubelet
   benchmark:
-    name: CIS Kubernetes V1.20
+    name: CIS Kubernetes V1.23
     version: v1.0.0

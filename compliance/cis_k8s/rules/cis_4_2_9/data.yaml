@@ -1,5 +1,5 @@
 metadata:
-  id: 41631914-7d37-5f26-a13c-03a39150e3d5
+  id: 8dad2026-5cfd-5398-ba90-9c329ae6b2ca
   name: Ensure that the --event-qps argument is set to 0 or a level which ensures appropriate event capture (Manual)
   profile_applicability: |
     * Level 2 - Worker Node
@@ -11,7 +11,7 @@ metadata:
   rationale: |
     It is important to capture all events and not restrict event creation. 
     Events are an important source of security information and analytics that ensure that your environment is
-    consistently monitored using the event data
+    consistently monitored using the event data.
   audit: |
     Run the following command on each node:
     ```
@@ -26,7 +26,7 @@ metadata:
     If using a Kubelet config file, edit the file to set `eventRecordQPS:` to an appropriate level.
     If using command line arguments, edit the kubelet service file
     `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf` on each worker node and
-    set the below parameter in KUBELET_SYSTEM_PODS_ARGS variable.
+    set the below parameter in `KUBELET_SYSTEM_PODS_ARGS` variable.
     Based on your system, restart the `kubelet` service. 
     For example:
     ```
@@ -50,5 +50,5 @@ metadata:
   - CIS 4.2.9
   - Kubelet
   benchmark:
-    name: CIS Kubernetes V1.20
+    name: CIS Kubernetes V1.23
     version: v1.0.0
