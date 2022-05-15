@@ -9,11 +9,11 @@ import data.compliance.lib.data_adapter
 # evaluate
 process_args := cis_k8s.data_adapter.process_args
 
-default rule_evaluation = true
+default rule_evaluation = false
 
-rule_evaluation = false{
+rule_evaluation {
 	value := process_args["--request-timeout"]
-	common.duration_lte(value, "60s")
+	common.duration_gt(value, "60s")
 }
 
 finding = result {
