@@ -22,7 +22,7 @@ jobs:
         uses: docker://openpolicyagent/opa
         if: steps.opa_fmt.outcome == 'failure'
         with:
-          args: "fmt . --fail=true"
+          args: "fmt . --list"
 
       - name: OPA build
         uses: docker://openpolicyagent/opa
