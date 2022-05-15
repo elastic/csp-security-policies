@@ -20,7 +20,7 @@ jobs:
 
       - name: OPA format list failed files
         uses: docker://openpolicyagent/opa
-        if: steps.opa_fmt.outputs.exit_code == 1
+        if: steps.opa_fmt.outputs.exit_code != 0
         with:
           args: "fmt . --list"
 
