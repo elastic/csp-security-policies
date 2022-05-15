@@ -16,11 +16,11 @@ jobs:
         id: opa_fmt
         uses: docker://openpolicyagent/opa
         with:
-          args: "fmt . --fail=true"
+          args: "fmt . --fail=true --diff"
 
       - name: OPA format list failed files
         uses: docker://openpolicyagent/opa
-        if: steps.opa_fmt.outputs.exit_code != 0
+        if: always()
         with:
           args: "fmt . --list"
 
