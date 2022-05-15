@@ -15,7 +15,7 @@ rule_violation {
 }
 
 # no roles or cluster roles bound to default service account apart from the defaults.
-rule_violation {
+rule_violation{
 	pod := data_adapter.pod
 	pod.spec.serviceAccountName == "default"
 }
