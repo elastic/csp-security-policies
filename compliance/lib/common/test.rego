@@ -234,19 +234,19 @@ test_duration_gte_smaller {
 test_duration_lte_greater {
 	duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
 	min_duration := "10h30m15s9ns" # 10 hours 30 minutes 15 seconds 9 nano-seconds
-	assert.is_false(duration_let(duration, min_duration))
+	assert.is_false(duration_lte(duration, min_duration))
 }
 
-test_duration_gte_equals {
+test_duration_lte_equals {
 	duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
 	min_duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
-	duration_gte(duration, min_duration)
+	duration_lte(duration, min_duration)
 }
 
-test_duration_gte_smaller {
+test_duration_lte_smaller {
 	duration := "10h30m15s9ns" # 10 hours 30 minutes 15 seconds 9 nano-seconds
 	min_duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
-	assert.is_false(duration_gte(duration, min_duration))
+	duration_lte(duration, min_duration)
 }
 
 test_file_in_path {
