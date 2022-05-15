@@ -195,10 +195,46 @@ test_duration_gt_smaller {
 	assert.is_false(duration_gt(duration, min_duration))
 }
 
+test_duration_lt_greater {
+	duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
+	min_duration := "10h30m15s9ns" # 10 hours 30 minutes 15 seconds 9 nano-seconds
+	assert.is_false(duration_lt(duration, min_duration))
+}
+
+test_duration_lt_equals {
+	duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
+	min_duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
+	assert.is_false(duration_lt(duration, min_duration))
+}
+
+test_duration_lt_smaller {
+	duration := "10h30m15s9ns" # 10 hours 30 minutes 15 seconds 9 nano-seconds
+	min_duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
+	duration_lt(duration, min_duration)
+}
+
 test_duration_gte_greater {
 	duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
 	min_duration := "10h30m15s9ns" # 10 hours 30 minutes 15 seconds 9 nano-seconds
 	duration_gte(duration, min_duration)
+}
+
+test_duration_gte_equals {
+	duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
+	min_duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
+	duration_gte(duration, min_duration)
+}
+
+test_duration_gte_smaller {
+	duration := "10h30m15s9ns" # 10 hours 30 minutes 15 seconds 9 nano-seconds
+	min_duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
+	assert.is_false(duration_gte(duration, min_duration))
+}
+
+test_duration_lte_greater {
+	duration := "10h30m15s10ns" # 10 hours 30 minutes 15 seconds 10 nano-seconds
+	min_duration := "10h30m15s9ns" # 10 hours 30 minutes 15 seconds 9 nano-seconds
+	assert.is_false(duration_let(duration, min_duration))
 }
 
 test_duration_gte_equals {
