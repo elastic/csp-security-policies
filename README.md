@@ -16,7 +16,21 @@ Go the `main.js` and edit the following:
 - Set the `pdfPath` to your `CIS_Kubernetes_Benchmark_v1.6.0.pdf` file path.
 - **Optional** set the B_Page/E_page to the first/last rule page you want to convert.
 
-Run the project `node main.js`
+Project CLI: `node main.js --help`
+```
+Usage: cis-benchmark-pdf-serialization [options]
+
+CLI CIS Benchmark parser
+
+Options:
+  -V, --version              output the version number
+  -p, --pdfpath <string>
+  -r, --reportpath <string>
+  -h, --help                 display help for command
+  
+Example:
+  node main.js -p <BENCHMARK_PATH> -r <DIR_TO_STORE_REPORT>
+```
 
 ### Guidelines on how to process generated rules
 
