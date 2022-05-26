@@ -50,6 +50,7 @@ metadata:
     8b93d0a746/contributors/design-
     proposals/admission_control_event_rate_limit.md
   section: API Server
+  version: "1.0"
   tags:
     - CIS
     - Kubernetes

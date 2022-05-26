@@ -46,6 +46,7 @@ metadata:
 
     3. https://kubernetes.io/docs/user-guide/pod-security-policy/#working-with-rbac
   section: API Server
+  version: "1.0"
   tags:
     - CIS
     - Kubernetes

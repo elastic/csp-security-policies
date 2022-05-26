@@ -53,6 +53,7 @@ metadata:
     1. https://kubernetes.io/docs/admin/kube-apiserver/
     2. https://kubernetes.io/docs/admin/admission-controllers/#alwayspullimages
   section: API Server
+  version: "1.0"
   tags:
     - CIS
     - Kubernetes

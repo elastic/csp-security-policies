@@ -66,6 +66,7 @@ metadata:
     1. https://github.com/ssllabs/research/wiki/SSL-and-TLS-Deployment-Best-
     Practices#23-use-secure-cipher-suites
   section: API Server
+  version: "1.0"
   tags:
     - CIS
     - Kubernetes
