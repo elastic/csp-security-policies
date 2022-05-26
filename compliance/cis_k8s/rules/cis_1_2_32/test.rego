@@ -20,4 +20,5 @@ test_not_evaluated {
 }
 
 rule_input(argument) = test_data.process_input("kube-apiserver", [argument])
+
 create_process_config(cipherSuites) = {"config": {"TLSCipherSuites": cipherSuites}}

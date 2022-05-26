@@ -9,8 +9,8 @@ test_violation {
 }
 
 test_pass {
-    test.assert_pass(finding) with input as rule_input("--enable-admission-plugins=SecurityContextDeny,PodSecurityPolicy")
-    test.assert_pass(finding) with input as rule_input("--enable-admission-plugins=SecurityContextDeny")
+	test.assert_pass(finding) with input as rule_input("--enable-admission-plugins=SecurityContextDeny,PodSecurityPolicy")
+	test.assert_pass(finding) with input as rule_input("--enable-admission-plugins=SecurityContextDeny")
 	test.assert_pass(finding) with input as rule_input("--enable-admission-plugins=AlwaysDeny,SecurityContextDeny")
 	test.assert_pass(finding) with input as rule_input("--enable-admission-plugins=PodSecurityPolicy")
 }
