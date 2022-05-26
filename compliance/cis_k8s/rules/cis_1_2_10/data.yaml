@@ -1,5 +1,5 @@
 metadata:
-  uuid: d44fc5e7-7275-5d07-88a7-f1f8fc2f73c2
+  id: d44fc5e7-7275-5d07-88a7-f1f8fc2f73c2
   name: Ensure that the admission control plugin EventRateLimit is set(Manual)
   profile_applicability: |
     • Level 1 - Master Node

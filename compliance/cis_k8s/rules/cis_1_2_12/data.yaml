@@ -1,5 +1,5 @@
 metadata:
-  uuid: 95868b0f-4f1a-5af1-846e-93725abc9c18
+  id: 95868b0f-4f1a-5af1-846e-93725abc9c18
   name: Ensure that the admission control plugin AlwaysPullImages is set(Manual)
   profile_applicability: |
     • Level 1 - Master Node

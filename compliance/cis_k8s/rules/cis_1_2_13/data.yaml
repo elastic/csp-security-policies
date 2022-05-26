@@ -1,5 +1,5 @@
 metadata:
-  uuid: 9ad692c7-e8ee-5633-ac83-d7911467c2c0
+  id: 9ad692c7-e8ee-5633-ac83-d7911467c2c0
   name: Ensure that the admission control plugin SecurityContextDeny isset if
     PodSecurityPolicy is not used (Manual)
   profile_applicability: |

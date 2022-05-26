@@ -1,5 +1,5 @@
 metadata:
-  uuid: 0e3755af-d150-504f-80db-3a5bb1094c4e
+  id: 0e3755af-d150-504f-80db-3a5bb1094c4e
   name: Ensure that the API Server only makes use of StrongCryptographic Ciphers
     (Manual)
   profile_applicability: |
