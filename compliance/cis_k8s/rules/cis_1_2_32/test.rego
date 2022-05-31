@@ -4,7 +4,7 @@ import data.kubernetes_common.test_data
 import data.lib.test
 
 test_violation {
-    test.assert_fail(finding) with input as rule_input("")
+	test.assert_fail(finding) with input as rule_input("")
 	test.assert_fail(finding) with input as rule_input("--tls-cipher-suites=SOME_CIPHER")
 	test.assert_fail(finding) with input as rule_input("--tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,SOME_CIPHER")
 }

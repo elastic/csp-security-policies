@@ -10,7 +10,7 @@ process_args := cis_k8s.data_adapter.process_args
 
 # Ensure that the API Server only makes use of Strong Cryptographic Ciphers (Manual)
 rule_evaluation = false {
-    not process_args["--tls-cipher-suites"]
+	not process_args["--tls-cipher-suites"]
 }
 
 rule_evaluation = false {
