@@ -1,6 +1,6 @@
 package bundle
 
-import "github.com/uri-weisman/csp-security-policies/compliance"
+import "github.com/elastic/csp-security-policies/compliance"
 
 func CISKubernetes() (map[string]string, error) {
 	filePrefixes := []string{
