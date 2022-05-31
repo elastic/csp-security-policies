@@ -7,13 +7,12 @@ metadata:
     Always pull images.
   rationale: >
     Setting admission control policy to AlwaysPullImages forces every new pod to
-    pull the
+    
+    pull the required images every time. In a multi-tenant cluster users can be assured that their
 
-    required images every time. In a multi-tenant cluster users can be assured that their
-
-    private images can only be used by those who have the credentials to pull them. Without
-
-    this admission control policy, once an image has been pulled to a node, any pod from any
+    private images can only be used by those who have the credentials to pull them. 
+    
+    Without this admission control policy, once an image has been pulled to a node, any pod from any
 
     user can use it simply by knowing the image’s name, without any authorization check
 
@@ -22,20 +21,19 @@ metadata:
     to starting containers, which means valid credentials are required.
   audit: >
     Run the following command on the Control Plane node:
-
+    ```
     ps -ef | grep kube-apiserver
+    ```
+    Verify that the `--enable-admission-plugins` argument is set to a value that includes
 
-    Verify that the --enable-admission-plugins argument is set to a value that includes
-
-    AlwaysPullImages.
+    `AlwaysPullImages`.
   remediation: >
-    Edit the API server pod specification file /etc/kubernetes/manifests/kube-
-
-    apiserver.yaml on the Control Plane node and set the --enable-admission-plugins
-
-    parameter to include AlwaysPullImages.
-
+    Edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml 
+    
+    on the Control Plane node and set the `--enable-admission-plugins` parameter to include `AlwaysPullImages`.
+    ```
     --enable-admission-plugins=...,AlwaysPullImages,...
+    ```
   impact: >
     Credentials would be required to pull the private images every time. Also,
     in trusted

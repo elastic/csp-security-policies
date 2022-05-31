@@ -6,8 +6,7 @@ metadata:
   description: |
     Limit the rate at which the API server accepts requests.
   rationale: >
-    Using EventRateLimit admission control enforces a limit on the number of
-    events that the
+    Using `EventRateLimit` admission control enforces a limit on the number of events that the
 
     API Server will accept in a given time slice. A misbehaving workload could overwhelm and
 
@@ -22,23 +21,22 @@ metadata:
     Note: This is an Alpha feature in the Kubernetes 1.15 release.
   audit: >
     Run the following command on the Control Plane node:
-
+    ```
     ps -ef | grep kube-apiserver
-
-    Verify that the --enable-admission-plugins argument is set to a value that includes
-
-    EventRateLimit.
+    ```
+    Verify that the `--enable-admission-plugins` argument is set to a value that includes `EventRateLimit`.
   remediation: >
     Follow the Kubernetes documentation and set the desired limits in a
     configuration file.
 
-    Then, edit the API server pod specification file /etc/kubernetes/manifests/kube-
-
-    apiserver.yaml and set the below parameters.
-
+    Then, edit the API server pod specification file `/etc/kubernetes/manifests/kube-apiserver.yaml` 
+    
+    and set the below parameters.
+    ```
     --enable-admission-plugins=...,EventRateLimit,...
 
     --admission-control-config-file=<path/to/configuration/file>
+    ```
   impact: |
     You need to carefully tune in limits as per your environment.
   default_value: |
