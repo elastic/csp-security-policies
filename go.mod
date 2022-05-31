@@ -1,4 +1,4 @@
-module github.com/elastic/csp-security-policies
+module github.com/uri-weisman/csp-security-policies
 
 go 1.16
 
