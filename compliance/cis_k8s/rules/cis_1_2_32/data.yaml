@@ -20,7 +20,7 @@ metadata:
     ```
     ps -ef | grep kube-apiserver
     ```
-    Verify that the --tls-cipher-suites argument is set as outlined in the remediation procedure below.
+    Verify that the `--tls-cipher-suites` argument is set as outlined in the remediation procedure below.
   remediation: >
     Edit the API server pod specification file
     `/etc/kubernetes/manifests/kube-apiserver.yaml`

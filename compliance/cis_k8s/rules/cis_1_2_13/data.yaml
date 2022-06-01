@@ -4,13 +4,13 @@ metadata:
   profile_applicability: |
     • Level 1 - Master Node
   description: >
-    The SecurityContextDeny admission controller can be used to deny pods which make use of
+    The `SecurityContextDeny` admission controller can be used to deny pods which make use of
 
     some SecurityContext fields which could allow for privilege escalation in the cluster. 
     
     This should be used where PodSecurityPolicy is not in place within the cluster.
   rationale: >
-    SecurityContextDeny can be used to provide a layer of security for clusters which do not
+    `SecurityContextDeny` can be used to provide a layer of security for clusters which do not
 
     have PodSecurityPolicies enabled.
   audit: >
@@ -37,7 +37,7 @@ metadata:
 
     on the cluster, as it can interact poorly with certain Pod Security Policies
   default_value: |
-    By default, SecurityContextDeny is not set.
+    By default, `SecurityContextDeny` is not set.
   references: >
     1. https://kubernetes.io/docs/admin/kube-apiserver/
 
