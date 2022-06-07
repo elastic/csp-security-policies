@@ -5,7 +5,7 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the Kubernetes PKI certificate file permissions are set to 644 or more restrictive (Manual)
 finding = result {
-    common.file_match_pattern("/etc/kubernetes/pki/[a-zA-Z]+.key", data_adapter.file_path)
+	common.file_match_pattern("/etc/kubernetes/pki/[a-zA-Z]+.key", data_adapter.file_path)
 	filemode := data_adapter.filemode
 	rule_evaluation := common.file_permission_match(filemode, 6, 0, 0)
 
