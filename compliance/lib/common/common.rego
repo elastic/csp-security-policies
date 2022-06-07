@@ -131,13 +131,6 @@ file_in_path(path, file_path) {
 	true
 }
 
-# check if file match a regex pattern
-file_match_pattern(pattern, file_path) {
-	regex.match(pattern, file_path)
-} else = false {
-	true
-}
-
 # splits key value string by first occurrence of =
 split_key_value(key_value_string, delimiter) = [key, value] {
 	seperator_index := indexof(key_value_string, delimiter)

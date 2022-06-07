@@ -5,7 +5,11 @@ import data.compliance.lib.data_adapter
 
 # Ensure that the Kubernetes PKI key file permissions are set to 600 (Manual)
 finding = result {
-	common.file_match_pattern("/etc/kubernetes/pki/[a-zA-Z]+.key", data_adapter.file_path)
+	# filter
+	common.file_in_path("/etc/kubernetes/pki", data_adapter.file_path)
+	contains(data_adapter.filename, ".key")
+
+	# evaluate
 	filemode := data_adapter.filemode
 	rule_evaluation := common.file_permission_match(filemode, 6, 0, 0)
 
