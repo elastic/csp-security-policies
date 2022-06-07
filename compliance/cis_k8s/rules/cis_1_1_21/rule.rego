@@ -3,7 +3,7 @@ package compliance.cis_k8s.rules.cis_1_1_21
 import data.compliance.lib.common
 import data.compliance.lib.data_adapter
 
-# Ensure that the Kubernetes PKI certificate file permissions are set to 644 or more restrictive (Manual)
+# Ensure that the Kubernetes PKI key file permissions are set to 600 (Manual)
 finding = result {
 	common.file_match_pattern("/etc/kubernetes/pki/[a-zA-Z]+.key", data_adapter.file_path)
 	filemode := data_adapter.filemode
