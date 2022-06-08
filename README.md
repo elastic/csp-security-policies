@@ -62,13 +62,13 @@ should contain an beat/agent output, e.g. filesystem data
 ### Evaluate entire policy into output.json
 
 ```console
-opa eval data.main --format pretty -i input.json -b . > output.json
+opa eval data.main --format pretty -i input.json -b ./bundle > output.json
 ```
 
 ### Evaluate findings only
 
 ```console
-opa eval data.main.findings --format pretty -i input.json -b . > output.json
+opa eval data.main.findings --format pretty -i input.json -b ./bundle > output.json
 ```
 
 <details>
@@ -168,8 +168,8 @@ opa eval data.main.findings --format pretty -i input.json -b . > output.json
 ### Evaluate with input schema
 
 ```console
-❯ opa eval data.main --format pretty -i input.json -b . -s compliance/cis_k8s/schemas/input_schema.json
-1 error occurred: compliance/lib/data_adapter.rego:11: rego_type_error: undefined ref: input.filenames
+❯ opa eval data.main --format pretty -i input.json -b ./bundle -s bundle/compliance/cis_k8s/schemas/input_schema.json
+1 error occurred: bundle/compliance/lib/data_adapter.rego:11: rego_type_error: undefined ref: input.filenames
         input.filenames
               ^
               have: "filenames"
@@ -182,7 +182,7 @@ opa eval data.main.findings --format pretty -i input.json -b . > output.json
 ### Test entire policy
 
 ```console
-opa build -b ./ -e ./compliance
+opa build -b ./bundle -e ./bundle/compliance
 ```
 
 ```console
@@ -192,7 +192,7 @@ opa test -b bundle.tar.gz -v
 ### Test specific rule
 
 ```console
-opa test -v compliance/lib compliance/cis_k8s/test_data.rego compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
+opa test -v bundle/compliance/kubernetes_common bundle/compliance/lib bundle/compliance/cis_k8s/test_data.rego bundle/compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
 ```
 
 ### Pre-commit hooks
