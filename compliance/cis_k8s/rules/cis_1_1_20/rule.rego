@@ -7,7 +7,7 @@ import data.compliance.lib.data_adapter
 finding = result {
 	# filter
 	common.file_in_path("/etc/kubernetes/pki", data_adapter.file_path)
-	contains(data_adapter.filename, ".crt")
+	endswith(data_adapter.filename, ".crt")
 
 	# evaluate
 	filemode := data_adapter.filemode
