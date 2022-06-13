@@ -8,7 +8,7 @@ import (
 
 func HostCISKubernetes(path string) (http.Handler, error) {
 	server := bundle.NewServer()
-	err := bundle.HostBundle(path, bundle.CISKubernetesFS())
+	err := bundle.HostBundle(path, bundle.CISKubernetesBundle())
 	if err != nil {
 		return nil, err
 	}

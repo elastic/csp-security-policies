@@ -11,11 +11,15 @@ import (
 	opaCompile "github.com/open-policy-agent/opa/compile"
 )
 
-func Build(fs fs.FS) ([]byte, error) {
+type Bundle struct {
+	fs fs.FS
+}
+
+func Build(bundle Bundle) ([]byte, error) {
 
 	buf := bytes.NewBuffer(nil)
 
-	b, err := createBundle(fs)
+	b, err := createBundle(bundle)
 	if err != nil {
 		return nil, err
 	}
@@ -33,8 +37,8 @@ func Build(fs fs.FS) ([]byte, error) {
 	
 }
 
-func createBundle(fs fs.FS) (opaBundle.Bundle, error) {
-	loader, err := opaBundle.NewFSLoader(fs)
+func createBundle(bundle Bundle) (opaBundle.Bundle, error) {
+	loader, err := opaBundle.NewFSLoader(bundle.fs)
 	if err != nil {
 		return opaBundle.Bundle{}, err
 	}
@@ -49,19 +53,20 @@ func createBundle(fs fs.FS) (opaBundle.Bundle, error) {
 	return b, nil
 }
 
-func CISKubernetesFS() fs.FS {
-	return layerfs.New(CommonEmbed, CISRulesEmbed)
+func CISKubernetesBundle() Bundle {
+	return Bundle{fs: layerfs.New(CommonEmbed, CISRulesEmbed)}
 }
 
-func CISEksFS() fs.FS {
-	return layerfs.New(CommonEmbed, EKSRulesEmbed)
+func CISEksBundle() Bundle {
+	return Bundle{fs: layerfs.New(CommonEmbed, EKSRulesEmbed)}
 }
 
-func MergedFSWithDataYaml(fs fs.FS, dataYaml string) fs.FS {
-	yamlFS := fstest.MapFS{
-		"data.yaml": {
-			Data: []byte(dataYaml),
+func (b *Bundle) With(path string, content string) Bundle {
+	tmpFS := fstest.MapFS{
+		path: {
+			Data: []byte(content),
 		},
 	}
-	return layerfs.New(yamlFS, fs)
+	b.fs = layerfs.New(tmpFS, b.fs)
+	return *b
 }

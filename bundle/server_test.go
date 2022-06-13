@@ -15,22 +15,22 @@ func TestServer(t *testing.T) {
 
 	handler := NewServer()
 
-	emptyFS := fstest.MapFS{}
-	err := HostBundle("empty", emptyFS)
+	emptyBundle := Bundle{fs: fstest.MapFS{}}
+	err := HostBundle("empty", emptyBundle)
 	assert.NoError(err)
 
-	otherBundleFS := fstest.MapFS{
+	otherBundleFS := Bundle{fs: fstest.MapFS{
 		"a.txt": {
 			Data: []byte("some text"),
 		},
-	}
+	}}
 	err = HostBundle("otherBundle", otherBundleFS)
 	assert.NoError(err)
 
-	err = HostBundle("overridenBundle", emptyFS)
+	err = HostBundle("overridenBundle", emptyBundle)
 	assert.NoError(err)
 
-	err = HostBundle("overridenBundle", emptyFS)
+	err = HostBundle("overridenBundle", emptyBundle)
 	assert.NoError(err)
 
 	server := httptest.NewServer(handler)

@@ -1,7 +1,6 @@
 package bundle
 
 import (
-	"io/fs"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -14,7 +13,7 @@ const (
 
 // HostBundle writes the given bundle to the disk in order to serve it later
 // Consequent calls to HostBundle with the same name will override the file
-func HostBundle(name string, fs fs.FS) error {
+func HostBundle(name string, bundle Bundle) error {
 	if _, err := os.Stat(BundlesFolder); os.IsNotExist(err) {
 		err := os.Mkdir(BundlesFolder, os.ModePerm)
 		if err != nil {
@@ -24,7 +23,7 @@ func HostBundle(name string, fs fs.FS) error {
 
 	bundlePath := filepath.Join(BundlesFolder, name)
 
-	bundleBin, err := Build(fs)
+	bundleBin, err := Build(bundle)
 	if err != nil {
 		return err
 	}
