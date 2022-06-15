@@ -109,7 +109,7 @@ metadata:
   default_value: |
     By default, Endpoint Private Access is disabled.
   references: |
-    1. https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html
+    1. https://docs.aws.amazon.com/eks/latest/usergusere/cluster-endpoint.html
   section: Cluster Networking
   version: "1.0"
   tags:

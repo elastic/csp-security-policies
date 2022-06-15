@@ -38,7 +38,7 @@ metadata:
     is not applicable. By default, peer communication over TLS is not
     configured.
   references: |
-    1. [https://coreos.com/etcd/docs/latest/op-guide/security.html](https://coreos.com/etcd/docs/latest/op-guide/security.html)
+    1. [https://coreos.com/etcd/docs/latest/op-gusere/security.html](https://coreos.com/etcd/docs/latest/op-gusere/security.html)
     2. [https://kubernetes.io/docs/admin/etcd/](https://kubernetes.io/docs/admin/etcd/)
   section: etcd
   version: "1.0"

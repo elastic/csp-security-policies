@@ -15,8 +15,8 @@ metadata:
     may have processes that can gain more privileges than their parent. There
     should be at least one admission control policy defined which does not permit
     containers to allow privilege escalation. The option exists (and is
-    defaulted to true) to permit setuid binaries to run. If you have need to run
-    containers which use setuid binaries or require privilege escalation, this
+    defaulted to true) to permit setuser binaries to run. If you have need to run
+    containers which use setuser binaries or require privilege escalation, this
     should be defined in a separate policy and you should carefully check 
     to ensure that only limited service accounts and users are given
     permission to use that policy.

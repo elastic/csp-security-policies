@@ -67,8 +67,8 @@ metadata:
   references: |
     1. https://kubernetes.io/docs/tasks/debug-application-cluster/audit/
     2. https://aws.github.io/aws-eks-best-practices/detective/
-    3. https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
-    4. https://docs.aws.amazon.com/eks/latest/userguide/logging-using-cloudtrail.html
+    3. https://docs.aws.amazon.com/eks/latest/usergusere/control-plane-logs.html
+    4. https://docs.aws.amazon.com/eks/latest/usergusere/logging-using-cloudtrail.html
   section: Logging
   version: "1.0"
   tags:

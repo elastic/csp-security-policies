@@ -38,7 +38,7 @@ metadata:
   default_value: |
     By default, etcd data directory ownership is set to `etcd:etcd`.
   references: |
-    1. [https://coreos.com/etcd/docs/latest/op-guide/configuration.html#data-dir](https://coreos.com/etcd/docs/latest/op-guide/configuration.html#data-dir)
+    1. [https://coreos.com/etcd/docs/latest/op-gusere/configuration.html#data-dir](https://coreos.com/etcd/docs/latest/op-gusere/configuration.html#data-dir)
     2. [https://kubernetes.io/docs/admin/etcd/](https://kubernetes.io/docs/admin/etcd/)
   section: Control Plane Node Configuration Files
   version: "1.0"

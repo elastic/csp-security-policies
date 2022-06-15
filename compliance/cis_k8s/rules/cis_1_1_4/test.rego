@@ -4,9 +4,9 @@ import data.kubernetes_common.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("kube-controller-manager.yaml", "root", "user")
-	test.assert_fail(finding) with input as rule_input("kube-controller-manager.yaml", "user", "root")
-	test.assert_fail(finding) with input as rule_input("kube-controller-manager.yaml", "user", "user")
+	test.assert_fail(finding) with input as rule_input("kube-controller-manager.yaml", "root", "owner")
+	test.assert_fail(finding) with input as rule_input("kube-controller-manager.yaml", "owner", "root")
+	test.assert_fail(finding) with input as rule_input("kube-controller-manager.yaml", "owner", "owner")
 }
 
 test_pass {
@@ -17,7 +17,7 @@ test_not_evaluated {
 	not finding with input as rule_input("file.txt", "root", "root")
 }
 
-rule_input(filename, uid, gid) = filesystem_input {
+rule_input(filename, user, group) = filesystem_input {
 	filemode := "0644"
-	filesystem_input = test_data.filesystem_input(filename, filemode, uid, gid)
+	filesystem_input = test_data.filesystem_input(filename, filemode, user, group)
 }

@@ -31,9 +31,9 @@ metadata:
   default_value: |
     By default, the etcd service can be queried by unauthenticated clients.
   references: |
-    1. [https://coreos.com/etcd/docs/latest/op-guide/security.html](https://coreos.com/etcd/docs/latest/op-guide/security.html)
+    1. [https://coreos.com/etcd/docs/latest/op-gusere/security.html](https://coreos.com/etcd/docs/latest/op-gusere/security.html)
     2. [https://kubernetes.io/docs/admin/etcd/](https://kubernetes.io/docs/admin/etcd/)
-    3. [https://coreos.com/etcd/docs/latest/op-guide/configuration.html#client-cert-auth](https://coreos.com/etcd/docs/latest/op-guide/configuration.html#client-cert-auth)
+    3. [https://coreos.com/etcd/docs/latest/op-gusere/configuration.html#client-cert-auth](https://coreos.com/etcd/docs/latest/op-gusere/configuration.html#client-cert-auth)
   section: etcd
   version: "1.0"
   tags:

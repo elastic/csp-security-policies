@@ -4,10 +4,10 @@ import data.kubernetes_common.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("etc/kubernetes/pki", "root", "user")
-	test.assert_fail(finding) with input as rule_input("etc/kubernetes/pki", "user", "root")
-	test.assert_fail(finding) with input as rule_input("etc/kubernetes/pki", "user", "user")
-	test.assert_fail(finding) with input as rule_input("etc/kubernetes/pki/some_file.txt", "root", "user")
+	test.assert_fail(finding) with input as rule_input("etc/kubernetes/pki", "root", "owner")
+	test.assert_fail(finding) with input as rule_input("etc/kubernetes/pki", "owner", "root")
+	test.assert_fail(finding) with input as rule_input("etc/kubernetes/pki", "owner", "owner")
+	test.assert_fail(finding) with input as rule_input("etc/kubernetes/pki/some_file.txt", "root", "owner")
 }
 
 test_pass {
@@ -21,7 +21,7 @@ test_not_evaluated {
 	not finding with input as rule_input("etc/kubernetes/pkii/file.txt", "root", "root")
 }
 
-rule_input(filename, uid, gid) = filesystem_input {
+rule_input(filename, user, group) = filesystem_input {
 	filemode := "0644"
-	filesystem_input = test_data.filesystem_input(filename, filemode, uid, gid)
+	filesystem_input = test_data.filesystem_input(filename, filemode, user, group)
 }

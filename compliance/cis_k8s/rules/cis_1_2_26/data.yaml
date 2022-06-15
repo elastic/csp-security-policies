@@ -36,7 +36,7 @@ metadata:
     By default, `--etcd-certfile` and `--etcd-keyfile` arguments are not set
   references: |
     1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
-    2. [https://coreos.com/etcd/docs/latest/op-guide/security.html](https://coreos.com/etcd/docs/latest/op-guide/security.html)
+    2. [https://coreos.com/etcd/docs/latest/op-gusere/security.html](https://coreos.com/etcd/docs/latest/op-gusere/security.html)
   section: API Server
   version: "1.0"
   tags:
