@@ -11,7 +11,7 @@ metadata:
     obtain unauthorized access to local cloud resources. Amazon ECR and other third party
     products allow images to be scanned for known vulnerabilities.
   audit: >
-    Please follow AWS ECS or your 3rd party image scanning provider's guserelines
+    Please follow AWS ECS or your 3rd party image scanning provider's guidelines
     for enabling Image Scanning.
   remediation: |
     To utilize AWS ECR for Image scanning please follow the steps below:
@@ -52,7 +52,7 @@ metadata:
   default_value: |
     Images are not scanned by Default.
   references: |
-    1. https://docs.aws.amazon.com/AmazonECR/latest/usergusere/image-scanning.html
+    1. https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html
   section: Image Registry and Image Scanning
   version: "1.0"
   tags:

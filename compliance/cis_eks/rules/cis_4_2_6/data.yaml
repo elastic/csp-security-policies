@@ -10,7 +10,7 @@ metadata:
     whilst
     constrained by Container Runtime security features still have a escalated likelihood of
     container breakout.
-    Ideally, all containers should run as a defined non-user 0 user.
+    Ideally, all containers should run as a defined non-UID 0 user.
     There should be at least one PodSecurityPolicy (PSP) defined which does not permit root
     users in a container.
     If you need to run root containers, this should be defined in a separate PSP and you should
@@ -26,11 +26,11 @@ metadata:
     kubectl get psp <name> -o=jsonpath='{.spec.runAsUser.rule}'
     ```
     Verify that there is at least one PSP which returns `MustRunAsNonRoot` or `MustRunAs` with the
-    range of users not including 0.
+    range of UIDs not including 0.
   remediation: |
     Create a PSP as described in the Kubernetes documentation, ensuring that the
     `.spec.runAsUser.rule` is set to either `MustRunAsNonRoot` or `MustRunAs` with the range of
-    users not including 0.
+    UIDs not including 0.
   impact: |
     Pods with containers which run as the root user will not be permitted.
   default_value: |

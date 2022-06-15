@@ -4,9 +4,9 @@ import data.kubernetes_common.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("kubelet-config.json", "root", "owner")
-	test.assert_fail(finding) with input as rule_input("kubelet-config.json", "owner", "root")
-	test.assert_fail(finding) with input as rule_input("kubelet-config.json", "owner", "owner")
+	test.assert_fail(finding) with input as rule_input("kubelet-config.json", "root", "user")
+	test.assert_fail(finding) with input as rule_input("kubelet-config.json", "user", "root")
+	test.assert_fail(finding) with input as rule_input("kubelet-config.json", "user", "user")
 }
 
 test_pass {

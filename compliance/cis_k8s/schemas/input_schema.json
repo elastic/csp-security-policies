@@ -53,7 +53,7 @@
           "mode": "0700",
           "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
           "owner": "root",
-          "filename": "kube-apiserver.yaml",
+          "name": "kube-apiserver.yaml",
           "group": "root"
         }
       ],
@@ -62,8 +62,8 @@
         "mode",
         "path",
         "owner",
-        "filename",
-        "gid"
+        "name",
+        "group"
       ],
       "properties": {
         "type": {
@@ -92,7 +92,7 @@
             "root"
           ]
         },
-        "filename": {
+        "name": {
           "type": "string",
           "title": "The filename schema",
           "examples": [
@@ -101,7 +101,7 @@
         },
         "group": {
           "type": "string",
-          "title": "The gid schema",
+          "title": "The group owner schema",
           "examples": [
             "root"
           ]

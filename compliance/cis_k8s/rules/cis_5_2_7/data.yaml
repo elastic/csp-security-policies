@@ -9,7 +9,7 @@ metadata:
     Containers may run as any Linux user. Containers which run as the root user,
     whilst constrained by Container Runtime security features still have a
     escalated likelihood of container breakout. Ideally, all containers should
-    run as a defined non-user 0 user. There should be at least one
+    run as a defined non-UID 0 user. There should be at least one
     admission control policy defined which does not permit root
     containers. If you need to run root containers, this should be defined in a
     separate policy and you should carefully check to ensure that
@@ -18,10 +18,10 @@ metadata:
   audit: |
     List the policies in use for each namespace in the cluster, ensure that each policy restricts 
     the use of root containers by setting `MustRunAsNonRoot` or `MustRunAs` with the range of
-    users not including 0.
+    UIDs not including 0.
   remediation: |
     Create a policy for each namespace in the cluster, ensuring that either `MustRunAsNonRoot` 
-    or `MustRunAs` with the range of users not including 0, is set.
+    or `MustRunAs` with the range of UIDs not including 0, is set.
   impact: |
     Pods with containers which run as the root user will not be permitted.
   default_value: |

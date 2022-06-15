@@ -32,7 +32,7 @@ metadata:
     By default, `--etcd-cafile` is not set.
   references: |
     1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
-    2. [https://coreos.com/etcd/docs/latest/op-gusere/security.html](https://coreos.com/etcd/docs/latest/op-gusere/security.html)
+    2. [https://coreos.com/etcd/docs/latest/op-guide/security.html](https://coreos.com/etcd/docs/latest/op-guide/security.html)
   section: API Server
   version: "1.0"
   tags:

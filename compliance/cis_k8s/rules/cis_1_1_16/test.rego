@@ -4,9 +4,9 @@ import data.kubernetes_common.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("scheduler.conf", "root", "owner")
-	test.assert_fail(finding) with input as rule_input("scheduler.conf", "owner", "root")
-	test.assert_fail(finding) with input as rule_input("scheduler.conf", "owner", "owner")
+	test.assert_fail(finding) with input as rule_input("scheduler.conf", "root", "user")
+	test.assert_fail(finding) with input as rule_input("scheduler.conf", "user", "root")
+	test.assert_fail(finding) with input as rule_input("scheduler.conf", "user", "user")
 }
 
 test_pass {

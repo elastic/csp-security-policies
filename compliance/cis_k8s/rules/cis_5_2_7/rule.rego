@@ -27,7 +27,7 @@ finding = result {
 
 	# set result
 	pod := json.filter(data_adapter.pod, [
-		"metadata/user",
+		"metadata/uid",
 		"spec/runAsUser",
 	])
 

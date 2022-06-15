@@ -4,9 +4,9 @@ import data.kubernetes_common.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("controller-manager.conf", "root", "owner")
-	test.assert_fail(finding) with input as rule_input("controller-manager.conf", "owner", "root")
-	test.assert_fail(finding) with input as rule_input("controller-manager.conf", "owner", "owner")
+	test.assert_fail(finding) with input as rule_input("controller-manager.conf", "root", "user")
+	test.assert_fail(finding) with input as rule_input("controller-manager.conf", "user", "root")
+	test.assert_fail(finding) with input as rule_input("controller-manager.conf", "user", "user")
 }
 
 test_pass {

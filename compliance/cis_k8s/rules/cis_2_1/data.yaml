@@ -29,7 +29,7 @@ metadata:
   default_value: |
     By default, TLS encryption is not set.
   references: |
-    1. [https://coreos.com/etcd/docs/latest/op-gusere/security.html](https://coreos.com/etcd/docs/latest/op-gusere/security.html)
+    1. [https://coreos.com/etcd/docs/latest/op-guide/security.html](https://coreos.com/etcd/docs/latest/op-guide/security.html)
     2. [https://kubernetes.io/docs/admin/etcd/](https://kubernetes.io/docs/admin/etcd/)
   section: etcd
   version: "1.0"

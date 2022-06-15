@@ -4,9 +4,9 @@ import data.kubernetes_common.test_data
 import data.lib.test
 
 test_violation {
-	test.assert_fail(finding) with input as rule_input("kube-apiserver.yaml", "root", "owner")
-	test.assert_fail(finding) with input as rule_input("kube-apiserver.yaml", "owner", "root")
-	test.assert_fail(finding) with input as rule_input("kube-apiserver.yaml", "owner", "owner")
+	test.assert_fail(finding) with input as rule_input("kube-apiserver.yaml", "root", "user")
+	test.assert_fail(finding) with input as rule_input("kube-apiserver.yaml", "user", "root")
+	test.assert_fail(finding) with input as rule_input("kube-apiserver.yaml", "user", "user")
 }
 
 test_pass {
