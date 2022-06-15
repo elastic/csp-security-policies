@@ -34,7 +34,7 @@ metadata:
   references: |
     1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)
     2. [http://rootsquash.com/2016/05/10/securing-the-kubernetes-api/](http://rootsquash.com/2016/05/10/securing-the-kubernetes-api/)
-    3. [https://github.com/kelseyhightower/docker-kubernetes-tls-gusere](https://github.com/kelseyhightower/docker-kubernetes-tls-gusere)
+    3. [https://github.com/kelseyhightower/docker-kubernetes-tls-guide](https://github.com/kelseyhightower/docker-kubernetes-tls-guide)
   section: API Server
   version: "1.0"
   tags:
