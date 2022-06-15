@@ -1,6 +1,7 @@
 package server
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/elastic/csp-security-policies/bundle"
@@ -8,7 +9,7 @@ import (
 
 func HostCISKubernetes(path string) (http.Handler, error) {
 	server := bundle.NewServer()
-	err := bundle.HostBundle(path, bundle.CISKubernetesBundle())
+	err := bundle.HostBundle(path, bundle.CISKubernetesBundle(), context.Background())
 	if err != nil {
 		return nil, err
 	}

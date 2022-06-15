@@ -15,7 +15,7 @@ type Bundle struct {
 	fs fs.FS
 }
 
-func Build(bundle Bundle) ([]byte, error) {
+func Build(bundle Bundle, ctx context.Context) ([]byte, error) {
 
 	buf := bytes.NewBuffer(nil)
 
@@ -28,13 +28,13 @@ func Build(bundle Bundle) ([]byte, error) {
 		WithBundle(&b).
 		WithOutput(buf)
 
-	err = compiler.Build(context.Background())
+	err = compiler.Build(ctx)
 	if err != nil {
 		return nil, err
 	}
 
 	return buf.Bytes(), nil
-	
+
 }
 
 func createBundle(bundle Bundle) (opaBundle.Bundle, error) {
