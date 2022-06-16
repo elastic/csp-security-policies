@@ -15,19 +15,15 @@ findings = f {
 	# iterate over activated benchmarks
 	benchmarks := [key | data.activated_rules[key]]
 
-	rego := compliance
-
 	# aggregate findings from activated benchmarks
-	f := [finding | rego[benchmarks[_]].findings[finding]]
+	f := {finding | compliance[benchmarks[_]].findings[finding]}
 }
 
 findings = f {
 	not data.activated_rules
 
-	rego := compliance
-
 	# aggregate findings from all benchmarks
-	f := [finding | rego[benchmarks].findings[finding]]
+	f := {finding | compliance[benchmarks].findings[finding]}
 }
 
 metadata = common.metadata
