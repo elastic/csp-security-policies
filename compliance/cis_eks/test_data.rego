@@ -66,8 +66,7 @@ generate_ecr_input_with_one_repo(image_scan_on_push) = {
 }
 
 generate_elb_input_with_two_load_balancers(first_instance_protocol, first_instance_ssl_cert, sec_instance_protocol, sec_instance_ssl_cert) = {
-	"type": "aws-elb",
-	"resource": {"LoadBalancersDescription": [{
+	"resource": {
 		"AvailabilityZones": [
 			"us-east-2b",
 			"us-east-2a",
@@ -85,8 +84,8 @@ generate_elb_input_with_two_load_balancers(first_instance_protocol, first_instan
 			"UnhealthyThreshold": 6,
 		},
 		"Instances": [
-			{"InstanceId": "i-0b81bd277b144e5e9"},
-			{"InstanceId": "i-00e02dbffa8e2c54b"},
+			{"InstanceId": "i-03d9f29028ead864e"},
+			{"InstanceId": "i-016b72c7857120f97"},
 		],
 		"ListenerDescriptions": [
 			{
@@ -127,7 +126,8 @@ generate_elb_input_with_two_load_balancers(first_instance_protocol, first_instan
 			"subnet-09b8d7fdb5776ab47",
 		],
 		"VPCId": "vpc-09b1bd8bbf4508a52",
-	}]},
+	},
+	"type": "aws-elb",
 }
 
 not_evaluated_input = {
