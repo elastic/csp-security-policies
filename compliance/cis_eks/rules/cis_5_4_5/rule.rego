@@ -5,7 +5,7 @@ import data.compliance.lib.common
 
 default rule_evaluation = true
 
-# Verify that all listeners has a SSL Certificate
+# Verify that all listeners has an SSL Certificate
 rule_evaluation = false {
 	input.resource.ListenerDescriptions[_].Listener.SSLCertificateId == null
 }
