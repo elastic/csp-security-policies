@@ -15,7 +15,7 @@ finding = result {
 		"evaluation": common.calculate_result(rule_evaluation),
 		"evidence": {
 			"repository_name:": input.resource.RepositoryName,
-			"ImageScanningConfiguration": input.resource.ImageScanningConfiguration,
+			"image_scanning_configuration": input.resource.ImageScanningConfiguration,
 		},
 	}
 }
