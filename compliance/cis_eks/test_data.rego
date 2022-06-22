@@ -53,42 +53,16 @@ generate_eks_input_with_vpc_config(endpoint_private_access, endpoint_public_acce
 }
 
 generate_ecr_input_with_one_repo(image_scan_on_push) = {
-	"type": "aws-ecr",
-	"resource": {"EcrRepositories": [{
-		"kind": "Pod",
-		"CreatedAt": "2020-07-29T11:44:18Z",
+	"resource": {
+		"CreatedAt": "2022-03-31T11:56:19Z",
 		"ImageScanningConfiguration": {"ScanOnPush": image_scan_on_push},
 		"ImageTagMutability": "MUTABLE",
 		"RegistryId": "704479110758",
-		"RepositoryArn": "arn:aws:ecr:us-east-2:704479110758:repository/build.security.management",
-		"RepositoryName": "build.security.management",
-		"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/build.security.management",
-	}]},
-}
-
-generate_ecr_input_with_two_repo(first_image_scan_on_push, second_image_scan_on_push) = {
+		"RepositoryArn": "arn:aws:ecr:us-east-2:704479110758:repository/cloudbeat",
+		"RepositoryName": "cloudbeat",
+		"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/cloudbeat",
+	},
 	"type": "aws-ecr",
-	"resource": {"EcrRepositories": [
-		{
-			"kind": "Pod",
-			"CreatedAt": "2020-07-29T11:44:18Z",
-			"ImageScanningConfiguration": {"ScanOnPush": first_image_scan_on_push},
-			"ImageTagMutability": "MUTABLE",
-			"RegistryId": "704479110758",
-			"RepositoryArn": "arn:aws:ecr:us-east-2:704479110758:repository/build.security.management",
-			"RepositoryName": "build.security.management",
-			"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/build.security.management",
-		},
-		{
-			"CreatedAt": "2020-07-29T11:44:18Z",
-			"ImageScanningConfiguration": {"ScanOnPush": second_image_scan_on_push},
-			"ImageTagMutability": "MUTABLE",
-			"RegistryId": "704479110758",
-			"RepositoryArn": "arn:aws:ecr:us-east-2:704479110758:repository/build.security.management",
-			"RepositoryName": "build.security.management2",
-			"RepositoryUri": "704479110758.dkr.ecr.us-east-2.amazonaws.com/build.security.management",
-		},
-	]},
 }
 
 generate_elb_input_with_two_load_balancers(first_instance_protocol, first_instance_ssl_cert, sec_instance_protocol, sec_instance_ssl_cert) = {
