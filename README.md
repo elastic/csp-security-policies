@@ -3,24 +3,52 @@
 # Cloud Security Posture - Rego policies
 
     .
-    ├── compliance                         # Compliance policies
-    │   ├── lib
-    │   │   ├── common.rego                # Common functions
-    │   │   ├── common_tests.rego          # Common functions tests
-    │   │   ├── data_adapter.rego          # Input data adapter
-    │   │   └── test.rego                  # Common Test functions
-    │   ├── cis_k8s
-    │   │   ├── cis_k8s.rego               # Handles all Kubernetes CIS rules evalutations
-    │   │   ├── test_data.rego             # CIS Test data generators
-    │   │   ├── schemas                    # Benchmark's schemas
-    │   │   │   └── input_scehma.rego
-    │   │   ├── rules
-    │   │   │   ├── cis_1_1_1              # CIS 1.1.1 rule package
-    │   │   │   │   ├── rule.rego
-    │   │   │   │   └── test.rego
-    │   │   │   │   └── data.yaml          # Rule's metadata
-    │   │   │   └── ...
-    └── main.rego                          # Evaluates all policies and returns the findings
+    ├── README.md
+    ├── bundle
+    │   ├── builder.go                            # Bundle building code
+    │   ├── compliance                            # Compliance policies
+    │   │   ├── cis_eks
+    │   │   │   ├── cis_eks.rego                  # Handles all EKS CIS rules evalutations
+    │   │   │   ├── data_adapter.rego
+    │   │   │   ├── rules
+    │   │   │   │   ├── cis_2_1_1                 # CIS EKS 2.1.1 rule package
+    │   │   │   │   │   ├── data.yaml             # Rule's metadata
+    │   │   │   │   │   ├── rule.rego             # Rule's rego
+    │   │   │   │   │   └── test.rego             # Rule's test
+    |   |   |   |   ├── ...
+    │   │   │   └── test_data.rego                # CIS EKS Test data generators
+    │   │   ├── cis_k8s
+    │   │   │   ├── cis_k8s.rego                  # Handles all Kubernetes CIS rules evalutations
+    │   │   │   ├── data_adapter.rego
+    │   │   │   ├── rules
+    │   │   │   │   ├── cis_1_1_1
+    │   │   │   │   │   ├── data.yaml
+    │   │   │   │   │   ├── rule.rego
+    │   │   │   │   │   └── test.rego
+    |   |   |   |   ├── ...
+    │   │   │   └── schemas                       # Benchmark's schemas
+    │   │   │   └── input_schema.json
+    │   │   ├── kubernetes_common
+    │   │   │   └── test_data.rego
+    │   │   ├── lib
+    │   │   │   ├── assert.rego
+    │   │   │   ├── common                        # Common functions and tests
+    │   │   │   │   ├── common.rego
+    │   │   │   │   └── test.rego
+    │   │   │   ├── data_adapter                  # Input data adapter and tests
+    │   │   │   │   ├── data_adapter.rego
+    │   │   │   │   └── test.rego
+    │   │   │   ├── output_validations            # Output validations for tests
+    │   │   │   │   ├── output_validations.rego
+    │   │   │   │   └── test.rego
+    │   │   │   └── test.rego
+    │   │   └── main.rego                         # Evaluates all policies and returns the findings
+    │   ├── embed.go                              # Embed of benchmarks
+    │   ├── server.go                             # Hosting and creation of bundle server functions
+    │   └── server_test.go
+    ├── main.go
+    └── server
+    └── host.go                                   # Hosting and creation of bundle server for benchmarks
 
 ## Local Evaluation
 

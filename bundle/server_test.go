@@ -18,8 +18,16 @@ func TestServer(t *testing.T) {
 
 	ctx := context.Background()
 
+	eksBundle := CISEksBundle()
+	err := HostBundle("eks", eksBundle, ctx)
+	assert.NoError(err)
+
+	kubernetesBundle := CISKubernetesBundle()
+	err = HostBundle("kubernetes", kubernetesBundle, ctx)
+	assert.NoError(err)
+
 	emptyBundle := Bundle{fs: fstest.MapFS{}}
-	err := HostBundle("empty", emptyBundle, ctx)
+	err = HostBundle("empty", emptyBundle, ctx)
 	assert.NoError(err)
 
 	otherBundleFS := Bundle{fs: fstest.MapFS{
@@ -42,6 +50,12 @@ func TestServer(t *testing.T) {
 		path               string
 		expectedStatusCode string
 	}{
+		{
+			"/bundles/eks", "200 OK",
+		},
+		{
+			"/bundles/kubernetes", "200 OK",
+		},
 		{
 			"/bundles/empty", "200 OK",
 		},
