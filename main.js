@@ -50,7 +50,7 @@ try {
         // if (fs.existsSync("./yamls")) fs.rmSync("./yamls", { recursive: true });
         // fs.mkdirSync("./yamls");
         ruleObjs.forEach((ruleObj) => {
-            console.log(ruleObj);
+            // console.log(ruleObj);
             const r_number = ruleObj.metadata.tags[2]
                 .split(" ")[1]
                 .replaceAll(".", "_");
@@ -61,8 +61,8 @@ try {
                 if (!fs.existsSync(path.join(cspPath, `compliance/cis_k8s/rules/cis_${r_number}/data.yaml`))) {
                     console.log("JENIA NEW RULE", r_number);
                     yaml_doc.contents = ruleObj;
-                    console.log("content")
-                    console.log(yaml_doc.contents)
+                    // console.log("content")
+                    // console.log(yaml_doc.contents)
                     fs.writeFileSync(path.join(cspPath, `compliance/cis_k8s/rules/cis_${r_number}/data.yaml`), yaml_doc.toString());
                     console.log("after write")
                 }

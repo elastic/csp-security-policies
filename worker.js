@@ -16,7 +16,7 @@ const Y_CAP = 1000;
 const WORKER_NAMESPACE = "5d8d0dd5-acd2-4c46-b565-aa1fb03617af";
 
 const PICK_RULE_PROPERTIES = [
-  "uuid",
+  "id",
   "name",
   "profile_applicability",
   "description",
@@ -252,7 +252,7 @@ class Worker {
       ];
     return {
       name,
-      uuid: uuidv5(`${this.benchmark} ${t_name}`, WORKER_NAMESPACE),
+      id: uuidv5(`${this.benchmark} ${t_name}`, WORKER_NAMESPACE),
       section,
       tags: ["CIS", this.benchmark, "CIS " + r_number, section],
       benchmark: BENCHMARK_TYPE_TO_INFO[this.benchmark].BENCHMARK_METADATA,
