@@ -1,5 +1,6 @@
 # cis_policies_generator
-Running `npm start` will create a JSON file for every XLSX benchmark in the `input` folder
+Running `npm start` will create a JSON file for every XLSX benchmark in the `input` folder.
+Look for the `output` folder
 
 Example serialization of a single rule:
 
