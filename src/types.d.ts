@@ -29,6 +29,11 @@ interface CIS_K8S_Benchamrk_Schema {
 
 type BenchmarksData = CIS_K8S_Benchamrk_Schema | CIS_EKS_Benchamrk_Schema;
 
+interface SectionMetadata {
+    "section #": string;
+    "title": string;
+}
+
 interface BenchmarkSchema {
     filename: string;
     rules: RuleSchema[];
@@ -49,7 +54,7 @@ interface RuleSchema {
     name: string;
     profile_applicability: string;
     rationale: string;
-    references: string;
+    references: string[];
     // rego_rule_id: string;
     remediation: string;
     section: string;

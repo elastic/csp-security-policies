@@ -17,9 +17,9 @@ function generateOutputFolder(): void {
     }
 }
 
-function parseReferences(references): Promise<null | string[]> {
+function parseReferences(references): Promise<string[]> {
     if (!references) {
-        return Promise.resolve(null);
+        return Promise.resolve([]);
     }
 
     const links: string[] = references.replaceAll(":http", "\nhttp").split("\n");
@@ -66,50 +66,39 @@ function identifySection(rule_section: string, sections: SectionMetadata[]): str
     process.exit(-1);
 }
 
-function extractValue(rule: BenchmarksData, keys: string[]): string {
-    let result = "";
-    for (const key of keys) {
-        if (key in rule) {
-            result = rule[key];
-            break;
-        }
-    }
-    return result || "";
-}
-
 function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkMetadata,
-    profile_applicability: string) {
+    profile_applicability: string): Promise<RuleSchema[]> {
     const sections = parseAllSections(data);
 
     let result = _.filter(data, (it) => {
-        return Boolean(extractValue(it, ["recommendation #"]));
+        return Boolean(it["recommendation #"]);
     });
 
     return Promise.map(result, (it) => {
-        const rule_name = extractValue(it, ["title"]);
+        const rule_name = it["title"];
         console.log("Parsing:", benchmark_metadata.name, rule_name);
-        return parseReferences(extractValue(it, ["references"]))
+        return parseReferences(it["references"])
             .then((references) => {
                 return {
                     "id": uuidv5(`${benchmark_metadata.name} ${rule_name}`, config.get("uuid_seed")),
                     "name": rule_name,
-                    "rule_number": extractValue(it, ["recommendation #"]),
+                    "rule_number": it["recommendation #"],
                     "profile_applicability": `* ${profile_applicability}`,
-                    "description": extractValue(it, ["description"]),
-                    "rational": extractValue(it, ["rational statement", "rationale statement"]),
-                    "audit": extractValue(it, ["audit procedure"]),
-                    "remediation": extractValue(it, ["remediation procedure"]),
-                    "impact": extractValue(it, ["impact statement"]),
+                    "description": it["description"],
+                    "rationale": it["rational statement"] || it["rationale statement"], // damn CIS
+                    "audit": it["audit procedure"],
+                    "remediation": it["remediation procedure"],
+                    "impact": it["impact statement"],
                     // "default_value": "By default, profiling is enabled.\n", // TODO
                     "references": references,
-                    "section": identifySection(extractValue(it, ["section #"]), sections),
+                    "section": identifySection(it["section #"], sections),
                     "benchmark": benchmark_metadata
                 };
             });
     });
 }
 
-function parseSpreadsheet(tab, benchmark_metadata: BenchmarkMetadata) {
+function parseSpreadsheet(tab, benchmark_metadata: BenchmarkMetadata): Promise<RuleSchema[]> {
     const profile_applicability = tab.name;
     const results: BenchmarksData[] = [];
     const keys = tab.data[0].map(el => el.toLowerCase()); // Different benchamrks have different casing in the columns titles
@@ -121,21 +110,15 @@ function parseSpreadsheet(tab, benchmark_metadata: BenchmarkMetadata) {
     return normalizeResults(results, benchmark_metadata, profile_applicability);
 }
 
-function parseBenchmark(file, benchmark_metadata: BenchmarkMetadata): Promise<RuleSchema[]> {
-    const obj = xlsx.parse(file);
-    return Promise.map(obj, tab => {
-        // Assumption, we treat only tabs that start with the word "Level" (as in the string "Level 1 - Master Node")
-        if (tab.name.indexOf("Level") != 0) {
-            return Promise.resolve();
-        }
-        return parseSpreadsheet(tab, benchmark_metadata)
-            .then(res => {
-                // for debug
-                // console.log("Parsed", res.length, "rules from", tab.name, "in", benchmark_metadata);
-                return res;
-            })
-    }).then(final_result => {
-        return final_result.flat().filter(el => { return el }); // remove empty results
+function parseBenchmark(file, benchmark_metadata: BenchmarkMetadata) {
+    const excel = xlsx.parse(file);
+    // Assumption, we treat only tabs that start with the word "Level" (as in the string "Level 1 - Master Node")
+    const tabs = _.filter(excel, (tab) => { return Boolean(tab.name.indexOf("Level") == 0) })
+
+    return Promise.map(tabs, tab => {
+        return parseSpreadsheet(tab, benchmark_metadata);
+    }).then(res => {
+        return _.flatten(res);
     });
 }
 
