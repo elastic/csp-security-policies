@@ -104,13 +104,17 @@ function parseSpreadsheet(tab, benchmark_metadata: BenchmarkMetadata): Promise<R
     const keys = tab.data[0].map(el => el.toLowerCase()); // Different benchamrks have different casing in the columns titles
     for (let idx = 1; idx < tab.data.length; idx++) {
         const values = tab.data[idx];
+        // `keys` is an array that holds all the column names
+        // `values` is an array that holds the cell values
+        // The following line will push into results an object that is look something like:
+        // {key1: value1, key2: value2, key3: value3, ...}
         results.push(Object.assign.apply({}, keys.map((v, i) => ({ [v]: values[i] }))));
     }
 
     return normalizeResults(results, benchmark_metadata, profile_applicability);
 }
 
-function parseBenchmark(file, benchmark_metadata: BenchmarkMetadata) {
+function parseBenchmark(file: string, benchmark_metadata: BenchmarkMetadata): Promise<RuleSchema[]> {
     const excel = xlsx.parse(file);
     // Assumption, we treat only tabs that start with the word "Level" (as in the string "Level 1 - Master Node")
     const tabs = _.filter(excel, (tab) => { return Boolean(tab.name.indexOf("Level") == 0) })
@@ -157,7 +161,7 @@ function generateOutputFiles(benchmarks: BenchmarkSchema[]): void {
         });
         fs.writeFileSync(output_folder + "/" + benchmark.filename + ".json", JSON.stringify(benchmark.rules));
     }
-    fs.writeFileSync(output_folder + "/combined.json", JSON.stringify(combined));
+    fs.writeFileSync(output_folder + "/" + config.get("output_filename"), JSON.stringify(combined));
 }
 
 parseBenchmarks(benchmarks_folder)
