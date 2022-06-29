@@ -147,13 +147,22 @@ function parseBenchmarks(folder): Promise<BenchmarkSchema[]> {
 // Make sure output folder exists
 generateOutputFolder();
 
+function generateOutputFiles(benchmarks: BenchmarkSchema[]): void {
+    const combined: any = [];
+    for (const benchmark of benchmarks) {
+        console.log("Parsed total of", benchmark.rules.length, "rules in benchamrk", benchmark.filename);
+        combined.push({
+            "benchmark": benchmark.filename,
+            "rules": benchmark.rules
+        });
+        fs.writeFileSync(output_folder + "/" + benchmark.filename + ".json", JSON.stringify(benchmark.rules));
+    }
+    fs.writeFileSync(output_folder + "/combined.json", JSON.stringify(combined));
+}
+
 parseBenchmarks(benchmarks_folder)
     .then((benchmarks) => {
-        for (const benchmark of benchmarks) {
-            console.log("Parsed total of", benchmark.rules.length, "rules in benchamrk", benchmark.filename);
-            fs.writeFileSync(output_folder + "/" + benchmark.filename + ".json", JSON.stringify(benchmark.rules));
-        }
-
+        generateOutputFiles(benchmarks);
         console.log("Done!");
     });
 
