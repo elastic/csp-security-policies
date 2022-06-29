@@ -11,10 +11,9 @@ const output_folder: string = config.get("output_folder");
 const benchmarks_folder: string = config.get("benchmarks_folder");
 
 function generateOutputFolder(): void {
-    if (!fs.existsSync(output_folder)) {
-        console.log("Creating output folder:", output_folder);
-        fs.mkdirSync(output_folder);
-    }
+    console.log("Creating output folder:", output_folder);
+    fs.rmdirSync(output_folder, { recursive: true });
+    fs.mkdirSync(output_folder);
 }
 
 function parseReferences(references): Promise<string[]> {
@@ -66,6 +65,14 @@ function identifySection(rule_section: string, sections: SectionMetadata[]): str
     process.exit(-1);
 }
 
+// Adds newline character after code-blocks that are at the end of a property
+function fixCodeBlocks(val: string): string {
+    if (val.endsWith("```")) {
+        return val.concat("\r\n");
+    }
+    return val;
+}
+
 function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkMetadata,
     profile_applicability: string): Promise<RuleSchema[]> {
     const sections = parseAllSections(data);
@@ -79,21 +86,22 @@ function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkM
         console.log("Parsing:", benchmark_metadata.name, rule_name);
         return parseReferences(it["references"])
             .then((references) => {
-                return {
+                const result: RuleSchema = {
                     "id": uuidv5(`${benchmark_metadata.name} ${rule_name}`, config.get("uuid_seed")),
                     "name": rule_name,
                     "rule_number": it["recommendation #"],
                     "profile_applicability": `* ${profile_applicability}`,
                     "description": it["description"],
-                    "rationale": it["rational statement"] || it["rationale statement"], // damn CIS
-                    "audit": it["audit procedure"],
-                    "remediation": it["remediation procedure"],
-                    "impact": it["impact statement"],
+                    "rationale": fixCodeBlocks(it["rational statement"] || it["rationale statement"] || ""), // damn CIS
+                    "audit": fixCodeBlocks(it["audit procedure"] || ""),
+                    "remediation": fixCodeBlocks(it["remediation procedure"] || ""),
+                    "impact": it["impact statement"] || "",
                     // "default_value": "By default, profiling is enabled.\n", // TODO
                     "references": references,
                     "section": identifySection(it["section #"], sections),
                     "benchmark": benchmark_metadata
                 };
+                return result;
             });
     });
 }
@@ -148,7 +156,7 @@ function parseBenchmarks(folder): Promise<BenchmarkSchema[]> {
     });
 }
 
-// Make sure output folder exists
+// Make sure output folder exists an is empty
 generateOutputFolder();
 
 function generateOutputFiles(benchmarks: BenchmarkSchema[]): void {

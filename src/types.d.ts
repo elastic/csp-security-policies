@@ -46,11 +46,12 @@ interface ExcelDataObject {
 
 interface RuleSchema {
     audit: string;
+    rule_number: string;
     benchmark: BenchmarkMetadata;
     default_value?: string;
     description: string;
     id: string;
-    impact?: string;
+    impact: string;
     name: string;
     profile_applicability: string;
     rationale: string;
