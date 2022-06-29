@@ -2,14 +2,22 @@
   "name": "cis_policies_generator",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "set TS_NODE_FILES=true & node -r ts-node/register/transpile-only src/index.ts",
+    "nodemon": "nodemon --watch src/**/*.ts --watch src/**/*.js --exec node -r ts-node/register/transpile-only src/index.ts",
+    "eslint": "eslint src/**/*.{js,ts,tsx}"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [],
+  "author": "Amit Kanfer",
+  "license": "",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "ts-node": "^10.1.0"
+  },
   "dependencies": {
     "axios": "^0.27.2",
+    "axios-retry": "^3.3.0",
     "bluebird": "^3.7.2",
     "config": "^3.3.7",
     "node-xlsx": "^0.21.0",

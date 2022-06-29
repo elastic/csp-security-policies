@@ -1,0 +1,24 @@
+{
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnType": true,
+	"workbench.tree.indent": 25,
+	"workbench.tree.renderIndentGuides": "always",
+	"eslint.alwaysShowStatus": true,
+	"workbench.editor.highlightModifiedTabs": true,
+	"editor.mouseWheelZoom": true,
+	"window.title": "${activeEditorMedium}${separator}${rootName}",
+	"search.exclude": {
+		"*package*.json": true, // Exlude all json files in the root
+		"**/node_modules": true,
+		"bin/**": true // Don't search the TypeScript "bin" folder
+	},
+	"typescript.referencesCodeLens.enabled": true,
+	"workbench.colorCustomizations": {
+		"activityBar.activeBorder": "#FFFFFF", // Adds a border to the selected item in the activitybar (top left)
+		"activityBar.activeBackground": "#FFffff66",
+		"activityBar.background": "#440000",
+		"titleBar.activeBackground": "#440000",
+		"titleBar.inactiveBackground": "#220000"
+	}
+}

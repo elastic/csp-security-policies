@@ -10,7 +10,6 @@ const Promise = require("bluebird");
 const output_folder = config.get("output_folder");
 const benchmarks_folder = config.get("benchmarks_folder");
 
-
 function generateOutputFolder() {
     if (!fs.existsSync(output_folder)) {
         console.log("Creating output folder:", output_folder);
@@ -22,15 +21,24 @@ function parseReferences(references) {
     if (!references) {
         return Promise.resolve(null);
     }
-    return Promise.map(references.replaceAll(":http", "\nhttp").split("\n"), (link) => {
-        return axios.head(link)
+
+    references = references.replaceAll(":http", "\nhttp").split("\n");
+    return Promise.resolve(references); 
+    
+    // TODO - fix the axios logic, i'm seeing valid links identified as broken...
+    // could be retry, could be throttling from the websites.
+    // perhaps we should add some caching, or maybe we can just ignore broken links.
+    return Promise.map(references, (link) => {
+        const client = axios.create({baseURL: link});
+        return client.get()
         .then(res => {
-            if (res.status == 200) {
-                return link;
-            } else {
-                return '';
-            }
+            return res.config.baseURL;
         }).catch(err => {
+            if (err.response) {
+                console.log("Got", err.response.status, "for", err.config.baseURL);
+            } else {
+                console.log("Got", err.code, "for", err.config.baseURL);
+            }
             return '';
         })
     }).then(results => {
@@ -38,6 +46,8 @@ function parseReferences(references) {
     });
 }
 
+// Generate a mapping betweem section # and its title. 
+// For example: { 'section #': '1', title: 'Control Plane Components' }
 function parseAllSections(data) {
     let arr = _.filter(data, (el) => {
         return (el["section #"] && el["title"] && !el["recommendation #"]);
@@ -47,41 +57,54 @@ function parseAllSections(data) {
 }
 
 function identifySection(rule_section, sections) {
-    for (section of sections) {
+    for (const section of sections) {
         if (section["section #"] == rule_section) {
             return section.title;
         }
     }
     // we should never get here!
-    console.err("Could not find section for rule", rule_section);
+    console.log("FATAL: Could not find section for rule", rule_section);
     process.exit(-1);
 }
 
+function extractValue(rule, keys) {
+    let result = "";
+    for (const key of keys) {
+        if (key in rule) {
+            result = rule[key];
+            break;
+        }
+    }
+    return result || "";
+}
+
 function normalizeResults(data, metadata) {
-    const sections = parseAllSections(data); // mapping betweem section # and its title. For example: { 'section #': '1', title: 'Control Plane Components' }
+    const sections = parseAllSections(data); 
 
     let result = _.filter(data, (it) => {
-        return it["recommendation #"]
+        return extractValue(it, ["recommendation #"]);
     });
 
     return Promise.map(result, (it) => {
-        return parseReferences(it.references)
+        const rule_name = extractValue(it, ["title"]);
+        console.log("Parsing:", metadata.benchmark.name, rule_name);
+        return parseReferences(extractValue(it, ["references"]))
         .then((references) => {
             return {
-                "id": uuidv5(`${metadata.benchmark.name} ${it.Title}`, config.get("uuid_seed")),
-                "name": it.Title,
-                "rule_number": it["recommendation #"],
+                "id": uuidv5(`${metadata.benchmark.name} ${rule_name}`, config.get("uuid_seed")),
+                "name": rule_name,
+                "rule_number": extractValue(it, ["recommendation #"]),
                 "profile_applicability": `* ${metadata.profile_applicability}`,
-                "description": it.description,
-                "rationale":  it["rational statement"],
-                "audit": it["audit procedure"],
-                "remediation": it["remediation procedure"],
-                "impact": it["impact statement"],
+                "description": extractValue(it, ["description"]),
+                "rational":  extractValue(it, ["rational statement", "rationale statement"]),
+                "audit": extractValue(it, ["audit procedure"]),
+                "remediation": extractValue(it, ["remediation procedure"]),
+                "impact": extractValue(it, ["impact statement"]),
                 // "default_value": "By default, profiling is enabled.\n", // TODO
                 "references": references,
-                "section": identifySection(it["section #"], sections),
+                "section": identifySection(extractValue(it,["section #"]), sections),
                 "benchmark": metadata.benchmark
-            }
+            };
         });
     });
 }
@@ -122,7 +145,7 @@ function parseBenchmark(file, benchmark_metadata) {
 function parseBenchmarks(folder) {
     const files = fs.readdirSync(folder);
     return Promise.map(files, (file) => {
-        const file_path = __dirname + "/" + folder + "/" + file;
+        const file_path = folder + "/" + file;
         const filename = path.parse(file).name;
         const tokens = filename.split("_");
         const pivot = tokens.indexOf("Benchmark");
@@ -146,7 +169,7 @@ generateOutputFolder();
 
 parseBenchmarks(benchmarks_folder)
 .then((benchmarks) => {
-    for (benchmark of benchmarks) {
+    for (const benchmark of benchmarks) {
         console.log("Parsed total of", benchmark.rules.length, "rules in benchamrk", benchmark.filename);
         fs.writeFileSync(output_folder + "/" + benchmark.filename + ".json", JSON.stringify(benchmark.rules));
     }
@@ -154,3 +177,4 @@ parseBenchmarks(benchmarks_folder)
     console.log("Done!");
 });
 
+export {};
