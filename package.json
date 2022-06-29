@@ -12,7 +12,11 @@
   "author": "Amit Kanfer",
   "license": "",
   "devDependencies": {
+    "@types/config": "^0.0.41",
+    "@types/underscore": "^1.11.4",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@types/bluebird": "^3.5.36",
+    "@types/node-xlsx": "^0.15.3",
     "ts-node": "^10.1.0"
   },
   "dependencies": {
