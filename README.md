@@ -1,6 +1,7 @@
 # cis_policies_generator
 Running `npm start` will create a JSON file for every XLSX benchmark in the `input` folder.
-Look for the `output` folder
+
+Look for the `output` folder.
 
 Example serialization of a single rule:
 
@@ -22,6 +23,31 @@ Example serialization of a single rule:
     "benchmark": {
         "name": "CIS Kubernetes V1.23",
         "version": "v1.0.1"
+    }
+}
+```
+
+There's also a `combined.json` file that will hold all rules from all benchmarks in the following format:
+
+```
+{
+    "policies": {
+        "CIS_Amazon_Elastic_Kubernetes_Service_(EKS)_Benchmark_v1.1.0": {
+            "2.1.1": {
+                "id": "3a52f937-3893-55ad-a557-a8aaa29d9500",
+                "name": "Enable audit Logs",
+                "rule_number": "2.1.1",
+                ...
+            },
+            "2.1.2": {
+                ...
+            }
+        },
+        "CIS_Kubernetes_V1.20_Benchmark_v1.0.1": {
+            "1.1.1": {
+                ...
+            }
+        }
     }
 }
 ```
