@@ -36,6 +36,7 @@ interface SectionMetadata {
 
 interface BenchmarkSchema {
     filename: string;
+    metadata: BenchmarkMetadata;
     rules: RuleSchema[];
 }
 

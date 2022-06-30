@@ -150,6 +150,7 @@ function parseBenchmarks(folder): Promise<BenchmarkSchema[]> {
             .then(res => {
                 return {
                     "filename": filename,
+                    "metadata": benchamrk,
                     "rules": res
                 }
             });
@@ -160,16 +161,19 @@ function parseBenchmarks(folder): Promise<BenchmarkSchema[]> {
 generateOutputFolder();
 
 function generateOutputFiles(benchmarks: BenchmarkSchema[]): void {
-    const combined: any = [];
+    const result: any = {
+        "policies": {}
+    };
+
     for (const benchmark of benchmarks) {
         console.log("Parsed total of", benchmark.rules.length, "rules in benchamrk", benchmark.filename);
-        combined.push({
-            "benchmark": benchmark.filename,
-            "rules": benchmark.rules
-        });
+        result.policies[benchmark.filename] = {};
+        for (let rule of benchmark.rules) {
+            result.policies[benchmark.filename][rule.rule_number] = rule;
+        }
         fs.writeFileSync(output_folder + "/" + benchmark.filename + ".json", JSON.stringify(benchmark.rules));
     }
-    fs.writeFileSync(output_folder + "/" + config.get("output_filename"), JSON.stringify(combined));
+    fs.writeFileSync(output_folder + "/" + config.get("output_filename"), JSON.stringify(result));
 }
 
 parseBenchmarks(benchmarks_folder)
