@@ -24,7 +24,7 @@ eks_valid_metadata := {
 	"description": "rule description",
 	"impact": "rule impact",
 	"tags": ["tag 1", "tag 2"],
-	"benchmark": {"name": "benchmark", "version": "v1.0.0"},
+	"benchmark": {"name": "benchmark", "version": "v1.0.0", "id": "cis_eks"},
 	"remediation": "rule remidiation",
 }
 
