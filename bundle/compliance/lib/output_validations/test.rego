@@ -28,7 +28,7 @@ eks_valid_metadata := {
 	"remediation": "rule remidiation",
 }
 
-test_all_metadata_fields {
+test_required_metadata_fields {
 	every key, _ in k8s_valid_metadata {
 		not validate_k8s_metadata(object.remove(k8s_valid_metadata, [key]))
 	}
