@@ -1,8 +1,7 @@
 package cis_eks.test_data
 
 generate_eks_input(logging, encryption_config, endpoint_private_access, endpoint_public_access, public_access_cidrs) = {
-	"type": "container-management",
-	"sub_type": "aws-eks",
+	"type": "aws-container-management",
 	"resource": {"Cluster": {
 		"Arn": "arn:aws:somearn1234:cluster/EKS-demo",
 		"CertificateAuthority": {"Data": "some data"},
@@ -63,8 +62,7 @@ generate_ecr_input_with_one_repo(image_scan_on_push) = {
 		"RepositoryName": "cloudbeat",
 		"RepositoryUri": "704479111111.dkr.ecr.us-east-2.amazonaws.com/blabla",
 	},
-	"type": "image-registry",
-	"sub_type": "aws-ecr",
+	"type": "aws-image-registry",
 }
 
 generate_elb_input_with_two_load_balancers(first_instance_protocol, first_instance_ssl_cert, sec_instance_protocol, sec_instance_ssl_cert) = {
@@ -129,8 +127,7 @@ generate_elb_input_with_two_load_balancers(first_instance_protocol, first_instan
 		],
 		"VPCId": "vpc-09b1bd8bbf4508a52",
 	},
-	"type": "load-balancer",
-	"sub_type": "aws-elb",
+	"type": "aws-load-balancer",
 }
 
 not_evaluated_input = {

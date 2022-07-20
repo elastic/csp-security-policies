@@ -18,8 +18,7 @@ test_not_evaluated {
 }
 
 violating_input_no_encryption_configuration = {
-	"type": "container-management",
-	"sub_type": "aws-eks",
+	"type": "aws-container-management",
 	"resource": {"Cluster": {
 		"Arn": "arn:aws:somearn1234:cluster/EKS-demo",
 		"CertificateAuthority": {"Data": "some data"},
