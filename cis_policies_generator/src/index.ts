@@ -1,18 +1,20 @@
 import _ from "underscore";
 import fs from 'fs';
 import config from 'config';
-const { v5: uuidv5 } = require('uuid');
 import xlsx from 'node-xlsx';
 import path from 'path';
 // import axios from 'axios';
 import Promise from "bluebird";
+import YAML from 'yaml';
+
+const {v5: uuidv5} = require('uuid');
 
 const output_folder: string = config.get("output_folder");
 const benchmarks_folder: string = config.get("benchmarks_folder");
 
 function generateOutputFolder(): void {
     console.log("Creating output folder:", output_folder);
-    fs.rmdirSync(output_folder, { recursive: true });
+    fs.rmdirSync(output_folder, {recursive: true});
     fs.mkdirSync(output_folder);
 }
 
@@ -23,28 +25,9 @@ function parseReferences(references): Promise<string[]> {
 
     const links: string[] = references.replaceAll(":http", "\nhttp").split("\n");
     return Promise.resolve(links);
-
-    // TODO - fix the axios logic, i'm seeing valid links identified as broken...
-    // could be retry, could be throttling from the websites.
-    // perhaps we should add some caching, or maybe we can just ignore broken links.
-    // return Promise.map(links, (link) => {
-    //     return axios.head(link)
-    //         .then(res => {
-    //             return res.config.baseURL;
-    //         }).catch(err => {
-    //             if (err.response) {
-    //                 console.log("Got", err.response.status, "for", err.config.baseURL);
-    //             } else {
-    //                 console.log("Got", err.code, "for", err.config.baseURL);
-    //             }
-    //             return '';
-    //         })
-    // }).then(results => {
-    //     return results.filter(el => { return el }); // filter empty results
-    // });
 }
 
-// Generate a mapping betweem section # and its title. 
+// Generate a mapping between section # and its title.
 // For example: { 'section #': '1', title: 'Control Plane Components' }
 function parseAllSections(data): SectionMetadata[] {
     let arr = _.filter(data, (el) => {
@@ -74,7 +57,7 @@ function fixCodeBlocks(val: string): string {
 }
 
 function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkMetadata,
-    profile_applicability: string): Promise<RuleSchema[]> {
+                          profile_applicability: string): Promise<RuleSchema[]> {
     const sections = parseAllSections(data);
 
     let result = _.filter(data, (it) => {
@@ -99,7 +82,7 @@ function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkM
                     // "default_value": "By default, profiling is enabled.\n", // TODO
                     "references": references,
                     "section": identifySection(it["section #"], sections),
-                    "benchmark": benchmark_metadata
+                    "benchmark": {"name": benchmark_metadata.name, "version": benchmark_metadata.version},
                 };
                 return result;
             });
@@ -109,23 +92,28 @@ function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkM
 function parseSpreadsheet(tab, benchmark_metadata: BenchmarkMetadata): Promise<RuleSchema[]> {
     const profile_applicability = tab.name;
     const results: BenchmarksData[] = [];
-    const keys = tab.data[0].map(el => el.toLowerCase()); // Different benchamrks have different casing in the columns titles
+    const keys = tab.data[0].map(el => el.toLowerCase()); // Different benchmarks have different casing in the columns titles
     for (let idx = 1; idx < tab.data.length; idx++) {
         const values = tab.data[idx];
         // `keys` is an array that holds all the column names
         // `values` is an array that holds the cell values
         // The following line will push into results an object that is look something like:
         // {key1: value1, key2: value2, key3: value3, ...}
-        results.push(Object.assign.apply({}, keys.map((v, i) => ({ [v]: values[i] }))));
+        results.push(Object.assign.apply({}, keys.map((v, i) => ({
+            [v]: values[i]?.replace(/\r\n/g, "\n")
+        }))));
+        // results.push(Object.assign.apply({}, keys.map((v, i) => ({[v]: values[i]}))));
     }
 
     return normalizeResults(results, benchmark_metadata, profile_applicability);
 }
 
 function parseBenchmark(file: string, benchmark_metadata: BenchmarkMetadata): Promise<RuleSchema[]> {
-    const excel = xlsx.parse(file);
+    const excel = xlsx.parse(file, {raw: false, type: 'file', cellText: true});
     // Assumption, we treat only tabs that start with the word "Level" (as in the string "Level 1 - Master Node")
-    const tabs = _.filter(excel, (tab) => { return Boolean(tab.name.indexOf("Level") == 0) })
+    const tabs = _.filter(excel, (tab) => {
+        return Boolean(tab.name.indexOf("Level") == 0)
+    })
 
     return Promise.map(tabs, tab => {
         return parseSpreadsheet(tab, benchmark_metadata);
@@ -141,16 +129,16 @@ function parseBenchmarks(folder): Promise<BenchmarkSchema[]> {
         const filename = path.parse(file).name;
         const tokens = filename.split("_");
         const pivot = tokens.indexOf("Benchmark");
-        const benchamrk: BenchmarkMetadata = {
-            "name": tokens.slice(0, pivot).join(" "), // assuming the "Benchmark" word seperates the benchmark name and the benchmark version
+        const benchmark: BenchmarkMetadata = {
+            "name": tokens.slice(0, pivot).join(" "), // assuming the "Benchmark" word separates the benchmark name and the benchmark version
             "version": tokens.slice(-1)[0]            // assuming the version is always the last token in the string
         }
 
-        return parseBenchmark(file_path, benchamrk)
+        return parseBenchmark(file_path, benchmark)
             .then(res => {
                 return {
                     "filename": filename,
-                    "metadata": benchamrk,
+                    "metadata": benchmark,
                     "rules": res
                 }
             });
@@ -166,14 +154,14 @@ function generateOutputFiles(benchmarks: BenchmarkSchema[]): void {
     };
 
     for (const benchmark of benchmarks) {
-        console.log("Parsed total of", benchmark.rules.length, "rules in benchamrk", benchmark.filename);
+        console.log("Parsed total of", benchmark.rules.length, "rules in benchmark", benchmark.filename);
         result.policies[benchmark.filename] = {};
         for (let rule of benchmark.rules) {
             result.policies[benchmark.filename][rule.rule_number] = rule;
         }
-        fs.writeFileSync(output_folder + "/" + benchmark.filename + ".json", JSON.stringify(benchmark.rules));
+        fs.writeFileSync(output_folder + "/" + benchmark.filename + ".yaml", YAML.stringify(benchmark.rules));
     }
-    fs.writeFileSync(output_folder + "/" + config.get("output_filename"), JSON.stringify(result));
+    fs.writeFileSync(output_folder + "/" + config.get("output_filename"), YAML.stringify(result));
 }
 
 parseBenchmarks(benchmarks_folder)
@@ -182,4 +170,4 @@ parseBenchmarks(benchmarks_folder)
         console.log("Done!");
     });
 
-export { };
+export {};

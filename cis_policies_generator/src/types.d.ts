@@ -3,7 +3,7 @@ interface BenchmarkMetadata {
     version: string;
 }
 
-interface CIS_EKS_Benchamrk_Schema {
+interface CIS_EKS_Benchmark_Schema {
     "section #": string;
     "recommendation #": string;
     "title": string;
@@ -15,7 +15,7 @@ interface CIS_EKS_Benchamrk_Schema {
     "references": string;
 }
 
-interface CIS_K8S_Benchamrk_Schema {
+interface CIS_K8S_Benchmark_Schema {
     "section #": string;
     "recommendation #": string;
     "title": string;
@@ -27,7 +27,7 @@ interface CIS_K8S_Benchamrk_Schema {
     "references": string;
 }
 
-type BenchmarksData = CIS_K8S_Benchamrk_Schema | CIS_EKS_Benchamrk_Schema;
+type BenchmarksData = CIS_K8S_Benchmark_Schema | CIS_EKS_Benchmark_Schema;
 
 interface SectionMetadata {
     "section #": string;

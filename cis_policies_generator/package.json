@@ -12,20 +12,22 @@
   "author": "Amit Kanfer",
   "license": "",
   "devDependencies": {
+    "@types/bluebird": "^3.5.36",
     "@types/config": "^0.0.41",
+    "@types/node-xlsx": "^0.15.3",
     "@types/underscore": "^1.11.4",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
-    "@types/bluebird": "^3.5.36",
-    "@types/node-xlsx": "^0.15.3",
-    "ts-node": "^10.1.0"
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "axios-retry": "^3.3.0",
     "bluebird": "^3.7.2",
     "config": "^3.3.7",
+    "json-to-pretty-yaml": "^1.2.2",
     "node-xlsx": "^0.21.0",
     "underscore": "^1.13.4",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yaml": "^2.1.1"
   }
 }
