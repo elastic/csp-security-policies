@@ -3,7 +3,7 @@ package main
 import data.compliance
 import data.compliance.lib.common
 
-# input is a resource and configuration
+# input contains the resource and the configuration
 # output is findings
 
 resource = input.resource
