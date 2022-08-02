@@ -58,14 +58,3 @@ func CISKubernetesBundle() Bundle {
 func CISEksBundle() Bundle {
 	return Bundle{fs: layerfs.New(CommonEmbed, EKSRulesEmbed)}
 }
-
-//
-//func (b *Bundle) With(path string, content string) Bundle {
-//	tmpFS := fstest.MapFS{
-//		path: {
-//			Data: []byte(content),
-//		},
-//	}
-//	b.fs = layerfs.New(tmpFS, b.fs)
-//	return *b
-//}
