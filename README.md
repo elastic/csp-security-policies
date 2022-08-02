@@ -61,7 +61,11 @@ should contain a beat/agent output, e.g. filesystem data
 ```json
 {
   "type": "file",
-  "activated_rules": {"cis_k8s":  ["cis_1_1_1"]},
+  "activated_rules": {
+    "cis_k8s": [
+      "cis_1_1_1"
+    ]
+  },
   "sub_type": "file",
   "resource": {
     "mode": "0700",
