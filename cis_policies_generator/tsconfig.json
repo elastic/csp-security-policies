@@ -14,7 +14,8 @@
       "node"
     ],
     "lib": [
-      "es6"
+      "es6",
+      "es2019"
     ],
     "esModuleInterop": true,
     "skipLibCheck": true,

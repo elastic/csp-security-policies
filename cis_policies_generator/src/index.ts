@@ -3,8 +3,6 @@ import fs from 'fs';
 import config from 'config';
 import xlsx from 'node-xlsx';
 import path from 'path';
-// import axios from 'axios';
-import Promise from "bluebird";
 import YAML from 'yaml';
 
 const {v5: uuidv5} = require('uuid');
@@ -14,27 +12,23 @@ const benchmarks_folder: string = config.get("benchmarks_folder");
 
 function generateOutputFolder(): void {
     console.log("Creating output folder:", output_folder);
-    fs.rmdirSync(output_folder, {recursive: true});
+    fs.rmSync(output_folder, {recursive: true});
     fs.mkdirSync(output_folder);
 }
 
-function parseReferences(references): Promise<string[]> {
+function parseReferences(references): string[] {
     if (!references) {
-        return Promise.resolve([]);
+        return [];
     }
 
-    const links: string[] = references.replaceAll(":http", "\nhttp").split("\n");
-    return Promise.resolve(links);
+    return references.replaceAll(":http", "\nhttp").split("\n");
 }
 
 // Generate a mapping between section # and its title.
 // For example: { 'section #': '1', title: 'Control Plane Components' }
 function parseAllSections(data): SectionMetadata[] {
-    let arr = _.filter(data, (el) => {
-        return (el["section #"] && el["title"] && !el["recommendation #"]);
-    });
-    arr = _.map(arr, i => _.pick(i, ["section #", "title"]));
-    return arr;
+    return data.filter((el) => (el["section #"] && el["title"] && !el["recommendation #"]))
+        .map(i => _.pick(i, ["section #", "title"]));
 }
 
 function identifySection(rule_section: string, sections: SectionMetadata[]): string {
@@ -57,39 +51,37 @@ function fixCodeBlocks(val: string): string {
 }
 
 function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkMetadata,
-                          profile_applicability: string): Promise<RuleSchema[]> {
+                          profile_applicability: string): RuleSchema[] {
     const sections = parseAllSections(data);
 
-    let result = _.filter(data, (it) => {
+    let result = data.filter((it) => {
         return Boolean(it["recommendation #"]);
     });
 
-    return Promise.map(result, (it) => {
-        const rule_name = it["title"];
-        console.log("Parsing:", benchmark_metadata.name, rule_name);
-        return parseReferences(it["references"])
-            .then((references) => {
-                const result: RuleSchema = {
-                    "id": uuidv5(`${benchmark_metadata.name} ${rule_name}`, config.get("uuid_seed")),
-                    "name": rule_name,
-                    "rule_number": it["recommendation #"],
-                    "profile_applicability": `* ${profile_applicability}`,
-                    "description": it["description"],
-                    "rationale": fixCodeBlocks(it["rational statement"] || it["rationale statement"] || ""), // damn CIS
-                    "audit": fixCodeBlocks(it["audit procedure"] || ""),
-                    "remediation": fixCodeBlocks(it["remediation procedure"] || ""),
-                    "impact": it["impact statement"] || "",
-                    // "default_value": "By default, profiling is enabled.\n", // TODO
-                    "references": references,
-                    "section": identifySection(it["section #"], sections),
-                    "benchmark": {"name": benchmark_metadata.name, "version": benchmark_metadata.version},
-                };
-                return result;
-            });
-    });
+    return result.map((it) => {
+            const rule_name = it["title"];
+            console.log("Parsing:", benchmark_metadata.name, rule_name);
+            const refs = parseReferences(it["references"])
+            return {
+                "id": uuidv5(`${benchmark_metadata.name} ${rule_name}`, config.get("uuid_seed")),
+                "name": rule_name,
+                "rule_number": it["recommendation #"],
+                "profile_applicability": `* ${profile_applicability}`,
+                "description": it["description"],
+                "rationale": fixCodeBlocks(it["rational statement"] || it["rationale statement"] || ""),
+                "audit": fixCodeBlocks(it["audit procedure"] || ""),
+                "remediation": fixCodeBlocks(it["remediation procedure"] || ""),
+                "impact": it["impact statement"] || "",
+                // "default_value": "By default, profiling is enabled.\n", // TODO
+                "references": refs,
+                "section": identifySection(it["section #"], sections),
+                "benchmark": {"name": benchmark_metadata.name, "version": benchmark_metadata.version},
+            }
+        }
+    );
 }
 
-function parseSpreadsheet(tab, benchmark_metadata: BenchmarkMetadata): Promise<RuleSchema[]> {
+function parseSpreadsheet(tab, benchmark_metadata: BenchmarkMetadata): RuleSchema[] {
     const profile_applicability = tab.name;
     const results: BenchmarksData[] = [];
     const keys = tab.data[0].map(el => el.toLowerCase()); // Different benchmarks have different casing in the columns titles
@@ -102,29 +94,22 @@ function parseSpreadsheet(tab, benchmark_metadata: BenchmarkMetadata): Promise<R
         results.push(Object.assign.apply({}, keys.map((v, i) => ({
             [v]: values[i]?.replace(/\r\n/g, "\n")
         }))));
-        // results.push(Object.assign.apply({}, keys.map((v, i) => ({[v]: values[i]}))));
     }
 
     return normalizeResults(results, benchmark_metadata, profile_applicability);
 }
 
-function parseBenchmark(file: string, benchmark_metadata: BenchmarkMetadata): Promise<RuleSchema[]> {
+function parseBenchmark(file: string, benchmark_metadata: BenchmarkMetadata): RuleSchema[] {
     const excel = xlsx.parse(file, {raw: false, type: 'file', cellText: true});
     // Assumption, we treat only tabs that start with the word "Level" (as in the string "Level 1 - Master Node")
-    const tabs = _.filter(excel, (tab) => {
-        return Boolean(tab.name.indexOf("Level") == 0)
-    })
-
-    return Promise.map(tabs, tab => {
-        return parseSpreadsheet(tab, benchmark_metadata);
-    }).then(res => {
-        return _.flatten(res);
-    });
+    return excel.filter(tab => Boolean(tab.name.indexOf("Level") == 0))
+        .map(tab => parseSpreadsheet(tab, benchmark_metadata))
+        .flat();
 }
 
-function parseBenchmarks(folder): Promise<BenchmarkSchema[]> {
+function parseBenchmarks(folder): BenchmarkSchema[] {
     const files = fs.readdirSync(folder);
-    return Promise.map(files, (file) => {
+    return files.map(file => {
         const file_path = folder + "/" + file;
         const filename = path.parse(file).name;
         const tokens = filename.split("_");
@@ -134,19 +119,13 @@ function parseBenchmarks(folder): Promise<BenchmarkSchema[]> {
             "version": tokens.slice(-1)[0]            // assuming the version is always the last token in the string
         }
 
-        return parseBenchmark(file_path, benchmark)
-            .then(res => {
-                return {
-                    "filename": filename,
-                    "metadata": benchmark,
-                    "rules": res
-                }
-            });
+        return {
+            "filename": filename,
+            "metadata": benchmark,
+            "rules": parseBenchmark(file_path, benchmark)
+        }
     });
 }
-
-// Make sure output folder exists an is empty
-generateOutputFolder();
 
 function generateOutputFiles(benchmarks: BenchmarkSchema[]): void {
     const result: any = {
@@ -164,10 +143,13 @@ function generateOutputFiles(benchmarks: BenchmarkSchema[]): void {
     fs.writeFileSync(output_folder + "/" + config.get("output_filename"), YAML.stringify(result));
 }
 
-parseBenchmarks(benchmarks_folder)
-    .then((benchmarks) => {
-        generateOutputFiles(benchmarks);
-        console.log("Done!");
-    });
+function main(): void {
+    // Make sure output folder exists an is empty
+    generateOutputFolder();
 
-export {};
+    const parsed_benchmarks = parseBenchmarks(benchmarks_folder)
+    generateOutputFiles(parsed_benchmarks);
+    console.log("Done!");
+}
+
+main()
