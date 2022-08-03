@@ -8,20 +8,18 @@ import data.compliance.lib.common
 
 resource = input.resource
 
-activated_rules = input.activated_rules
-
 findings = f {
-	activated_rules
+	input.activated_rules
 
 	# iterate over activated benchmarks
-	benchmarks := [key | activated_rules[key]]
+	benchmarks := [key | input.activated_rules[key]]
 
 	# aggregate findings from activated benchmarks
 	f := {finding | compliance[benchmarks[_]].findings[finding]}
 }
 
 findings = f {
-	not activated_rules
+	not input.activated_rules
 
 	# aggregate findings from all benchmarks
 	f := {finding | compliance[benchmarks].findings[finding]}
