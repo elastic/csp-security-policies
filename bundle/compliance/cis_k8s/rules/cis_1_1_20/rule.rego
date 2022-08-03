@@ -1,9 +1,9 @@
 package compliance.cis_k8s.rules.cis_1_1_20
 
-import data.compliance.policy.audit.file.ensure_permissions as audit
+import data.compliance.policy.file.ensure_permissions as audit
 
 finding = result {
 	audit.path_filter("/etc/kubernetes/pki")
-	audit.suffix_filter(".crt")
+	audit.filename_suffix_filter(".crt")
 	result := audit.finding(6, 4, 4)
 }

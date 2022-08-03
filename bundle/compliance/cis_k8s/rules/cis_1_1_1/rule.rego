@@ -1,6 +1,6 @@
 package compliance.cis_k8s.rules.cis_1_1_1
 
-import data.compliance.policy.audit.file.ensure_permissions as audit
+import data.compliance.policy.file.ensure_permissions as audit
 
 finding = result {
 	audit.filename_filter("kube-apiserver.yaml")

@@ -1,4 +1,4 @@
-package compliance.policy.data_adapters.file
+package compliance.policy.file.data_adapter
 
 import future.keywords.in
 
