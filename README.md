@@ -52,11 +52,9 @@
 
 ## Local Evaluation
 
-Add the following file into the root folder
-
 ##### `input.json`
 
-should contain a beat/agent output, e.g. filesystem data
+should contain a beat/agent output and the `activated_rules` (not mandatory - without specifying rules all rules will apply), e.g. filesystem data
 
 ```json
 {
