@@ -1,5 +1,5 @@
 import config from "config";
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 
 const check: string = config.get("check_for_broken_references");
 
@@ -24,23 +24,23 @@ async function checkReference(link: string): Promise<boolean> {
         logResponse(link, code, true);
         return code == 200;
     }
-    return axios.head(link)
-        .then(res => {
-            logResponse(link, res.status, false);
-            setCache(link, res.status);
-            return res.status == 200;
-        }).catch(err => {
-            if (err.response) {
-                setCache(link, err.response.status);
-                logResponse(link, err.response.status, false);
-            } else {
-                // If we got here, it means that we failed to reach the server because of things that are IN OUR CONTROL
-                // (e.g. timeout, socket reset)
-                console.log(err);
-                process.abort();
-            }
-            return false;
-        })
+    try {
+        const res = await axios.head(link)
+        logResponse(link, res.status, false);
+        setCache(link, res.status);
+        return res.status == 200;
+    } catch (err) {
+        if (err instanceof AxiosError && err.response) {
+            setCache(link, err.response.status);
+            logResponse(link, err.response.status, false);
+        } else {
+            // If we got here, it means that we failed to reach the server because of things that are IN OUR CONTROL
+            // (e.g. timeout, socket reset)
+            console.log(err);
+            process.abort();
+        }
+        return false;
+    }
 }
 
 async function removeIfBroken(references: string[]) {
