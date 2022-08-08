@@ -43,17 +43,17 @@ async function checkReference(link: string): Promise<boolean> {
         })
 }
 
-function removeIfBroken(references: string[], i: number) {
+async function removeIfBroken(references: string[]) {
+    for (let i = references.length - 1; i >= 0; i--)
+        if (!(await checkReference(references[i])))
+            references.splice(i, 1)
 }
 
 export async function FixBrokenReferences(parsed_benchmarks: BenchmarkSchema[]): Promise<BenchmarkSchema[]> {
     if (!check)
         return parsed_benchmarks;
-    for (const bench of parsed_benchmarks)
-        for (const rule of bench.rules)
-            for (let i = rule.references.length - 1; i >= 0; i--)
-                // removeIfBroken(rule.references, i)
-                if (!(await checkReference(rule.references[i])))
-                    rule.references.splice(i, 1)
+    await Promise.all(parsed_benchmarks.map(
+        async bench => await Promise.all(bench.rules.map(
+            async rule => await removeIfBroken(rule.references)))))
     return parsed_benchmarks
 }

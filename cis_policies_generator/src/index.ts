@@ -152,7 +152,6 @@ async function main(): Promise<void> {
     // Make sure output folder exists an is empty
     generateOutputFolder();
     const parsed_benchmarks = parseBenchmarks(benchmarks_folder)
-    // const validated_benchmarks = await FixBrokenReferences(parsed_benchmarks)
     await FixBrokenReferences(parsed_benchmarks)
     generateOutputFiles(parsed_benchmarks);
     console.log("Done!");
