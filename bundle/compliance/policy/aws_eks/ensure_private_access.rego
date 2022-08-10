@@ -3,8 +3,6 @@ package compliance.policy.aws_eks.ensure_private_access
 import data.compliance.lib.common
 import data.compliance.policy.aws_eks.data_adapter
 
-#default rule_evaluation = false
-
 # Allow only private access to cluster.
 is_only_private(cluster) {
 	cluster.ResourcesVpcConfig.EndpointPrivateAccess
