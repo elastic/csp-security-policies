@@ -15,9 +15,7 @@ is_only_private(cluster) {
 finding = result {
 	# filter
 	data_adapter.is_aws_eks
-	print(data_adapter.cluster)
 	rule_evaluation := is_only_private(data_adapter.cluster)
-	print(rule_evaluation)
 
 	# set result
 	result := common.generate_result_without_expected(
