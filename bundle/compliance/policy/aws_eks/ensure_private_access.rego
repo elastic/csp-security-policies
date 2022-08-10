@@ -38,23 +38,21 @@ finding(cidr_allowed) = result {
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(rule_evaluation),
-		get_evidence(cluster.ResourcesVpcConfig, cidr_allowed),
+		object.union_n([
+		{
+		"endpoint_public_access": cluster.ResourcesVpcConfig.EndpointPublicAccess,
+		"endpoint_private_access": cluster.ResourcesVpcConfig.EndpointPrivateAccess,
+		},
+		cidr_evidence(cluster.ResourcesVpcConfig, cidr_allowed)
+		])
 	)
 }
 
-get_evidence(config, cidr_allowed) = result {
-	not cidr_allowed
-	result := {
-		"endpoint_public_access": config.EndpointPublicAccess,
-		"endpoint_private_access": config.EndpointPrivateAccess,
-	}
-}
-
-get_evidence(config, cidr_allowed) = result {
+cidr_evidence(config, cidr_allowed) = result {
 	cidr_allowed
 	result := {
-		"endpoint_public_access": config.EndpointPublicAccess,
-		"endpoint_private_access": config.EndpointPrivateAccess,
 		"public_access_cidrs": config.PublicAccessCidrs,
 	}
+} else = {} {
+	true
 }
