@@ -100,7 +100,7 @@ function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkM
                 "benchmark": {
                     "name": benchmark_metadata.name,
                     "version": benchmark_metadata.version,
-                    "id": generateBenchmarkId(benchmark_metadata)
+                    "id": benchmark_metadata.filename
                 },
             }
         }
@@ -145,11 +145,10 @@ function parseBenchmarks(folder: string): BenchmarkSchema[] {
         const benchmark: BenchmarkMetadata = {
             "name": tokens.slice(0, pivot).join(" "), // assuming the "Benchmark" word separates the benchmark name and the benchmark version
             "version": tokens.slice(-1)[0],            // assuming the version is always the last token in the string
-            "k8sVersion": getK8sVersionFromBenchmark(filename)
+            "filename": filename,
         }
 
         return {
-            "filename": filename,
             "metadata": benchmark,
             "rules": parseBenchmark(file_path, benchmark)
         }
@@ -158,7 +157,7 @@ function parseBenchmarks(folder: string): BenchmarkSchema[] {
 
 function generateRulesMetadataFiles(benchmarks: BenchmarkSchema[]): void {
     for (const benchmark of benchmarks) {
-        console.log("Parsed total of", benchmark.rules.length, "rules in benchmark", benchmark.filename);
+        console.log("Parsed total of", benchmark.rules.length, "rules in benchmark", benchmark.metadata.filename);
         const benchmark_id = getBenchmarkAttr(benchmark.metadata, "id")
         for (let rule of benchmark.rules) {
             const ruleNumber = rule.rule_number!.replaceAll(".", "_");
@@ -167,7 +166,7 @@ function generateRulesMetadataFiles(benchmarks: BenchmarkSchema[]): void {
             delete rule.rule_number;
 
             if (fs.existsSync(rule_folder)) {
-                rule.default_value = getExistingDefaultVal(metadata_file);
+                _.assign(rule, getExistingValues(metadata_file));
                 fs.writeFileSync(metadata_file, YAML.stringify({metadata: rule} as MetadataFile));
             }
         }
@@ -190,28 +189,19 @@ function getBenchmarkAttr(benchmark_metadata: BenchmarkMetadata, field: string):
     return ""
 }
 
-function getK8sVersionFromBenchmark(filename: string): string {
-    if (filename.includes("CIS_Kubernetes")) {
-        // We count on the third element in the k8s benchmark filename to be the k8s version.
-        return filename.split("_")[2].toLowerCase()
+function getExistingValues(filePath: string): Partial<RuleSchema> {
+    if (!fs.existsSync(filePath)) {
+        return {};
     }
 
-    return ""
-}
+    const file = fs.readFileSync(filePath, 'utf8');
+    const rule = YAML.parse(file).metadata as RuleSchema;
 
-function generateBenchmarkId(metadata: BenchmarkMetadata) {
-    const version = metadata.k8sVersion ? metadata.k8sVersion : metadata.version;
-    const benchmarkVersion = metadata.version != version ? metadata.version : "";
-
-    return [getBenchmarkAttr(metadata, "id"), version, benchmarkVersion].filter(Boolean).join("_");
-}
-
-function getExistingDefaultVal(filePath: string): undefined|string {
-    if (fs.existsSync(filePath)) {
-        const file = fs.readFileSync(filePath, 'utf8');
-        const existingMetadataFile = YAML.parse(file) as MetadataFile;
-        return existingMetadataFile.metadata.default_value
-    }
+    // Remove falsy attributes if there's any
+    return _.pick({
+        default_value: rule.default_value,
+        id: rule.id
+    }, (prop: any) => prop)
 }
 
 async function main(): Promise<void> {

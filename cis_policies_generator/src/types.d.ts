@@ -1,7 +1,13 @@
 interface BenchmarkMetadata {
     name: string;
     version: string;
-    k8sVersion?: string;
+    filename: string;
+}
+
+interface BenchmarkInfo {
+    name: string;
+    version: string;
+    id: string;
 }
 
 interface CisEksBenchmarkSchema {
@@ -36,7 +42,6 @@ interface SectionMetadata {
 }
 
 interface BenchmarkSchema {
-    filename: string;
     metadata: BenchmarkMetadata;
     rules: RuleSchema[];
 }
@@ -57,7 +62,7 @@ interface MetadataFile {
 interface RuleSchema {
     audit: string;
     rule_number?: string;
-    benchmark: BenchmarkMetadata;
+    benchmark: BenchmarkInfo;
     default_value?: string;
     description: string;
     id: string;
