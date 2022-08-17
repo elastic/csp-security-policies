@@ -63,4 +63,6 @@ is_kubelet {
 # process_args = data_adapter.process_args("=")
 
 # TODO: Code something more complex this works only for k8s
-process_args = {flag: value | [flag, value] = parse_argument(process_args_list[_], "=")}
+process_args(seperator) = {flag: value | [flag, value] = parse_argument(process_args_list[_], seperator)}
+
+# process_args_eks = {flag: value | [flag, value] = parse_argument(process_args_list[_], " ")}
