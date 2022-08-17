@@ -4,18 +4,33 @@ import config from 'config';
 import xlsx from 'node-xlsx';
 import path from 'path';
 import YAML from 'yaml';
+const program = require('commander');
 import {FixBrokenReferences} from "./fixBrokenReferences";
+import {generateRuleTemplates} from "./generateRuleTemplates";
+import {BENCHMARK_TYPES} from "./constants";
 
 const {v5: uuid} = require('uuid');
-
-const output_folder: string = config.get("output_folder");
 const benchmarks_folder: string = config.get("benchmarks_folder");
 
-function generateOutputFolder(): void {
-    console.log("Creating output folder:", output_folder);
-    if (fs.existsSync(output_folder)) fs.rmSync(output_folder, {recursive: true});
-    fs.mkdirSync(output_folder);
-}
+program
+    .name('cis-policies-generator')
+    .description('CIS Benchmark parser CLI')
+    .version('0.0.1')
+    .addHelpText('after', `
+    Example calls:
+        $ npm start -- -m
+        $ npm start -- -t -b 'cis_eks'`);
+
+program
+    .option('-t, --templates', 'generate csp rule templates and place them in the integration dir')
+    .option('-b, --benchmark <string>', 'benchmark to be used for the rules template generation', 'cis_k8s')
+    .option('-m, --rulesMeta', 'generate rules metadata for any provided benchmark in the input dir')
+
+program.parse();
+const options = program.opts();
+const shouldGenRuleTemplates = options.templates;
+const shouldGenRulesMeta = options.rulesMeta;
+const rulesTemplateBenchmark = options.benchmark;
 
 function parseReferences(references: string): string[] {
     if (!references) {
@@ -61,12 +76,15 @@ function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkM
 
     return result.map((it) => {
             const rule_name = it["title"];
+            const rule_number = it["recommendation #"];
+            const rule_section = identifySection(it["section #"], sections);
+
             console.log("Parsing:", benchmark_metadata.name, rule_name);
             const refs = parseReferences(it["references"])
             return {
                 "id": uuid(`${benchmark_metadata.name} ${rule_name}`, config.get("uuid_seed")),
                 "name": rule_name,
-                "rule_number": it["recommendation #"],
+                "rule_number": rule_number,
                 "profile_applicability": `* ${profile_applicability}`,
                 "description": it["description"],
                 // @ts-ignore
@@ -76,8 +94,13 @@ function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkM
                 "impact": it["impact statement"] || "",
                 // "default_value": "By default, profiling is enabled.\n", // TODO
                 "references": refs,
-                "section": identifySection(it["section #"], sections),
-                "benchmark": {"name": benchmark_metadata.name, "version": benchmark_metadata.version},
+                "tags": constructRuleTags(benchmark_metadata, rule_number, rule_section),
+                "section": rule_section,
+                "benchmark": {
+                    "name": benchmark_metadata.name,
+                    "version": benchmark_metadata.version,
+                    "id": generateBenchmarkId(benchmark_metadata)
+                },
             }
         }
     );
@@ -120,7 +143,8 @@ function parseBenchmarks(folder: string): BenchmarkSchema[] {
         const pivot = tokens.indexOf("Benchmark");
         const benchmark: BenchmarkMetadata = {
             "name": tokens.slice(0, pivot).join(" "), // assuming the "Benchmark" word separates the benchmark name and the benchmark version
-            "version": tokens.slice(-1)[0]            // assuming the version is always the last token in the string
+            "version": tokens.slice(-1)[0],            // assuming the version is always the last token in the string
+            "k8sVersion": getK8sVersionFromBenchmark(filename)
         }
 
         return {
@@ -131,29 +155,76 @@ function parseBenchmarks(folder: string): BenchmarkSchema[] {
     });
 }
 
-function generateOutputFiles(benchmarks: BenchmarkSchema[]): void {
-    const result: any = {
-        "policies": {}
-    };
-
+function generateRulesMetadataFiles(benchmarks: BenchmarkSchema[]): void {
     for (const benchmark of benchmarks) {
         console.log("Parsed total of", benchmark.rules.length, "rules in benchmark", benchmark.filename);
-        result.policies[benchmark.filename] = {};
+        const benchmark_id = getBenchmarkAttr(benchmark.metadata, "id")
         for (let rule of benchmark.rules) {
-            result.policies[benchmark.filename][rule.rule_number] = rule;
+            const ruleNumber = rule.rule_number!.replaceAll(".", "_");
+            const rule_folder = `../bundle/compliance/${benchmark_id}/rules/cis_${ruleNumber}`
+            const metadata_file = rule_folder + "/data.yaml";
+            delete rule.rule_number;
+
+            if (fs.existsSync(rule_folder)) {
+                rule.default_value = getExistingDefaultVal(metadata_file);
+                fs.writeFileSync(metadata_file, YAML.stringify({metadata: rule} as MetadataFile));
+            }
         }
-        fs.writeFileSync(output_folder + "/" + benchmark.filename + ".yaml", YAML.stringify(benchmark.rules));
     }
-    fs.writeFileSync(output_folder + "/" + config.get("output_filename"), YAML.stringify(result));
 }
 
+function constructRuleTags(benchmark_metadata: BenchmarkMetadata, rule_number: string, section: string): string[] {
+    const benchmark_type = getBenchmarkAttr(benchmark_metadata, "tag")
+    return ["CIS", benchmark_type, "CIS " + rule_number, section].filter(Boolean)
+}
+
+function getBenchmarkAttr(benchmark_metadata: BenchmarkMetadata, field: string): string {
+    for (let [type, attr] of Object.entries(BENCHMARK_TYPES)) {
+        if (benchmark_metadata.name.includes(type)) {
+            // @ts-ignore
+            return attr[field];
+        }
+    }
+
+    return ""
+}
+
+function getK8sVersionFromBenchmark(filename: string): string {
+    if (filename.includes("CIS_Kubernetes")) {
+        // We count on the third element in the k8s benchmark filename to be the k8s version.
+        return filename.split("_")[2].toLowerCase()
+    }
+
+    return ""
+}
+
+function generateBenchmarkId(metadata: BenchmarkMetadata) {
+    const version = metadata.k8sVersion ? metadata.k8sVersion : metadata.version;
+    return getBenchmarkAttr(metadata, "id") + "_" + version;
+}
+
+function getExistingDefaultVal(filePath: string): undefined|string {
+    if (fs.existsSync(filePath)) {
+        const file = fs.readFileSync(filePath, 'utf8');
+        const existingMetadataFile = YAML.parse(file) as MetadataFile;
+        return existingMetadataFile.metadata.default_value
+    }
+}
 
 async function main(): Promise<void> {
-    // Make sure output folder exists an is empty
-    generateOutputFolder();
-    const parsed_benchmarks = parseBenchmarks(benchmarks_folder)
-    await FixBrokenReferences(parsed_benchmarks)
-    generateOutputFiles(parsed_benchmarks);
+    if (shouldGenRulesMeta) {
+        const parsed_benchmarks = parseBenchmarks(benchmarks_folder);
+        await FixBrokenReferences(parsed_benchmarks);
+
+        console.log("Generate rules metadata");
+        generateRulesMetadataFiles(parsed_benchmarks);
+    }
+
+    if (shouldGenRuleTemplates) {
+        console.log("Generate CSP rule templates");
+        generateRuleTemplates(rulesTemplateBenchmark);
+    }
+
     console.log("Done!");
 }
 

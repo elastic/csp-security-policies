@@ -1,20 +1,14 @@
 "use strict";
 
-const _ = require("lodash");
-const fs = require("fs");
-const YAML = require("yaml");
-const path = require("path")
+import path from "path";
+import fs from "fs";
+import YAML from "yaml";
 
-const CSP_PATH = "../csp-security-policies";
-
-(async function () {
-  const rules = fs.readdirSync(
-    path.join(CSP_PATH, "/compliance/cis_k8s/rules/")
-  );
+export const generateRuleTemplates = function (benchmark: string) {
+  const rules = fs.readdirSync(`../bundle/compliance/${benchmark}/rules/`);
   rules.forEach((rule) => {
-    const yaml_doc = new YAML.Document();
     const exist_raw_rule = fs.readFileSync(
-      path.join(CSP_PATH, `compliance/cis_k8s/rules/${rule}/data.yaml`),
+      path.join(`../bundle/compliance/${benchmark}/rules/${rule}/data.yaml`),
       "utf-8"
     );
     const rule_obj = YAML.parse(exist_raw_rule).metadata;
@@ -24,19 +18,19 @@ const CSP_PATH = "../csp-security-policies";
     const integration_rule = migrateCspRuleMetadata({id: rule_obj.id, type: 'csp-rule-template', attributes: rule_obj});
 
     fs.writeFileSync(
-      path.join(`../integrations/packages/cloud_security_posture/kibana/csp_rule_template/`,`${integration_rule.id}.json`),
+      path.join(`../../integrations/packages/cloud_security_posture/kibana/csp_rule_template/`,`${integration_rule.id}.json`),
       JSON.stringify(integration_rule, null, 4),
       "utf-8"
     );
   });
-})();
+};
 
 /**
  * Migrating csp rule template schema from version 8.3.0 to 8.4.0
  * Main changes:
  * - introducing `metadata` field
  */
-function migrateCspRuleMetadata(doc) {
+function migrateCspRuleMetadata(doc: any) {
   const { enabled, muted, ...metadata } = doc.attributes;
   return {
     ...doc,

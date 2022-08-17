@@ -1,6 +1,7 @@
 interface BenchmarkMetadata {
     name: string;
     version: string;
+    k8sVersion?: string;
 }
 
 interface CisEksBenchmarkSchema {
@@ -49,9 +50,13 @@ interface HttpCache {
     [key: string]: number
 }
 
+interface MetadataFile {
+    metadata: RuleSchema
+}
+
 interface RuleSchema {
     audit: string;
-    rule_number: string;
+    rule_number?: string;
     benchmark: BenchmarkMetadata;
     default_value?: string;
     description: string;
@@ -64,6 +69,11 @@ interface RuleSchema {
     // rego_rule_id: string;
     remediation: string;
     section: string;
-    // tags: string[];
+    tags: string[];
     // version: string;
+}
+
+interface BenchmarkAttributes {
+    id: string,
+    tag: string
 }
