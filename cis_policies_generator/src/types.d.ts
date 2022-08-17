@@ -66,11 +66,24 @@ interface RuleSchema {
     profile_applicability: string;
     rationale: string;
     references: string[];
-    // rego_rule_id: string;
     remediation: string;
     section: string;
     tags: string[];
-    // version: string;
+    version: string;
+}
+
+interface CspRuleTemplate {
+    attributes: CspRuleTemplateAttr;
+    id: string;
+    type: string;
+    migrationVersion: object;
+    coreMigrationVersion: string;
+}
+
+interface CspRuleTemplateAttr {
+    enabled: boolean;
+    muted: boolean;
+    metadata: RuleSchema;
 }
 
 interface BenchmarkAttributes {

@@ -87,12 +87,13 @@ function normalizeResults(data: BenchmarksData[], benchmark_metadata: BenchmarkM
                 "rule_number": rule_number,
                 "profile_applicability": `* ${profile_applicability}`,
                 "description": it["description"],
+                "version": "1.0",
                 // @ts-ignore
                 "rationale": fixCodeBlocks(it["rational statement"] || it["rationale statement"] || ""),
                 "audit": fixCodeBlocks(it["audit procedure"] || ""),
                 "remediation": fixCodeBlocks(it["remediation procedure"] || ""),
                 "impact": it["impact statement"] || "",
-                // "default_value": "By default, profiling is enabled.\n", // TODO
+                // "default_value": "By default, profiling is enabled.\n", // TODO: retrieve default_value straight from CIS
                 "references": refs,
                 "tags": constructRuleTags(benchmark_metadata, rule_number, rule_section),
                 "section": rule_section,
@@ -200,7 +201,9 @@ function getK8sVersionFromBenchmark(filename: string): string {
 
 function generateBenchmarkId(metadata: BenchmarkMetadata) {
     const version = metadata.k8sVersion ? metadata.k8sVersion : metadata.version;
-    return getBenchmarkAttr(metadata, "id") + "_" + version;
+    const benchmarkVersion = metadata.version != version ? metadata.version : "";
+
+    return [getBenchmarkAttr(metadata, "id"), version, benchmarkVersion].filter(Boolean).join("_");
 }
 
 function getExistingDefaultVal(filePath: string): undefined|string {
