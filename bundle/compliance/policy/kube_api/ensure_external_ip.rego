@@ -1,7 +1,7 @@
-package compliance.policy.aws_eks.ensure_external_ip
+package compliance.policy.kube_api.ensure_external_ip
 
 import data.compliance.lib.common as lib_common
-import data.compliance.policy.aws_eks.data_adapter
+import data.compliance.policy.kube_api.data_adapter
 
 verify_external_ip {
 	some address

@@ -1,6 +1,6 @@
 package compliance.cis_eks.rules.cis_5_4_3
 
-import data.compliance.policy.aws_eks.ensure_external_ip as audit
+import data.compliance.policy.kube_api.ensure_external_ip as audit
 
 # Ensure there cluster node don't have a public IP
 default rule_evaluation = true
