@@ -4,25 +4,33 @@ import data.compliance.cis_k8s.data_adapter
 import data.kubernetes_common.test_data
 import data.lib.test
 
+violations {
+	test.assert_fail(finding) with input as rule_input("--feature-gates=RotateKubeletServerCertificate=false")
+	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(false, false))
+	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(true, false))
+	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(true, false))
+}
+
 test_violation {
-	test.assert_fail(finding) with input as rule_input("--feature-gates=RotateKubeletServerCertificate=false") with data.benchmark_data_adapter as data_adapter
-	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(false, false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(true, false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_fail(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=false", create_process_config(true, false)) with data.benchmark_data_adapter as data_adapter
+	violations with data.benchmark_data_adapter as data_adapter
+}
+
+passes {
+	test.assert_pass(finding) with input as rule_input("")
+	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(false, false))
+	test.assert_pass(finding) with input as rule_input("--feature-gates=RotateKubeletServerCertificate=true")
+	test.assert_pass(finding) with input as rule_input("--rotate-server-certificates=true")
+	test.assert_pass(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=true", create_process_config(true, false))
+	test.assert_pass(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=true", create_process_config(false, false))
+	test.assert_pass(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=true", create_process_config(false, true))
+	test.assert_pass(finding) with input as rule_input_with_external("--feature-gates=Rotate=true", create_process_config(true, false))
+	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(true, false))
+	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(false, true))
+	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(true, true))
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("") with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(false, false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input("--feature-gates=RotateKubeletServerCertificate=true") with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input("--rotate-server-certificates=true") with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=true", create_process_config(true, false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=true", create_process_config(false, false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("--feature-gates=RotateKubeletServerCertificate=true", create_process_config(false, true)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("--feature-gates=Rotate=true", create_process_config(true, false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(true, false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(false, true)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(true, true)) with data.benchmark_data_adapter as data_adapter
+	passes with data.benchmark_data_adapter as data_adapter
 }
 
 test_not_evaluated {

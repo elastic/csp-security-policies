@@ -4,18 +4,26 @@ import data.compliance.cis_k8s.data_adapter
 import data.kubernetes_common.test_data
 import data.lib.test
 
+violations {
+	test.assert_fail(finding) with input as rule_input("--rotate-certificates=false")
+	test.assert_fail(finding) with input as rule_input_with_external("", create_process_config(false))
+	test.assert_fail(finding) with input as rule_input_with_external("--rotate-certificates=false", create_process_config(true))
+}
+
 test_violation {
-	test.assert_fail(finding) with input as rule_input("--rotate-certificates=false") with data.benchmark_data_adapter as data_adapter
-	test.assert_fail(finding) with input as rule_input_with_external("", create_process_config(false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_fail(finding) with input as rule_input_with_external("--rotate-certificates=false", create_process_config(true)) with data.benchmark_data_adapter as data_adapter
+	violations with data.benchmark_data_adapter as data_adapter
+}
+
+passes {
+	test.assert_pass(finding) with input as rule_input("")
+	test.assert_pass(finding) with input as rule_input("--rotate-certificates=true")
+	test.assert_pass(finding) with input as rule_input_with_external("--rotate-certificates=true", create_process_config(false))
+	test.assert_pass(finding) with input as rule_input_with_external("--rotate-certificates=true", create_process_config(true))
+	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(true))
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("") with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input("--rotate-certificates=true") with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("--rotate-certificates=true", create_process_config(false)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("--rotate-certificates=true", create_process_config(true)) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config(true)) with data.benchmark_data_adapter as data_adapter
+	passes with data.benchmark_data_adapter as data_adapter
 }
 
 test_not_evaluated {

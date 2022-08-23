@@ -4,14 +4,22 @@ import data.compliance.cis_k8s.data_adapter
 import data.kubernetes_common.test_data
 import data.lib.test
 
+violations {
+	test.assert_fail(finding) with input as rule_input([""])
+	test.assert_fail(finding) with input as rule_input(["--tls-cert-file=<path/to/tls-cert>"])
+	test.assert_fail(finding) with input as rule_input(["--tls-private-key-file=<path/to/tls-key>"])
+}
+
 test_violation {
-	test.assert_fail(finding) with input as rule_input([""]) with data.benchmark_data_adapter as data_adapter
-	test.assert_fail(finding) with input as rule_input(["--tls-cert-file=<path/to/tls-cert>"]) with data.benchmark_data_adapter as data_adapter
-	test.assert_fail(finding) with input as rule_input(["--tls-private-key-file=<path/to/tls-key>"]) with data.benchmark_data_adapter as data_adapter
+	violations with data.benchmark_data_adapter as data_adapter
+}
+
+passes {
+	test.assert_pass(finding) with input as rule_input(["--tls-private-key-file=<path/to/tls-key>", "--tls-cert-file=<path/to/tls-cert>"])
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input(["--tls-private-key-file=<path/to/tls-key>", "--tls-cert-file=<path/to/tls-cert>"]) with data.benchmark_data_adapter as data_adapter
+	passes with data.benchmark_data_adapter as data_adapter
 }
 
 test_not_evaluated {

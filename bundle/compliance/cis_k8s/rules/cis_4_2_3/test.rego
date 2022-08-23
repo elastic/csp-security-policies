@@ -4,14 +4,22 @@ import data.compliance.cis_k8s.data_adapter
 import data.kubernetes_common.test_data
 import data.lib.test
 
+violations {
+	test.assert_fail(finding) with input as rule_input("")
+}
+
 test_violation {
-	test.assert_fail(finding) with input as rule_input("") with data.benchmark_data_adapter as data_adapter
+	violations with data.benchmark_data_adapter as data_adapter
+}
+
+passes {
+	test.assert_pass(finding) with input as rule_input("--client-ca-file=<path/to/client-ca-file>")
+	test.assert_pass(finding) with input as rule_input_with_external("--client-ca-file=<path/to/client-ca-file>", create_process_config("<path/to/client-ca-file>"))
+	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config("<path/to/client-ca-file>"))
 }
 
 test_pass {
-	test.assert_pass(finding) with input as rule_input("--client-ca-file=<path/to/client-ca-file>") with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("--client-ca-file=<path/to/client-ca-file>", create_process_config("<path/to/client-ca-file>")) with data.benchmark_data_adapter as data_adapter
-	test.assert_pass(finding) with input as rule_input_with_external("", create_process_config("<path/to/client-ca-file>")) with data.benchmark_data_adapter as data_adapter
+	passes with data.benchmark_data_adapter as data_adapter
 }
 
 test_not_evaluated {
