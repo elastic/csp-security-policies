@@ -1,0 +1,9 @@
+# Misc stuff
+desktop.ini
+node_modules/
+output
+.DS_Store
+
+# TS output dir
+bin/
+out/

@@ -3,56 +3,76 @@
 # Cloud Security Posture - Rego policies
 
     .
-    ├── compliance                         # Compliance policies
-    │   ├── lib
-    │   │   ├── common.rego                # Common functions
-    │   │   ├── common_tests.rego          # Common functions tests
-    │   │   ├── data_adapter.rego          # Input data adapter
-    │   │   └── test.rego                  # Common Test functions
-    │   ├── cis_k8s
-    │   │   ├── cis_k8s.rego               # Handles all Kubernetes CIS rules evalutations
-    │   │   ├── test_data.rego             # CIS Test data generators
-    │   │   ├── schemas                    # Benchmark's schemas
-    │   │   │   └── input_scehma.rego
-    │   │   ├── rules
-    │   │   │   ├── cis_1_1_1              # CIS 1.1.1 rule package
-    │   │   │   │   ├── rule.rego
-    │   │   │   │   └── test.rego
-    │   │   │   │   └── data.yaml          # Rule's metadata
-    │   │   │   └── ...
-    └── main.rego                          # Evaluates all policies and returns the findings
+    ├── README.md
+    ├── bundle
+    │   ├── builder.go                            # Bundle building code
+    │   ├── compliance                            # Compliance policies
+    │   │   ├── cis_eks
+    │   │   │   ├── cis_eks.rego                  # Handles all EKS CIS rules evalutations
+    │   │   │   ├── data_adapter.rego
+    │   │   │   ├── rules
+    │   │   │   │   ├── cis_2_1_1                 # CIS EKS 2.1.1 rule package
+    │   │   │   │   │   ├── data.yaml             # Rule's metadata
+    │   │   │   │   │   ├── rule.rego             # Rule's rego
+    │   │   │   │   │   └── test.rego             # Rule's test
+    |   |   |   |   ├── ...
+    │   │   │   └── test_data.rego                # CIS EKS Test data generators
+    │   │   ├── cis_k8s
+    │   │   │   ├── cis_k8s.rego                  # Handles all Kubernetes CIS rules evalutations
+    │   │   │   ├── data_adapter.rego
+    │   │   │   ├── rules
+    │   │   │   │   ├── cis_1_1_1
+    │   │   │   │   │   ├── data.yaml
+    │   │   │   │   │   ├── rule.rego
+    │   │   │   │   │   └── test.rego
+    |   |   |   |   ├── ...
+    │   │   │   └── schemas                       # Benchmark's schemas
+    │   │   │   └── input_schema.json
+    │   │   ├── kubernetes_common
+    │   │   │   └── test_data.rego
+    │   │   ├── lib
+    │   │   │   ├── assert.rego
+    │   │   │   ├── common                        # Common functions and tests
+    │   │   │   │   ├── common.rego
+    │   │   │   │   └── test.rego
+    │   │   │   ├── data_adapter                  # Input data adapter and tests
+    │   │   │   │   ├── data_adapter.rego
+    │   │   │   │   └── test.rego
+    │   │   │   ├── output_validations            # Output validations for tests
+    │   │   │   │   ├── output_validations.rego
+    │   │   │   │   └── test.rego
+    │   │   │   └── test.rego
+    │   │   └── main.rego                         # Evaluates all policies and returns the findings
+    │   ├── embed.go                              # Embed of benchmarks
+    │   ├── server.go                             # Hosting and creation of bundle server functions
+    │   └── server_test.go
+    ├── main.go
+    └── server
+    └── host.go                                   # Hosting and creation of bundle server for benchmarks
 
 ## Local Evaluation
 
-Add the following configuration files into the root folder
-
-##### `data.yaml`
-
-should contain the list of rules you want to evaluate (also supports json)
-
-```yaml
-activated_rules:
-  cis_k8s:
-    - cis_1_1_1
-    - cis_1_1_2
-  cis_eks:
-    - cis_3_1_1
-    - cis_3_1_2
-```
-
 ##### `input.json`
 
-should contain an beat/agent output, e.g. filesystem data
+should contain a beat/agent output and the `activated_rules` (not mandatory - without specifying rules all rules will apply), e.g. filesystem data
 
 ```json
 {
-  "type": "file-system",
+  "type": "file",
+  "activated_rules": {
+    "cis_k8s": [
+      "cis_1_1_1"
+    ]
+  },
+  "sub_type": "file",
   "resource": {
     "mode": "0700",
     "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-    "uid": "etc",
-    "filename": "kube-apiserver.yaml",
-    "gid": "root"
+    "owner": "etc",
+    "group": "root",
+    "name": "kube-apiserver.yaml",
+    "gid": 20,
+    "uid": 501
   }
 }
 ```
@@ -60,13 +80,13 @@ should contain an beat/agent output, e.g. filesystem data
 ### Evaluate entire policy into output.json
 
 ```console
-opa eval data.main --format pretty -i input.json -b . > output.json
+opa eval data.main --format pretty -i input.json -b ./bundle > output.json
 ```
 
 ### Evaluate findings only
 
 ```console
-opa eval data.main.findings --format pretty -i input.json -b . > output.json
+opa eval data.main.findings --format pretty -i input.json -b ./bundle > output.json
 ```
 
 <details>
@@ -74,87 +94,39 @@ opa eval data.main.findings --format pretty -i input.json -b . > output.json
 
 ````json
 {
-  "findings": [
-    {
-      "result": {
-        "evaluation": "failed",
-        "expected": {
-          "filemode": "0644"
-        },
-        "evidence": {
-          "filemode": "0700"
-        }
-      },
-      "rule": {
-        "id": "59b5a77b-b090-5630-9a33-73eb805b2d52",
-        "name": "Ensure that the API server pod specification file permissions are set to 644 or more restrictive (Automated)",
-        "profile_applicability": "* Level 1 - Master Node\n",
-        "description": "Ensure that the API server pod specification file has permissions of `644` or more restrictive.\n",
-        "rationale": "The API server pod specification file controls various parameters that set the behavior of the API server. You should restrict its file permissions to maintain the integrity of the file. The file should be writable by only the administrators on the system.\n",
-        "audit": "Run the below command (based on the file location on your system) on the\nmaster node.\nFor example,\n```\nstat -c %a /etc/kubernetes/manifests/kube-apiserver.yaml\n```\nVerify that the permissions are `644` or more restrictive.\n",
-        "remediation": "Run the below command (based on the file location on your system) on the\nmaster node.\nFor example,\n```\nchmod 644 /etc/kubernetes/manifests/kube-apiserver.yaml\n```\n",
-        "impact": "None\n",
-        "default_value": "By default, the `kube-apiserver.yaml` file has permissions of `640`.\n",
-        "references": "1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)\n",
-        "section": "Master Node Configuration Files",
-        "version": 1,
-        "tags": [
-          "CIS",
-          "Kubernetes",
-          "CIS 1.1.1",
-          "Master Node Configuration Files"
-        ],
-        "benchmark": {
-          "name": "CIS Kubernetes V1.20",
-          "version": "v1.0.0"
-        }
-      }
+  "result": {
+    "evaluation": "failed",
+    "evidence": {
+      "filemode": "0700"
     },
-    {
-      "result": {
-        "evaluation": "passed",
-        "expected": {
-          "gid": "root",
-          "uid": "root"
-        },
-        "evidence": {
-          "gid": "root",
-          "uid": "root"
-        }
-      },
-      "rule": {
-        "id": "9f318d4d-2451-574a-99dc-838ed213f09b",
-        "name": "Ensure that the API server pod specification file ownership is set toroot:root (Automated)",
-        "profile_applicability": "* Level 1 - Master Node\n",
-        "description": "Ensure that the API server pod specification file ownership is set to `root:root`.\n",
-        "rationale": "The API server pod specification file controls various parameters that set the behavior of the API server. You should set its file ownership to maintain the integrity of the file. The file should be owned by `root:root`.\n",
-        "audit": "Run the below command (based on the file location on your system) on the\nmaster node.\nFor example,\n```\nstat -c %U:%G /etc/kubernetes/manifests/kube-apiserver.yaml\n```\nVerify that the ownership is set to `root:root`.\n",
-        "remediation": "Run the below command (based on the file location on your system) on the\nmaster node.\nFor example,\n```\nchown root:root /etc/kubernetes/manifests/kube-apiserver.yaml\n```\n",
-        "impact": "None\n",
-        "default_value": "By default, the `kube-apiserver.yaml` file ownership is set to `root:root`.\n",
-        "references": "1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)\n",
-        "section": "Master Node Configuration Files",
-        "version": 1,
-        "tags": [
-          "CIS",
-          "Kubernetes",
-          "CIS 1.1.2",
-          "Master Node Configuration Files"
-        ],
-        "benchmark": {
-          "name": "CIS Kubernetes V1.20",
-          "version": "v1.0.0"
-        }
-      }
+    "expected": {
+      "filemode": "644"
     }
-  ],
-  "resource": {
-    "filename": "kube-apiserver.yaml",
-    "gid": "root",
-    "mode": "0700",
-    "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
-    "type": "file-system",
-    "uid": "root"
+  },
+  "rule": {
+    "audit": "Run the below command (based on the file location on your system) on the\ncontrol plane node.\nFor example,\n```\nstat -c %a /etc/kubernetes/manifests/kube-apiserver.yaml\n```\nVerify that the permissions are `644` or more restrictive.\n",
+    "benchmark": {
+      "id": "cis_k8s",
+      "name": "CIS Kubernetes V1.23",
+      "version": "v1.0.0"
+    },
+    "default_value": "By default, the `kube-apiserver.yaml` file has permissions of `640`.\n",
+    "description": "Ensure that the API server pod specification file has permissions of `644` or more restrictive.\n",
+    "id": "6664c1b8-05f2-5872-a516-4b2c3c36d2d7",
+    "impact": "None\n",
+    "name": "Ensure that the API server pod specification file permissions are set to 644 or more restrictive (Automated)",
+    "profile_applicability": "* Level 1 - Master Node\n",
+    "rationale": "The API server pod specification file controls various parameters that set the behavior of the API server. You should restrict its file permissions to maintain the integrity of the file. The file should be writable by only the administrators on the system.\n",
+    "references": "1. [https://kubernetes.io/docs/admin/kube-apiserver/](https://kubernetes.io/docs/admin/kube-apiserver/)\n",
+    "remediation": "Run the below command (based on the file location on your system) on the\ncontrol plane node.\nFor example,\n```\nchmod 644 /etc/kubernetes/manifests/kube-apiserver.yaml\n```\n",
+    "section": "Control Plane Node Configuration Files",
+    "tags": [
+      "CIS",
+      "Kubernetes",
+      "CIS 1.1.1",
+      "Control Plane Node Configuration Files"
+    ],
+    "version": "1.0"
   }
 }
 ````
@@ -164,8 +136,8 @@ opa eval data.main.findings --format pretty -i input.json -b . > output.json
 ### Evaluate with input schema
 
 ```console
-❯ opa eval data.main --format pretty -i input.json -b . -s compliance/cis_k8s/schemas/input_schema.json
-1 error occurred: compliance/lib/data_adapter.rego:11: rego_type_error: undefined ref: input.filenames
+❯ opa eval data.main --format pretty -i input.json -b ./bundle -s bundle/compliance/cis_k8s/schemas/input_schema.json
+1 error occurred: bundle/compliance/lib/data_adapter.rego:11: rego_type_error: undefined ref: input.filenames
         input.filenames
               ^
               have: "filenames"
@@ -178,7 +150,7 @@ opa eval data.main.findings --format pretty -i input.json -b . > output.json
 ### Test entire policy
 
 ```console
-opa build -b ./ -e ./compliance
+opa build -b ./bundle -e ./bundle/compliance
 ```
 
 ```console
@@ -188,7 +160,7 @@ opa test -b bundle.tar.gz -v
 ### Test specific rule
 
 ```console
-opa test -v compliance/lib compliance/cis_k8s/test_data.rego compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
+opa test -v bundle/compliance/kubernetes_common bundle/compliance/lib bundle/compliance/cis_k8s/test_data.rego bundle/compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
 ```
 
 ### Pre-commit hooks
@@ -212,13 +184,14 @@ curl --location --request POST 'http://localhost:8181/v1/data/main' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "input": {
+        "type": "file",
         "resource": {
-            "type": "file-system",
+            "type": "file",
             "mode": "0700",
             "path": "/hostfs/etc/kubernetes/manifests/kube-apiserver.yaml",
             "uid": "etc",
-            "filename": "kube-apiserver.yaml",
-            "gid": "root"
+            "name": "kube-apiserver.yaml",
+            "group": "root"
         }
     }
 }'
