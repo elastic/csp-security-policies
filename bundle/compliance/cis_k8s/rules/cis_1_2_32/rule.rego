@@ -6,11 +6,11 @@ import data.compliance.policy.process.ensure_ciphers as audit
 default rule_evaluation = true
 
 rule_evaluation = false {
-	not audit.process_args_entity("--tls-cipher-suites")
+	not audit.process_args["--tls-cipher-suites"]
 }
 
 rule_evaluation = false {
-	audit.is_strong_cryptographic_cipher_args(supported_ciphers)
+	audit.is_process_args_includes_non_supported_cipher(supported_ciphers)
 }
 
 supported_ciphers = [

@@ -6,7 +6,7 @@ import data.compliance.policy.process.ensure_arguments_and_config as audit
 default rule_evaluation = true
 
 rule_evaluation = false {
-	audit.process_key_value("--rotate-certificates", "false")
+	audit.process_contains_key_with_value("--rotate-certificates", "false")
 }
 
 # In case both flags and configuration file are specified, the executable argument takes precedence.

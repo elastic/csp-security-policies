@@ -7,7 +7,7 @@ import data.compliance.policy.process.ensure_arguments_and_config as audit
 default rule_evaluation = false
 
 rule_evaluation {
-	audit.process_key_value("--event-qps", "0")
+	audit.process_contains_key_with_value("--event-qps", "0")
 }
 
 rule_evaluation {

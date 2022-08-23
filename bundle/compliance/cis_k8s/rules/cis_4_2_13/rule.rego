@@ -7,12 +7,12 @@ default rule_evaluation = true
 
 # Ensure that the Kubelet only makes use of Strong Cryptographic Ciphers
 rule_evaluation = false {
-	audit.is_strong_cryptographic_cipher_args(supported_ciphers)
+	audit.is_process_args_includes_non_supported_cipher(supported_ciphers)
 }
 
 # In case both flags and configuration file are specified, the executable argument takes precedence.
 rule_evaluation = false {
-	audit.is_strong_cryptographic_cipher_config(supported_ciphers)
+	audit.is_process_config_includes_non_supported_cipher(supported_ciphers)
 }
 
 supported_ciphers = [

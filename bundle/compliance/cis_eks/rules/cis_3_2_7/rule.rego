@@ -6,7 +6,7 @@ default rule_evaluation = true
 
 # Ensure that the --make-iptables-util-chains argument is set to true (Automated)
 rule_evaluation = false {
-	audit.process_key_value("--make-iptables-util-chains", "false")
+	audit.process_contains_key_with_value("--make-iptables-util-chains", "false")
 }
 
 # In case both flags and configuration file are specified, the executable argument takes precedence.

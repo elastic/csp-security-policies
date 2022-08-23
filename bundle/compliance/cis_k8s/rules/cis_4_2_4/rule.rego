@@ -6,7 +6,7 @@ import data.compliance.policy.process.ensure_arguments_and_config as audit
 default rule_evaluation = false
 
 rule_evaluation {
-	audit.process_key_value("--read-only-port", "0")
+	audit.process_contains_key_with_value("--read-only-port", "0")
 }
 
 # In case both flags and configuration file are specified, the executable argument takes precedence.

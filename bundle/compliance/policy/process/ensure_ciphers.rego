@@ -6,17 +6,13 @@ import data.compliance.policy.process.data_adapter
 
 process_args := data_adapter.process_args(benchmark_data_adapter.process_args_seperator)
 
-process_args_entity(entity) {
-	process_args[entity]
-}
-
-is_strong_cryptographic_cipher_args(supported_ciphers) {
+is_process_args_includes_non_supported_cipher(supported_ciphers) {
 	ciphers := split(process_args["--tls-cipher-suites"], ",")
 	cipher := ciphers[_]
 	not is_supported_cipher(supported_ciphers, cipher)
 }
 
-is_strong_cryptographic_cipher_config(supported_ciphers) {
+is_process_config_includes_non_supported_cipher(supported_ciphers) {
 	not process_args["--tls-cipher-suites"]
 	ciphers := data_adapter.process_config.config.TLSCipherSuites
 	cipher := ciphers[_]

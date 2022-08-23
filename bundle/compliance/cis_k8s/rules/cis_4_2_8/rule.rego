@@ -7,7 +7,7 @@ default rule_evaluation = true
 
 # Note This setting is not configurable via the Kubelet config file.
 rule_evaluation = false {
-	audit.process_key("--hostname-override")
+	audit.process_contains_key("--hostname-override")
 }
 
 finding = audit.finding(rule_evaluation)
