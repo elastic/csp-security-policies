@@ -25,7 +25,7 @@ test_pass {
 }
 
 test_not_evaluated {
-	not finding with input as test_data.process_input("some_process", []) with data.benchmark_data_adapter as data_adapter with data.benchmark_data_adapter as data_adapter
+	not finding with input as test_data.process_input("some_process", []) with data.benchmark_data_adapter as data_adapter
 }
 
 rule_input(argument) = test_data.process_input("kube-apiserver", [argument])
