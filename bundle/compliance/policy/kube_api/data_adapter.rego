@@ -35,10 +35,12 @@ is_service_account_or_pod = pod
 
 is_service_account_or_pod = service_account
 
-containers = c {
+containers := c {
 	input.resource.kind == "Pod"
-	container_types := {"containers", "initContainers"}
-	c := pod.spec[container_types[t]]
+	c := {
+		"containers": object.get(pod.spec, "containers", {}),
+		"init_containers": object.get(pod.spec, "initContainers", {}),
+	}
 }
 
 status = input.resource.status

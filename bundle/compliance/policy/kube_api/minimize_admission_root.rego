@@ -14,7 +14,7 @@ rule_evaluation = false {
 }
 
 rule_evaluation = false {
-	container := data_adapter.containers[_]
+	container := data_adapter.containers.containers[_]
 	lib_common.contains_key_with_value(container.securityContext, "runAsUser", 0)
 }
 
@@ -26,7 +26,7 @@ finding = result {
 		"spec/runAsUser",
 	])
 
-	containers := {"containers": json.filter(c, ["name", "securityContext/runAsUser"]) | c := data_adapter.containers[_]}
+	containers := {"containers": {c.name: json.filter(c, ["name", "securityContext"]) | c := data_adapter.containers.containers[_]}}
 
 	# set result
 	result := lib_common.generate_result_without_expected(
