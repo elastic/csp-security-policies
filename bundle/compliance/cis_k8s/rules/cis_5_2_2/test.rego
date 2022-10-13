@@ -16,6 +16,7 @@ test_pass {
 	test.assert_pass(finding) with input as rule_input(non_violating_psp)
 	test.assert_pass(finding) with input as rule_input(non_violating_psp2)
 	test.assert_pass(finding) with input as rule_input(non_violating_psp3)
+	test.assert_pass(finding) with input as rule_input(non_violating_psp4)
 }
 
 test_not_evaluated {
@@ -83,6 +84,19 @@ violating_psp6 = {
 	},
 }
 
+violating_psp7 = {
+	"kind": "Pod",
+	"metadata": {"uid": "00000aa0-0aa0-00aa-00aa-00aa000a0000"},
+	"spec": {
+		"containers": [
+			{"name": "container_1"},
+			{"name": "container_2", "securityContext": {}},
+		],
+		"initContainers": [{"name": "init_container_1", "securityContext": {}}],
+		"ephemeralContainers": [{"name": "ephemeral_container_1", "securityContext": {"privileged": true}}],
+	},
+}
+
 non_violating_psp = {
 	"kind": "Pod",
 	"metadata": {"uid": "00000aa0-0aa0-00aa-00aa-00aa000a0000"},
@@ -101,5 +115,15 @@ non_violating_psp3 = {
 	"spec": {
 		"containers": [{"name": "container_1", "securityContext": {}}],
 		"initContainers": [{"name": "init_container_1", "securityContext": {}}],
+	},
+}
+
+non_violating_psp4 = {
+	"kind": "Pod",
+	"metadata": {"uid": "00000aa0-0aa0-00aa-00aa-00aa000a0000"},
+	"spec": {
+		"containers": [{"name": "container_1", "securityContext": {}}],
+		"initContainers": [{"name": "init_container_1", "securityContext": {}}],
+		"ephemeralContainers": [{"name": "ephemeral_container_1", "securityContext": {}}],
 	},
 }

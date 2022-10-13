@@ -38,8 +38,9 @@ is_service_account_or_pod = service_account
 containers := c {
 	input.resource.kind == "Pod"
 	c := {
-		"containers": object.get(pod.spec, "containers", {}),
+		"app_containers": object.get(pod.spec, "containers", {}),
 		"init_containers": object.get(pod.spec, "initContainers", {}),
+		"ephemeral_containers": object.get(pod.spec, "ephemeralContainers", {}),
 	}
 }
 
