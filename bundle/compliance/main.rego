@@ -7,7 +7,6 @@ import data.compliance.lib.common
 # output is findings
 resource = input.resource
 
-# TODO: JENIA TEST
 findings = f {
 	input.activated_rules
 
