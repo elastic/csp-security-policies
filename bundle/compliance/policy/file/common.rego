@@ -27,17 +27,10 @@ file_permission_match_exact(filemode, user, group, other) {
 	true
 }
 
-# in some os filemodes starts with 0 to indicate that the value is Octal (base 8)
-# remove prefix if needed, and return a list of file premission [user, group, other]
+# return a list of file premission [user, group, other]
 parse_permission(filemode) = permissions {
-	# if prefix exist we should start the substring from 1, else 0
-	start = count(filemode) - 3
-
-	# remove prefix (if needed) and split
-	str_permissions = split(substring(filemode, start, 3), "")
-
 	# cast to numbers
-	permissions := [to_number(p) | p = str_permissions[_]]
+	permissions := [to_number(p) | p = split(filemode, "")[_]]
 }
 
 check_permissions(permissions, max_permissions) {
