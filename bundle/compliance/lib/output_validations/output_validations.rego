@@ -55,7 +55,7 @@ test_validate_rule_metadata {
 		validate_eks_metadata(eks_rule.metadata)
 	}
 
-    every aws_rule in all_aws_rules {
-        validate_aws_metadata(aws_rule.metadata)
-    }
+	every aws_rule in all_aws_rules {
+		validate_aws_metadata(aws_rule.metadata)
+	}
 }

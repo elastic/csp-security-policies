@@ -1,7 +1,7 @@
 package compliance.cis_aws.rules.cis_1_9
 
-import data.compliance.cis_aws.data_adapter
 import data.cis_aws.test_data
+import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
 test_violation {
@@ -17,7 +17,7 @@ test_not_evaluated {
 	not_eval with input as test_data.not_evaluated_input
 }
 
-rule_input(pwd_len,reuse_count) = test_data.generate_password_policy(pwd_len,reuse_count)
+rule_input(pwd_len, reuse_count) = test_data.generate_password_policy(pwd_len, reuse_count)
 
 eval_fail {
 	test.assert_fail(finding) with data.benchmark_data_adapter as data_adapter
