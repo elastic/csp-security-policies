@@ -9,7 +9,7 @@ metadata:
   version: "1.0"
   rationale: Setting a password complexity policy increases account resiliency
     against brute force login attempts.
-  audit: >-
+  audit: >
     Perform the following to ensure the password policy is configured as
     prescribed:
 
@@ -30,7 +30,7 @@ metadata:
 
     ```
     Ensure the output of the above command includes "MinimumPasswordLength": 14 (or higher)
-  remediation: >-
+  remediation: >
     Perform the following to set the password policy as prescribed:
 
     **From Console:**
@@ -64,4 +64,4 @@ metadata:
   benchmark:
     name: CIS Amazon Web Services Foundations
     version: v1.5.0
-    id: CIS_Amazon_Web_Services_Foundations_Benchmark_v1.5.0
+    id: cis_aws
