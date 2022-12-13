@@ -40,5 +40,6 @@ repos:
                 MD013,  # Line length can be ignored for now
                 MD033,  # Allow inline HTML
                 MD046,  # Allow code blocks to be fenced with backticks
+                MD041,  # Allow multiple top level headers
                 '--' ]
         files: \.(md|markdown)$

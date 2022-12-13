@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: OPA format
         uses: docker://openpolicyagent/opa:0.45.0
@@ -37,3 +37,17 @@ jobs:
         uses: docker://openpolicyagent/opa
         with:
           args: "check --strict --bundle ./bundle"
+
+  update-rules-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+          uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+        - name: Update rules status
+          run: |
+            python3 ./dev/update_rule_status.py
