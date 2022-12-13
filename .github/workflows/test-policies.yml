@@ -58,4 +58,4 @@ jobs:
         run: poetry install
 
       - name: Update rules status
-        run: python3 ./dev/update_rule_status.py
+        run: python ./dev/update_rule_status.py
