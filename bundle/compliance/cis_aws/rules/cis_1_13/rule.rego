@@ -1,6 +1,5 @@
 package compliance.cis_aws.rules.cis_1_13
 
-import future.keywords.in
 import data.compliance.lib.common
 import data.compliance.policy.aws_iam.data_adapter
 
