@@ -57,3 +57,6 @@ jobs:
 
       - name: Update rules status
         run: poetry run python ./dev/update_rule_status.py
+
+      - name: Fail when there are changes
+        run: git diff --exit-code
