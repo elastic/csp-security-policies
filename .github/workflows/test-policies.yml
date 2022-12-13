@@ -58,5 +58,5 @@ jobs:
       - name: Update rules status
         run: poetry run python ./dev/update_rule_status.py
 
-      - name: Fail when there are changes
+      - name: Fail Rules.md is not updated - to fix run our pre-commit hooks
         run: git diff --exit-code

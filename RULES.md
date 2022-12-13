@@ -1,4 +1,4 @@
-# Rules Status Test
+# Rules Status
 
 ## K8S CIS Benchmark
 
