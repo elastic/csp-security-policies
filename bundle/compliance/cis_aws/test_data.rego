@@ -27,3 +27,20 @@ not_evaluated_input = {
 		"ReusePreventionCount": 5,
 	},
 }
+
+generate_iam_user(access_keys) = {
+    "type": "identity-management",
+    "subType": "aws-iam-user",
+    "resource": {
+       "Name": "test",
+       "AccessKeys": access_keys,
+       "MFADevices": [
+          {
+             "MFADevice":"{2020-07-29 07:40:08 +0000 UTC 0x140021bd630 0x140021bd640 {}}",
+             "IsVirtual":true
+          }
+       ],
+       "LastAccess": "2021-08-22 14:19:32 +0000 UTC",
+       "Arn": "arn:aws:iam::704479110758:user/test"
+   }
+}
