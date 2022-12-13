@@ -24,13 +24,23 @@ relevant_sheets = {
     "aws": ["MITRE ATT&CK Mappings"],
 }
 
-selected_columns = {
-    "k8s": ["Section #", "Recommendation #", "Title"],
-    "eks": ["Section #", "Recommendation #", "Title of Recommendation"],
-    "aws": ["Section #", "Recommendation #", "Title of Recommendation"],
+selected_columns_map = {
+    "k8s": {
+        "Section #": "Section",
+        "Recommendation #": "Rule Number",
+        "Title": "Description",
+    },
+    "eks": {
+        "Section #": "Section",
+        "Recommendation #": "Rule Number",
+        "Title of Recommendation": "Description",
+    },
+    "aws": {
+        "Section #": "Section",
+        "Recommendation #": "Rule Number",
+        "Title of Recommendation": "Description",
+    },
 }
-
-rule_name_key = "Recommendation #"
 
 
 def get_implemented_rules(all_rules, service):
@@ -76,23 +86,34 @@ def generate_md_table(service):
         excel_file = pd.read_excel(data_path, sheet_name=sheet_name, skiprows=1 if service == "aws" else 0)
 
         # Select only the columns you want to include in the Markdown table
-        data = excel_file[selected_columns[service]]
+        data = excel_file[selected_columns_map[service].keys()]
 
-        data = data[data[rule_name_key].notna()]
-        full_data = pd.concat([full_data, data]).drop_duplicates(subset=rule_name_key).reset_index(drop=True)
+        # Update Table headers
+        data.columns = selected_columns_map[service].values()
+
+        # Remove rows with empty values in the "Rule Number" column and convert to string
+        data = data[data["Rule Number"].notna()].astype(str)
+
+        full_data = pd.concat([full_data, data]).drop_duplicates(subset="Rule Number").reset_index(drop=True)
 
     # Get list of all rules in sheet
-    all_rules = full_data[rule_name_key].to_list()
+    all_rules = full_data["Rule Number"].to_list()
 
     # Get list of implemented rules
     rules_status = get_implemented_rules(all_rules, service)
 
     # Add implemented rules' column to the data
     for rule, status in rules_status.items():
-        full_data.loc[full_data[rule_name_key] == rule, "Implemented"] = status
+        full_data.loc[full_data["Rule Number"] == rule, "Implemented"] = status
+
+    new_order = ["Rule Number", "Section", "Description", "Implemented"]
+    full_data = full_data.reindex(columns=new_order)
+    full_data = full_data.sort_values("Rule Number")
 
     # Convert DataFrame to Markdown table
-    table = full_data.to_markdown()
+    table = full_data.to_markdown(index=False, tablefmt="github")
+
+    # Add table title
     total_implemented = len([rule for rule, status in rules_status.items() if status == ":white_check_mark:"])
     description = f"### {total_implemented}/{len(rules_status)} implemented rules  \n\n"
 
@@ -101,10 +122,10 @@ def generate_md_table(service):
 
 # Write Markdown table to file
 with open("../RULES.md", "w") as f:
-    f.write(f"# Rules Status\n\n")
+    f.write(f"# Rules Status")
     for service in services:
         print(f"Generating Markdown table for '{service}' service")
-        f.write(f"## {service.upper()} CIS Benchmark\n\n")
+        f.write(f"\n\n## {service.upper()} CIS Benchmark\n\n")
         table, description = generate_md_table(service)
         f.write(description)
         f.write(table)
