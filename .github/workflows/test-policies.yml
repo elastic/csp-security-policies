@@ -46,16 +46,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install poetry
-        run: pipx install poetry
-
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
           cache: 'poetry'
 
       - name: Install dependencies
-        run: poetry install
+        run: |
+          python -m pip install --upgrade pip twine
+          pip install poetry
+          poetry install
 
       - name: Update rules status
         run: python ./dev/update_rule_status.py
