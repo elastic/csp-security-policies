@@ -85,6 +85,7 @@ metadata:
   impact: AWS will soon end support for SMS multi-factor authentication (MFA). New
     customers are not allowed to use this feature. We recommend that existing
     customers switch to one of the following alternative methods of MFA.
+  default_value: ""
   references: |
     - https://tools.ietf.org/html/rfc6238
     - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html

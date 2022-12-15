@@ -5,13 +5,13 @@ import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
 test_violation {
-    eval_fail with input as rule_input(nil, [], true)
-    eval_fail with input as rule_input(nil, [{"MFADevice": "0x83838Ed", "IsVirtual": true}], false)
+    eval_fail with input as rule_input(null, [], true)
+    eval_fail with input as rule_input(null, [{"MFADevice": "0x83838Ed", "IsVirtual": true}], false)
 }
 
 test_pass {
-	eval_pass with input as rule_input(nil, [{"MFADevice": "0x83838Ed", "IsVirtual": true}], true)
-	eval_pass with input as rule_input(nil, [{"MFADevice": "0x83838Ed", "IsVirtual": true}, {"MFADevice": "0x38394d", "IsVirtual": false}], true)
+	eval_pass with input as rule_input(null, [{"MFADevice": "0x83838Ed", "IsVirtual": true}], true)
+	eval_pass with input as rule_input(null, [{"MFADevice": "0x83838Ed", "IsVirtual": true}, {"MFADevice": "0x38394d", "IsVirtual": false}], true)
 }
 
 test_not_evaluated {

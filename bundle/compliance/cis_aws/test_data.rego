@@ -35,7 +35,7 @@ generate_iam_user(access_keys, mfa_devices, has_logged_in) = {
        "Name": "test",
        "AccessKeys": access_keys,
        "MFADevices": mfa_devices,
-       "LastAccess": last_access,
+       "LastAccess": "2021-08-22 14:19:32 +0000 UTC",
        "HasLoggedIn": has_logged_in,
        "Arn": "arn:aws:iam::704479110758:user/test"
    }

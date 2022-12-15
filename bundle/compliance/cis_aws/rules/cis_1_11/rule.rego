@@ -1,14 +1,15 @@
-package compliance.cis_aws.rules.cis_1_10
+package compliance.cis_aws.rules.cis_1_11
 
 import data.compliance.lib.common
 import data.compliance.policy.aws_iam.data_adapter
 
-default rule_evaluation = false
+default rule_evaluation = true
 
-# Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password.
-rule_evaluation {
-	count(data_adapter.iam_user.MFADevices) > 0
+# Do not setup access keys during initial user setup for all IAM users that have a console password.
+rule_evaluation = false {
 	data_adapter.iam_user.HasLoggedIn
+    key := data_adapter.active_access_keys[_]
+    not key["HasUsed"]
 }
 
 finding = result {

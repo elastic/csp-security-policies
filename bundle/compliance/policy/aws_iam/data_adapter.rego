@@ -17,3 +17,8 @@ iam_user = user {
     is_iam_user
     user := input.resource
 }
+
+active_access_keys := { access_key |
+    access_key = iam_user.AccessKeys[_]
+    access_key.Active == true
+}
