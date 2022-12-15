@@ -11,7 +11,6 @@ finding = result {
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(count(data_adapter.active_access_keys) < 2),
-		{"IAM User:": data_adapter.iam_user}
+		{"IAM User:": data_adapter.iam_user},
 	)
 }
-

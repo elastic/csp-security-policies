@@ -18,6 +18,6 @@ finding = result {
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(rule_evaluation),
-		{"IAM User:": data_adapter.iam_user}
+		{"IAM User:": data_adapter.iam_user},
 	)
 }

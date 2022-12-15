@@ -9,16 +9,16 @@ is_iam_user {
 }
 
 pwd_policy = policy {
-    is_pwd_policy
+	is_pwd_policy
 	policy := input.resource
 }
 
 iam_user = user {
-    is_iam_user
-    user := input.resource
+	is_iam_user
+	user := input.resource
 }
 
-active_access_keys := { access_key |
-    access_key = iam_user.AccessKeys[_]
-    access_key.Active == true
+active_access_keys := {access_key |
+	access_key = iam_user.AccessKeys[_]
+	access_key.Active == true
 }
