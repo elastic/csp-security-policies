@@ -194,15 +194,15 @@
 
 ## AWS CIS Benchmark
 
-### 2/63 implemented rules  
+### 6/63 implemented rules  
 
 | Rule Number   |   Section | Description                                                                                                        | Implemented        |
 |---------------|-----------|--------------------------------------------------------------------------------------------------------------------|--------------------|
 | 1.1           |       1   | Maintain current contact details                                                                                   | :x:                |
-| 1.10          |       1   | Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password                 | :x:                |
-| 1.11          |       1   | Do not setup access keys during initial user setup for all IAM users that have a console password                  | :x:                |
-| 1.12          |       1   | Ensure credentials unused for 45 days or greater are disabled                                                      | :x:                |
-| 1.13          |       1   | Ensure there is only one active access key available for any single IAM user                                       | :x:                |
+| 1.10          |       1   | Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password                 | :white_check_mark: |
+| 1.11          |       1   | Do not setup access keys during initial user setup for all IAM users that have a console password                  | :white_check_mark: |
+| 1.12          |       1   | Ensure credentials unused for 45 days or greater are disabled                                                      | :white_check_mark: |
+| 1.13          |       1   | Ensure there is only one active access key available for any single IAM user                                       | :white_check_mark: |
 | 1.14          |       1   | Ensure access keys are rotated every 90 days or less                                                               | :x:                |
 | 1.15          |       1   | Ensure IAM Users Receive Permissions Only Through Groups                                                           | :x:                |
 | 1.16          |       1   | Ensure IAM policies that allow full "*:*" administrative privileges are not attached                               | :x:                |
