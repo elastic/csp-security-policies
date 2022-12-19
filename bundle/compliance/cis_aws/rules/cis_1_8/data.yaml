@@ -55,6 +55,7 @@ metadata:
   references:
     - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html
     - https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#configure-strong-password-policy
+  rule_number: "1.8"
   tags:
     - CIS
     - AWS
