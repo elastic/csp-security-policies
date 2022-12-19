@@ -1,4 +1,4 @@
-package compliance.policy.aws_iam.ensure_credentials_use
+package compliance.policy.aws_iam.validate_credentials
 
 import data.compliance.lib.assert
 import data.compliance.lib.common
@@ -9,14 +9,14 @@ duration = sprintf("%dh", [45 * 24]) # 45 days converted to hours
 
 date_format = "2006-01-02 15:04:05.999999999 -0700 MST"
 
-default ensure_credentials_use = false
+default validate_credentials = false
 
-ensure_credentials_use {
+validate_credentials {
 	assert.array_is_empty(data_adapter.active_access_keys)
 	are_credentials_valid([data_adapter.iam_user])
 }
 
-ensure_credentials_use {
+validate_credentials {
 	are_credentials_valid(data_adapter.active_access_keys)
 	are_credentials_valid([data_adapter.iam_user])
 }
