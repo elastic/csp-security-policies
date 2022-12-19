@@ -155,7 +155,7 @@ def update_main_readme_status_badge(percentage, service):
             badge = f"[![CIS {service.upper()}]({badge_api}/CIS-Kubernetes%20({percentage:.1f}%25)-326CE5?" \
                     f"logo=Kubernetes)](RULES.md#k8s-cis-benchmark)\n"
         elif service == "eks":
-            badge = f"[![CIS {service.upper()}]({badge_api}/CIS-EKS%20({percentage:.1f}%25)-FF9900?" \
+            badge = f"[![CIS {service.upper()}]({badge_api}/CIS-Amazon%20EKS%20({percentage:.1f}%25)-FF9900?" \
                     f"logo=Amazon+EKS)](RULES.md#eks-cis-benchmark)\n"
         elif service == "aws":
             badge = f"[![CIS {service.upper()}]({badge_api}/CIS-Amazon%20AWS%20({percentage:.1f}%25)-232F3E?l" \
