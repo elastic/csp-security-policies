@@ -28,15 +28,19 @@ not_evaluated_input = {
 	},
 }
 
-generate_iam_user(access_keys, mfa_devices, has_logged_in) = {
+generate_iam_user(access_keys, mfa_devices, has_logged_in, last_access) = {
 	"type": "identity-management",
 	"subType": "aws-iam-user",
 	"resource": {
 		"Name": "test",
 		"AccessKeys": access_keys,
 		"MFADevices": mfa_devices,
-		"LastAccess": "2021-08-22 14:19:32 +0000 UTC",
+		"LastAccess": last_access,
 		"HasLoggedIn": has_logged_in,
 		"Arn": "arn:aws:iam::704479110758:user/test",
 	},
 }
+
+future_date = "2040-08-22 14:19:32 +0000 UTC"
+
+past_date = "2021-08-22 14:19:32 +0000 UTC"

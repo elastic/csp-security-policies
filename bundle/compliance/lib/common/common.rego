@@ -77,6 +77,20 @@ duration_gte(duration, min_duration) {
 	true
 }
 
+# checks that the date given is not earlier than the provided duration
+# date: time in nanoseconds
+date_diff(date, duration) {
+	now = time.now_ns()
+	print("duration", duration)
+	duration_ns := time.parse_duration_ns(duration)
+	print("date", date)
+	print("duration_ns", duration_ns)
+	print("diff", date > (now - duration_ns))
+	date > now - duration_ns
+} else = false {
+	true
+}
+
 ranges_smaller_than(ranges, value) {
 	range := ranges[_]
 	range < value
