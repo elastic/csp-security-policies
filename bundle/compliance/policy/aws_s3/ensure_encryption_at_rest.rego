@@ -5,11 +5,11 @@ import data.compliance.policy.aws_s3.data_adapter
 
 default rule_evaluation = false
 
-rule_evaluation = true {
+rule_evaluation {
 	data_adapter.sse_algorithm == "AES256"
 }
 
-rule_evaluation = true {
+rule_evaluation {
 	data_adapter.sse_algorithm == "aws:kms"
 }
 
@@ -18,8 +18,6 @@ finding = result {
 
 	result := lib_common.generate_result_without_expected(
 		lib_common.calculate_result(rule_evaluation),
-		{
-			"SSEAlgorithm": data_adapter.sse_algorithm,
-		},
+		{"SSEAlgorithm": data_adapter.sse_algorithm},
 	)
 }
