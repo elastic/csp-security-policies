@@ -3,7 +3,7 @@ package compliance.lib.output_validations
 import data.compliance
 import future.keywords.every
 
-validate_common_kuberentes_provider_metadata(metadata) {
+validate_common_cis_provider_metadata(metadata) {
 	metadata.id
 	metadata.name
 	metadata.profile_applicability
@@ -24,19 +24,19 @@ validate_common_kuberentes_provider_metadata(metadata) {
 }
 
 validate_k8s_metadata(metadata) {
-	validate_common_kuberentes_provider_metadata(metadata)
+	validate_common_cis_provider_metadata(metadata)
 } else = false {
 	true
 }
 
 validate_eks_metadata(metadata) {
-	validate_common_kuberentes_provider_metadata(metadata)
+	validate_common_cis_provider_metadata(metadata)
 } else = false {
 	true
 }
 
 validate_aws_metadata(metadata) {
-	validate_common_kuberentes_provider_metadata(metadata)
+	validate_common_cis_provider_metadata(metadata)
 } else = false {
 	true
 }

@@ -27,3 +27,12 @@ not_evaluated_input = {
 		"ReusePreventionCount": 5,
 	},
 }
+
+generate_s3_bucket(name, sse_algorithm) = {
+    "resource": {
+        "Name": name,
+        "SSEAlgorithm": sse_algorithm,
+    },
+    "type": "cloud-storage",
+    "subType": "aws-s3"
+}
