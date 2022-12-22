@@ -86,8 +86,6 @@ interface CspRuleTemplate {
 }
 
 interface CspRuleTemplateAttr {
-    enabled: boolean;
-    muted: boolean;
     metadata: RuleSchema;
 }
 

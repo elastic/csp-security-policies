@@ -13,8 +13,6 @@ export const generateRuleTemplates = function (benchmark: string) {
       "utf-8"
     );
     const rule_obj = YAML.parse(exist_raw_rule).metadata;
-    rule_obj.enabled = true;
-    rule_obj.muted = false;
     rule_obj.rego_rule_id = rule;
 
     const integration_rule = migrateCspRuleMetadata({id: rule_obj.id, type: 'csp-rule-template', attributes: rule_obj});
@@ -33,12 +31,10 @@ export const generateRuleTemplates = function (benchmark: string) {
  * - introducing `metadata` field
  */
 function migrateCspRuleMetadata(doc: any): CspRuleTemplate {
-  const { enabled, muted, ...metadata } = doc.attributes;
+  const { ...metadata } = doc.attributes;
   return {
     ...doc,
     attributes: {
-      enabled,
-      muted,
       metadata: {
         ...metadata,
         impact: metadata.impact || undefined,
