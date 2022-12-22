@@ -28,8 +28,9 @@ repos:
 
       - id: update-rules-status
         name: Update rules status
+        require_serial: true
         description: Update rules status in rules_table.md
-        entry: python3 ./dev/update_rule_status.py
+        entry: poetry run python ./dev/update_rule_status.py
         language: system
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
