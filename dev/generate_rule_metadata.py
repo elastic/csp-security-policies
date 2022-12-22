@@ -128,7 +128,7 @@ def generate_metadata(benchmark_id: str, raw_data: pd.DataFrame, benchmark_metad
             rationale=common.fix_code_blocks(rule.get("rationale", "")),
             audit=common.fix_code_blocks(rule.get("audit", "")),
             remediation=common.fix_code_blocks(rule.get("remediation", "")),
-            impact=rule.get("impact"),
+            impact=rule.get("impact", "") if rule.get("impact", "") != "nan" else "None",
             default_value=rule.get("default_value", read_existing_default_value(rule["Rule Number"], benchmark_id)),
             references=parse_refs(rule.get("references", "")),
             section=sections[rule["Section"]],
@@ -168,8 +168,15 @@ if __name__ == "__main__":
         "-b",
         "--benchmark",
         default=common.benchmark.keys(),
+        choices=common.benchmark.keys(),
         help="benchmark to be used for the rules template generation (default: all benchmarks). "
              "for example: `--benchmark cis_eks` or `--benchmark cis_eks cis_aws`",
+        nargs="+",
+    )
+    parser.add_argument(
+        "-r",
+        "--rules",
+        help="set of specific rules to be parsed (default: all rules).",
         nargs="+",
     )
     args = parser.parse_args()
@@ -183,7 +190,8 @@ if __name__ == "__main__":
         # Parse Excel data
         raw_data, sections = common.parse_rules_data_from_excel(
             selected_columns=selected_columns_map,
-            benchmark_id=benchmark_id
+            benchmark_id=benchmark_id,
+            selected_rules=args.rules,
         )
 
         benchmark_metadata = Benchmark(

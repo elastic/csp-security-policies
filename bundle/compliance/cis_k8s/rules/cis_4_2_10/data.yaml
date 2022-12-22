@@ -32,7 +32,7 @@ metadata:
     systemctl daemon-reload
     systemctl restart kubelet.service
     ```
-  impact: nan
+  impact: None
   default_value:
   references:
   - nan

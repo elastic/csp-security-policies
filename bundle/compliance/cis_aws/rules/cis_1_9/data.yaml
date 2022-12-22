@@ -40,7 +40,7 @@ metadata:
      aws iam update-account-password-policy --password-reuse-prevention 24
     ```
     Note: All commands starting with "aws iam update-account-password-policy" can be combined into a single command.
-  impact: nan
+  impact: None
   default_value: ''
   references:
   - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html

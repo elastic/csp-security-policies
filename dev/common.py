@@ -46,9 +46,10 @@ default_selected_columns_map = {
 }
 
 
-def parse_rules_data_from_excel(benchmark_id, selected_columns=None):
+def parse_rules_data_from_excel(benchmark_id, selected_columns=None, selected_rules=None):
     """
     Parse rules data from Excel file for current service.
+    :param selected_rules: List of rules to parse
     :param selected_columns: Dictionary with columns to select from the sheet
     :param benchmark_id: Benchmark ID
     :return: Pandas DataFrame with rules data for current service and sections
@@ -74,7 +75,13 @@ def parse_rules_data_from_excel(benchmark_id, selected_columns=None):
 
         # Remove rows with empty values in the "Rule Number" column and convert to string
         sections_curr_sheet = data.loc[data["Rule Number"].isna(), ["Section", "Title"]].astype(str)
+
+        # Filter out section information
         data = data[data["Rule Number"].notna()].astype(str)
+
+        # Only keep the rules that are selected
+        if selected_rules is not None:
+            data = data[data["Rule Number"].isin(selected_rules)]
 
         # Add a new column with the sheet name
         data = data.assign(profile_applicability=sheet_name)

@@ -28,7 +28,7 @@ metadata:
     ```
   remediation: |-
     Enable 'Secrets Encryption' during Amazon EKS cluster creation as described in the links within the 'References' section.
-  impact: nan
+  impact: None
   default_value: |
     By default, Application-layer Secrets Encryption is not enabled.
   references:
