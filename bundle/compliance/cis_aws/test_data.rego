@@ -1,7 +1,8 @@
 package cis_aws.test_data
 
-future_date = "2040-08-22 14:19:32 +0000 UTC"
-past_date = "2021-08-22 14:19:32 +0000 UTC"
+future_date = "2022-12-25T12:43:00+00:00"
+
+past_date = "2021-12-25T12:43:00+00:00"
 
 generate_password_policy(pwd_len, reuse_count) = {
 	"resource": {
@@ -21,7 +22,6 @@ not_evaluated_pwd_policy = {
 	"type": "some type",
 	"subType": "some sub type",
 	"resource": {
-        "max_age_days": 90,
 		"max_age_days": 90,
 		"minimum_length": 8,
 		"require_lowercase": true,

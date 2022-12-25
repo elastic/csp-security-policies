@@ -1,7 +1,5 @@
 package compliance.policy.aws_iam.verify_keys_rotation
 
-import data.compliance.lib.assert
-import data.compliance.lib.common
 import data.compliance.policy.aws_iam.data_adapter
 
 duration = sprintf("%dh", [90 * 24]) # 90 days converted to hours
@@ -9,5 +7,5 @@ duration = sprintf("%dh", [90 * 24]) # 90 days converted to hours
 default verify_rotation = false
 
 verify_rotation {
-    data_adapter.are_credentials_valid(data_adapter.active_access_keys, "rotation_date", duration)
+	data_adapter.are_credentials_valid(data_adapter.active_access_keys, "rotation_date", duration)
 }

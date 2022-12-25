@@ -10,8 +10,8 @@ test_violation {
 }
 
 test_pass {
-    eval_pass with input as rule_input([], null, false, "", "")
-    eval_pass with input as rule_input([{"active": false, "has_used": false, "rotation_date": test_data.past_date}], null, true, test_data.future_date, test_data.future_date)
+	eval_pass with input as rule_input([], null, false, "", "")
+	eval_pass with input as rule_input([{"active": false, "has_used": false, "rotation_date": test_data.past_date}], null, true, test_data.future_date, test_data.future_date)
 	eval_pass with input as rule_input([{"active": true, "has_used": false, "rotation_date": test_data.future_date, "last_access": "N/A"}], null, false, "", "")
 }
 

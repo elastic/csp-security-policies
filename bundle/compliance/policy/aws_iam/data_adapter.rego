@@ -1,9 +1,7 @@
 package compliance.policy.aws_iam.data_adapter
 
-import future.keywords.every
 import data.compliance.lib.common
-
-date_format = "2006-01-02 15:04:05.999999999 -0700 MST"
+import future.keywords.every
 
 is_pwd_policy {
 	input.subType == "aws-password-policy"
@@ -38,7 +36,7 @@ unused_active_access_keys = {access_key |
 
 are_credentials_valid(keys, field, duration) {
 	every key in keys {
-		common.date_diff(time.parse_ns(date_format, key[field]), duration)
+		common.date_diff(time.parse_rfc3339_ns(key[field]), duration)
 	}
 }
 

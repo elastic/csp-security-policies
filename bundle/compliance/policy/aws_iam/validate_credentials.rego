@@ -19,7 +19,7 @@ validate_credentials {
 }
 
 validate_credentials {
-    data_adapter.iam_user.password_enabled
+	data_adapter.iam_user.password_enabled
 	data_adapter.are_credentials_valid([data_adapter.iam_user], "last_access", duration)
 	validate_access_keys
 }
@@ -31,7 +31,7 @@ validate_credentials {
 	validate_access_keys
 }
 
-validate_access_keys() {
-    data_adapter.are_credentials_valid(data_adapter.used_active_access_keys, "last_access", duration)
+validate_access_keys {
+	data_adapter.are_credentials_valid(data_adapter.used_active_access_keys, "last_access", duration)
 	data_adapter.are_credentials_valid(data_adapter.unused_active_access_keys, "rotation_date", duration)
 }

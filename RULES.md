@@ -193,7 +193,7 @@
 
 ## AWS CIS Benchmark
 
-### 6/63 implemented rules (10%)
+### 7/63 implemented rules (11%)
 
 | Rule Number                                      |   Section | Description                                                                                                        | Implemented        | Type      |
 |--------------------------------------------------|-----------|--------------------------------------------------------------------------------------------------------------------|--------------------|-----------|
@@ -202,7 +202,7 @@
 | [1.11](bundle/compliance/cis_aws/rules/cis_1_11) |       1   | Do not setup access keys during initial user setup for all IAM users that have a console password                  | :white_check_mark: | Automated |
 | [1.12](bundle/compliance/cis_aws/rules/cis_1_12) |       1   | Ensure credentials unused for 45 days or greater are disabled                                                      | :white_check_mark: | Automated |
 | [1.13](bundle/compliance/cis_aws/rules/cis_1_13) |       1   | Ensure there is only one active access key available for any single IAM user                                       | :white_check_mark: | Automated |
-| 1.14                                             |       1   | Ensure access keys are rotated every 90 days or less                                                               | :x:                | Automated |
+| [1.14](bundle/compliance/cis_aws/rules/cis_1_14) |       1   | Ensure access keys are rotated every 90 days or less                                                               | :white_check_mark: | Automated |
 | 1.15                                             |       1   | Ensure IAM Users Receive Permissions Only Through Groups                                                           | :x:                | Automated |
 | 1.16                                             |       1   | Ensure IAM policies that allow full "*:*" administrative privileges are not attached                               | :x:                | Automated |
 | 1.17                                             |       1   | Ensure a support role has been created to manage incidents with AWS Support                                        | :x:                | Automated |
