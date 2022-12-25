@@ -1,5 +1,6 @@
 metadata:
   id: 28a5bba7-8585-5a49-91db-97ac5b2a838b
+  rule_number: 1.10
   name: Ensure multi-factor authentication (MFA) is enabled for all IAM users that
     have a console password
   profile_applicability: "* Level 1"

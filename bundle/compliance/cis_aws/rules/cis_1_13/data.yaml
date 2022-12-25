@@ -1,5 +1,6 @@
 metadata:
   id: cd6925ae-743d-5525-a37a-65f4a8cd2cba
+  rule_number: 1.13
   name: Ensure there is only one active access key available for any single IAM user
   profile_applicability: "* Level 1"
   description: Access keys are long-term credentials for an IAM user or the AWS
@@ -101,7 +102,7 @@ metadata:
   default_value: ""
   references: |
     - https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html
-      https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
+    - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
   tags:
     - CIS
     - AWS

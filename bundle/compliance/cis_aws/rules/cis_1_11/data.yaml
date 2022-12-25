@@ -1,5 +1,6 @@
 metadata:
   id: 5adfb522-a144-5261-bee5-084295c1ec2e
+  rule_number: 1.11
   name: Do not setup access keys during initial user setup for all IAM users that
     have a console password
   profile_applicability: "* Level 1"

@@ -1,5 +1,6 @@
 metadata:
   id: 1e20e1e4-0104-5c4c-a4be-afd48eaa46f6
+  rule_number: 1.9
   name: Ensure IAM password policy prevents password reuse
   profile_applicability: "* Level 1"
   description: IAM password policies can prevent the reuse of a given password by

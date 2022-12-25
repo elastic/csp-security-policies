@@ -1,5 +1,6 @@
 metadata:
   id: b31ed651-653a-5316-a647-a8abf036ab06
+  rule_number: 1.12
   name: Ensure credentials unused for 45 days or greater are disabled
   profile_applicability: "* Level 1"
   description: AWS IAM users can access AWS resources using different types of
