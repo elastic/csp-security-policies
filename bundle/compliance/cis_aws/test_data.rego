@@ -1,46 +1,60 @@
 package cis_aws.test_data
 
+future_date = "2040-08-22 14:19:32 +0000 UTC"
+past_date = "2021-08-22 14:19:32 +0000 UTC"
+
 generate_password_policy(pwd_len, reuse_count) = {
 	"resource": {
-		"MaxAgeDays": 90,
-		"MinimumLength": pwd_len,
-		"RequireLowercase": true,
-		"RequireNumbers": true,
-		"RequireSymbols": true,
-		"RequireUppercase": true,
-		"ReusePreventionCount": reuse_count,
+		"max_age_days": 90,
+		"minimum_length": pwd_len,
+		"require_lowercase": true,
+		"require_numbers": true,
+		"require_symbols": true,
+		"require_uppercase": true,
+		"reuse_prevention_count": reuse_count,
 	},
 	"type": "identity-management",
 	"subType": "aws-password-policy",
 }
 
-not_evaluated_input = {
+not_evaluated_pwd_policy = {
 	"type": "some type",
 	"subType": "some sub type",
 	"resource": {
-		"MaxAgeDays": 90,
-		"MinimumLength": 8,
-		"RequireLowercase": true,
-		"RequireNumbers": true,
-		"RequireSymbols": true,
-		"RequireUppercase": true,
-		"ReusePreventionCount": 5,
+        "max_age_days": 90,
+		"max_age_days": 90,
+		"minimum_length": 8,
+		"require_lowercase": true,
+		"require_numbers": true,
+		"require_symbols": true,
+		"require_uppercase": true,
+		"reuse_prevention_count": 5,
 	},
 }
 
-generate_iam_user(access_keys, mfa_devices, has_logged_in, last_access) = {
+not_evaluated_iam_user = {
 	"type": "identity-management",
 	"subType": "aws-iam-user",
 	"resource": {
-		"Name": "test",
-		"AccessKeys": access_keys,
-		"MFADevices": mfa_devices,
-		"LastAccess": last_access,
-		"HasLoggedIn": has_logged_in,
-		"Arn": "arn:aws:iam::704479110758:user/test",
+		"name": "<root_account>",
+		"access_keys": "test",
+		"mfa_devices": "test",
+		"last_access": "test",
+		"password_enabled": "test",
+		"arn": "arn:aws:iam::704479110758:user/root",
 	},
 }
 
-future_date = "2040-08-22 14:19:32 +0000 UTC"
-
-past_date = "2021-08-22 14:19:32 +0000 UTC"
+generate_iam_user(access_keys, mfa_devices, has_logged_in, last_access, password_last_changed) = {
+	"type": "identity-management",
+	"subType": "aws-iam-user",
+	"resource": {
+		"name": "test",
+		"access_keys": access_keys,
+		"mfa_devices": mfa_devices,
+		"last_access": last_access,
+		"password_enabled": has_logged_in,
+		"password_last_changed": password_last_changed,
+		"arn": "arn:aws:iam::704479110758:user/test",
+	},
+}

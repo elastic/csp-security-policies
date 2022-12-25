@@ -5,13 +5,13 @@ import data.compliance.policy.aws_iam.data_adapter
 default ensure_access_keys_use = true
 
 ensure_access_keys_use = false {
-	not data_adapter.iam_user.HasLoggedIn
+	not data_adapter.iam_user.password_enabled
 	key := data_adapter.active_access_keys[_]
-	not key.HasUsed
+	not key.has_used
 }
 
 ensure_access_keys_use = false {
-	data_adapter.iam_user.HasLoggedIn
+	data_adapter.iam_user.password_enabled
 	key := data_adapter.active_access_keys[_]
-	not key.HasUsed
+	not key.has_used
 }

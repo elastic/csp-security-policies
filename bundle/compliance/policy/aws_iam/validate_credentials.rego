@@ -1,28 +1,37 @@
 package compliance.policy.aws_iam.validate_credentials
 
 import data.compliance.lib.assert
-import data.compliance.lib.common
 import data.compliance.policy.aws_iam.data_adapter
-import future.keywords.every
 
 duration = sprintf("%dh", [45 * 24]) # 45 days converted to hours
-
-date_format = "2006-01-02 15:04:05.999999999 -0700 MST"
 
 default validate_credentials = false
 
 validate_credentials {
 	assert.array_is_empty(data_adapter.active_access_keys)
-	are_credentials_valid([data_adapter.iam_user])
+	data_adapter.iam_user.password_enabled
+	data_adapter.are_credentials_valid([data_adapter.iam_user], "last_access", duration)
 }
 
 validate_credentials {
-	are_credentials_valid(data_adapter.active_access_keys)
-	are_credentials_valid([data_adapter.iam_user])
+	not data_adapter.iam_user.password_enabled
+	validate_access_keys
 }
 
-are_credentials_valid(keys) {
-	every key in keys {
-		common.date_diff(time.parse_ns(date_format, key.LastAccess), duration)
-	}
+validate_credentials {
+    data_adapter.iam_user.password_enabled
+	data_adapter.are_credentials_valid([data_adapter.iam_user], "last_access", duration)
+	validate_access_keys
+}
+
+validate_credentials {
+	data_adapter.iam_user.password_enabled
+	data_adapter.iam_user.last_access == "No_Information"
+	data_adapter.are_credentials_valid([data_adapter.iam_user], "password_last_changed", duration)
+	validate_access_keys
+}
+
+validate_access_keys() {
+    data_adapter.are_credentials_valid(data_adapter.used_active_access_keys, "last_access", duration)
+	data_adapter.are_credentials_valid(data_adapter.unused_active_access_keys, "rotation_date", duration)
 }
