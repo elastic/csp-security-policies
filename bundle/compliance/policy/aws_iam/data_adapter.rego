@@ -36,7 +36,7 @@ unused_active_access_keys = {access_key |
 
 are_credentials_valid(keys, field, duration) {
 	every key in keys {
-		common.date_diff(time.parse_rfc3339_ns(key[field]), duration)
+		common.date_less_than(time.parse_rfc3339_ns(key[field]), duration)
 	}
 }
 

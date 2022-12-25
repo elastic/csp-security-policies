@@ -79,7 +79,7 @@ duration_gte(duration, min_duration) {
 
 # checks that the date given is not earlier than the provided duration
 # date: time in nanoseconds
-date_diff(date, duration) {
+date_less_than(date, duration) {
 	now = time.now_ns()
 	duration_ns := time.parse_duration_ns(duration)
 	date > now - duration_ns
