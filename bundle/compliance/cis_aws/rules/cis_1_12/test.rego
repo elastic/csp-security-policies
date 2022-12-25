@@ -21,7 +21,6 @@ test_pass {
 	eval_pass with input as rule_input([{"active": true, "has_used": true, "last_access": test_data.future_date}], null, true, "No_Information", test_data.future_date)
 	eval_pass with input as rule_input([{"active": true, "last_access": test_data.future_date, "has_used": true}, {"active": true, "last_access": test_data.future_date, "has_used": true}], null, true, test_data.future_date, "")
 	eval_pass with input as rule_input([{"active": true, "last_access": test_data.future_date, "has_used": true}, {"active": false, "last_access": test_data.past_date, "has_used": true}], null, true, test_data.future_date, "")
-	eval_pass with input as rule_input([{"active": true, "has_used": true, "last_access": "2022-12-25T12:43:00+00:00", "rotation_date": "2022-12-08T08:45:19+00:00"}, {"active": false, "has_used": false, "last_access": "N/A", "rotation_date": "N/A"}], null, true, test_data.future_date, "")
 }
 
 test_not_evaluated {
