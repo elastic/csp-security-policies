@@ -15,13 +15,9 @@ metadata:
     **From Console:**
 
     1. Login to AWS Console (with appropriate permissions to View Identity Access Management Account Settings)
-
     2. Go to IAM Service on the AWS Console
-
     3. Click on Account Settings on the Left Pane
-
     4. Ensure "Prevent password reuse" is checked
-
     5. Ensure "Number of passwords to remember" is set to 24
 
     **From Command Line:**

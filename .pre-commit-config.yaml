@@ -29,6 +29,7 @@ repos:
       - id: update-rules-status
         name: Update rules status
         description: Update rules status in rules_table.md
+        require_serial: true
         entry: poetry run python ./dev/update_rule_status.py
         language: system
 

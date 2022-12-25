@@ -44,17 +44,13 @@
 
 **`input.json`**
 
-should contain a beat/agent output and the `activated_rules` (not mandatory - without specifying rules all rules will
-apply), e.g. filesystem data  
+should contain a beat/agent output and the `benchmark` (not mandatory - without specifying benchmark all benchmarks will
+apply), e.g. k8s eks aws
 
 ```json
 {
   "type": "file",
-  "activated_rules": {
-    "cis_k8s": [
-      "cis_1_1_1"
-    ]
-  },
+  "benchmark": "cis_k8s",
   "sub_type": "file",
   "resource": {
     "mode": "700",
@@ -83,7 +79,7 @@ opa eval data.main.findings --format pretty -i input.json -b ./bundle > output.j
 <details>
 <summary>Example output</summary>
 
-```json
+````json
 {
   "result": {
     "evaluation": "failed",
@@ -120,7 +116,7 @@ opa eval data.main.findings --format pretty -i input.json -b ./bundle > output.j
     "version": "1.0"
   }
 }
-```
+````
 
 </details>
 
