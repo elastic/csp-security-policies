@@ -38,20 +38,20 @@ not_evaluated_iam_user = {
 	"resource": {
 		"name": "<root_account>",
 		"access_keys": "test",
-		"mfa_devices": "test",
+		"mfa_active": "test",
 		"last_access": "test",
 		"password_enabled": "test",
 		"arn": "arn:aws:iam::704479110758:user/root",
 	},
 }
 
-generate_iam_user(access_keys, mfa_devices, has_logged_in, last_access, password_last_changed) = {
+generate_iam_user(access_keys, mfa_active, has_logged_in, last_access, password_last_changed) = {
 	"type": "identity-management",
 	"subType": "aws-iam-user",
 	"resource": {
 		"name": "test",
 		"access_keys": access_keys,
-		"mfa_devices": mfa_devices,
+		"mfa_active": mfa_active,
 		"last_access": last_access,
 		"password_enabled": has_logged_in,
 		"password_last_changed": password_last_changed,
