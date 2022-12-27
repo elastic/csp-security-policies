@@ -58,3 +58,13 @@ generate_iam_user(access_keys, mfa_devices, has_logged_in, last_access, password
 		"arn": "arn:aws:iam::704479110758:user/test",
 	},
 }
+
+generate_root_user(access_keys, last_access, password_last_changed) = {
+	"type": "identity-management",
+	"subType": "aws-iam-user",
+	"resource": {
+		"name": "<root_account>",
+		"access_keys": access_keys,
+		"arn": "arn:aws:iam::704479110758:root",
+	},
+}

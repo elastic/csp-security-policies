@@ -12,6 +12,11 @@ is_iam_user {
 	not input.resource.name == "<root_account>"
 }
 
+is_root_account {
+	input.subType == "aws-iam-user"
+	input.resource.name == "<root_account>"
+}
+
 pwd_policy = policy {
 	is_pwd_policy
 	policy := input.resource
@@ -23,6 +28,7 @@ iam_user = user {
 }
 
 used_active_access_keys = {access_key |
+    print("lalalala", iam_user.access_keys)
 	access_key = iam_user.access_keys[_]
 	access_key.active
 	access_key.has_used
