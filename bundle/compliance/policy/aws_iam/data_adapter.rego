@@ -1,8 +1,5 @@
 package compliance.policy.aws_iam.data_adapter
 
-import data.compliance.lib.common
-import future.keywords.every
-
 is_pwd_policy {
 	input.subType == "aws-password-policy"
 }
@@ -30,14 +27,8 @@ used_active_access_keys = {access_key |
 
 unused_active_access_keys = {access_key |
 	access_key = iam_user.access_keys[_]
-	access_key.active == true
+	access_key.active
 	not access_key.has_used
-}
-
-are_credentials_valid(keys, field, duration) {
-	every key in keys {
-		common.date_less_than(time.parse_rfc3339_ns(key[field]), duration)
-	}
 }
 
 active_access_keys := used_active_access_keys | unused_active_access_keys
