@@ -58,3 +58,14 @@ generate_iam_user(access_keys, mfa_active, has_logged_in, last_access, password_
 		"arn": "arn:aws:iam::704479110758:user/test",
 	},
 }
+
+generate_nacl(entry) = {
+	"resource": {
+		"Associations": [],
+		"Entries": [entry],
+		"IsDefault": false,
+		"Tags": [],
+	},
+	"type": "ec2",
+	"subType": "aws-nacl",
+}
