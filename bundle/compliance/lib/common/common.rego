@@ -77,9 +77,9 @@ duration_gte(duration, min_duration) {
 	true
 }
 
-# The function determines whether the given date occurs earlier than the specified duration from the current time.
+# The function determines whether the given date occurs within the provided time period.
 # date: time in nanoseconds
-date_less_than(date, duration) {
+date_within_duration(date, duration) {
 	now = time.now_ns()
 	duration_ns := time.parse_duration_ns(duration)
 	date > now - duration_ns

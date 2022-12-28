@@ -4,9 +4,10 @@ is_pwd_policy {
 	input.subType == "aws-password-policy"
 }
 
+# The root account is not an IAM user, therefore, we do not evaluate the root user against IAM users' rules and vice-versa.
 is_iam_user {
 	input.subType == "aws-iam-user"
-	not input.resource.name == "<root_account>"
+	input.resource.name != "<root_account>"
 }
 
 pwd_policy = policy {
