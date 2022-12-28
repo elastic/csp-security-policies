@@ -193,7 +193,7 @@
 
 ## AWS CIS Benchmark
 
-### 9/63 implemented rules (14%)
+### 10/63 implemented rules (16%)
 
 |                   Rule Number                    | Section                           | Description                                                                                                        |       Status       |   Type    |
 |:------------------------------------------------:|:----------------------------------|:-------------------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
@@ -214,7 +214,7 @@
 |                       1.3                        | Identity and Access Management    | Ensure security questions are registered in the AWS account                                                        |        :x:         |  Manual   |
 |  [1.4](bundle/compliance/cis_aws/rules/cis_1_4)  | Identity and Access Management    | Ensure no 'root' user account access key exists                                                                    | :white_check_mark: | Automated |
 |  [1.5](bundle/compliance/cis_aws/rules/cis_1_5)  | Identity and Access Management    | Ensure MFA is enabled for the 'root' user account                                                                  | :white_check_mark: | Automated |
-|                       1.6                        | Identity and Access Management    | Ensure hardware MFA is enabled for the 'root' user account                                                         |        :x:         | Automated |
+|  [1.6](bundle/compliance/cis_aws/rules/cis_1_6)  | Identity and Access Management    | Ensure hardware MFA is enabled for the 'root' user account                                                         | :white_check_mark: | Automated |
 |                       1.7                        | Identity and Access Management    | Eliminate use of the 'root' user for administrative and daily tasks                                                |        :x:         | Automated |
 |  [1.8](bundle/compliance/cis_aws/rules/cis_1_8)  | Identity and Access Management    | Ensure IAM password policy requires minimum length of 14 or greater                                                | :white_check_mark: | Automated |
 |  [1.9](bundle/compliance/cis_aws/rules/cis_1_9)  | Identity and Access Management    | Ensure IAM password policy prevents password reuse                                                                 | :white_check_mark: | Automated |

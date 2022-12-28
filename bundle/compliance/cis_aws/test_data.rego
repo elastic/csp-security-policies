@@ -60,13 +60,14 @@ generate_iam_user(access_keys, mfa_active, has_logged_in, last_access, password_
 	},
 }
 
-generate_root_user(access_keys, mfa_active, last_access) = {
+generate_root_user(access_keys, mfa_active, last_access, mfa_devices) = {
 	"type": "identity-management",
 	"subType": "aws-iam-user",
 	"resource": {
 		"name": "<root_account>",
 		"access_keys": access_keys,
 		"mfa_active": mfa_active,
+		"mfa_devices": mfa_devices,
 		"last_access": last_access,
 		"password_enabled": false,
 		"password_last_changed": "not_supported",

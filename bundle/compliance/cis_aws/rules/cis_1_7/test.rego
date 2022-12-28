@@ -1,18 +1,17 @@
-package compliance.cis_aws.rules.cis_1_4
+package compliance.cis_aws.rules.cis_1_7
 
 import data.cis_aws.test_data
 import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
 test_violation {
-	eval_fail with input as rule_input([{"active": true, "has_used": false}], true, "", [])
-	eval_fail with input as rule_input([{"active": true, "has_used": true}, {"active": true, "has_used": false}], true, "", [])
+	eval_fail with input as rule_input([], true, "", [{"is_virtual": true}])
+	eval_fail with input as rule_input([], true, "", [])
+	eval_fail with input as rule_input([], false, "", [])
 }
 
 test_pass {
-	eval_pass with input as rule_input([], false, "", [])
-	eval_pass with input as rule_input([{"active": false}], false, "", [])
-	eval_pass with input as rule_input([{"active": false}, {"active": false}], false, "", [])
+	eval_pass with input as rule_input([], true, "", [{"is_virtual": false}])
 }
 
 test_not_evaluated {
