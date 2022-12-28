@@ -78,7 +78,7 @@ jobs:
           poetry install
 
       - name: Update rule metadata
-        run: poetry run python ./dev/update_rule_metadata.py
+        run: poetry run python ./dev/generate_rule_metadata.py
 
       - name: Rule metadata mismatch - to fix run our pre-commit hooks
         run: git diff --exit-code
