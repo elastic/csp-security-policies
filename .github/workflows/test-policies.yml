@@ -62,7 +62,7 @@ jobs:
         run: git diff --exit-code
 
   update-rule-metadata:
-    name: Update rule metadata
+    name: Update rules metadata
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
