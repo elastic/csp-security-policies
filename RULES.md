@@ -193,7 +193,7 @@
 
 ## AWS CIS Benchmark
 
-### 10/63 implemented rules (16%)
+### 8/63 implemented rules (13%)
 
 |                   Rule Number                    | Section                           | Description                                                                                                        |       Status       |   Type    |
 |:------------------------------------------------:|:----------------------------------|:-------------------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
@@ -212,9 +212,9 @@
 |                       1.20                       | Identity and Access Management    | Ensure that IAM Access analyzer is enabled for all regions                                                         |        :x:         | Automated |
 |                       1.21                       | Identity and Access Management    | Ensure IAM users are managed centrally via identity federation or AWS Organizations for multi-account environments |        :x:         |  Manual   |
 |                       1.3                        | Identity and Access Management    | Ensure security questions are registered in the AWS account                                                        |        :x:         |  Manual   |
-|  [1.4](bundle/compliance/cis_aws/rules/cis_1_4)  | Identity and Access Management    | Ensure no 'root' user account access key exists                                                                    | :white_check_mark: | Automated |
-|  [1.5](bundle/compliance/cis_aws/rules/cis_1_5)  | Identity and Access Management    | Ensure MFA is enabled for the 'root' user account                                                                  | :white_check_mark: | Automated |
-|  [1.6](bundle/compliance/cis_aws/rules/cis_1_6)  | Identity and Access Management    | Ensure hardware MFA is enabled for the 'root' user account                                                         | :white_check_mark: | Automated |
+|                       1.4                        | Identity and Access Management    | Ensure no 'root' user account access key exists                                                                    |        :x:         | Automated |
+|                       1.5                        | Identity and Access Management    | Ensure MFA is enabled for the 'root' user account                                                                  |        :x:         | Automated |
+|                       1.6                        | Identity and Access Management    | Ensure hardware MFA is enabled for the 'root' user account                                                         |        :x:         | Automated |
 |                       1.7                        | Identity and Access Management    | Eliminate use of the 'root' user for administrative and daily tasks                                                |        :x:         | Automated |
 |  [1.8](bundle/compliance/cis_aws/rules/cis_1_8)  | Identity and Access Management    | Ensure IAM password policy requires minimum length of 14 or greater                                                | :white_check_mark: | Automated |
 |  [1.9](bundle/compliance/cis_aws/rules/cis_1_9)  | Identity and Access Management    | Ensure IAM password policy prevents password reuse                                                                 | :white_check_mark: | Automated |
@@ -255,7 +255,7 @@
 |                       4.7                        | Monitoring                        | Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs            |        :x:         | Automated |
 |                       4.8                        | Monitoring                        | Ensure a log metric filter and alarm exist for S3 bucket policy changes                                            |        :x:         | Automated |
 |                       4.9                        | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Config configuration changes                                    |        :x:         | Automated |
-|                       5.1                        | Networking                        | Ensure no Network ACLs allow ingress from 0.0.0.0/0 to remote server administration ports                          |        :x:         | Automated |
+|  [5.1](bundle/compliance/cis_aws/rules/cis_5_1)  | Networking                        | Ensure no Network ACLs allow ingress from 0.0.0.0/0 to remote server administration ports                          | :white_check_mark: | Automated |
 |                       5.2                        | Networking                        | Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports                       |        :x:         | Automated |
 |                       5.3                        | Networking                        | Ensure no security groups allow ingress from ::/0 to remote server administration ports                            |        :x:         | Automated |
 |                       5.4                        | Networking                        | Ensure the default security group of every VPC restricts all traffic                                               |        :x:         | Automated |

@@ -5,6 +5,6 @@ import future.keywords.every
 
 are_credentials_valid(keys, field, duration) {
 	every key in keys {
-		common.date_less_than(time.parse_rfc3339_ns(key[field]), duration)
+		common.date_within_duration(time.parse_rfc3339_ns(key[field]), duration)
 	}
 }

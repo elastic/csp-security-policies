@@ -126,12 +126,12 @@ test_duration_lte_smaller {
 	duration_lte(duration, min_duration)
 }
 
-test_date_less_than_later_than_threshold {
+test_date_within_duration_later_than_threshold {
 	date := time.add_date(time.now_ns(), 0, 0, -1) # years, months, days
-	date_less_than(date, "48h")
+	date_within_duration(date, "48h")
 }
 
-test_date_less_than_earlier_than_threshold {
+test_date_within_duration_earlier_than_threshold {
 	date := time.add_date(time.now_ns(), 0, 0, -3) # years, months, days
-	assert.is_false(date_less_than(date, "48h"))
+	assert.is_false(date_within_duration(date, "48h"))
 }
