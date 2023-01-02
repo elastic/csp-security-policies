@@ -1,6 +1,6 @@
 package cis_aws.test_data
 
-future_date = "2022-12-25T12:43:00+00:00"
+current_date := create_date_from_ns(time.now_ns())
 
 past_date = "2021-12-25T12:43:00+00:00"
 
@@ -34,7 +34,7 @@ not_evaluated_pwd_policy = {
 
 not_evaluated_iam_user = {
 	"type": "identity-management",
-	"subType": "aws-iam-user",
+	"subType": "gcp-iam-user",
 	"resource": {
 		"name": "<root_account>",
 		"access_keys": "test",
@@ -83,4 +83,11 @@ generate_nacl(entry) = {
 	},
 	"type": "ec2",
 	"subType": "aws-nacl",
+}
+
+create_date_from_ns(x) = time_str {
+	date := time.date(x)
+	t := time.clock(x)
+
+	time_str := sprintf("%d-%02d-%02dT%02d:%02d:%02d+00:00", array.concat(date, t))
 }

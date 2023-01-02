@@ -5,13 +5,15 @@ import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
 test_violation {
-	eval_fail with input as rule_input([], true, "", [{"is_virtual": true}])
-	eval_fail with input as rule_input([], true, "", [])
-	eval_fail with input as rule_input([], false, "", [])
+	eval_fail with input as rule_input([{"active": true, "last_access": test_data.current_date}], true, test_data.past_date, [])
+	eval_fail with input as rule_input([{"active": true, "last_access": test_data.past_date}], true, test_data.current_date, [])
+	eval_fail with input as rule_input([{"active": true, "last_access": test_data.current_date}], true, test_data.current_date, [])
+	eval_fail with input as rule_input([{"active": true, "last_access": test_data.current_date}, {"active": true, "last_access": test_data.past_date}], true, test_data.current_date, [])
 }
 
 test_pass {
-	eval_pass with input as rule_input([], true, "", [{"is_virtual": false}])
+	eval_pass with input as rule_input([], true, test_data.past_date, [])
+	eval_pass with input as rule_input([{"active": true, "last_access": test_data.past_date}], true, test_data.past_date, [])
 }
 
 test_not_evaluated {

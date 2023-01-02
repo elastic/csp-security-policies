@@ -1,17 +1,27 @@
 package compliance.cis_aws.rules.cis_1_7
 
 import data.compliance.lib.common
+import data.compliance.policy.aws_iam.common as iam_common
 import data.compliance.policy.aws_iam.data_adapter
-import data.compliance.policy.aws_iam.ensure_hardware_mfa as audit
 
-# Ensure that there is only a single active access key per user.
+default rule_evaluation = true
+
+# Eliminate use of the 'root' user for administrative and daily tasks
 finding = result {
 	# filter
 	data_adapter.is_root_user
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(audit.ensure_hardware_device),
+		common.calculate_result(rule_evaluation),
 		{"IAM User:": data_adapter.iam_user},
 	)
+}
+
+rule_evaluation = false {
+	iam_common.are_credentials_valid([data_adapter.iam_user], "last_access", "24h")
+}
+
+rule_evaluation = false {
+	iam_common.are_credentials_valid(data_adapter.active_access_keys, "last_access", "24h")
 }
