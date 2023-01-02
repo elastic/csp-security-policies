@@ -4,7 +4,7 @@ import data.compliance.lib.common
 import data.compliance.policy.aws_iam.common as iam_common
 import data.compliance.policy.aws_iam.data_adapter
 
-default rule_evaluation = true
+default rule_evaluation = false
 
 # Eliminate use of the 'root' user for administrative and daily tasks
 finding = result {
@@ -18,10 +18,12 @@ finding = result {
 	)
 }
 
-rule_evaluation = false {
-	iam_common.are_credentials_valid([data_adapter.iam_user], "last_access", "24h")
+rule_evaluation {
+	not iam_common.are_credentials_within_duration(data_adapter.active_access_keys, "last_access", "24h")
+	not iam_common.are_credentials_within_duration([data_adapter.iam_user], "last_access", "24h")
 }
 
-rule_evaluation = false {
-	iam_common.are_credentials_valid(data_adapter.active_access_keys, "last_access", "24h")
+rule_evaluation {
+	count(data_adapter.active_access_keys) == 0
+	not iam_common.are_credentials_within_duration([data_adapter.iam_user], "last_access", "24h")
 }
