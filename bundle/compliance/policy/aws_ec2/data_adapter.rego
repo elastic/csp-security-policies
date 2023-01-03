@@ -4,8 +4,16 @@ is_nacl_policy {
 	input.subType == "aws-nacl"
 }
 
+is_security_group_policy {
+	input.subType == "aws-security-group"
+}
+
 nacl_entries = entries {
 	entries := input.resource.Entries
+}
+
+security_groups_ip_permissions = entries {
+	entries := input.resource.IpPermissions
 }
 
 # Filter all the entries that 
@@ -21,4 +29,9 @@ nacl_ingresses = res {
 # the rule will allow inbound traffic on all TCP ports.
 ingresses_with_all_ports_open = res {
 	res = [entry | entry := nacl_ingresses[_]; not entry.PortRange]
+}
+
+# Get all the IpRanges from security groups that has an open inbound for all ipv4 cidr notions
+all_ipv4(entries) = res {
+	res = [entry | entry := entries[_]; entry.IpRanges[_].CidrIp == "0.0.0.0/0"]
 }
