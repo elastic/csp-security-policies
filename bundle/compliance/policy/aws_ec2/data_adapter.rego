@@ -35,3 +35,8 @@ ingresses_with_all_ports_open = res {
 all_ipv4(entries) = res {
 	res = [entry | entry := entries[_]; entry.IpRanges[_].CidrIp == "0.0.0.0/0"]
 }
+
+# Get all the IpRangesv6 from security groups that has an open inbound for all ipv6 cidr notions
+all_ipv6(entries) = res {
+	res = [entry | entry := entries[_]; entry.Ipv6Ranges[_].CidrIpv6 == "::/0"]
+}
