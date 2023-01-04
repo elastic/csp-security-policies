@@ -89,7 +89,7 @@ generate_s3_bucket(name, sse_algorithm) = {
 }
 
 generate_security_group(entry) = {
-	"resource": {"IpPermissions": [entry]},
+	"resource": entry,
 	"type": "ec2",
 	"subType": "aws-security-group",
 }

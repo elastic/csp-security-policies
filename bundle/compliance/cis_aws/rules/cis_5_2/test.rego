@@ -5,29 +5,29 @@ import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
 test_violation {
-	eval_fail with input as rule_input({
+	eval_fail with input as rule_input({"IpPermissions": [{
 		"FromPort": 443,
 		"IpProtocol": "tcp",
 		"IpRanges": [{"CidrIp": "0.0.0.0/0"}],
 		"Ipv6Ranges": [],
 		"PrefixListIds": [],
 		"ToPort": 443,
-	})
+	}]})
 
 	# "FromPort" and "ToPort" fields are not set in a security group rule, it means that the rule applies to all ports.
-	eval_fail with input as rule_input({
+	eval_fail with input as rule_input({"IpPermissions": [{
 		"IpProtocol": "tcp",
 		"IpRanges": [{"CidrIp": "0.0.0.0/0"}],
 		"Ipv6Ranges": [],
 		"PrefixListIds": [],
 		"UserIdGroupPairs": [],
-	})
+	}]})
 }
 
 test_pass {
 	# IpRanges empty array
 	# no inbound traffic is allowed to reach the resources associated with that security group
-	eval_pass with input as rule_input({
+	eval_pass with input as rule_input({"IpPermissions": [{
 		"FromPort": 443,
 		"IpProtocol": "tcp",
 		"IpRanges": [],
@@ -35,10 +35,10 @@ test_pass {
 		"PrefixListIds": [],
 		"ToPort": 443,
 		"UserIdGroupPairs": [],
-	})
+	}]})
 
 	# IpRanges with CiderIP different from 0.0.0.0/0 is OK
-	eval_pass with input as rule_input({
+	eval_pass with input as rule_input({"IpPermissions": [{
 		"FromPort": 22,
 		"IpProtocol": "tcp",
 		"IpRanges": [{"CidrIp": "31.154.188.106/32"}],
@@ -46,7 +46,7 @@ test_pass {
 		"PrefixListIds": [],
 		"ToPort": 22,
 		"UserIdGroupPairs": [],
-	})
+	}]})
 }
 
 rule_input(entry) = test_data.generate_security_group(entry)
