@@ -15,7 +15,7 @@ test_pass {
 }
 
 test_not_evaluated {
-	not_eval with input as test_data.not_evaluated_input
+	not_eval with input as test_data.not_evaluated_s3_bucket
 }
 
 rule_input(name, sse_algorithm) = test_data.generate_s3_bucket(name, sse_algorithm)

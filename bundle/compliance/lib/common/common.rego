@@ -1,9 +1,12 @@
 package compliance.lib.common
 
-metadata = {"opa_version": opa_version}
-
 # get OPA version
 opa_version := opa.runtime().version
+
+metadata = {
+	"opa_version": opa_version,
+	"policy_version": "1.0.0",
+}
 
 # set the rule result
 calculate_result(evaluation) = "passed" {
@@ -73,6 +76,16 @@ duration_gte(duration, min_duration) {
 	duration_ns := time.parse_duration_ns(duration)
 	min_duration_ns := time.parse_duration_ns(min_duration)
 	duration_ns >= min_duration_ns
+} else = false {
+	true
+}
+
+# The function determines whether the given date occurs within the provided time period.
+# date: time in nanoseconds
+date_within_duration(date, duration) {
+	now = time.now_ns()
+	duration_ns := time.parse_duration_ns(duration)
+	date > now - duration_ns
 } else = false {
 	true
 }

@@ -3,4 +3,5 @@
 /data.yaml
 /bundle.tar.gz
 tmpBundles/
+dev/__pycache__/
 .idea
