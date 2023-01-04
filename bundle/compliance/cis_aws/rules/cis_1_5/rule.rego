@@ -3,7 +3,7 @@ package compliance.cis_aws.rules.cis_1_5
 import data.compliance.lib.common
 import data.compliance.policy.aws_iam.data_adapter
 
-# Ensure that there is only a single active access key per user.
+# Ensure MFA is enabled for the 'root' user account.
 finding = result {
 	# filter
 	data_adapter.is_root_user
