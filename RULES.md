@@ -193,7 +193,7 @@
 
 ## AWS CIS Benchmark
 
-### 11/63 implemented rules (17%)
+### 12/63 implemented rules (19%)
 
 |                    Rule Number                     | Section                           | Description                                                                                                        |       Status       |   Type    |
 |:--------------------------------------------------:|:----------------------------------|:-------------------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
@@ -258,5 +258,5 @@
 |   [5.1](bundle/compliance/cis_aws/rules/cis_5_1)   | Networking                        | Ensure no Network ACLs allow ingress from 0.0.0.0/0 to remote server administration ports                          | :white_check_mark: | Automated |
 |   [5.2](bundle/compliance/cis_aws/rules/cis_5_2)   | Networking                        | Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports                       | :white_check_mark: | Automated |
 |   [5.3](bundle/compliance/cis_aws/rules/cis_5_3)   | Networking                        | Ensure no security groups allow ingress from ::/0 to remote server administration ports                            | :white_check_mark: | Automated |
-|                        5.4                         | Networking                        | Ensure the default security group of every VPC restricts all traffic                                               |        :x:         | Automated |
+|   [5.4](bundle/compliance/cis_aws/rules/cis_5_4)   | Networking                        | Ensure the default security group of every VPC restricts all traffic                                               | :white_check_mark: | Automated |
 |                        5.5                         | Networking                        | Ensure routing tables for VPC peering are "least access"                                                           |        :x:         |  Manual   |

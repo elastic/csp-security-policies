@@ -16,6 +16,12 @@ security_groups_ip_permissions = entries {
 	entries := input.resource.IpPermissions
 }
 
+is_default_security_group {
+	input.resource.GroupName == "default"
+} else = true {
+	true
+}
+
 # Filter all the entries that 
 # 1. have ingres (egress == false)
 # 2. allow any source ip of 0.0.0.0/0
@@ -39,4 +45,24 @@ all_ipv4(entries) = res {
 # Get all the IpRangesv6 from security groups that has an open inbound for all ipv6 cidr notions
 all_ipv6(entries) = res {
 	res = [entry | entry := entries[_]; entry.Ipv6Ranges[_].CidrIpv6 == "::/0"]
+}
+
+default_security_group_restricted {
+	is_default_security_group
+	security_group_has_inbound_rules
+	security_group_has_outbound_rules
+} else = false {
+	true
+}
+
+security_group_has_inbound_rules {
+	count(input.resource.IpPermissions) == 0
+} else = false {
+	true
+}
+
+security_group_has_outbound_rules {
+	count(input.resource.IpPermissionsEgress) == 0
+} else = false {
+	true
 }
