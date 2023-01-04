@@ -19,7 +19,7 @@ finding = result {
 }
 
 rule_evaluation {
-	every entry in data_adapter.all_ipv4(data_adapter.security_groups_ip_permissions) {
+	every entry in data_adapter.public_ipv4 {
 		every port in ports.admin_ports {
 			not ports.in_range(entry.FromPort, entry.ToPort, port)
 		}

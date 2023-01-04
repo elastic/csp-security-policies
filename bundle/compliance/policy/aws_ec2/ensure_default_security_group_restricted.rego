@@ -1,5 +1,6 @@
 package compliance.policy.aws_ec2.ensure_default_security_group_restricted
 
+import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.policy.aws_ec2.data_adapter
 
@@ -16,6 +17,14 @@ finding = result {
 	)
 }
 
+# check if a security group is the default security group and if it has no inbound or outbound rules.
+# non default security group can have any rules
 rule_evaluation {
-	data_adapter.default_security_group_restricted
+	assert.all_true([
+		data_adapter.is_default_security_group,
+		count(data_adapter.security_group_inbound_rules) == 0,
+		count(data_adapter.security_group_outbound_rules) == 0,
+	])
+} else {
+	not data_adapter.is_default_security_group
 }

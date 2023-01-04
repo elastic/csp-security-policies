@@ -18,7 +18,7 @@ security_groups_ip_permissions = entries {
 
 is_default_security_group {
 	input.resource.GroupName == "default"
-} else = true {
+} else = false {
 	true
 }
 
@@ -37,32 +37,16 @@ ingresses_with_all_ports_open = res {
 	res = [entry | entry := nacl_ingresses[_]; not entry.PortRange]
 }
 
-# Get all the IpRanges from security groups that has an open inbound for all ipv4 cidr notions
-all_ipv4(entries) = res {
-	res = [entry | entry := entries[_]; entry.IpRanges[_].CidrIp == "0.0.0.0/0"]
+# all the IpRanges from security groups that has an open inbound for all ipv4 cidr notions
+public_ipv4 = res {
+	res = [entry | entry := security_groups_ip_permissions[_]; entry.IpRanges[_].CidrIp == "0.0.0.0/0"]
 }
 
-# Get all the IpRangesv6 from security groups that has an open inbound for all ipv6 cidr notions
-all_ipv6(entries) = res {
-	res = [entry | entry := entries[_]; entry.Ipv6Ranges[_].CidrIpv6 == "::/0"]
+# all the IpRangesv6 from security groups that has an open inbound for all ipv6 cidr notions
+public_ipv6 = res {
+	res = [entry | entry := security_groups_ip_permissions[_]; entry.Ipv6Ranges[_].CidrIpv6 == "::/0"]
 }
 
-default_security_group_restricted {
-	is_default_security_group
-	security_group_has_inbound_rules
-	security_group_has_outbound_rules
-} else = false {
-	true
-}
+security_group_inbound_rules = input.resource.IpPermissions
 
-security_group_has_inbound_rules {
-	count(input.resource.IpPermissions) == 0
-} else = false {
-	true
-}
-
-security_group_has_outbound_rules {
-	count(input.resource.IpPermissionsEgress) == 0
-} else = false {
-	true
-}
+security_group_outbound_rules = input.resource.IpPermissionsEgress
