@@ -91,3 +91,27 @@ create_date_from_ns(x) = time_str {
 
 	time_str := sprintf("%d-%02d-%02dT%02d:%02d:%02d+00:00", array.concat(date, t))
 }
+
+not_evaluated_s3_bucket = {
+	"resource": {
+		"Name": "my-bucket",
+		"SSEAlgorithm": "AES256",
+	},
+	"type": "wrong type",
+	"subType": "wrong sub type",
+}
+
+generate_s3_bucket(name, sse_algorithm) = {
+	"resource": {
+		"Name": name,
+		"SSEAlgorithm": sse_algorithm,
+	},
+	"type": "cloud-storage",
+	"subType": "aws-s3",
+}
+
+generate_security_group(entry) = {
+	"resource": entry,
+	"type": "ec2",
+	"subType": "aws-security-group",
+}
