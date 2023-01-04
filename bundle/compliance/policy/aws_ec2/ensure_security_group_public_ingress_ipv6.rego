@@ -14,7 +14,7 @@ finding = result {
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(rule_evaluation),
-		data_adapter.security_groups_ip_permissions,
+		input.resource,
 	)
 }
 
