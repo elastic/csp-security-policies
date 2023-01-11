@@ -69,7 +69,7 @@ metadata:
     If the non-operational key pair(s) `Status` is set to `Inactive`, the key has been successfully deactivated and the IAM user access configuration adheres now to this recommendation.
 
     12. Repeat steps no. 1 – 3 for each IAM user in your AWS account.
-  impact: None
+  impact: ''
   default_value: ''
   references: |-
     1. https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html
@@ -78,7 +78,7 @@ metadata:
   version: '1.0'
   tags:
   - CIS
-  - CIS_AWS
+  - AWS
   - CIS 1.13
   - Identity and Access Management
   benchmark:

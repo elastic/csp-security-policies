@@ -75,7 +75,7 @@ metadata:
      - Click on `Make Inactive`
     17. Select any access keys that are over 45 days old and that have not been used and 
      - Click the X to `Delete`
-  impact: None
+  impact: ''
   default_value: ''
   references: |-
     1. https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#remove-credentials
@@ -86,7 +86,7 @@ metadata:
   version: '1.0'
   tags:
   - CIS
-  - CIS_AWS
+  - AWS
   - CIS 1.12
   - Identity and Access Management
   benchmark:

@@ -73,7 +73,7 @@ metadata:
     ```
     aws iam delete-access-key
     ```
-  impact: None
+  impact: ''
   default_value: ''
   references: |-
     1. https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#rotate-credentials
@@ -84,7 +84,7 @@ metadata:
   version: '1.0'
   tags:
   - CIS
-  - CIS_AWS
+  - AWS
   - CIS 1.14
   - Identity and Access Management
   benchmark:

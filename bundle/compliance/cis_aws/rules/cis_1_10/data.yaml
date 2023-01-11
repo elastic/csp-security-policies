@@ -79,7 +79,7 @@ metadata:
   version: '1.0'
   tags:
   - CIS
-  - CIS_AWS
+  - AWS
   - CIS 1.10
   - Identity and Access Management
   benchmark:
