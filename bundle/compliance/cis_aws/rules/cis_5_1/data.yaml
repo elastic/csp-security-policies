@@ -35,9 +35,9 @@ metadata:
      - Click `Save`
   impact: None
   default_value: ''
-  references:
-  - https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
-  - https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html#VPC_Security_Comparison
+  references: |-
+    1. https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
+    2. https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html#VPC_Security_Comparison
   section: Networking
   version: '1.0'
   tags:
