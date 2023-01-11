@@ -4,12 +4,13 @@
 
 ### Generate Rules Metadata
 
-`generate_rule_metadata.py` generates the metadata for a rule. 
+`generate_rule_metadata.py` generates the metadata for a rule.
 It is used to generate the metadata for the rules in the `rules` directory (`data.yaml`).
 
 **Usage:**
 
-From the root dir you can run the following example to generate selected benchmark rules metadata 
+From the root dir you can run the following example to generate selected benchmark rules metadata:
+
 ```shell
 poetry run python dev/generate_rule_metadata.py --benchmark <benchmark_id> --rules <selected rules>
 ```
@@ -36,11 +37,12 @@ The script currently has the following limitations:
 
 ### Generate Rule Templates
 
-`generate_rule_templates.py` generate the rule templates that will show in our Kibana plug-in (csp-rules). 
+`generate_rule_templates.py` generate the rule templates that will show in our Kibana plug-in (csp-rules).
 
 **Usage:**
 
 From the root dir you can run the following example to generate selected benchmark rules templates
+
 ```shell
 poetry run python dev/generate_rule_templates.py --benchmark <benchmark_id> --rules <selected rules>
 ```
@@ -64,6 +66,6 @@ poetry run python dev/generate_rule_templates.py --benchmark cis_aws --rules "1.
 ```
 
 > **Note**  
-> Default output path is the csp integration templates' directory, assuming both repos are sharing the same directory, 
+> Default output path is the csp integration templates' directory, assuming both repos are sharing the same directory,
 > i.e, `../../integrations/packages/cloud_security_posture/kibana/csp_rule_template/`
 > This can be configured with the `--out` parameter.
