@@ -16,7 +16,13 @@ def generate_rule_templates(benchmark: str, selected_rules: list, rule_template_
 
     benchmark_rules_dir = f"../bundle/compliance/{benchmark}/rules/"
     rules = os.listdir(benchmark_rules_dir)
+
+    # if no rules are selected, generate all rules
+    if not selected_rules:
+        selected_rules = rules
+
     for rule in rules:
+        # supporting both cis_1_1_1 and 1.1.1 formats
         if rule not in selected_rules and rule.removeprefix("cis_").replace("_", ".") not in selected_rules:
             continue
 
@@ -95,6 +101,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-r",
         "--rules",
+        default=[],
         help="set of specific rules to be parsed (default: all rules)."
              "for example: `--rules 1.1 1.2` or `--rules cis_1_1 cis_1_2`",
         nargs="+",
@@ -109,6 +116,9 @@ if __name__ == "__main__":
 
     if type(args.benchmark) is str:
         args.benchmark = [args.benchmark]
+
+    if type(args.rules) is str:
+        args.rules = [args.rules]
 
     for benchmark_id in args.benchmark:
         print(f"### Processing {benchmark_id.replace('_', ' ').upper()}")

@@ -2,6 +2,14 @@
 
 ## Rules Assets Generators
 
+### Prerequisites
+
+We use Poetry to manage our python dependencies. For more details, see [here](https://python-poetry.org/docs/).
+
+1. Install poetry (follow the instructions [here](https://python-poetry.org/docs/#installation))
+
+2. Install poetry env (follow installing pre-existing project instructions [here](https://python-poetry.org/docs/basic-usage/#initialising-a-pre-existing-project))
+
 ### Generate Rules Metadata
 
 `generate_rule_metadata.py` generates the metadata for a rule.
@@ -59,7 +67,7 @@ poetry run python dev/generate_rule_templates.py
 poetry run python dev/generate_rule_templates.py --benchmark cis_aws --rules "1.8" "1.9"
 ```
 
-**Example 3** - Generate two specific rules templates from CIS AWS and save them in a different directory:
+**Example 3** - Generate two specific rules templates from CIS AWS and save them in a different directory (relative to `./dev`):
 
 ```shell
 poetry run python dev/generate_rule_templates.py --benchmark cis_aws --rules "1.8" "1.9"  --out "./rules_templates"
