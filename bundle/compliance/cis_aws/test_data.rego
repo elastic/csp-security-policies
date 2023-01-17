@@ -59,6 +59,16 @@ generate_iam_user(access_keys, mfa_active, has_logged_in, last_access, password_
 	},
 }
 
+generate_iam_user_with_policies(inline_policies, attached_policies) = {
+	"type": "identity-management",
+	"subType": "aws-iam-user",
+	"resource": {
+		"name": "test",
+		"inline_policies": inline_policies,
+		"attached_policies": attached_policies,
+	},
+}
+
 generate_root_user(access_keys, mfa_active, last_access, mfa_devices) = {
 	"type": "identity-management",
 	"subType": "aws-iam-user",
@@ -96,18 +106,42 @@ not_evaluated_s3_bucket = {
 	"resource": {
 		"Name": "my-bucket",
 		"SSEAlgorithm": "AES256",
+		"BucketPolicy": {
+			"Version": "2012-10-17",
+			"Statement": [generate_s3_bucket_policy_statement("Deny", "*", "s3:*", "true")],
+		},
+		"BucketVersioning": generate_s3_bucket_versioning(true, true),
 	},
 	"type": "wrong type",
 	"subType": "wrong sub type",
 }
 
-generate_s3_bucket(name, sse_algorithm) = {
+generate_s3_bucket(name, sse_algorithm, bucket_policy_statement, bucket_versioning) = {
 	"resource": {
 		"Name": name,
 		"SSEAlgorithm": sse_algorithm,
+		"BucketPolicy": {
+			"Version": "1",
+			"Statement": [bucket_policy_statement],
+		},
+		"BucketVersioning": bucket_versioning,
 	},
 	"type": "cloud-storage",
 	"subType": "aws-s3",
+}
+
+generate_s3_bucket_policy_statement(effect, principal, action, is_secure_transport) = {
+	"Sid": "Statement1",
+	"Effect": effect,
+	"Principal": principal,
+	"Action": action,
+	"Resource": "arn:aws:s3:::test-bucket/*",
+	"Condition": {"Bool": {"aws:SecureTransport": is_secure_transport}},
+}
+
+generate_s3_bucket_versioning(enabled, mfa_delete) = {
+	"Enabled": enabled,
+	"MfaDelete": mfa_delete,
 }
 
 generate_security_group(entry) = {
