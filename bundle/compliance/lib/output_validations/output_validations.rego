@@ -21,7 +21,7 @@ validate_common_provider_metadata(metadata) {
 	metadata.benchmark.name
 	metadata.benchmark.version
 	metadata.benchmark.id
-	metadata.rule_number
+	metadata.benchmark.rule_number
 }
 
 validate_metadata(metadata) {
