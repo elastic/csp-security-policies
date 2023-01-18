@@ -1,6 +1,7 @@
 metadata:
   id: 9870ae7a-8c40-5f47-a482-355a720b01db
   name: Minimize the admission of containers with added capabilities
+  rule_number: 4.2.8
   profile_applicability: '* Level 1'
   description: Do not generally permit containers with capabilities assigned beyond
     the default set.
@@ -39,4 +40,4 @@ metadata:
     name: CIS Amazon Elastic Kubernetes Service (EKS)
     version: v1.0.1
     id: cis_eks
-    rule_number: 4.2.8
+    posture_type: kspm

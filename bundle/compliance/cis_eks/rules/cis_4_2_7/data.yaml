@@ -1,6 +1,7 @@
 metadata:
   id: 13c821af-7d0a-5269-855d-2a87134ed4ee
   name: Minimize the admission of containers with the NET_RAW capability
+  rule_number: 4.2.7
   profile_applicability: '* Level 1'
   description: Do not generally permit containers with the potentially dangerous NET_RAW
     capability.
@@ -47,4 +48,4 @@ metadata:
     name: CIS Amazon Elastic Kubernetes Service (EKS)
     version: v1.0.1
     id: cis_eks
-    rule_number: 4.2.7
+    posture_type: kspm

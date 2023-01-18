@@ -1,6 +1,7 @@
 metadata:
   id: c16cebbe-2d1e-5127-8ec0-508428817b02
   name: Ensure MFA is enabled for the 'root' user account
+  rule_number: '1.5'
   profile_applicability: '* Level 1'
   description: |-
     The 'root' user account is the most privileged user in an AWS account.
@@ -71,4 +72,4 @@ metadata:
     name: CIS Amazon Web Services Foundations
     version: v1.5.0
     id: cis_aws
-    rule_number: '1.5'
+    posture_type: cspm

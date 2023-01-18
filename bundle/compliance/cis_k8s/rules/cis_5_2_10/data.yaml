@@ -1,6 +1,7 @@
 metadata:
   id: b193abe9-297a-5650-8740-939e9fd3bd8f
   name: Minimize the admission of containers with capabilities assigned
+  rule_number: 5.2.10
   profile_applicability: '* Level 2 - Master Node'
   description: Do not generally permit containers with capabilities
   rationale: |-
@@ -30,4 +31,4 @@ metadata:
     name: CIS Kubernetes V1.23
     version: v1.0.1
     id: cis_k8s
-    rule_number: 5.2.10
+    posture_type: kspm
