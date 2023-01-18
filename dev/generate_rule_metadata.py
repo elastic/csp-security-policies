@@ -17,13 +17,13 @@ class Benchmark:
     name: str
     version: str
     id: str
+    rule_number: str
 
 
 @dataclass
 class Rule:
     id: str
     name: str
-    rule_number: str
     profile_applicability: str
     description: str
     rationale: str
@@ -110,21 +110,32 @@ def read_existing_default_value(rule_number, benchmark_id):
         return ""
 
 
+def generate_rule_benchmark_metadata(benchmark_id: str, rule_number: str):
+    """
+    Generate benchmark metadata for rules
+    :param benchmark_id: Benchmark ID
+    :param rule_number: Rule number
+    """
+    return Benchmark(
+        name=common.benchmark[benchmark_id].split("Benchmark")[0].replace("_", " ").removesuffix(" "),
+        version=common.benchmark[benchmark_id].split("Benchmark")[1].removeprefix("_").removesuffix(".xlsx"),
+        id=f"{benchmark_id}",
+        rule_number=rule_number,
+    )
+
+
 def replace_nan_with_empty_string(data: pd.DataFrame):
     """
     Replace NaN values with empty strings (they are represented as `nan` in the Excel for some reason)
-    :param data: Dataframe
-    :return: Dataframe
     """
     return data.replace("nan", '')
 
 
-def generate_metadata(benchmark_id: str, raw_data: pd.DataFrame, benchmark_metadata: Benchmark, sections: dict):
+def generate_metadata(benchmark_id: str, raw_data: pd.DataFrame, sections: dict):
     """
     Generate metadata for rules
     :param benchmark_id: Benchmark ID
     :param raw_data: ‘Raw’ data from the spreadsheet
-    :param benchmark_metadata: Benchmark metadata
     :param sections: Section metadata
     :return: List of Rule objects
     """
@@ -132,10 +143,10 @@ def generate_metadata(benchmark_id: str, raw_data: pd.DataFrame, benchmark_metad
     metadata = []
     benchmark_tag = benchmark_id.removeprefix("cis_").upper() if benchmark_id != "cis_k8s" else f"Kubernetes"
     for rule in normalized_data.to_dict(orient="records"):
+        benchmark_metadata = generate_rule_benchmark_metadata(benchmark_id, rule["Rule Number"])
         r = Rule(
             id=str(uuid.uuid5(uuid.NAMESPACE_DNS, f"{benchmark_metadata.name} {rule['Title']}")),
             name=rule["Title"],
-            rule_number=rule["Rule Number"],
             profile_applicability=f"* {rule['profile_applicability']}",
             description=common.fix_code_blocks(rule["description"]),
             rationale=common.fix_code_blocks(rule.get("rationale", "")),
@@ -162,7 +173,8 @@ def save_metadata(metadata: list[Rule], benchmark_id):
     :return: None
     """
     for rule in metadata:
-        rule_dir = os.path.join(common.rules_dir, f"{benchmark_id}/rules", f"cis_{rule.rule_number.replace('.', '_')}")
+        rule_package = f"cis_{rule.benchmark.rule_number.replace('.', '_')}"
+        rule_dir = os.path.join(common.rules_dir, f"{benchmark_id}/rules", rule_package)
         try:
             with open(os.path.join(rule_dir, "data.yaml"), "w+") as f:
                 yml.dump({"metadata": common.apply_pss_recursively(asdict(rule))}, f)
@@ -207,10 +219,5 @@ if __name__ == "__main__":
             selected_rules=args.rules,
         )
 
-        benchmark_metadata = Benchmark(
-            name=common.benchmark[benchmark_id].split("Benchmark")[0].replace("_", " ").removesuffix(" "),
-            version=common.benchmark[benchmark_id].split("Benchmark")[1].removeprefix("_").removesuffix(".xlsx"),
-            id=f"{benchmark_id}",
-        )
-        metadata = generate_metadata(benchmark_id, raw_data, benchmark_metadata, sections)
+        metadata = generate_metadata(benchmark_id, raw_data, sections)
         save_metadata(metadata, benchmark_id)

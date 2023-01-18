@@ -2,7 +2,6 @@ metadata:
   id: ec063233-fc31-5f50-8ecd-ada8cba33192
   name: Ensure that the --event-qps argument is set to 0 or a level which ensures
     appropriate event capture
-  rule_number: 4.2.9
   profile_applicability: '* Level 2 - Worker Node'
   description: |-
     Security relevant information should be captured.
@@ -37,7 +36,7 @@ metadata:
   impact: |-
     Setting this parameter to `0` could result in a denial of service condition due to excessive events being created. The cluster's event processing and storage systems should be scaled to handle expected event loads.
   default_value: |
-    By default, `--event-qps` argument is set to `5`.
+    By default, the `kube-apiserver.yaml` file has permissions of `640`.
   references: |-
     1. https://kubernetes.io/docs/admin/kubelet/
     2. https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/kubeletconfig/v1beta1/types.go
@@ -52,3 +51,4 @@ metadata:
     name: CIS Kubernetes V1.23
     version: v1.0.1
     id: cis_k8s
+    rule_number: 4.2.9
