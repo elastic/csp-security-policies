@@ -14,6 +14,7 @@ yml = YAML()
 KSPM_POSTURE_TYPE = "kspm"
 CSPM_POSTURE_TYPE = "cspm"
 
+
 @dataclass
 class Benchmark:
     name: str
@@ -88,6 +89,7 @@ benchmark_to_posture_type = {
     "cis_eks": KSPM_POSTURE_TYPE,
     "cis_aws": CSPM_POSTURE_TYPE,
 }
+
 
 def parse_refs(refs: str):
     """
