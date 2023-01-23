@@ -149,3 +149,9 @@ generate_security_group(entry) = {
 	"type": "ec2",
 	"subType": "aws-security-group",
 }
+
+generate_monitoring_cis_4_1(items) = {
+	"resource": {"Items": items},
+	"type": "monitoring",
+	"subType": "aws-trail",
+}
