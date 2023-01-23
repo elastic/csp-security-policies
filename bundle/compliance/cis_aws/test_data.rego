@@ -149,3 +149,15 @@ generate_security_group(entry) = {
 	"type": "ec2",
 	"subType": "aws-security-group",
 }
+
+generate_trail(is_log_validation_enabled) = {
+	"type": "cloud-audit",
+	"subType": "aws-trail",
+	"resource": {"log_file_validation_enabled": is_log_validation_enabled},
+}
+
+not_evaluated_trail = {
+	"type": "cloud-audit",
+	"subType": "not-an-aws-trail",
+	"resource": {"log_file_validation_enabled": false},
+}

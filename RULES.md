@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 19/63 implemented rules (30%)
+### 20/63 implemented rules (32%)
 
-#### Automated rules: 19/55 (35%)
+#### Automated rules: 20/55 (36%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -243,7 +243,7 @@
 |                        3.1                         | Logging                           | Ensure CloudTrail is enabled in all regions                                                                        |        :x:         | Automated |
 |                        3.10                        | Logging                           | Ensure that Object-level logging for write events is enabled for S3 bucket                                         |        :x:         | Automated |
 |                        3.11                        | Logging                           | Ensure that Object-level logging for read events is enabled for S3 bucket                                          |        :x:         | Automated |
-|                        3.2                         | Logging                           | Ensure CloudTrail log file validation is enabled                                                                   |        :x:         | Automated |
+|   [3.2](bundle/compliance/cis_aws/rules/cis_3_2)   | Logging                           | Ensure CloudTrail log file validation is enabled                                                                   | :white_check_mark: | Automated |
 |                        3.3                         | Logging                           | Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible                                      |        :x:         | Automated |
 |                        3.4                         | Logging                           | Ensure CloudTrail trails are integrated with CloudWatch Logs                                                       |        :x:         | Automated |
 |                        3.5                         | Logging                           | Ensure AWS Config is enabled in all regions                                                                        |        :x:         | Automated |
