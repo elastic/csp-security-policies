@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 20/63 implemented rules (32%)
+### 21/63 implemented rules (33%)
 
-#### Automated rules: 20/55 (36%)
+#### Automated rules: 21/55 (38%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -259,7 +259,7 @@
 |                        4.14                        | Monitoring                        | Ensure a log metric filter and alarm exist for VPC changes                                                         |        :x:         | Automated |
 |                        4.15                        | Monitoring                        | Ensure a log metric filter and alarm exists for AWS Organizations changes                                          |        :x:         | Automated |
 |                        4.16                        | Monitoring                        | Ensure AWS Security Hub is enabled                                                                                 |        :x:         | Automated |
-|                        4.2                         | Monitoring                        | Ensure a log metric filter and alarm exist for Management Console sign-in without MFA                              |        :x:         | Automated |
+|   [4.2](bundle/compliance/cis_aws/rules/cis_4_2)   | Monitoring                        | Ensure a log metric filter and alarm exist for Management Console sign-in without MFA                              | :white_check_mark: | Automated |
 |                        4.3                         | Monitoring                        | Ensure a log metric filter and alarm exist for usage of 'root' account                                             |        :x:         | Automated |
 |                        4.4                         | Monitoring                        | Ensure a log metric filter and alarm exist for IAM policy changes                                                  |        :x:         | Automated |
 |                        4.5                         | Monitoring                        | Ensure a log metric filter and alarm exist for CloudTrail configuration changes                                    |        :x:         | Automated |
