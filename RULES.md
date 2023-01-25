@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 32/63 implemented rules (51%)
+### 33/63 implemented rules (52%)
 
-#### Automated rules: 32/55 (58%)
+#### Automated rules: 33/55 (60%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -256,7 +256,7 @@
 |  [4.11](bundle/compliance/cis_aws/rules/cis_4_11)  | Monitoring                        | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)                      | :white_check_mark: | Automated |
 |  [4.12](bundle/compliance/cis_aws/rules/cis_4_12)  | Monitoring                        | Ensure a log metric filter and alarm exist for changes to network gateways                                         | :white_check_mark: | Automated |
 |  [4.13](bundle/compliance/cis_aws/rules/cis_4_13)  | Monitoring                        | Ensure a log metric filter and alarm exist for route table changes                                                 | :white_check_mark: | Automated |
-|                        4.14                        | Monitoring                        | Ensure a log metric filter and alarm exist for VPC changes                                                         |        :x:         | Automated |
+|  [4.14](bundle/compliance/cis_aws/rules/cis_4_14)  | Monitoring                        | Ensure a log metric filter and alarm exist for VPC changes                                                         | :white_check_mark: | Automated |
 |                        4.15                        | Monitoring                        | Ensure a log metric filter and alarm exists for AWS Organizations changes                                          |        :x:         | Automated |
 |                        4.16                        | Monitoring                        | Ensure AWS Security Hub is enabled                                                                                 |        :x:         | Automated |
 |   [4.2](bundle/compliance/cis_aws/rules/cis_4_2)   | Monitoring                        | Ensure a log metric filter and alarm exist for Management Console sign-in without MFA                              | :white_check_mark: | Automated |
