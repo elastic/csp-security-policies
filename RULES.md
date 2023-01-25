@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 29/63 implemented rules (46%)
+### 30/63 implemented rules (48%)
 
-#### Automated rules: 29/55 (53%)
+#### Automated rules: 30/55 (55%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -253,7 +253,7 @@
 |                        3.9                         | Logging                           | Ensure VPC flow logging is enabled in all VPCs                                                                     |        :x:         | Automated |
 |   [4.1](bundle/compliance/cis_aws/rules/cis_4_1)   | Monitoring                        | Ensure a log metric filter and alarm exist for unauthorized API calls                                              | :white_check_mark: | Automated |
 |  [4.10](bundle/compliance/cis_aws/rules/cis_4_10)  | Monitoring                        | Ensure a log metric filter and alarm exist for security group changes                                              | :white_check_mark: | Automated |
-|                        4.11                        | Monitoring                        | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)                      |        :x:         | Automated |
+|  [4.11](bundle/compliance/cis_aws/rules/cis_4_11)  | Monitoring                        | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)                      | :white_check_mark: | Automated |
 |                        4.12                        | Monitoring                        | Ensure a log metric filter and alarm exist for changes to network gateways                                         |        :x:         | Automated |
 |                        4.13                        | Monitoring                        | Ensure a log metric filter and alarm exist for route table changes                                                 |        :x:         | Automated |
 |                        4.14                        | Monitoring                        | Ensure a log metric filter and alarm exist for VPC changes                                                         |        :x:         | Automated |
