@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 24/63 implemented rules (38%)
+### 25/63 implemented rules (40%)
 
-#### Automated rules: 24/55 (44%)
+#### Automated rules: 25/55 (45%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -263,7 +263,7 @@
 |   [4.3](bundle/compliance/cis_aws/rules/cis_4_3)   | Monitoring                        | Ensure a log metric filter and alarm exist for usage of 'root' account                                             | :white_check_mark: | Automated |
 |   [4.4](bundle/compliance/cis_aws/rules/cis_4_4)   | Monitoring                        | Ensure a log metric filter and alarm exist for IAM policy changes                                                  | :white_check_mark: | Automated |
 |   [4.5](bundle/compliance/cis_aws/rules/cis_4_5)   | Monitoring                        | Ensure a log metric filter and alarm exist for CloudTrail configuration changes                                    | :white_check_mark: | Automated |
-|                        4.6                         | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Management Console authentication failures                      |        :x:         | Automated |
+|   [4.6](bundle/compliance/cis_aws/rules/cis_4_6)   | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Management Console authentication failures                      | :white_check_mark: | Automated |
 |                        4.7                         | Monitoring                        | Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs            |        :x:         | Automated |
 |                        4.8                         | Monitoring                        | Ensure a log metric filter and alarm exist for S3 bucket policy changes                                            |        :x:         | Automated |
 |                        4.9                         | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Config configuration changes                                    |        :x:         | Automated |
