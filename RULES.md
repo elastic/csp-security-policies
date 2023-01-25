@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 28/63 implemented rules (44%)
+### 29/63 implemented rules (46%)
 
-#### Automated rules: 28/55 (51%)
+#### Automated rules: 29/55 (53%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -252,7 +252,7 @@
 |                        3.8                         | Logging                           | Ensure rotation for customer created symmetric CMKs is enabled                                                     |        :x:         | Automated |
 |                        3.9                         | Logging                           | Ensure VPC flow logging is enabled in all VPCs                                                                     |        :x:         | Automated |
 |   [4.1](bundle/compliance/cis_aws/rules/cis_4_1)   | Monitoring                        | Ensure a log metric filter and alarm exist for unauthorized API calls                                              | :white_check_mark: | Automated |
-|                        4.10                        | Monitoring                        | Ensure a log metric filter and alarm exist for security group changes                                              |        :x:         | Automated |
+|  [4.10](bundle/compliance/cis_aws/rules/cis_4_10)  | Monitoring                        | Ensure a log metric filter and alarm exist for security group changes                                              | :white_check_mark: | Automated |
 |                        4.11                        | Monitoring                        | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)                      |        :x:         | Automated |
 |                        4.12                        | Monitoring                        | Ensure a log metric filter and alarm exist for changes to network gateways                                         |        :x:         | Automated |
 |                        4.13                        | Monitoring                        | Ensure a log metric filter and alarm exist for route table changes                                                 |        :x:         | Automated |
