@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 26/63 implemented rules (41%)
+### 27/63 implemented rules (43%)
 
-#### Automated rules: 26/55 (47%)
+#### Automated rules: 27/55 (49%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -265,7 +265,7 @@
 |   [4.5](bundle/compliance/cis_aws/rules/cis_4_5)   | Monitoring                        | Ensure a log metric filter and alarm exist for CloudTrail configuration changes                                    | :white_check_mark: | Automated |
 |   [4.6](bundle/compliance/cis_aws/rules/cis_4_6)   | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Management Console authentication failures                      | :white_check_mark: | Automated |
 |   [4.7](bundle/compliance/cis_aws/rules/cis_4_7)   | Monitoring                        | Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs            | :white_check_mark: | Automated |
-|                        4.8                         | Monitoring                        | Ensure a log metric filter and alarm exist for S3 bucket policy changes                                            |        :x:         | Automated |
+|   [4.8](bundle/compliance/cis_aws/rules/cis_4_8)   | Monitoring                        | Ensure a log metric filter and alarm exist for S3 bucket policy changes                                            | :white_check_mark: | Automated |
 |                        4.9                         | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Config configuration changes                                    |        :x:         | Automated |
 |   [5.1](bundle/compliance/cis_aws/rules/cis_5_1)   | Networking                        | Ensure no Network ACLs allow ingress from 0.0.0.0/0 to remote server administration ports                          | :white_check_mark: | Automated |
 |   [5.2](bundle/compliance/cis_aws/rules/cis_5_2)   | Networking                        | Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports                       | :white_check_mark: | Automated |
