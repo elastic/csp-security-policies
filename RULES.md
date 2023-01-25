@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 31/63 implemented rules (49%)
+### 32/63 implemented rules (51%)
 
-#### Automated rules: 31/55 (56%)
+#### Automated rules: 32/55 (58%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -255,7 +255,7 @@
 |  [4.10](bundle/compliance/cis_aws/rules/cis_4_10)  | Monitoring                        | Ensure a log metric filter and alarm exist for security group changes                                              | :white_check_mark: | Automated |
 |  [4.11](bundle/compliance/cis_aws/rules/cis_4_11)  | Monitoring                        | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)                      | :white_check_mark: | Automated |
 |  [4.12](bundle/compliance/cis_aws/rules/cis_4_12)  | Monitoring                        | Ensure a log metric filter and alarm exist for changes to network gateways                                         | :white_check_mark: | Automated |
-|                        4.13                        | Monitoring                        | Ensure a log metric filter and alarm exist for route table changes                                                 |        :x:         | Automated |
+|  [4.13](bundle/compliance/cis_aws/rules/cis_4_13)  | Monitoring                        | Ensure a log metric filter and alarm exist for route table changes                                                 | :white_check_mark: | Automated |
 |                        4.14                        | Monitoring                        | Ensure a log metric filter and alarm exist for VPC changes                                                         |        :x:         | Automated |
 |                        4.15                        | Monitoring                        | Ensure a log metric filter and alarm exists for AWS Organizations changes                                          |        :x:         | Automated |
 |                        4.16                        | Monitoring                        | Ensure AWS Security Hub is enabled                                                                                 |        :x:         | Automated |
