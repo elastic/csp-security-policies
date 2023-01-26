@@ -14,7 +14,7 @@ at_least_one_trail_satisfied(metric_filter_patterns) {
 	trail.TrailInfo.Status.IsLogging
 
 	# and it captures all management events 
-	selector := trail.TrailInfo.EventSelector.EventSelectors[j]
+	selector := trail.TrailInfo.EventSelectors[j]
 	selector.IncludeManagementEvents
 	selector.ReadWriteType == "All"
 

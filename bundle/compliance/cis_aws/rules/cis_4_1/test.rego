@@ -13,7 +13,7 @@ test_violation {
 		"TrailInfo": {
 			"Trail": {"IsMultiRegionTrail": false},
 			"Status": {"IsLogging": true},
-			"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": true}]},
+			"EventSelectors": [{"IncludeManagementEvents": true}],
 		},
 		"Topics": ["arn:aws:...sns"],
 		"MetricFilters": [{"FilterPattern": "{ ($.errorCode = \"UnauthorizedOperation\") || ($.errorCode = \"AccessDenied\") || ($.sourceIPAddress!=\"delivery.logs.amazonaws.com\") || ($.eventName!=\"HeadBucket\") }"}],
@@ -24,7 +24,7 @@ test_violation {
 		"TrailInfo": {
 			"Trail": {"IsMultiRegionTrail": true},
 			"Status": {"IsLogging": true},
-			"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": true}]},
+			"EventSelectors": [{"IncludeManagementEvents": true}],
 		},
 		"Topics": [],
 		"MetricFilters": [{"FilterPattern": "{ ($.errorCode = \"UnauthorizedOperation\") || ($.errorCode = \"AccessDenied\") || ($.sourceIPAddress!=\"delivery.logs.amazonaws.com\") || ($.eventName!=\"HeadBucket\") }"}],
@@ -35,7 +35,7 @@ test_violation {
 		"TrailInfo": {
 			"Trail": {"IsMultiRegionTrail": true},
 			"Status": {"IsLogging": true},
-			"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": true}]},
+			"EventSelectors": [{"IncludeManagementEvents": true}],
 		},
 		"Topics": ["arn:aws:...sns"],
 		"MetricFilters": [],
@@ -46,7 +46,7 @@ test_violation {
 		"TrailInfo": {
 			"Trail": {"IsMultiRegionTrail": true},
 			"Status": {"IsLogging": false},
-			"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": true}]},
+			"EventSelectors": [{"IncludeManagementEvents": true}],
 		},
 		"Topics": ["arn:aws:...sns"],
 		"MetricFilters": [{"FilterPattern": "{ ($.errorCode = \"UnauthorizedOperation\") || ($.errorCode = \"AccessDenied\") || ($.sourceIPAddress!=\"delivery.logs.amazonaws.com\") || ($.eventName!=\"HeadBucket\") }"}],
@@ -57,7 +57,7 @@ test_violation {
 		"TrailInfo": {
 			"Trail": {"IsMultiRegionTrail": true},
 			"Status": {"IsLogging": true},
-			"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": false, "ReadWriteType": "All"}]},
+			"EventSelectors": [{"IncludeManagementEvents": false, "ReadWriteType": "All"}],
 		},
 		"Topics": ["arn:aws:...sns"],
 		"MetricFilters": [{"FilterPattern": "{ ($.errorCode = \"UnauthorizedOperation\") || ($.errorCode = \"AccessDenied\") || ($.sourceIPAddress!=\"delivery.logs.amazonaws.com\") || ($.eventName!=\"HeadBucket\") }"}],
@@ -66,7 +66,7 @@ test_violation {
 		"TrailInfo": {
 			"Trail": {"IsMultiRegionTrail": true},
 			"Status": {"IsLogging": true},
-			"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": true, "ReadWriteType": "WriteOnly"}]},
+			"EventSelectors": [{"IncludeManagementEvents": true, "ReadWriteType": "WriteOnly"}],
 		},
 		"Topics": ["arn:aws:...sns"],
 		"MetricFilters": [{"FilterPattern": "{ ($.errorCode = \"UnauthorizedOperation\") || ($.errorCode = \"AccessDenied\") || ($.sourceIPAddress!=\"delivery.logs.amazonaws.com\") || ($.eventName!=\"HeadBucket\") }"}],
@@ -78,7 +78,7 @@ test_pass {
 		"TrailInfo": {
 			"Trail": {"IsMultiRegionTrail": true},
 			"Status": {"IsLogging": true},
-			"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": true, "ReadWriteType": "All"}]},
+			"EventSelectors": [{"IncludeManagementEvents": true, "ReadWriteType": "All"}],
 		},
 		"MetricFilters": [{"FilterPattern": "{ ($.errorCode = \"UnauthorizedOperation\") || ($.errorCode = \"AccessDenied\") || ($.sourceIPAddress!=\"delivery.logs.amazonaws.com\") || ($.eventName!=\"HeadBucket\") }"}],
 		"Topics": ["arn:aws:...sns"],
@@ -90,7 +90,7 @@ test_pass {
 			"TrailInfo": {
 				"Trail": {"IsMultiRegionTrail": true},
 				"Status": {"IsLogging": true},
-				"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": true, "ReadWriteType": "All"}]},
+				"EventSelectors": [{"IncludeManagementEvents": true, "ReadWriteType": "All"}],
 			},
 			"Topics": ["arn:aws:...sns"],
 			"MetricFilters": [{"FilterPattern": "{ ($.errorCode = \"UnauthorizedOperation\") || ($.errorCode = \"AccessDenied\") || ($.sourceIPAddress!=\"delivery.logs.amazonaws.com\") || ($.eventName!=\"HeadBucket\") }"}],
@@ -99,7 +99,7 @@ test_pass {
 			"TrailInfo": {
 				"Trail": {"IsMultiRegionTrail": false},
 				"Status": {"IsLogging": false},
-				"EventSelector": {"EventSelectors": [{"IncludeManagementEvents": true, "ReadWriteType": "WriteOnly"}]},
+				"EventSelectors": [{"IncludeManagementEvents": true, "ReadWriteType": "WriteOnly"}],
 			},
 			"Topics": ["arn:aws:...sns"],
 			"MetricFilters": [],
