@@ -1,0 +1,20 @@
+package compliance.cis_aws.rules.cis_4_16
+
+import data.compliance.lib.common
+import data.compliance.policy.aws_cloudtrail.data_adapter
+import data.compliance.policy.aws_cloudtrail.trail
+
+default rule_evaluation = false
+
+finding = result {
+	# filter 
+	data_adapter.is_securityhub_subType
+
+	# set result
+	result := common.generate_result_without_expected(
+		common.calculate_result(rule_evaluation),
+		input.resource,
+	)
+}
+
+rule_evaluation = data_adapter.securityhub_resource.Enabled

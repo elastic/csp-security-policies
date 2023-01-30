@@ -155,3 +155,9 @@ generate_monitoring_cis_4_1(items) = {
 	"type": "monitoring",
 	"subType": "aws-trail",
 }
+
+generate_securityhub(sb) = {
+	"resource": sb,
+	"type": "monitoring",
+	"subType": "aws-securityhub",
+}
