@@ -19,4 +19,5 @@ test_pass {
 
 test_fail {
 	not at_least_one_metric_exists({"MetricFilters": [filter_1, filter_2]}, [pattern_never_match])
+	not at_least_one_metric_exists({"MetricFilters": []}, [])
 }

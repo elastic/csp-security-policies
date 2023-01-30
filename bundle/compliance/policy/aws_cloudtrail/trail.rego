@@ -3,6 +3,12 @@ package compliance.policy.aws_cloudtrail.trail
 import data.compliance.policy.aws_cloudtrail.data_adapter
 import data.compliance.policy.aws_cloudtrail.pattern
 
+# Satisfied trail is one that
+# 1. is multi region trail
+# 2. the logging is enabled
+# 3. captures all management events
+# 4. has metric filter as expected
+# 5. has sns topic subscription
 at_least_one_trail_satisfied(metric_filter_patterns) {
 	some i, j
 	trail := data_adapter.trail_items[i]
