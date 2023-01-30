@@ -6,9 +6,3 @@ is_monitoring_type {
 }
 
 trail_items = input.resource.Items
-
-is_securityhub_subType {
-	input.subType == "aws-securityhub"
-}
-
-securityhub_resource = input.resource

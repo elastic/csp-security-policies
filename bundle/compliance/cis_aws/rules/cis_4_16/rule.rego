@@ -1,7 +1,7 @@
 package compliance.cis_aws.rules.cis_4_16
 
 import data.compliance.lib.common
-import data.compliance.policy.aws_cloudtrail.data_adapter
+import data.compliance.policy.aws_securityhub.data_adapter
 
 default rule_evaluation = false
 
