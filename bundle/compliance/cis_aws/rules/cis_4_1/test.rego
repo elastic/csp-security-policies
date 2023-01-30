@@ -107,7 +107,7 @@ test_pass {
 	])
 }
 
-rule_input(entry) = test_data.generate_monitoring_cis_4_1(entry)
+rule_input(entry) = test_data.generate_monitoring_resources(entry)
 
 eval_fail {
 	test.assert_fail(finding) with data.benchmark_data_adapter as data_adapter
