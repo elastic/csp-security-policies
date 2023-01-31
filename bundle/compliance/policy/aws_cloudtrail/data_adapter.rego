@@ -4,4 +4,10 @@ is_trail {
 	input.subType == "aws-trail"
 }
 
-trail = input.resource
+trail = input.resource.Trail
+
+trail_status = input.resource.Status
+
+trail_bucket_info = input.resource.bucket_info
+
+event_selectors = input.resource.EventSelectors

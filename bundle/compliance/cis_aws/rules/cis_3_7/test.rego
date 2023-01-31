@@ -1,15 +1,15 @@
-package compliance.cis_aws.rules.cis_3_2
+package compliance.cis_aws.rules.cis_3_7
 
 import data.cis_aws.test_data
 import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
 test_violation {
-	eval_fail with input as rule_input(false, "", null, false, null)
+	eval_fail with input as rule_input(false, null, null, false, null)
 }
 
 test_pass {
-	eval_pass with input as rule_input(true, "", null, false, null)
+	eval_pass with input as rule_input(false, null, null, true, "dummy_kms_key_id")
 }
 
 test_not_evaluated {

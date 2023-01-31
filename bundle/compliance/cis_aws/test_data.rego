@@ -150,10 +150,24 @@ generate_security_group(entry) = {
 	"subType": "aws-security-group",
 }
 
-generate_trail(is_log_validation_enabled) = {
+generate_enriched_trail(is_log_validation_enabled, cloudwatch_log_group_arn, log_delivery_time, is_bucket_logging_enabled, kms_key_id) = {
 	"type": "cloud-audit",
 	"subType": "aws-trail",
-	"resource": {"log_file_validation_enabled": is_log_validation_enabled},
+	"resource": {
+		"Trail": {
+			"LogFileValidationEnabled": is_log_validation_enabled,
+			"CloudWatchLogsLogGroupArn": cloudwatch_log_group_arn,
+			"KmsKeyId": kms_key_id,
+		},
+		"Status": {"LatestcloudwatchLogdDeliveryTime": log_delivery_time},
+		"bucket_info": {"logging": {"enabled": is_bucket_logging_enabled}},
+	},
+}
+
+generate_event_selectors(entries, is_multi_region) = {
+	"type": "cloud-audit",
+	"subType": "aws-trail",
+	"resource": {"Trail": {"IsMultiRegionTrail": is_multi_region}, "EventSelectors": entries},
 }
 
 not_evaluated_trail = {
