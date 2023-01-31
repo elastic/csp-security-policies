@@ -16,7 +16,6 @@ test_pass {
 	test.assert_pass(finding) with input as rule_input(common_test_data.pod_security_ctx({"containers": [{"securityContext": {"capabilities": {"drop": ["ALL", "NET_RAW"]}}}]}))
 }
 
-
 test_not_evaluated {
 	not finding with input as {"type": "no-kube-api"}
 }
