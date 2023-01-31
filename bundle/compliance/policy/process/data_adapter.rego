@@ -20,6 +20,8 @@ process_args_list = args_list {
 
 # Parses a single argument and returns a tuple of the flag and the value
 parse_argument(argument) = [flag, value] {
+    # We would like to split the argument by the first delimiter
+    # The dilimiter can be either a space or an equal sign
 	splitted_argument := regex.split("\\s|\\=", argument)
 	flag = concat("", ["--", splitted_argument[0]])
 
