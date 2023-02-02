@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 42/63 implemented rules (67%)
+### 43/63 implemented rules (68%)
 
-#### Automated rules: 42/55 (76%)
+#### Automated rules: 43/55 (78%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -244,7 +244,7 @@
 |  [3.10](bundle/compliance/cis_aws/rules/cis_3_10)  | Logging                           | Ensure that Object-level logging for write events is enabled for S3 bucket                                         | :white_check_mark: | Automated |
 |  [3.11](bundle/compliance/cis_aws/rules/cis_3_11)  | Logging                           | Ensure that Object-level logging for read events is enabled for S3 bucket                                          | :white_check_mark: | Automated |
 |   [3.2](bundle/compliance/cis_aws/rules/cis_3_2)   | Logging                           | Ensure CloudTrail log file validation is enabled                                                                   | :white_check_mark: | Automated |
-|                        3.3                         | Logging                           | Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible                                      |        :x:         | Automated |
+|   [3.3](bundle/compliance/cis_aws/rules/cis_3_3)   | Logging                           | Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible                                      | :white_check_mark: | Automated |
 |   [3.4](bundle/compliance/cis_aws/rules/cis_3_4)   | Logging                           | Ensure CloudTrail trails are integrated with CloudWatch Logs                                                       | :white_check_mark: | Automated |
 |                        3.5                         | Logging                           | Ensure AWS Config is enabled in all regions                                                                        |        :x:         | Automated |
 |   [3.6](bundle/compliance/cis_aws/rules/cis_3_6)   | Logging                           | Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket                                             | :white_check_mark: | Automated |

@@ -6,7 +6,7 @@ is_trail_type {
 
 is_single_trail {
 	input.subType == "aws-trail"
-	input.resource.Trail
+	not trail_items
 }
 
 trail = input.resource.Trail
