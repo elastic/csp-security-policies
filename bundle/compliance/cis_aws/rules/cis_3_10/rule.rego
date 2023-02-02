@@ -11,9 +11,9 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(rule_eveluation),
+		common.calculate_result(rule_evaluation),
 		input.resource,
 	)
 }
 
-rule_eveluation = audit.ensure_s3_object_logging(["All", "WriteOnly"])
+rule_evaluation = audit.ensure_s3_object_logging(["All", "WriteOnly"])
