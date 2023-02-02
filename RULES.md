@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 43/63 implemented rules (68%)
+### 44/63 implemented rules (70%)
 
-#### Automated rules: 43/55 (78%)
+#### Automated rules: 44/55 (80%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -250,7 +250,7 @@
 |   [3.6](bundle/compliance/cis_aws/rules/cis_3_6)   | Logging                           | Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket                                             | :white_check_mark: | Automated |
 |   [3.7](bundle/compliance/cis_aws/rules/cis_3_7)   | Logging                           | Ensure CloudTrail logs are encrypted at rest using KMS CMKs                                                        | :white_check_mark: | Automated |
 |                        3.8                         | Logging                           | Ensure rotation for customer created symmetric CMKs is enabled                                                     |        :x:         | Automated |
-|                        3.9                         | Logging                           | Ensure VPC flow logging is enabled in all VPCs                                                                     |        :x:         | Automated |
+|   [3.9](bundle/compliance/cis_aws/rules/cis_3_9)   | Logging                           | Ensure VPC flow logging is enabled in all VPCs                                                                     | :white_check_mark: | Automated |
 |   [4.1](bundle/compliance/cis_aws/rules/cis_4_1)   | Monitoring                        | Ensure a log metric filter and alarm exist for unauthorized API calls                                              | :white_check_mark: | Automated |
 |  [4.10](bundle/compliance/cis_aws/rules/cis_4_10)  | Monitoring                        | Ensure a log metric filter and alarm exist for security group changes                                              | :white_check_mark: | Automated |
 |  [4.11](bundle/compliance/cis_aws/rules/cis_4_11)  | Monitoring                        | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)                      | :white_check_mark: | Automated |

@@ -214,6 +214,12 @@ generate_event_selectors(entries, is_multi_region) = {
 	"resource": {"Trail": {"IsMultiRegionTrail": is_multi_region}, "EventSelectors": entries},
 }
 
+generate_vpc_resource(flow_logs) = {
+	"resource": {"flow_logs": flow_logs},
+	"type": "ec2",
+	"subType": "aws-vpc",
+}
+
 not_evaluated_trail = {
 	"type": "cloud-audit",
 	"subType": "not-an-aws-trail",
