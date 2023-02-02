@@ -6,7 +6,7 @@ import data.compliance.policy.aws_cloudtrail.data_adapter
 # Ensure CloudTrail logs are encrypted at rest using KMS CMKs.
 finding = result {
 	# filter
-	data_adapter.is_trail
+	data_adapter.is_single_trail
 
 	# set result
 	result := common.generate_result_without_expected(

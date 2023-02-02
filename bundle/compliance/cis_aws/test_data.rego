@@ -150,6 +150,18 @@ generate_security_group(entry) = {
 	"subType": "aws-security-group",
 }
 
+generate_monitoring_resources(items) = {
+	"resource": {"Items": items},
+	"type": "monitoring",
+	"subType": "aws-trail",
+}
+
+generate_securityhub(sb) = {
+	"resource": sb,
+	"type": "monitoring",
+	"subType": "aws-securityhub",
+}
+
 generate_enriched_trail(is_log_validation_enabled, cloudwatch_log_group_arn, log_delivery_time, is_bucket_logging_enabled, kms_key_id) = {
 	"type": "cloud-audit",
 	"subType": "aws-trail",

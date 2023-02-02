@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 25/63 implemented rules (40%)
+### 42/63 implemented rules (67%)
 
-#### Automated rules: 25/55 (45%)
+#### Automated rules: 42/55 (76%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -240,7 +240,7 @@
 |                       2.3.2                        | Relational Database Service (RDS) | Ensure Auto Minor Version Upgrade feature is Enabled for RDS Instances                                             |        :x:         | Automated |
 |                       2.3.3                        | Relational Database Service (RDS) | Ensure that public access is not given to RDS Instance                                                             |        :x:         | Automated |
 |                       2.4.1                        | Elastic File System (EFS)         | Ensure that encryption is enabled for EFS file systems                                                             |        :x:         |  Manual   |
-|                        3.1                         | Logging                           | Ensure CloudTrail is enabled in all regions                                                                        |        :x:         | Automated |
+|   [3.1](bundle/compliance/cis_aws/rules/cis_3_1)   | Logging                           | Ensure CloudTrail is enabled in all regions                                                                        | :white_check_mark: | Automated |
 |  [3.10](bundle/compliance/cis_aws/rules/cis_3_10)  | Logging                           | Ensure that Object-level logging for write events is enabled for S3 bucket                                         | :white_check_mark: | Automated |
 |  [3.11](bundle/compliance/cis_aws/rules/cis_3_11)  | Logging                           | Ensure that Object-level logging for read events is enabled for S3 bucket                                          | :white_check_mark: | Automated |
 |   [3.2](bundle/compliance/cis_aws/rules/cis_3_2)   | Logging                           | Ensure CloudTrail log file validation is enabled                                                                   | :white_check_mark: | Automated |
@@ -251,22 +251,22 @@
 |   [3.7](bundle/compliance/cis_aws/rules/cis_3_7)   | Logging                           | Ensure CloudTrail logs are encrypted at rest using KMS CMKs                                                        | :white_check_mark: | Automated |
 |                        3.8                         | Logging                           | Ensure rotation for customer created symmetric CMKs is enabled                                                     |        :x:         | Automated |
 |                        3.9                         | Logging                           | Ensure VPC flow logging is enabled in all VPCs                                                                     |        :x:         | Automated |
-|                        4.1                         | Monitoring                        | Ensure a log metric filter and alarm exist for unauthorized API calls                                              |        :x:         | Automated |
-|                        4.10                        | Monitoring                        | Ensure a log metric filter and alarm exist for security group changes                                              |        :x:         | Automated |
-|                        4.11                        | Monitoring                        | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)                      |        :x:         | Automated |
-|                        4.12                        | Monitoring                        | Ensure a log metric filter and alarm exist for changes to network gateways                                         |        :x:         | Automated |
-|                        4.13                        | Monitoring                        | Ensure a log metric filter and alarm exist for route table changes                                                 |        :x:         | Automated |
-|                        4.14                        | Monitoring                        | Ensure a log metric filter and alarm exist for VPC changes                                                         |        :x:         | Automated |
-|                        4.15                        | Monitoring                        | Ensure a log metric filter and alarm exists for AWS Organizations changes                                          |        :x:         | Automated |
-|                        4.16                        | Monitoring                        | Ensure AWS Security Hub is enabled                                                                                 |        :x:         | Automated |
-|                        4.2                         | Monitoring                        | Ensure a log metric filter and alarm exist for Management Console sign-in without MFA                              |        :x:         | Automated |
-|                        4.3                         | Monitoring                        | Ensure a log metric filter and alarm exist for usage of 'root' account                                             |        :x:         | Automated |
-|                        4.4                         | Monitoring                        | Ensure a log metric filter and alarm exist for IAM policy changes                                                  |        :x:         | Automated |
-|                        4.5                         | Monitoring                        | Ensure a log metric filter and alarm exist for CloudTrail configuration changes                                    |        :x:         | Automated |
-|                        4.6                         | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Management Console authentication failures                      |        :x:         | Automated |
-|                        4.7                         | Monitoring                        | Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs            |        :x:         | Automated |
-|                        4.8                         | Monitoring                        | Ensure a log metric filter and alarm exist for S3 bucket policy changes                                            |        :x:         | Automated |
-|                        4.9                         | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Config configuration changes                                    |        :x:         | Automated |
+|   [4.1](bundle/compliance/cis_aws/rules/cis_4_1)   | Monitoring                        | Ensure a log metric filter and alarm exist for unauthorized API calls                                              | :white_check_mark: | Automated |
+|  [4.10](bundle/compliance/cis_aws/rules/cis_4_10)  | Monitoring                        | Ensure a log metric filter and alarm exist for security group changes                                              | :white_check_mark: | Automated |
+|  [4.11](bundle/compliance/cis_aws/rules/cis_4_11)  | Monitoring                        | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)                      | :white_check_mark: | Automated |
+|  [4.12](bundle/compliance/cis_aws/rules/cis_4_12)  | Monitoring                        | Ensure a log metric filter and alarm exist for changes to network gateways                                         | :white_check_mark: | Automated |
+|  [4.13](bundle/compliance/cis_aws/rules/cis_4_13)  | Monitoring                        | Ensure a log metric filter and alarm exist for route table changes                                                 | :white_check_mark: | Automated |
+|  [4.14](bundle/compliance/cis_aws/rules/cis_4_14)  | Monitoring                        | Ensure a log metric filter and alarm exist for VPC changes                                                         | :white_check_mark: | Automated |
+|  [4.15](bundle/compliance/cis_aws/rules/cis_4_15)  | Monitoring                        | Ensure a log metric filter and alarm exists for AWS Organizations changes                                          | :white_check_mark: | Automated |
+|  [4.16](bundle/compliance/cis_aws/rules/cis_4_16)  | Monitoring                        | Ensure AWS Security Hub is enabled                                                                                 | :white_check_mark: | Automated |
+|   [4.2](bundle/compliance/cis_aws/rules/cis_4_2)   | Monitoring                        | Ensure a log metric filter and alarm exist for Management Console sign-in without MFA                              | :white_check_mark: | Automated |
+|   [4.3](bundle/compliance/cis_aws/rules/cis_4_3)   | Monitoring                        | Ensure a log metric filter and alarm exist for usage of 'root' account                                             | :white_check_mark: | Automated |
+|   [4.4](bundle/compliance/cis_aws/rules/cis_4_4)   | Monitoring                        | Ensure a log metric filter and alarm exist for IAM policy changes                                                  | :white_check_mark: | Automated |
+|   [4.5](bundle/compliance/cis_aws/rules/cis_4_5)   | Monitoring                        | Ensure a log metric filter and alarm exist for CloudTrail configuration changes                                    | :white_check_mark: | Automated |
+|   [4.6](bundle/compliance/cis_aws/rules/cis_4_6)   | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Management Console authentication failures                      | :white_check_mark: | Automated |
+|   [4.7](bundle/compliance/cis_aws/rules/cis_4_7)   | Monitoring                        | Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs            | :white_check_mark: | Automated |
+|   [4.8](bundle/compliance/cis_aws/rules/cis_4_8)   | Monitoring                        | Ensure a log metric filter and alarm exist for S3 bucket policy changes                                            | :white_check_mark: | Automated |
+|   [4.9](bundle/compliance/cis_aws/rules/cis_4_9)   | Monitoring                        | Ensure a log metric filter and alarm exist for AWS Config configuration changes                                    | :white_check_mark: | Automated |
 |   [5.1](bundle/compliance/cis_aws/rules/cis_5_1)   | Networking                        | Ensure no Network ACLs allow ingress from 0.0.0.0/0 to remote server administration ports                          | :white_check_mark: | Automated |
 |   [5.2](bundle/compliance/cis_aws/rules/cis_5_2)   | Networking                        | Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports                       | :white_check_mark: | Automated |
 |   [5.3](bundle/compliance/cis_aws/rules/cis_5_3)   | Networking                        | Ensure no security groups allow ingress from ::/0 to remote server administration ports                            | :white_check_mark: | Automated |

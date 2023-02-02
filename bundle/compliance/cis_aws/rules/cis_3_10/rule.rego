@@ -7,7 +7,7 @@ import data.compliance.policy.aws_cloudtrail.verify_s3_object_logging as audit
 # Ensure that Object-level logging for write events is enabled for S3 bucket.
 finding = result {
 	# filter
-	data_adapter.is_trail
+	data_adapter.is_single_trail
 
 	# set result
 	result := common.generate_result_without_expected(

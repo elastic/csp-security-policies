@@ -7,7 +7,7 @@ import data.compliance.policy.aws_cloudtrail.ensure_cloudwatch as audit
 # Ensure CloudTrail trails are integrated with CloudWatch Logs.
 finding = result {
 	# filter
-	data_adapter.is_trail
+	data_adapter.is_single_trail
 
 	# set result
 	result := common.generate_result_without_expected(

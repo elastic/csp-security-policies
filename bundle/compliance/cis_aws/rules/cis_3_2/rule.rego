@@ -6,7 +6,7 @@ import data.compliance.policy.aws_cloudtrail.data_adapter
 # Ensure CloudTrail log file validation is enabled.
 finding = result {
 	# filter
-	data_adapter.is_trail
+	data_adapter.is_single_trail
 
 	# set result
 	result := common.generate_result_without_expected(
