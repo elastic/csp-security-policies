@@ -222,7 +222,7 @@ generate_vpc_resource(flow_logs) = {
 
 generate_ebs_encryption_resource(encryption_enabled) = {
 	"resource": {"enabled": encryption_enabled},
-	"type": "ec2",
+	"type": "cloud-compute",
 	"subType": "aws-ebs",
 }
 
