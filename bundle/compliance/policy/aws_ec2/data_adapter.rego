@@ -12,6 +12,10 @@ is_vpc_policy {
 	input.subType == "aws-vpc"
 }
 
+is_ebs_policy {
+	input.subType == "aws-ebs"
+}
+
 nacl_entries = entries {
 	entries := input.resource.Entries
 }
@@ -22,7 +26,9 @@ security_groups_ip_permissions = entries {
 
 is_default_security_group {
 	input.resource.GroupName == "default"
-} else = false
+} else = false {
+	true
+}
 
 # Filter all the entries that 
 # 1. have ingres (egress == false)
