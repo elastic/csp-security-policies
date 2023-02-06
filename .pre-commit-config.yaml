@@ -4,7 +4,7 @@ repos:
       - id: opa-fmt
         name: OPA fmt
         description: Formats Rego policy using opa fmt
-        entry: opa fmt
+        entry: opa fmt ./bundle --fail=true --diff
         args: [ -w ]
         language: system
         files: (\.rego)$
