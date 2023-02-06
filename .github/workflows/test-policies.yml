@@ -16,7 +16,7 @@ jobs:
       - name: Setup OPA
         uses: open-policy-agent/setup-opa@v2
         with:
-          version: latest
+          version: 0.48.0
 
       - name: OPA format
         run: opa fmt ./bundle --fail=true --diff
