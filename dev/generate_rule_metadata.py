@@ -118,7 +118,7 @@ def read_existing_default_value(rule_number, benchmark_id):
             if default_value is None or default_value == "":
                 print(f"{benchmark_id}/{rule_number} is missing default value - please make sure to add it manually")
                 return ""
-            return data["metadata"]["default_value"] or ""
+            return data["metadata"]["default_value"]
     except FileNotFoundError:
         print(f"Rule implementation for {benchmark_id}/{rule_number} is missing")
         return ""
