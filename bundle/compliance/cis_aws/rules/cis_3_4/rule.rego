@@ -11,7 +11,7 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(audit.ensure_cloudwatch),
+		common.calculate_result(audit.ensure_cloudwatch_logs_enabled),
 		input.resource,
 	)
 }

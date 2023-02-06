@@ -3,6 +3,8 @@ package compliance.cis_aws.rules.cis_3_6
 import data.compliance.lib.common
 import data.compliance.policy.aws_cloudtrail.data_adapter
 
+default rule_evaluation = false
+
 # Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket
 finding = result {
 	# filter
@@ -10,7 +12,11 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(data_adapter.trail_bucket_info.logging.enabled),
+		common.calculate_result(rule_evaluation),
 		input.resource,
 	)
+}
+
+rule_evaluation {
+	data_adapter.trail_bucket_info.logging.enabled == true
 }

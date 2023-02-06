@@ -8,8 +8,8 @@ default no_public_log_access = false
 
 no_public_log_access {
 	grant := data_adapter.trail_bucket_info.acl.Grants[_]
-	not grant.Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers"
-	not grant.Grantee.URI == "http://acs.amazonaws.com/groups/global/AuthenticatedUsers"
+	not grant.Grantee.URI == "https://acs.amazonaws.com/groups/global/AllUsers"
+	not grant.Grantee.URI == "https://acs.amazonaws.com/groups/global/AuthenticatedUsers"
 
 	every statement in data_adapter.trail_bucket_info.policy.Statement {
 		not statement.Effect == "Allow"

@@ -6,6 +6,8 @@ import data.lib.test
 
 test_violation {
 	eval_fail with input as rule_input(false, null, null, false, null)
+	eval_fail with input as rule_input(false, null, null, null, null)
+	eval_fail with input as rule_input(false, null, null, "", null)
 }
 
 test_pass {
