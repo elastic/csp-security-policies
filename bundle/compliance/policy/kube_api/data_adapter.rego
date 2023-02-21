@@ -32,7 +32,7 @@ is_kube_pod {
 }
 
 pod = p {
-	input.resource.kind == "Pod"
+	is_kube_pod
 	p := input.resource
 }
 
@@ -41,7 +41,7 @@ is_service_account_or_pod = pod
 is_service_account_or_pod = service_account
 
 containers := c {
-	input.resource.kind == "Pod"
+	is_kube_pod
 	c := {
 		"app_containers": object.get(pod.spec, "containers", {}),
 		"init_containers": object.get(pod.spec, "initContainers", {}),
