@@ -26,6 +26,11 @@ is_kube_node {
 	input.resource.kind == "Node"
 }
 
+is_kube_pod {
+	is_kube_api
+	input.resource.kind == "Pod"
+}
+
 pod = p {
 	input.resource.kind == "Pod"
 	p := input.resource
