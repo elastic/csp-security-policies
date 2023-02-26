@@ -144,6 +144,16 @@ generate_s3_bucket_versioning(enabled, mfa_delete) = {
 	"MfaDelete": mfa_delete,
 }
 
+s3_bucket_without_policy = {
+	"resource": {
+		"Name": "my-bucket",
+		"SSEAlgorithm": "AES256",
+		"BucketVersioning": "",
+	},
+	"type": "cloud-storage",
+	"subType": "aws-s3",
+}
+
 generate_security_group(entry) = {
 	"resource": entry,
 	"type": "ec2",

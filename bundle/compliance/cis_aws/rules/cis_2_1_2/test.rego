@@ -18,6 +18,7 @@ test_pass {
 
 test_not_evaluated {
 	not_eval with input as test_data.not_evaluated_s3_bucket
+	not_eval with input as test_data.s3_bucket_without_policy
 }
 
 rule_input(effect, principal, action, is_secure_transport) = test_data.generate_s3_bucket("Bucket", "", [test_data.generate_s3_bucket_policy_statement(effect, principal, action, is_secure_transport)], null)
