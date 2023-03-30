@@ -282,6 +282,6 @@ generate_kms_resource(symmetric_default_enabled) = {
 		},
 		"key_rotation_enabled": symmetric_default_enabled,
 	},
-	"type": "cloud-storage",
+	"type": "key-management",
 	"subType": "aws-kms",
 }
