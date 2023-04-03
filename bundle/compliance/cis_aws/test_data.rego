@@ -280,6 +280,6 @@ generate_aws_configservice_recorders(all_supported_enabled, include_global_resou
 		"allSupported": all_supported_enabled,
 		"includeGlobalResourceTypes": include_global_resource_types_enabled,
 	}}]},
-	"type": "cloud-database",
+	"type": "cloud-config",
 	"subType": "aws-config",
 }
