@@ -274,3 +274,12 @@ generate_s3_public_access_block_configuration(block_public_acls, block_public_po
 	"IgnorePublicAcls": ignore_public_acls,
 	"RestrictPublicBuckets": restrict_public_buckets,
 }
+
+generate_aws_configservice_recorders(all_supported_enabled, include_global_resource_types_enabled) = {
+	"resource": {"recorders": [{"recordingGroup": {
+		"allSupported": all_supported_enabled,
+		"includeGlobalResourceTypes": include_global_resource_types_enabled,
+	}}]},
+	"type": "cloud-database",
+	"subType": "aws-config",
+}
