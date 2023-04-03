@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 48/63 implemented rules (76%)
+### 49/63 implemented rules (78%)
 
-#### Automated rules: 48/55 (87%)
+#### Automated rules: 49/55 (89%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -238,7 +238,7 @@
 | [2.2.1](bundle/compliance/cis_aws/rules/cis_2_2_1) | Elastic Compute Cloud (EC2)       | Ensure EBS Volume Encryption is Enabled in all Regions                                                             | :white_check_mark: | Automated |
 | [2.3.1](bundle/compliance/cis_aws/rules/cis_2_3_1) | Relational Database Service (RDS) | Ensure that encryption is enabled for RDS Instances                                                                | :white_check_mark: | Automated |
 | [2.3.2](bundle/compliance/cis_aws/rules/cis_2_3_2) | Relational Database Service (RDS) | Ensure Auto Minor Version Upgrade feature is Enabled for RDS Instances                                             | :white_check_mark: | Automated |
-|                       2.3.3                        | Relational Database Service (RDS) | Ensure that public access is not given to RDS Instance                                                             |        :x:         | Automated |
+| [2.3.3](bundle/compliance/cis_aws/rules/cis_2_3_3) | Relational Database Service (RDS) | Ensure that public access is not given to RDS Instance                                                             | :white_check_mark: | Automated |
 |                       2.4.1                        | Elastic File System (EFS)         | Ensure that encryption is enabled for EFS file systems                                                             |        :x:         |  Manual   |
 |   [3.1](bundle/compliance/cis_aws/rules/cis_3_1)   | Logging                           | Ensure CloudTrail is enabled in all regions                                                                        | :white_check_mark: | Automated |
 |  [3.10](bundle/compliance/cis_aws/rules/cis_3_10)  | Logging                           | Ensure that Object-level logging for write events is enabled for S3 bucket                                         | :white_check_mark: | Automated |
