@@ -1,7 +1,7 @@
 package compliance.policy.aws_config.data_adapter
 
-is_config {
+is_configservice {
 	input.subType == "aws-config"
 }
 
-recorders := input.resource.recorders
+configs := input.resource

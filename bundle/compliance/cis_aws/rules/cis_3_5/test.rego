@@ -8,9 +8,13 @@ import data.lib.test
 finding = audit.finding
 
 test_violation {
+	# fails when allSupported or includeGlobalResourceTypes is false
 	eval_fail with input as rule_input(false, false)
 	eval_fail with input as rule_input(true, false)
 	eval_fail with input as rule_input(false, true)
+
+	eval_fail with input as test_data.aws_configservice_disabled_region_recorder
+	eval_fail with input as test_data.aws_configservice_empty_recorders
 }
 
 test_pass {
@@ -21,7 +25,7 @@ test_not_evaluated {
 	not_eval with input as test_data.not_evaluated_trail
 }
 
-rule_input(all_supported_enabled, include_global_resource_types_enabled) = test_data.generate_aws_configservice_recorders(all_supported_enabled, include_global_resource_types_enabled)
+rule_input(all_supported_enabled, include_global_resource_types_enabled) = test_data.generate_aws_configservice_with_resource([{"recorders": [test_data.generate_aws_configservice_recorder(all_supported_enabled, include_global_resource_types_enabled)]}])
 
 eval_fail {
 	test.assert_fail(finding) with data.benchmark_data_adapter as data_adapter
