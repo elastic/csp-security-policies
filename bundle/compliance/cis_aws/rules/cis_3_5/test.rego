@@ -8,12 +8,15 @@ import data.lib.test
 finding = audit.finding
 
 test_violation {
-	# fails when allSupported or includeGlobalResourceTypes is false
+	# single region, single recorder config 
 	eval_fail with input as rule_input(false, false)
 	eval_fail with input as rule_input(true, false)
 	eval_fail with input as rule_input(false, true)
 
+	# multiple regions, multiple recorder config in each region
 	eval_fail with input as test_data.aws_configservice_disabled_region_recorder
+
+	# single region, no recorder config
 	eval_fail with input as test_data.aws_configservice_empty_recorders
 }
 

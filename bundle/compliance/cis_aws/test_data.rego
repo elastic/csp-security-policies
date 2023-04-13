@@ -287,8 +287,14 @@ generate_aws_configservice_recorder(all_supported_enabled, include_global_resour
 }}}
 
 aws_configservice_disabled_region_recorder = generate_aws_configservice_with_resource([
-	{"recorders": [generate_aws_configservice_recorder(true, true)]},
-	{"recorders": [generate_aws_configservice_recorder(false, true)]},
+	{"recorders": [
+		generate_aws_configservice_recorder(true, true),
+		generate_aws_configservice_recorder(false, false),
+	]},
+	{"recorders": [
+		generate_aws_configservice_recorder(false, false),
+		generate_aws_configservice_recorder(false, false),
+	]},
 ])
 
 aws_configservice_empty_recorders = generate_aws_configservice_with_resource([{"recorders": []}])
