@@ -17,31 +17,28 @@ finding = result {
 
 statement := data_adapter.policy_document.Statement
 
-allowed[x] {
-	statement[x].Effect == "Allow"
+wildchar_action[x] {
+	statement[x].Action == "*"
 }
 
+# Actions can also be in a list
 wildchar_action[x] {
 	some i
 	statement[x].Action[i] == "*"
-}
-
-wildchar_action[x] {
-	statement[x].Action == "*"
 }
 
 wildchar_resource[x] {
 	statement[x].Resource == "*"
 }
 
-# Resources can also be a list
+# Resources can also be in a list
 wildchar_resource[x] {
 	some i
 	statement[x].Resource[i] == "*"
 }
 
 fails[x] {
-	allowed[x]
+	statement[x].Effect == "Allow"
 	wildchar_action[x]
 	wildchar_resource[x]
 }
