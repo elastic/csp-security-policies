@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 50/63 implemented rules (79%)
+### 51/63 implemented rules (81%)
 
-#### Automated rules: 50/55 (91%)
+#### Automated rules: 51/55 (93%)
 
 #### Manual rules: 0/8 (0%)
 
