@@ -31,6 +31,7 @@ test_violation {
 
 test_pass {
 	eval_pass with input as generate_input([{"RoleId": "some-id"}])
+	eval_pass with input as generate_input([{"RoleId": "some-id"}, {"some other": "value"}])
 }
 
 test_not_evaluated {
