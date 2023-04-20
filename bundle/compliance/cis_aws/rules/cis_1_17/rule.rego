@@ -5,7 +5,7 @@ import data.compliance.policy.aws_iam.data_adapter
 import future.keywords.if
 import future.keywords.in
 
-# Ensure IAM policies that allow full "*:*" administrative privileges are not attached
+# Ensure a support role has been created to manage incidents with AWS Support
 finding = result if {
 	# filter
 	data_adapter.is_aws_support_access
