@@ -35,8 +35,8 @@ test_pass {
 }
 
 test_not_evaluated {
-	not_eval with input as {}
-	not_eval with input as {"roles": []} # No subType
+	not_eval with input as {"resource": {}}
+	not_eval with input as {"resource": {"roles": []}} # No subType
 }
 
 eval_fail {
