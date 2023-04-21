@@ -27,6 +27,10 @@ is_aws_support_access {
 	input.resource.Arn == "arn:aws:iam::aws:policy/AWSSupportAccess"
 }
 
+is_access_analyzer_for_region {
+	input.subType == "aws-region-accessanalyzers"
+}
+
 pwd_policy = policy {
 	is_pwd_policy
 	policy := input.resource
@@ -39,6 +43,8 @@ policy_document = input.resource.document
 roles = input.resource.roles
 
 server_certificates = input.resource.certificates
+
+analyzers = input.resource.Analyzers
 
 used_active_access_keys = {access_key |
 	access_key = iam_user.access_keys[_]
