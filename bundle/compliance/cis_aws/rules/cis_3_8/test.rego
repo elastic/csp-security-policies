@@ -1,8 +1,11 @@
-package compliance.cis_aws.rules.cis_2_3_2
+package compliance.cis_aws.rules.cis_3_8
 
 import data.cis_aws.test_data
 import data.compliance.cis_aws.data_adapter
+import data.compliance.policy.aws_kms.ensure_symmetric_key_rotation_enabled as audit
 import data.lib.test
+
+finding = audit.finding
 
 test_violation {
 	eval_fail with input as rule_input(false)
@@ -13,10 +16,10 @@ test_pass {
 }
 
 test_not_evaluated {
-	not_eval with input as test_data.not_evaluated_rds_db_instance
+	not_eval with input as test_data.not_evaluated_trail
 }
 
-rule_input(auto_minor_version_upgrade_enabled) = test_data.generate_rds_db_instance(true, auto_minor_version_upgrade_enabled, false, [])
+rule_input(symmetric_default_enabled) = test_data.generate_kms_resource(symmetric_default_enabled)
 
 eval_fail {
 	test.assert_fail(finding) with data.benchmark_data_adapter as data_adapter

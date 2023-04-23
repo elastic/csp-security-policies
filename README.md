@@ -2,7 +2,7 @@
 
 [![CIS K8S](https://img.shields.io/badge/CIS-Kubernetes%20(74%25)-326CE5?logo=Kubernetes)](RULES.md#k8s-cis-benchmark)
 [![CIS EKS](https://img.shields.io/badge/CIS-Amazon%20EKS%20(60%25)-FF9900?logo=Amazon+EKS)](RULES.md#eks-cis-benchmark)
-[![CIS AWS](https://img.shields.io/badge/CIS-AWS%20(76%25)-232F3E?logo=Amazon+AWS)](RULES.md#aws-cis-benchmark)
+[![CIS AWS](https://img.shields.io/badge/CIS-AWS%20(83%25)-232F3E?logo=Amazon+AWS)](RULES.md#aws-cis-benchmark)
 
 ![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/oren-zohar/a7160df46e48dff45b24096de9302d38/raw/csp-security-policies_coverage.json)
 
@@ -152,7 +152,8 @@ opa test -b bundle.tar.gz -v
 ### Test specific rule
 
 ```bash
-opa test -v bundle/compliance/kubernetes_common bundle/compliance/lib bundle/compliance/cis_k8s/test_data.rego bundle/compliance/cis_k8s/rules/cis_1_1_2 --ignore="common_tests.rego"
+opa test -v bundle --run 'cis_4_1.test'  # Test the 4.1 rule
+opa test -v bundle --run 'cis_(4|5)'     # Test all rules of CIS section 4 and 5
 ```
 
 ### Pre-commit hooks

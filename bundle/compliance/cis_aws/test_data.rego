@@ -185,8 +185,8 @@ generate_enriched_trail(is_log_validation_enabled, cloudwatch_log_group_arn, log
 			"CloudWatchLogsLogGroupArn": cloudwatch_log_group_arn,
 			"KmsKeyId": kms_key_id,
 		},
-		"Status": {"LatestcloudwatchLogdDeliveryTime": log_delivery_time},
-		"bucket_info": {"logging": {"enabled": is_bucket_logging_enabled}},
+		"Status": {"LatestCloudWatchLogsDeliveryTime": log_delivery_time},
+		"bucket_info": {"logging": {"Enabled": is_bucket_logging_enabled}},
 	},
 }
 
@@ -252,20 +252,35 @@ not_evaluated_rds_db_instance = {
 		"arn": "arn:aws:rds:eu-west-1:704479110758:db:devops-postgres-rds",
 		"storage_encrypted": true,
 		"auto_minor_version_upgrade": true,
+		"publicly_accessible": true,
+		"subnets": [generate_rds_db_instance_subnet_with_route("0.0.0.0/0", "igw-a25733d9")],
 	},
 	"type": "wrong type",
 	"subType": "wrong sub type",
 }
 
-generate_rds_db_instance(encryption_enabled, auto_minor_version_upgrade_enabled) = {
+generate_rds_db_instance(encryption_enabled, auto_minor_version_upgrade_enabled, publicly_accessible, subnets) = {
 	"resource": {
 		"identifier": "test-db",
 		"arn": "arn:aws:rds:eu-west-1:704479110758:db:devops-postgres-rds",
 		"storage_encrypted": encryption_enabled,
 		"auto_minor_version_upgrade": auto_minor_version_upgrade_enabled,
+		"publicly_accessible": publicly_accessible,
+		"subnets": subnets,
 	},
 	"type": "cloud-database",
 	"subType": "aws-rds",
+}
+
+generate_rds_db_instance_subnet_with_route(destination_cidr_block, gateway_id) = {
+	"ID": "subnet-12345678",
+	"RouteTable": {
+		"ID": "rtb-12345678",
+		"Routes": [{
+			"DestinationCidrBlock": destination_cidr_block,
+			"GatewayId": gateway_id,
+		}],
+	},
 }
 
 generate_s3_public_access_block_configuration(block_public_acls, block_public_policy, ignore_public_acls, restrict_public_buckets) = {
@@ -274,3 +289,40 @@ generate_s3_public_access_block_configuration(block_public_acls, block_public_po
 	"IgnorePublicAcls": ignore_public_acls,
 	"RestrictPublicBuckets": restrict_public_buckets,
 }
+
+generate_kms_resource(symmetric_default_enabled) = {
+	"resource": {
+		"key_metadata": {
+			# Only relevent keys are included
+			"KeyId": "21c0ba99-3a6c-4f72-8ef8-8118d4804710",
+			"KeySpec": "SYMMETRIC_DEFAULT",
+		},
+		"key_rotation_enabled": symmetric_default_enabled,
+	},
+	"type": "key-management",
+	"subType": "aws-kms",
+}
+
+generate_aws_configservice_with_resource(resource) = {
+	"resource": resource,
+	"type": "cloud-config",
+	"subType": "aws-config",
+}
+
+generate_aws_configservice_recorder(all_supported_enabled, include_global_resource_types_enabled) = {"ConfigurationRecorder": {"RecordingGroup": {
+	"AllSupported": all_supported_enabled,
+	"IncludeGlobalResourceTypes": include_global_resource_types_enabled,
+}}}
+
+aws_configservice_disabled_region_recorder = generate_aws_configservice_with_resource([
+	{"recorders": [
+		generate_aws_configservice_recorder(true, true),
+		generate_aws_configservice_recorder(false, false),
+	]},
+	{"recorders": [
+		generate_aws_configservice_recorder(false, false),
+		generate_aws_configservice_recorder(false, false),
+	]},
+])
+
+aws_configservice_empty_recorders = generate_aws_configservice_with_resource([{"recorders": []}])

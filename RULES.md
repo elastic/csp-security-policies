@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 48/63 implemented rules (76%)
+### 52/63 implemented rules (83%)
 
-#### Automated rules: 48/55 (87%)
+#### Automated rules: 52/55 (95%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -216,7 +216,7 @@
 |  [1.13](bundle/compliance/cis_aws/rules/cis_1_13)  | Identity and Access Management    | Ensure there is only one active access key available for any single IAM user                                       | :white_check_mark: | Automated |
 |  [1.14](bundle/compliance/cis_aws/rules/cis_1_14)  | Identity and Access Management    | Ensure access keys are rotated every 90 days or less                                                               | :white_check_mark: | Automated |
 |  [1.15](bundle/compliance/cis_aws/rules/cis_1_15)  | Identity and Access Management    | Ensure IAM Users Receive Permissions Only Through Groups                                                           | :white_check_mark: | Automated |
-|                        1.16                        | Identity and Access Management    | Ensure IAM policies that allow full "*:*" administrative privileges are not attached                               |        :x:         | Automated |
+|  [1.16](bundle/compliance/cis_aws/rules/cis_1_16)  | Identity and Access Management    | Ensure IAM policies that allow full "*:*" administrative privileges are not attached                               | :white_check_mark: | Automated |
 |                        1.17                        | Identity and Access Management    | Ensure a support role has been created to manage incidents with AWS Support                                        |        :x:         | Automated |
 |                        1.18                        | Identity and Access Management    | Ensure IAM instance roles are used for AWS resource access from instances                                          |        :x:         |  Manual   |
 |                        1.19                        | Identity and Access Management    | Ensure that all the expired SSL/TLS certificates stored in AWS IAM are removed                                     |        :x:         | Automated |
@@ -238,7 +238,7 @@
 | [2.2.1](bundle/compliance/cis_aws/rules/cis_2_2_1) | Elastic Compute Cloud (EC2)       | Ensure EBS Volume Encryption is Enabled in all Regions                                                             | :white_check_mark: | Automated |
 | [2.3.1](bundle/compliance/cis_aws/rules/cis_2_3_1) | Relational Database Service (RDS) | Ensure that encryption is enabled for RDS Instances                                                                | :white_check_mark: | Automated |
 | [2.3.2](bundle/compliance/cis_aws/rules/cis_2_3_2) | Relational Database Service (RDS) | Ensure Auto Minor Version Upgrade feature is Enabled for RDS Instances                                             | :white_check_mark: | Automated |
-|                       2.3.3                        | Relational Database Service (RDS) | Ensure that public access is not given to RDS Instance                                                             |        :x:         | Automated |
+| [2.3.3](bundle/compliance/cis_aws/rules/cis_2_3_3) | Relational Database Service (RDS) | Ensure that public access is not given to RDS Instance                                                             | :white_check_mark: | Automated |
 |                       2.4.1                        | Elastic File System (EFS)         | Ensure that encryption is enabled for EFS file systems                                                             |        :x:         |  Manual   |
 |   [3.1](bundle/compliance/cis_aws/rules/cis_3_1)   | Logging                           | Ensure CloudTrail is enabled in all regions                                                                        | :white_check_mark: | Automated |
 |  [3.10](bundle/compliance/cis_aws/rules/cis_3_10)  | Logging                           | Ensure that Object-level logging for write events is enabled for S3 bucket                                         | :white_check_mark: | Automated |
@@ -246,10 +246,10 @@
 |   [3.2](bundle/compliance/cis_aws/rules/cis_3_2)   | Logging                           | Ensure CloudTrail log file validation is enabled                                                                   | :white_check_mark: | Automated |
 |   [3.3](bundle/compliance/cis_aws/rules/cis_3_3)   | Logging                           | Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible                                      | :white_check_mark: | Automated |
 |   [3.4](bundle/compliance/cis_aws/rules/cis_3_4)   | Logging                           | Ensure CloudTrail trails are integrated with CloudWatch Logs                                                       | :white_check_mark: | Automated |
-|                        3.5                         | Logging                           | Ensure AWS Config is enabled in all regions                                                                        |        :x:         | Automated |
+|   [3.5](bundle/compliance/cis_aws/rules/cis_3_5)   | Logging                           | Ensure AWS Config is enabled in all regions                                                                        | :white_check_mark: | Automated |
 |   [3.6](bundle/compliance/cis_aws/rules/cis_3_6)   | Logging                           | Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket                                             | :white_check_mark: | Automated |
 |   [3.7](bundle/compliance/cis_aws/rules/cis_3_7)   | Logging                           | Ensure CloudTrail logs are encrypted at rest using KMS CMKs                                                        | :white_check_mark: | Automated |
-|                        3.8                         | Logging                           | Ensure rotation for customer created symmetric CMKs is enabled                                                     |        :x:         | Automated |
+|   [3.8](bundle/compliance/cis_aws/rules/cis_3_8)   | Logging                           | Ensure rotation for customer created symmetric CMKs is enabled                                                     | :white_check_mark: | Automated |
 |   [3.9](bundle/compliance/cis_aws/rules/cis_3_9)   | Logging                           | Ensure VPC flow logging is enabled in all VPCs                                                                     | :white_check_mark: | Automated |
 |   [4.1](bundle/compliance/cis_aws/rules/cis_4_1)   | Monitoring                        | Ensure a log metric filter and alarm exist for unauthorized API calls                                              | :white_check_mark: | Automated |
 |  [4.10](bundle/compliance/cis_aws/rules/cis_4_10)  | Monitoring                        | Ensure a log metric filter and alarm exist for security group changes                                              | :white_check_mark: | Automated |
