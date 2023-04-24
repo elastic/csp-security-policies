@@ -11,7 +11,7 @@ finding = result {
 
 	result := common.generate_result_without_expected(
 		common.calculate_result(rule_evaluation),
-		{},
+		{"certificates": data_adapter.server_certificates},
 	)
 }
 
