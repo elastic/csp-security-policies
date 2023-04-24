@@ -23,7 +23,6 @@ is_expired(date) {
 
 rule_evaluation {
 	every certificate in data_adapter.server_certificates {
-		print("cert", certificate.Expiration)
 		not is_expired(certificate.Expiration)
 	}
 }
