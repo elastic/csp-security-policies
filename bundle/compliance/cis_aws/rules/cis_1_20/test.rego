@@ -4,44 +4,43 @@ import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
 generate_input(analyzers) = {
-	"resource": {
-		"Analyzers": analyzers,
-		"Region": "eu-west-1",
-	},
-	"subType": "aws-region-accessanalyzers",
 	"type": "identity-management",
+	"subType": "aws-access-analyzers",
+	"resource": {"RegionToAccessAnalyzers": analyzers},
+}
+
+analyzer(arn, status) = {
+	"Arn": arn,
+	"CreatedAt": "2023-01-09T15:06:39Z",
+	"Name": "Analyzer",
+	"Status": status,
+	"Type": "ACCOUNT",
+	"Tags": {},
 }
 
 test_violation {
-	eval_fail with input as generate_input(null)
-	eval_fail with input as generate_input([])
-	eval_fail with input as generate_input([{"Arn": "some-arn"}])
-	eval_fail with input as generate_input([{
-		"Arn": "some-arn",
-		"Status": "FOO",
-	}])
+	eval_fail with input as generate_input({"region-1": [analyzer("some-arn", null)]})
+	eval_fail with input as generate_input({"region-1": [analyzer("some-arn", "FOO")]})
+	eval_fail with input as generate_input({
+		"region-1": [analyzer("some-arn", "ACTIVE")],
+		"region-2": [analyzer("invalid-status", "FOO")],
+	})
 }
 
 test_pass {
-	eval_pass with input as generate_input([{
-		"Arn": "some-arn",
-		"Status": "ACTIVE",
-	}])
-	eval_pass with input as generate_input([
-		{
-			"Arn": "some-arn",
-			"Status": "ACTIVE",
-		},
-		{
-			"Arn": "some-arn",
-			"Status": "FOO",
-		},
-	])
+	# no regions, no problems
+	eval_pass with input as generate_input(null)
+	eval_pass with input as generate_input([])
+	eval_pass with input as generate_input({"region-1": [analyzer("some-arn", "ACTIVE")]})
+	eval_pass with input as generate_input({
+		"region-1": [analyzer("some-arn", "ACTIVE")],
+		"region-2": [analyzer("invalid-status", "FOO"), analyzer("some-other-arn", "ACTIVE")],
+	})
 }
 
 test_not_evaluated {
 	not_eval with input as {}
-	not_eval with input as {"resource": {"Analyzers": []}} # No subType
+	not_eval with input as {"resource": {"RegionToAccessAnalyzers": []}} # No subType
 }
 
 eval_fail {
