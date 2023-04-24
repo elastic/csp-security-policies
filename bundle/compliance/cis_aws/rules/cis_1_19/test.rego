@@ -15,6 +15,7 @@ last_year = time.format(time.add_date(time.now_ns(), -1, 0, 0))
 next_year = time.format(time.add_date(time.now_ns(), 1, 0, 0))
 
 test_violation {
+	# fails when an expired certificate exists
 	eval_fail with input as generate_certificate_resource([generate_expiration(last_year)])
 	eval_fail with input as generate_certificate_resource([
 		generate_expiration(last_year),
@@ -23,6 +24,7 @@ test_violation {
 }
 
 test_pass {
+	# passes when certificates are not expired or when there are none
 	eval_pass with input as generate_certificate_resource([])
 	eval_pass with input as generate_certificate_resource([generate_expiration(next_year)])
 }
