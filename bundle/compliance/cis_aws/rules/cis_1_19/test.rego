@@ -1,5 +1,6 @@
 package compliance.cis_aws.rules.cis_1_19
 
+import data.cis_aws.test_data
 import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
@@ -10,9 +11,9 @@ generate_certificate_resource(certificates) = {
 
 generate_expiration(expiration) = {"Expiration": expiration}
 
-last_year = time.format(time.add_date(time.now_ns(), -1, 0, 0))
+last_year = test_data.create_date_from_ns(time.add_date(time.now_ns(), -1, 0, 0))
 
-next_year = time.format(time.add_date(time.now_ns(), 1, 0, 0))
+next_year = test_data.create_date_from_ns(time.add_date(time.now_ns(), 1, 0, 0))
 
 test_violation {
 	# fails when an expired certificate exists
