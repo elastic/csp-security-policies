@@ -16,7 +16,6 @@ next_year = time.format(time.add_date(time.now_ns(), 1, 0, 0))
 
 test_violation {
 	eval_fail with input as generate_certificate_resource([generate_expiration(last_year)])
-
 	eval_fail with input as generate_certificate_resource([
 		generate_expiration(last_year),
 		generate_expiration(next_year),
@@ -24,6 +23,7 @@ test_violation {
 }
 
 test_pass {
+	eval_pass with input as generate_certificate_resource([])
 	eval_pass with input as generate_certificate_resource([generate_expiration(next_year)])
 }
 
