@@ -23,6 +23,10 @@ test_violation {
 	eval_fail with input as generate_input({"region-1": [analyzer("some-arn", "FOO")]})
 	eval_fail with input as generate_input({
 		"region-1": [analyzer("some-arn", "ACTIVE")],
+		"region-2": [], # no analyzer in some region
+	})
+	eval_fail with input as generate_input({
+		"region-1": [analyzer("some-arn", "ACTIVE")],
 		"region-2": [analyzer("invalid-status", "FOO")],
 	})
 }
