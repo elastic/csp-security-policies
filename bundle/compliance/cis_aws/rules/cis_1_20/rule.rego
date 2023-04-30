@@ -13,14 +13,17 @@ finding = result if {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(analyzer_exists),
-		{"Access Analyzers": input.resource},
+		common.calculate_result(count(regions_without_analyzers) == 0),
+		{"Regions without access analyzers": regions_without_analyzers},
 	)
 }
 
-analyzer_exists if {
-	every region in data_adapter.analyzers {
-		some analyzer in region
-		analyzer.Status == "ACTIVE"
-	}
+regions_without_analyzers = {region |
+	analyzers := data_adapter.analyzers[region]
+	not analyzer_exists(analyzers)
+}
+
+analyzer_exists(analyzers) if {
+	some analyzer in analyzers
+	analyzer.Status == "ACTIVE"
 } else = false

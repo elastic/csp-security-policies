@@ -19,15 +19,23 @@ analyzer(arn, status) = {
 }
 
 test_violation {
-	eval_fail with input as generate_input({"region-1": [analyzer("some-arn", null)]})
-	eval_fail with input as generate_input({"region-1": [analyzer("some-arn", "FOO")]})
-	eval_fail with input as generate_input({
+	eval_fail({"region-1"}) with input as generate_input({"region-1": [analyzer("some-arn", null)]})
+	eval_fail({"region-1"}) with input as generate_input({"region-1": [analyzer("some-arn", "FOO")]})
+	eval_fail({"region-2"}) with input as generate_input({
 		"region-1": [analyzer("some-arn", "ACTIVE")],
 		"region-2": [], # no analyzer in some region
 	})
-	eval_fail with input as generate_input({
+	eval_fail({"region-2"}) with input as generate_input({
 		"region-1": [analyzer("some-arn", "ACTIVE")],
 		"region-2": [analyzer("invalid-status", "FOO")],
+	})
+
+	# Multiple regions in evidence
+	eval_fail({"region-1", "region-3", "region-4"}) with input as generate_input({
+		"region-1": [analyzer("invalid-status", "FOO")],
+		"region-2": [{}, analyzer("some-arn", "ACTIVE"), analyzer("invalid-status", "FOO")],
+		"region-3": [analyzer("some-arn", null)],
+		"region-4": [],
 	})
 }
 
@@ -47,8 +55,9 @@ test_not_evaluated {
 	not_eval with input as {"resource": {"RegionToAccessAnalyzers": []}} # No subType
 }
 
-eval_fail {
+eval_fail(failed_regions) {
 	test.assert_fail(finding) with data.benchmark_data_adapter as data_adapter
+	finding.evidence["Regions without access analyzers"] == failed_regions
 }
 
 eval_pass {
