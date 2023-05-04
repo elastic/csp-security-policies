@@ -201,9 +201,9 @@
 
 ## AWS CIS Benchmark
 
-### 53/63 implemented rules (84%)
+### 55/63 implemented rules (87%)
 
-#### Automated rules: 53/55 (96%)
+#### Automated rules: 55/55 (100%)
 
 #### Manual rules: 0/8 (0%)
 
@@ -219,9 +219,9 @@
 |  [1.16](bundle/compliance/cis_aws/rules/cis_1_16)  | Identity and Access Management    | Ensure IAM policies that allow full "*:*" administrative privileges are not attached                               | :white_check_mark: | Automated |
 |  [1.17](bundle/compliance/cis_aws/rules/cis_1_17)  | Identity and Access Management    | Ensure a support role has been created to manage incidents with AWS Support                                        | :white_check_mark: | Automated |
 |                        1.18                        | Identity and Access Management    | Ensure IAM instance roles are used for AWS resource access from instances                                          |        :x:         |  Manual   |
-|                        1.19                        | Identity and Access Management    | Ensure that all the expired SSL/TLS certificates stored in AWS IAM are removed                                     |        :x:         | Automated |
+|  [1.19](bundle/compliance/cis_aws/rules/cis_1_19)  | Identity and Access Management    | Ensure that all the expired SSL/TLS certificates stored in AWS IAM are removed                                     | :white_check_mark: | Automated |
 |                        1.2                         | Identity and Access Management    | Ensure security contact information is registered                                                                  |        :x:         |  Manual   |
-|                        1.20                        | Identity and Access Management    | Ensure that IAM Access analyzer is enabled for all regions                                                         |        :x:         | Automated |
+|  [1.20](bundle/compliance/cis_aws/rules/cis_1_20)  | Identity and Access Management    | Ensure that IAM Access analyzer is enabled for all regions                                                         | :white_check_mark: | Automated |
 |                        1.21                        | Identity and Access Management    | Ensure IAM users are managed centrally via identity federation or AWS Organizations for multi-account environments |        :x:         |  Manual   |
 |                        1.3                         | Identity and Access Management    | Ensure security questions are registered in the AWS account                                                        |        :x:         |  Manual   |
 |   [1.4](bundle/compliance/cis_aws/rules/cis_1_4)   | Identity and Access Management    | Ensure no 'root' user account access key exists                                                                    | :white_check_mark: | Automated |
