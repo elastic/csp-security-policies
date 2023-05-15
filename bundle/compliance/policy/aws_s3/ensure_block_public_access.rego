@@ -10,9 +10,7 @@ public_access_block_config_is_blocked(config) {
 	config.BlockPublicPolicy == true
 	config.IgnorePublicAcls == true
 	config.RestrictPublicBuckets == true
-} else = false {
-	true
-}
+} else = false
 
 default rule_evaluation = false
 
