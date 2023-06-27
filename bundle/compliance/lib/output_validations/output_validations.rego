@@ -27,13 +27,16 @@ validate_common_provider_metadata(metadata) {
 
 validate_metadata(metadata) {
 	validate_common_provider_metadata(metadata)
-} else = false
+} else = false {
+	true
+}
 
 # validate every rule metadata
 test_validate_rule_metadata {
 	all_k8s_rules := [rule | rule := compliance.cis_k8s.rules[rule_id]]
 	all_eks_rules := [rule | rule := compliance.cis_eks.rules[rule_id]]
 	all_aws_rules := [rule | rule := compliance.cis_aws.rules[rule_id]]
+	all_gcp_rules := [rule | rule := compliance.cis_gcp.rules[rule_id]]
 
 	print("Validating K8s rules")
 	every k8s_rule in all_k8s_rules {
@@ -48,5 +51,10 @@ test_validate_rule_metadata {
 	print("Validating AWS rules")
 	every aws_rule in all_aws_rules {
 		validate_metadata(aws_rule.metadata)
+	}
+
+	print("Validating GCP rules")
+	every gcp_rule in all_gcp_rules {
+		validate_metadata(gcp_rule.metadata)
 	}
 }
