@@ -1,7 +1,7 @@
 package compliance.policy.gcp.kms.ensure_key_rotation
 
 import data.compliance.lib.common
-import data.compliance.policy.gcp.kms.data_adapter
+import data.compliance.policy.gcp.data_adapter
 import future.keywords.if
 
 duration = sprintf("%dh", [90 * 24]) # 90 days converted to hours
