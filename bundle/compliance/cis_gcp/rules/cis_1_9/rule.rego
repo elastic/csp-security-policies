@@ -12,6 +12,6 @@ finding = result {
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(audit.key_is_public == false),
-		{"KMS IAM Policy:": input.iam_policy},
+		{"Kms key": input},
 	)
 }
