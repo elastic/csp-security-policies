@@ -1,0 +1,22 @@
+package compliance.cis_gcp.rules.cis_5_2
+
+import data.compliance.lib.common
+import data.compliance.policy.gcp.data_adapter
+
+default rule_evaluation = false
+
+# Ensure That Cloud Storage Buckets Have Uniform Bucket- Level Access Enabled.
+finding = result {
+	# filter
+	data_adapter.is_gcs_bucket
+
+	# set result
+	result := common.generate_result_without_expected(
+		common.calculate_result(rule_evaluation),
+		{"Gcs Bucket": input.resource},
+	)
+}
+
+rule_evaluation {
+	data_adapter.resource.data.iamConfiguration.uniformBucketLevelAccess.enabled == true
+}

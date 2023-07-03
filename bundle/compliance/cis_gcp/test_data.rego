@@ -15,6 +15,15 @@ generate_kms_resource(members, rotationPeriod, nextRotationTime) = {
 	"subType": "gcp-kms",
 }
 
+generate_gcs_resource(isBucketLevelAccessEnabled) = {
+	"resource": {
+		"asset_resource": {"data": {"iamConfiguration": {"uniformBucketLevelAccess": {"enabled": isBucketLevelAccessEnabled}}}},
+		"iam_policy": {},
+	},
+	"type": "cloud-storage",
+	"subType": "gcp-gcs",
+}
+
 not_eval_resource = {
 	"resource": {},
 	"type": "key-management",

@@ -275,9 +275,9 @@
 
 ## GCP CIS Benchmark
 
-### 2/84 implemented rules (2%)
+### 4/84 implemented rules (5%)
 
-#### Automated rules: 2/73 (3%)
+#### Automated rules: 4/73 (5%)
 
 #### Manual rules: 0/11 (0%)
 
@@ -339,8 +339,8 @@
 |                       4.7                        | Virtual Machines               | Ensure VM Disks for Critical VMs Are Encrypted With Customer-Supplied Encryption Keys (CSEK)                                      |        :x:         | Automated |
 |                       4.8                        | Virtual Machines               | Ensure Compute Instances Are Launched With Shielded VM Enabled                                                                    |        :x:         | Automated |
 |                       4.9                        | Virtual Machines               | Ensure That Compute Instances Do Not Have Public IP Addresses                                                                     |        :x:         | Automated |
-|                       5.1                        | Storage                        | Ensure That Cloud Storage Bucket Is Not Anonymously or Publicly Accessible                                                        |        :x:         | Automated |
-|                       5.2                        | Storage                        | Ensure That Cloud Storage Buckets Have Uniform Bucket-Level Access Enabled                                                        |        :x:         | Automated |
+|  [5.1](bundle/compliance/cis_gcp/rules/cis_5_1)  | Storage                        | Ensure That Cloud Storage Bucket Is Not Anonymously or Publicly Accessible                                                        | :white_check_mark: | Automated |
+|  [5.2](bundle/compliance/cis_gcp/rules/cis_5_2)  | Storage                        | Ensure That Cloud Storage Buckets Have Uniform Bucket-Level Access Enabled                                                        | :white_check_mark: | Automated |
 |                      6.1.1                       | MySQL Database                 | Ensure That a MySQL Database Instance Does Not Allow Anyone To Connect With Administrative Privileges                             |        :x:         |  Manual   |
 |                      6.1.2                       | MySQL Database                 | Ensure ‘Skip_show_database’ Database Flag for Cloud SQL MySQL Instance Is Set to ‘On’                                             |        :x:         | Automated |
 |                      6.1.3                       | MySQL Database                 | Ensure That the ‘Local_infile’ Database Flag for a Cloud SQL MySQL Instance Is Set to ‘Off’                                       |        :x:         | Automated |
