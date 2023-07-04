@@ -24,6 +24,24 @@ generate_gcs_resource(isBucketLevelAccessEnabled) = {
 	"subType": "gcp-gcs",
 }
 
+generate_bq_table(kmsKeyName) = {
+	"resource": {
+		"asset_resource": {"data": {"defaultEncryptionConfiguration": {"kmsKeyName": kmsKeyName}}},
+		"iam_policy": {},
+	},
+	"type": "cloud-storage",
+	"subType": "gcp-bq-table",
+}
+
+generate_bq_dataset(kmsKeyName) = {
+	"resource": {
+		"asset_resource": {"data": {"defaultEncryptionConfiguration": {"kmsKeyName": kmsKeyName}}},
+		"iam_policy": {},
+	},
+	"type": "cloud-storage",
+	"subType": "gcp-bq-dataset",
+}
+
 not_eval_resource = {
 	"resource": {},
 	"type": "key-management",
