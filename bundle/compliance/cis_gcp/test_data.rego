@@ -1,10 +1,11 @@
 package cis_gcp.test_data
 
-generate_kms_resource(members, rotationPeriod, nextRotationTime) = {
+generate_kms_resource(members, rotationPeriod, nextRotationTime, primary) = {
 	"resource": {"asset": {
 		"resource": {"data": {
 			"nextRotationTime": nextRotationTime,
 			"rotationPeriod": rotationPeriod,
+			"primary": primary,
 		}},
 		"iam_policy": {"bindings": [{
 			"role": "roles/cloudkms.cryptoKeyEncrypterDecrypter",

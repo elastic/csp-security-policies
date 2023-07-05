@@ -9,6 +9,11 @@ finding = result {
 	# filter
 	data_adapter.is_kms_key
 
+	# In order for an encryption key to be available,
+	# it needs to have a primary key version which is enabled
+	not data_adapter.resource.data.primary == null
+	data_adapter.resource.data.primary.state == "ENABLED"
+
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(audit.key_is_rotated),

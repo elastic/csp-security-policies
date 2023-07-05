@@ -5,23 +5,23 @@ import data.compliance.policy.gcp.data_adapter
 import data.lib.test
 
 test_violation {
-	eval_fail with input as rule_input(["allUsers", "test.user@google.com"], "", "")
-	#	eval_fail with input as rule_input(["allAuthenticatedUsers"], "", "")
-	#	eval_fail with input as rule_input(["allUsers", "allAuthenticatedUsers"], "", "")
+	eval_fail with input as rule_input(["allUsers", "test.user@google.com"], "", "", {"state": "ENABLED"})
+	eval_fail with input as rule_input(["allAuthenticatedUsers"], "", "", {"state": "ENABLED"})
+	eval_fail with input as rule_input(["allUsers", "allAuthenticatedUsers"], "", "", {"state": "ENABLED"})
 }
 
-#test_pass {
-#	eval_pass with input as {"subType": "gcp-kms", "resource": {}}
-#	eval_pass with input as rule_input([], "", "")
-#	eval_pass with input as rule_input(["test.user@google.com"], "", "")
-#	eval_pass with input as rule_input(["test.user@google.com", "test.user2@google.com"], "", "")
-#}
-#
-#test_not_evaluated {
-#	not_eval with input as test_data.not_eval_resource
-#}
+test_pass {
+	eval_pass with input as {"subType": "gcp-kms", "resource": {}}
+	eval_pass with input as rule_input([], "", "", {"state": "ENABLED"})
+	eval_pass with input as rule_input(["test.user@google.com"], "", "", {"state": "ENABLED"})
+	eval_pass with input as rule_input(["test.user@google.com", "test.user2@google.com"], "", "", {"state": "ENABLED"})
+}
 
-rule_input(members, nextRotationTime, rotationPeriod) = test_data.generate_kms_resource(members, nextRotationTime, rotationPeriod)
+test_not_evaluated {
+	not_eval with input as test_data.not_eval_resource
+}
+
+rule_input(members, nextRotationTime, rotationPeriod, primary) = test_data.generate_kms_resource(members, nextRotationTime, rotationPeriod, primary)
 
 eval_fail {
 	test.assert_fail(finding) with data.benchmark_data_adapter as data_adapter
