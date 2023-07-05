@@ -16,19 +16,25 @@ generate_kms_resource(members, rotationPeriod, nextRotationTime, primary) = {
 	"subType": "gcp-kms",
 }
 
-generate_gcs_resource(isBucketLevelAccessEnabled) = {
+generate_gcs_resource(members, isBucketLevelAccessEnabled) = {
 	"resource": {"asset": {
 		"resource": {"data": {"iamConfiguration": {"uniformBucketLevelAccess": {"enabled": isBucketLevelAccessEnabled}}}},
-		"iam_policy": {},
+		"iam_policy": {"bindings": [{
+			"role": "roles/storage.objectViewer",
+			"members": members,
+		}]},
 	}},
 	"type": "cloud-storage",
 	"subType": "gcp-gcs",
 }
 
-generate_bq_resource(config, subType) = {
+generate_bq_resource(config, subType, members) = {
 	"resource": {"asset": {
 		"resource": {"data": {"defaultEncryptionConfiguration": config}},
-		"iam_policy": {},
+		"iam_policy": {"bindings": [{
+			"role": "roles/bigquery.dataViewer",
+			"members": members,
+		}]},
 	}},
 	"type": "cloud-storage",
 	"subType": subType,
