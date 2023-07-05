@@ -6,18 +6,18 @@ import data.lib.test
 
 test_violation {
 	eval_fail with input as rule_input(null)
-	eval_fail with input as rule_input("")
+	eval_fail with input as rule_input({})
 }
 
 test_pass {
-	eval_pass with input as rule_input("projects/123/locations/global/keyRings/123/cryptoKeys/123")
+	eval_pass with input as rule_input({"kmsKeyName": "projects/123/locations/global/keyRings/123/cryptoKeys/123"})
 }
 
 test_not_evaluated {
 	not_eval with input as test_data.not_eval_resource
 }
 
-rule_input(kmsKeyName) = test_data.generate_bq_dataset(kmsKeyName)
+rule_input(config) = test_data.generate_bq_resource(config, "gcp-bq-dataset")
 
 eval_fail {
 	test.assert_fail(finding) with data.benchmark_data_adapter as data_adapter
