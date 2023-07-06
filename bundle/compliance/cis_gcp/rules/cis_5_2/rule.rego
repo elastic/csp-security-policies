@@ -13,10 +13,11 @@ finding = result {
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(rule_evaluation),
-		{"Gcs Bucket": input.resource},
+		{"GCS Bucket": input.resource},
 	)
 }
 
 rule_evaluation {
-	data_adapter.resource.data.iamConfiguration.uniformBucketLevelAccess.enabled == true
+	not is_null(data_adapter.resource.data.iamConfiguration.uniformBucketLevelAccess.enabled)
+	data_adapter.resource.data.iamConfiguration.uniformBucketLevelAccess.enabled
 }

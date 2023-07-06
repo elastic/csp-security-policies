@@ -10,12 +10,14 @@ test_violation {
 	eval_fail with input as rule_input(null, "89d", common.past_date, {"state": "ENABLED"})
 	eval_fail with input as rule_input(null, "7776001s", common.current_date, {"state": "ENABLED"})
 	eval_fail with input as rule_input(null, "7776000s", common.past_date, {"state": "ENABLED"})
-	eval_fail with input as rule_input(null, "48h", common.past_date, {"state": "ENABLED"})
+	eval_fail with input as rule_input(null, "2160h", common.past_date, {"state": "ENABLED"})
+	eval_fail with input as rule_input(null, "2161h", common.current_date, {"state": "ENABLED"})
 }
 
 test_pass {
 	eval_pass with input as rule_input(null, "90d", common.current_date, {"state": "ENABLED"})
 	eval_pass with input as rule_input(null, "7776000s", common.current_date, {"state": "ENABLED"})
+	eval_pass with input as rule_input(null, "2160h", common.current_date, {"state": "ENABLED"})
 }
 
 test_not_evaluated {

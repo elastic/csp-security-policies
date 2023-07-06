@@ -12,6 +12,6 @@ finding = result {
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(audit.is_cmek_used),
-		{"Big Query Dataset": input.resource},
+		{"BigQuery Dataset": input.resource},
 	)
 }
