@@ -1,11 +1,15 @@
 package compliance.policy.gcp.data_adapter
 
-resource = input.resource.asset.resource
+resource = input.resource.resource
 
-iam_policy = object.get(input.resource.asset, "iam_policy", {})
+iam_policy = input.resource.iam_policy
 
 is_gcs_bucket {
 	input.subType == "gcp-gcs"
+}
+
+is_iam {
+	input.subType == "gcp-iam"
 }
 
 is_kms_key {
