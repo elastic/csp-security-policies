@@ -12,6 +12,10 @@ is_gcs_bucket {
 	input.subType == "gcp-gcs"
 }
 
+is_iam {
+	input.subType == "gcp-iam"
+}
+
 is_kms_key {
 	input.subType == "gcp-kms"
 }
