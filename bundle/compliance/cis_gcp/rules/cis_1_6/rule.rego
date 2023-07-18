@@ -18,6 +18,6 @@ finding = result if {
 
 	result := common.generate_result_without_expected(
 		common.calculate_result(is_valid),
-		data_adapter.iam_policy,
+		data_adapter.iam_policy.bindings[i].role,
 	)
 }
