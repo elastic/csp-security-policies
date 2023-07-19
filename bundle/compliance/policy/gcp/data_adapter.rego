@@ -12,8 +12,12 @@ is_gcs_bucket {
 	input.subType == "gcp-gcs"
 }
 
-is_iam {
-	input.subType == "gcp-iam"
+is_service_account {
+	input.subType == "gcp-iam-service-account"
+}
+
+is_service_account_key {
+	input.subType == "gcp-iam-service-account-key"
 }
 
 is_kms_key {
