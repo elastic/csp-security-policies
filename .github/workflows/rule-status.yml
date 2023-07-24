@@ -25,21 +25,23 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Update rule status
-        run: poetry run python dev/update_rule_status.py
+      - name: foo
+        run: echo "foo"
+      # - name: Update rule status
+      #   run: poetry run python dev/update_rule_status.py
 
-      - name: Add README.md and RULES.md to git
-        run: |
-          git add README.md RULES.md
-          git status  # Optional: Show the changes being committed
+      # - name: Add README.md and RULES.md to git
+      #   run: |
+      #     git add README.md RULES.md
+      #     git status  # Optional: Show the changes being committed
 
-      - name: Commit changes
-        run: |
-          git config user.name "orouz"
-          git config user.email "or.ouziel@elastic.co"
-          git commit -m "Update rule status"
+      # - name: Commit changes
+      #   run: |
+      #     git config user.name "orouz"
+      #     git config user.email "or.ouziel@elastic.co"
+      #     git commit -m "Update rule status"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
