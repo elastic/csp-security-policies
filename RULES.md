@@ -275,9 +275,9 @@
 
 ## GCP CIS Benchmark
 
-### 10/84 implemented rules (12%)
+### 9/84 implemented rules (11%)
 
-#### Automated rules: 10/73 (14%)
+#### Automated rules: 9/73 (12%)
 
 #### Manual rules: 0/11 (0%)
 
@@ -299,7 +299,7 @@
 |  [1.5](bundle/compliance/cis_gcp/rules/cis_1_5)  | Identity and Access Management | Ensure That Service Account Has No Admin Privileges                                                                               | :white_check_mark: | Automated |
 |  [1.6](bundle/compliance/cis_gcp/rules/cis_1_6)  | Identity and Access Management | Ensure That IAM Users Are Not Assigned the Service Account User or Service Account Token Creator Roles at Project Level           | :white_check_mark: | Automated |
 |                       1.7                        | Identity and Access Management | Ensure User-Managed/External Keys for Service Accounts Are Rotated Every 90 Days or Fewer                                         |        :x:         | Automated |
-|  [1.8](bundle/compliance/cis_gcp/rules/cis_1_8)  | Identity and Access Management | Ensure That Separation of Duties Is Enforced While Assigning Service Account Related Roles to Users                               | :white_check_mark: | Automated |
+|                       1.8                        | Identity and Access Management | Ensure That Separation of Duties Is Enforced While Assigning Service Account Related Roles to Users                               |        :x:         | Automated |
 |  [1.9](bundle/compliance/cis_gcp/rules/cis_1_9)  | Identity and Access Management | Ensure That Cloud KMS Cryptokeys Are Not Anonymously or Publicly Accessible                                                       | :white_check_mark: | Automated |
 |                       2.1                        | Logging and Monitoring         | Ensure That Cloud Audit Logging Is Configured Properly                                                                            |        :x:         | Automated |
 |                       2.10                       | Logging and Monitoring         | Ensure That the Log Metric Filter and Alerts Exist for Cloud Storage IAM Permission Changes                                       |        :x:         | Automated |
