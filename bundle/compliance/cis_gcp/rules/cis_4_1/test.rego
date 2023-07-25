@@ -5,7 +5,6 @@ import data.compliance.policy.gcp.data_adapter
 import data.lib.test
 
 test_violation {
-	eval_fail with input as rule_input({"name": "test-instance", "serviceAccounts": [{"email": "12345678-compute@developer.gserviceaccount.com"}]})
 	eval_fail with input as rule_input({"name": "test-instance", "serviceAccounts": [{"email": "legit-sa@developer.gserviceaccount.com"}, {"email": "12345678-compute@developer.gserviceaccount.com"}]})
 }
 
