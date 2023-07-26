@@ -29,21 +29,20 @@ jobs:
       - name: Update rule status
         run: poetry run python dev/update_rule_status.py
 
-      # check for modified files
       - name: Check for modified files
         id: check_files
         run: |
           if [[ -n "$(git diff --name-only)" ]]; then
             echo "Modified files found."
-            echo "::set-output name=modified::true"  
+            echo "has_changes=true" >> $GITHUB_OUTPUT
           else
             echo "No modified files found."
-            echo "::set-output name=modified::false" 
+            echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
 
       # Commit changes if there are any
       - name: Commit changes
-        if: steps.check_files.outputs.modified == 'true'
+        if: steps.check_files.outputs.has_changes == 'true'
         run: |
           git config --local user.name 'Elastic Machine'
           git config --local user.email 'elasticmachine@users.noreply.github.com'
