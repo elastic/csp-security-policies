@@ -5,14 +5,12 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-
 jobs:
   update_and_commit:
     name: Update and Commit
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
