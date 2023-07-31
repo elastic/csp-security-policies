@@ -18,7 +18,7 @@ generate_gcp_asset(type, subtype, resource, iam_policy) = {
 		"iam_policy": iam_policy,
 	},
 	"type": type,
-	"subType": subtype
+	"subType": subtype,
 }
 
 generate_kms_resource(members, rotationPeriod, nextRotationTime, primary) = {

@@ -13,6 +13,6 @@ finding = result if {
 
 	result := common.generate_result_without_expected(
 		common.calculate_result(audit.is_role_not_service_account_user),
-		roles
+		roles,
 	)
 }
