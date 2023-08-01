@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          repository: ${{github.head_ref}}
 
       - name: Set up Python environment
         uses: actions/setup-python@v2
@@ -44,8 +46,9 @@ jobs:
       - name: Commit changes
         if: steps.check_files.outputs.has_changes == 'true'
         run: |
-          git config --local user.name 'Bot User'
-          git config --local user.email 'botuser@example.com'
+          git config --local user.name 'Elastic Machine'
+          git config --local user.email 'elasticmachine@users.noreply.github.com'
+          git checkout -b update_rule_status  
           git add README.md RULES.md
           git commit -m "Update rules markdown files"
-          git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:${{ github.head_ref }}
+          git push origin HEAD
