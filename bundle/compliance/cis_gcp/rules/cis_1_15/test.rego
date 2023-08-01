@@ -1,7 +1,6 @@
 package compliance.cis_gcp.rules.cis_1_15
 
 import data.cis_gcp.test_data
-import data.compliance.lib.common
 import data.compliance.policy.gcp.data_adapter
 import data.lib.test
 
