@@ -34,18 +34,18 @@ jobs:
         run: |
           if [[ -n "$(git diff --name-only)" ]]; then
             echo "Modified files found."
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> $GITHUB_ENV
           else
             echo "No modified files found."
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> $GITHUB_ENV
           fi
 
       # Commit changes if there are any
       - name: Commit changes
         if: steps.check_files.outputs.has_changes == 'true'
         run: |
-          git config --local user.name 'Elastic Machine'
-          git config --local user.email 'elasticmachine@users.noreply.github.com'
+          git config --local user.name 'Bot User'
+          git config --local user.email 'botuser@example.com'
           git add README.md RULES.md
           git commit -m "Update rules markdown files"
-          git push origin HEAD:${{ github.head_ref }}
+          git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:${{ github.head_ref }}
