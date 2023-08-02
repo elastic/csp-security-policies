@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update_and_commit:
     name: Update and Commit
@@ -14,8 +18,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-        #  repository: ${{github.actor}}/${{github.rep}}
-         ref: ${{github.ref}}
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
 
       - name: Set up Python environment
         uses: actions/setup-python@v2
