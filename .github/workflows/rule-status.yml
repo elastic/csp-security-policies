@@ -1,0 +1,31 @@
+name: Update rules status
+
+on:
+  pull_request_target:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update_and_commit:
+    name: Update and Commit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        # with:
+        #   ref: ${{ github.event.pull_request.head.ref }}
+        #   repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Commit changes
+        run: |
+          echo "foo" > foo.txt
+          git add foo.txt
+          git config --local user.name 'Elastic Machine'
+          git config --local user.email 'elasticmachine@users.noreply.github.com'
+          git commit -m "Update rules markdown files"
+          git push origin HEAD
