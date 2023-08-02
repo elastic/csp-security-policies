@@ -1,7 +1,7 @@
 name: Update rules status
 
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main
 
@@ -17,9 +17,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
+        # with:
+        #   ref: ${{ github.event.pull_request.head.ref }}
+        #   repository: ${{ github.event.pull_request.head.repo.full_name }}
 
       - name: Commit changes
         run: |
@@ -28,9 +28,9 @@ jobs:
           git config --local user.name '${{ github.actor }}'
           git config --local user.email '${{ github.actor }}@users.noreply.github.com'
           git commit -m "Update rules markdown files"
-          # git push origin HEAD
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}   
+          git push origin HEAD
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: ${{ github.ref }}   
