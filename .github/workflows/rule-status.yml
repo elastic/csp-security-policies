@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-         repository: ${{github.head_ref}}
+         repository: ${{github.actor}}/${{github.head_ref}}
 
       - name: Set up Python environment
         uses: actions/setup-python@v2
