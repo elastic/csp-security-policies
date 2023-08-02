@@ -21,38 +21,39 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
 
-      - name: Set up Python environment
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
+      # # - name: Set up Python environment
+      # #   uses: actions/setup-python@v2
+      # #   with:
+      # #     python-version: 3.x
 
-      - name: Install Poetry
-        run: pip install poetry
+      # # - name: Install Poetry
+      # #   run: pip install poetry
 
-      - name: Install dependencies
-        run: poetry install
+      # # - name: Install dependencies
+      # #   run: poetry install
 
-      # possibly modifies README.md and RULES.md
-      - name: Update rule status
-        run: poetry run python dev/update_rule_status.py
+      # # # possibly modifies README.md and RULES.md
+      # # - name: Update rule status
+      # #   run: poetry run python dev/update_rule_status.py
 
-      - name: Check for modified files
-        id: check_files
-        run: |
-          if [[ -n "$(git diff --name-only)" ]]; then
-            echo "Modified files found."
-            echo "has_changes=true" >> $GITHUB_ENV
-          else
-            echo "No modified files found."
-            echo "has_changes=false" >> $GITHUB_ENV
-          fi
+      # - name: Check for modified files
+      #   id: check_files
+      #   run: |
+      #     if [[ -n "$(git diff --name-only)" ]]; then
+      #       echo "Modified files found."
+      #       echo "has_changes=true" >> $GITHUB_ENV
+      #     else
+      #       echo "No modified files found."
+      #       echo "has_changes=false" >> $GITHUB_ENV
+      #     fi
 
       # Commit changes if there are any
       - name: Commit changes
-        if: steps.check_files.outputs.has_changes == 'true'
+        # if: steps.check_files.outputs.has_changes == 'true'
         run: |
+          echo "foo" > foo.txt
+          git add foo.txt
           git config --local user.name 'Elastic Machine'
           git config --local user.email 'elasticmachine@users.noreply.github.com'
-          git add README.md RULES.md
           git commit -m "Update rules markdown files"
           git push origin HEAD
