@@ -5,7 +5,7 @@ import data.compliance.lib.common
 import data.compliance.policy.gcp.compute.assess_instance_metadata as audit
 import data.compliance.policy.gcp.data_adapter
 
-# Ensure “Block Project-Wide SSH Keys” Is Enabled for VM Instances
+# Ensure ‘Enable Connecting to Serial Ports’ Is Not Enabled for VM Instance
 finding = result {
 	# filter
 	data_adapter.is_compute_instance
