@@ -3,8 +3,6 @@ package compliance.cis_gcp.rules.cis_4_8
 import data.compliance.lib.common
 import data.compliance.policy.gcp.data_adapter
 
-default is_shielded_vm = false
-
 # Ensure Compute Instances Are Launched With Shielded VM Enabled.
 finding = result {
 	# filter
@@ -21,4 +19,4 @@ is_shielded_vm {
 	cfg := data_adapter.resource.data.shieldedInstanceConfig
 	cfg.enableIntegrityMonitoring
 	cfg.enableVtpm
-}
+} else = false
