@@ -12,7 +12,9 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(assert.is_false(audit.is_instance_metadata_valid("serial-port-enable", "true"))),
+		common.calculate_result(assert.is_false(is_serial_port_enabled)),
 		{"Compute instance": input.resource},
 	)
 }
+
+is_serial_port_enabled := audit.is_instance_metadata_valid("serial-port-enable", "true")

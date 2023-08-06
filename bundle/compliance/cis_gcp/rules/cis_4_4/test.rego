@@ -15,7 +15,7 @@ test_pass {
 }
 
 test_not_evaluated {
-	not_eval with input as test_data.not_eval_resource
+	not_eval with input as rule_input({"name": "gke-node", "metadata": {"items": [{"key": "enable-oslogin", "value": "false"}]}})
 }
 
 rule_input(info) = test_data.generate_compute_resource("gcp-compute-instance", info)

@@ -39,15 +39,15 @@ metadata:
 
     ```
      {
-     "metadata": {
-     "items": [
-     {
-     "key": "serial-port-enable",
-     "value": "0"
-     }
-     ]
-     }
-     }
+        "metadata": {
+            "items": [
+                {
+                    "key": "serial-port-enable",
+                    "value": "0"
+                }
+            ]
+        }
+    }
     ```
   remediation: |-
     **From Google Cloud CLI**
