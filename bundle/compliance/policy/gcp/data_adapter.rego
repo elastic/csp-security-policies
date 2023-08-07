@@ -39,3 +39,7 @@ is_bigquery_table {
 is_compute_instance {
 	input.subType == "gcp-compute-instance"
 }
+
+is_monitoring_asset {
+	input.subType == "gcp-monitoring"
+}
