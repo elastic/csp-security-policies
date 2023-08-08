@@ -275,9 +275,9 @@
 
 ## GCP CIS Benchmark
 
-### 22/84 implemented rules (26%)
+### 28/84 implemented rules (33%)
 
-#### Automated rules: 22/73 (30%)
+#### Automated rules: 28/73 (38%)
 
 #### Manual rules: 0/11 (0%)
 
@@ -285,10 +285,10 @@
 |:------------------------------------------------:|:-------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
 |                       1.1                        | Identity and Access Management | Ensure that Corporate Login Credentials are Used                                                                                  |        :x:         |  Manual   |
 | [1.10](bundle/compliance/cis_gcp/rules/cis_1_10) | Identity and Access Management | Ensure KMS Encryption Keys Are Rotated Within a Period of 90 Days                                                                 | :white_check_mark: | Automated |
-|                       1.11                       | Identity and Access Management | Ensure That Separation of Duties Is Enforced While Assigning KMS Related Roles to Users                                           |        :x:         | Automated |
-|                       1.12                       | Identity and Access Management | Ensure API Keys Only Exist for Active Services                                                                                    |        :x:         | Automated |
+| [1.11](bundle/compliance/cis_gcp/rules/cis_1_11) | Identity and Access Management | Ensure That Separation of Duties Is Enforced While Assigning KMS Related Roles to Users                                           | :white_check_mark: | Automated |
+| [1.12](bundle/compliance/cis_gcp/rules/cis_1_12) | Identity and Access Management | Ensure API Keys Only Exist for Active Services                                                                                    | :white_check_mark: | Automated |
 |                       1.13                       | Identity and Access Management | Ensure API Keys Are Restricted To Use by Only Specified Hosts and Apps                                                            |        :x:         |  Manual   |
-|                       1.14                       | Identity and Access Management | Ensure API Keys Are Restricted to Only APIs That Application Needs Access                                                         |        :x:         | Automated |
+| [1.14](bundle/compliance/cis_gcp/rules/cis_1_14) | Identity and Access Management | Ensure API Keys Are Restricted to Only APIs That Application Needs Access                                                         | :white_check_mark: | Automated |
 | [1.15](bundle/compliance/cis_gcp/rules/cis_1_15) | Identity and Access Management | Ensure API Keys Are Rotated Every 90 Days                                                                                         | :white_check_mark: | Automated |
 |                       1.16                       | Identity and Access Management | Ensure Essential Contacts is Configured for Organization                                                                          |        :x:         | Automated |
 |                       1.17                       | Identity and Access Management | Ensure that Dataproc Cluster is encrypted using Customer-Managed Encryption Key                                                   |        :x:         | Automated |
@@ -320,9 +320,9 @@
 |                       3.1                        | Networking                     | Ensure That the Default Network Does Not Exist in a Project                                                                       |        :x:         | Automated |
 |                       3.10                       | Networking                     | Use Identity Aware Proxy (IAP) to Ensure Only Traffic From Google IP Addresses are 'Allowed'                                      |        :x:         |  Manual   |
 |                       3.2                        | Networking                     | Ensure Legacy Networks Do Not Exist for Older Projects                                                                            |        :x:         | Automated |
-|                       3.3                        | Networking                     | Ensure That DNSSEC Is Enabled for Cloud DNS                                                                                       |        :x:         | Automated |
-|                       3.4                        | Networking                     | Ensure That RSASHA1 Is Not Used for the Key-Signing Key in Cloud DNS DNSSEC                                                       |        :x:         | Automated |
-|                       3.5                        | Networking                     | Ensure That RSASHA1 Is Not Used for the Zone-Signing Key in Cloud DNS DNSSEC                                                      |        :x:         | Automated |
+|  [3.3](bundle/compliance/cis_gcp/rules/cis_3_3)  | Networking                     | Ensure That DNSSEC Is Enabled for Cloud DNS                                                                                       | :white_check_mark: | Automated |
+|  [3.4](bundle/compliance/cis_gcp/rules/cis_3_4)  | Networking                     | Ensure That RSASHA1 Is Not Used for the Key-Signing Key in Cloud DNS DNSSEC                                                       | :white_check_mark: | Automated |
+|  [3.5](bundle/compliance/cis_gcp/rules/cis_3_5)  | Networking                     | Ensure That RSASHA1 Is Not Used for the Zone-Signing Key in Cloud DNS DNSSEC                                                      | :white_check_mark: | Automated |
 |                       3.6                        | Networking                     | Ensure That SSH Access Is Restricted From the Internet                                                                            |        :x:         | Automated |
 |                       3.7                        | Networking                     | Ensure That RDP Access Is Restricted From the Internet                                                                            |        :x:         | Automated |
 |                       3.8                        | Networking                     | Ensure that VPC Flow Logs is Enabled for Every Subnet in a VPC Network                                                            |        :x:         | Automated |

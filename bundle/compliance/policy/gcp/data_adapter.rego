@@ -16,8 +16,16 @@ is_storage_bucket {
 	input.subType == "gcp-storage-bucket"
 }
 
+is_cloud_resource_manager_project {
+	input.subType == "gcp-cloudresourcemanager-project"
+}
+
 is_iam_service_account {
 	input.subType == "gcp-iam-service-account"
+}
+
+is_api_key {
+	input.subType == "gcp-apikeys-key"
 }
 
 is_iam_service_account_key {
@@ -42,4 +50,8 @@ is_compute_instance {
 
 is_monitoring_asset {
 	input.subType == "gcp-monitoring"
+}
+
+is_dns_managed_zone {
+	input.subType == "gcp-dns-managed-zone"
 }
