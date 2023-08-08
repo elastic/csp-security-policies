@@ -8,6 +8,9 @@ test_violation {
 	# Alert is not enabled.
 	eval_fail with input as rule_input([{"resource": {"data": {"filter": pattern, "metricDescriptor": {"type": "logging.googleapis.com/user/test1"}}}}, {"resource": {"data": {"filter": "not-the-right-pattern", "metricDescriptor": {"type": "logging.googleapis.com/user/test2"}}}}], [{"resource": {"data": {"conditions": [{"conditionThreshold": {"filter": "metric.type=\"logging.googleapis.com/user/test1\""}}]}}}])
 
+	# Alert is enabled but not attached
+	eval_fail with input as rule_input([{"resource": {"data": {"filter": pattern, "metricDescriptor": {"type": "logging.googleapis.com/user/test1"}}}}, {"resource": {"data": {"filter": "not-the-right-pattern", "metricDescriptor": {"type": "logging.googleapis.com/user/test2"}}}}], [{"resource": {"data": {"conditions": [{"conditionThreshold": {"filter": "metric.type=\"logging.googleapis.com/user/test1\""}}]}}}, {"resource": {"data": {"enabled": true, "conditions": [{"conditionThreshold": {"filter": "metric.type=\"logging.googleapis.com/user/test3\""}}]}}}])
+
 	# The alert is enabled, but it is not connected to any metric.
 	eval_fail with input as rule_input([{"resource": {"data": {"filter": pattern, "metricDescriptor": {"type": "logging.googleapis.com/user/test1"}}}}], [{"resource": {"data": {"enabled": true, "conditions": [{"conditionThreshold": {"filter": "metric.type=\"logging.googleapis.com/user/test2\""}}]}}}])
 
