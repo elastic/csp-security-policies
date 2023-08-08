@@ -9,16 +9,23 @@ type := "key-management"
 subtype := "gcp-apikeys-key"
 
 test_violation {
-	# fails without restrictions
+	# fails when restrictions key doesn't exists
 	eval_fail with input as test_data.generate_gcp_asset(
 		type, subtype, {"data": {}},
 		{},
 	)
-	# # fails when google apis are restricted
-	# eval_fail with input as test_data.generate_gcp_asset(
-	# 	type, subtype, {"data": {"restrictions": {"apiTargets": [{"service": "cloudapis.googleapis.com"}]}}},
-	# 	{},
-	# )
+
+	# fails when restrictions key exists, but without at least 1 restriction
+	eval_fail with input as test_data.generate_gcp_asset(
+		type, subtype, {"data": {"restrictions": {"apiTargets": []}}},
+		{},
+	)
+
+	# fails when google apis are restricted
+	eval_fail with input as test_data.generate_gcp_asset(
+		type, subtype, {"data": {"restrictions": {"apiTargets": [{"service": "cloudapis.googleapis.com"}]}}},
+		{},
+	)
 }
 
 test_pass {

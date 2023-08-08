@@ -16,7 +16,14 @@ finding = result if {
 }
 
 has_valid_apikey_restrictions if {
+	# apikey is not un-restricted
 	common.contains_key(data_adapter.resource.data, "restrictions")
+	common.contains_key(data_adapter.resource.data.restrictions, "apiTargets")
 	api_targets := data_adapter.resource.data.restrictions.apiTargets[i]
+
+	# at least 1 restriction
+	count(api_targets) > 0
+
+	# does not restrict google cloud apis
 	api_targets.service != "cloudapis.googleapis.com"
 }
