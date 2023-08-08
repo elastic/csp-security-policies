@@ -5,8 +5,6 @@ import data.compliance.lib.common
 import data.compliance.policy.gcp.data_adapter
 import future.keywords.in
 
-default is_publicly_exposed = false
-
 # Ensure That Compute Instances Do Not Have Public IP Addresses.
 finding = result {
 	# filter
@@ -22,4 +20,4 @@ finding = result {
 is_publicly_exposed {
 	some networkInterface in data_adapter.resource.data.networkInterfaces
 	networkInterface.accessConfigs
-}
+} else = false
