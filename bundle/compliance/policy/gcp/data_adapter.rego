@@ -39,3 +39,11 @@ is_bigquery_table {
 is_compute_instance {
 	input.subType == "gcp-compute-instance"
 }
+
+is_cloud_sql {
+	input.subType == "gcp-sql-instance"
+}
+
+is_sql_server {
+    startswith(resource.data.databaseVersion, "SQLSERVER")
+}
