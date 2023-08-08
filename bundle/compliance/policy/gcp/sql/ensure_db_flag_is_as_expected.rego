@@ -16,12 +16,12 @@ finding(flag, expected_val, fallback) = result if {
 }
 
 rule_evaluation(flag, expected_val, fallback) if {
-    some db_flag in data_adapter.resource.data.settings.databaseFlags
-    db_flag.name == flag
-    db_flag.value == expected_val
+	some db_flag in data_adapter.resource.data.settings.databaseFlags
+	db_flag.name == flag
+	db_flag.value == expected_val
 } else = false
 
 rule_evaluation(flag, expected_val, fallback) if {
-    some db_flag in data_adapter.resource.data.settings.databaseFlags
-    db_flag.name == flag
+	some db_flag in data_adapter.resource.data.settings.databaseFlags
+	db_flag.name == flag
 } else = fallback

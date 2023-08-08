@@ -1,6 +1,7 @@
 package compliance.cis_gcp.rules.cis_6_3_1
 
 type := "cloud-sql"
+
 subtype := "gcp-sql-instance"
 
 test_violation {

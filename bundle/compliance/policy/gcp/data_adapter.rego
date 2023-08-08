@@ -45,5 +45,5 @@ is_cloud_sql {
 }
 
 is_sql_server {
-    startswith(resource.data.databaseVersion, "SQLSERVER")
+	startswith(resource.data.databaseVersion, "SQLSERVER")
 }
