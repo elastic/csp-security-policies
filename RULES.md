@@ -275,9 +275,9 @@
 
 ## GCP CIS Benchmark
 
-### 44/84 implemented rules (52%)
+### 46/84 implemented rules (55%)
 
-#### Automated rules: 44/73 (60%)
+#### Automated rules: 46/73 (63%)
 
 #### Manual rules: 0/11 (0%)
 
@@ -360,10 +360,10 @@
 | [6.3.5](bundle/compliance/cis_gcp/rules/cis_6_3_5) | SQL Server                     | Ensure 'remote access' database flag for Cloud SQL SQL Server instance is set to 'off'                                            | :white_check_mark: | Automated |
 | [6.3.6](bundle/compliance/cis_gcp/rules/cis_6_3_6) | SQL Server                     | Ensure '3625 (trace flag)' database flag for all Cloud SQL Server instances is set to 'on'                                        | :white_check_mark: | Automated |
 | [6.3.7](bundle/compliance/cis_gcp/rules/cis_6_3_7) | SQL Server                     | Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is set to 'off'        | :white_check_mark: | Automated |
-|                        6.4                         | Cloud SQL Database Services    | Ensure That the Cloud SQL Database Instance Requires All Incoming Connections To Use SSL                                          |        :x:         | Automated |
+|   [6.4](bundle/compliance/cis_gcp/rules/cis_6_4)   | Cloud SQL Database Services    | Ensure That the Cloud SQL Database Instance Requires All Incoming Connections To Use SSL                                          | :white_check_mark: | Automated |
 |                        6.5                         | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Do Not Implicitly Whitelist All Public IP Addresses                                      |        :x:         | Automated |
 |                        6.6                         | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Do Not Have Public IPs                                                                   |        :x:         | Automated |
-|                        6.7                         | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Are Configured With Automated Backups                                                    |        :x:         | Automated |
+|   [6.7](bundle/compliance/cis_gcp/rules/cis_6_7)   | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Are Configured With Automated Backups                                                    | :white_check_mark: | Automated |
 |   [7.1](bundle/compliance/cis_gcp/rules/cis_7_1)   | BigQuery                       | Ensure That BigQuery Datasets Are Not Anonymously or Publicly Accessible                                                          | :white_check_mark: | Automated |
 |   [7.2](bundle/compliance/cis_gcp/rules/cis_7_2)   | BigQuery                       | Ensure That All BigQuery Tables Are Encrypted With Customer-Managed Encryption Key (CMEK)                                         | :white_check_mark: | Automated |
 |   [7.3](bundle/compliance/cis_gcp/rules/cis_7_3)   | BigQuery                       | Ensure That a Default Customer-Managed Encryption Key (CMEK) Is Specified for All BigQuery Data Sets                              | :white_check_mark: | Automated |
