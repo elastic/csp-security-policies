@@ -56,6 +56,10 @@ is_compute_instance {
 	input.subType == "gcp-compute-instance"
 }
 
+is_fw_rule {
+	input.subType == "gcp-compute-firewall"
+}
+
 is_monitoring_asset {
 	input.subType == "gcp-monitoring"
 }
