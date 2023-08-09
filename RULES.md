@@ -275,9 +275,9 @@
 
 ## GCP CIS Benchmark
 
-### 15/84 implemented rules (18%)
+### 17/84 implemented rules (20%)
 
-#### Automated rules: 15/73 (21%)
+#### Automated rules: 17/73 (23%)
 
 #### Manual rules: 0/11 (0%)
 
@@ -354,8 +354,8 @@
 |                       6.2.8                        | PostgreSQL Database            | Ensure That 'cloudsql.enable_pgaudit' Database Flag for each Cloud Sql Postgresql Instance Is Set to 'on' For Centralized Logging |        :x:         | Automated |
 |                       6.2.9                        | PostgreSQL Database            | Ensure Instance IP assignment is set to private                                                                                   |        :x:         | Automated |
 | [6.3.1](bundle/compliance/cis_gcp/rules/cis_6_3_1) | SQL Server                     | Ensure 'external scripts enabled' database flag for Cloud SQL SQL Server instance is set to 'off'                                 | :white_check_mark: | Automated |
-|                       6.3.2                        | SQL Server                     | Ensure that the 'cross db ownership chaining' database flag for Cloud SQL SQL Server instance is set to 'off'                     |        :x:         | Automated |
-|                       6.3.3                        | SQL Server                     | Ensure 'user Connections' Database Flag for Cloud Sql Sql Server Instance Is Set to a Non-limiting Value                          |        :x:         | Automated |
+| [6.3.2](bundle/compliance/cis_gcp/rules/cis_6_3_2) | SQL Server                     | Ensure that the 'cross db ownership chaining' database flag for Cloud SQL SQL Server instance is set to 'off'                     | :white_check_mark: | Automated |
+| [6.3.3](bundle/compliance/cis_gcp/rules/cis_6_3_3) | SQL Server                     | Ensure 'user Connections' Database Flag for Cloud Sql Sql Server Instance Is Set to a Non-limiting Value                          | :white_check_mark: | Automated |
 |                       6.3.4                        | SQL Server                     | Ensure 'user options' database flag for Cloud SQL SQL Server instance is not configured                                           |        :x:         | Automated |
 |                       6.3.5                        | SQL Server                     | Ensure 'remote access' database flag for Cloud SQL SQL Server instance is set to 'off'                                            |        :x:         | Automated |
 |                       6.3.6                        | SQL Server                     | Ensure '3625 (trace flag)' database flag for all Cloud SQL Server instances is set to 'on'                                        |        :x:         | Automated |
