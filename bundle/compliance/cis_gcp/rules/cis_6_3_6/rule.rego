@@ -1,6 +1,5 @@
-package compliance.cis_gcp.rules.cis_6_3_3
+package compliance.cis_gcp.rules.cis_6_3_6
 
-import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.policy.gcp.data_adapter
 import data.compliance.policy.gcp.sql.ensure_db_flag as audit
@@ -12,9 +11,9 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(assert.is_false(is_flag_limited)),
+		common.calculate_result(is_flag_enabled),
 		{"DB Instance": data_adapter.resource},
 	)
 }
 
-is_flag_limited = audit.is_flag_limited("user connections")
+is_flag_enabled := audit.is_flag_enabled("3625") #trace flag

@@ -275,9 +275,9 @@
 
 ## GCP CIS Benchmark
 
-### 17/84 implemented rules (20%)
+### 21/84 implemented rules (25%)
 
-#### Automated rules: 17/73 (23%)
+#### Automated rules: 21/73 (29%)
 
 #### Manual rules: 0/11 (0%)
 
@@ -356,10 +356,10 @@
 | [6.3.1](bundle/compliance/cis_gcp/rules/cis_6_3_1) | SQL Server                     | Ensure 'external scripts enabled' database flag for Cloud SQL SQL Server instance is set to 'off'                                 | :white_check_mark: | Automated |
 | [6.3.2](bundle/compliance/cis_gcp/rules/cis_6_3_2) | SQL Server                     | Ensure that the 'cross db ownership chaining' database flag for Cloud SQL SQL Server instance is set to 'off'                     | :white_check_mark: | Automated |
 | [6.3.3](bundle/compliance/cis_gcp/rules/cis_6_3_3) | SQL Server                     | Ensure 'user Connections' Database Flag for Cloud Sql Sql Server Instance Is Set to a Non-limiting Value                          | :white_check_mark: | Automated |
-|                       6.3.4                        | SQL Server                     | Ensure 'user options' database flag for Cloud SQL SQL Server instance is not configured                                           |        :x:         | Automated |
-|                       6.3.5                        | SQL Server                     | Ensure 'remote access' database flag for Cloud SQL SQL Server instance is set to 'off'                                            |        :x:         | Automated |
-|                       6.3.6                        | SQL Server                     | Ensure '3625 (trace flag)' database flag for all Cloud SQL Server instances is set to 'on'                                        |        :x:         | Automated |
-|                       6.3.7                        | SQL Server                     | Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is set to 'off'        |        :x:         | Automated |
+| [6.3.4](bundle/compliance/cis_gcp/rules/cis_6_3_4) | SQL Server                     | Ensure 'user options' database flag for Cloud SQL SQL Server instance is not configured                                           | :white_check_mark: | Automated |
+| [6.3.5](bundle/compliance/cis_gcp/rules/cis_6_3_5) | SQL Server                     | Ensure 'remote access' database flag for Cloud SQL SQL Server instance is set to 'off'                                            | :white_check_mark: | Automated |
+| [6.3.6](bundle/compliance/cis_gcp/rules/cis_6_3_6) | SQL Server                     | Ensure '3625 (trace flag)' database flag for all Cloud SQL Server instances is set to 'on'                                        | :white_check_mark: | Automated |
+| [6.3.7](bundle/compliance/cis_gcp/rules/cis_6_3_7) | SQL Server                     | Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is set to 'off'        | :white_check_mark: | Automated |
 |                        6.4                         | Cloud SQL Database Services    | Ensure That the Cloud SQL Database Instance Requires All Incoming Connections To Use SSL                                          |        :x:         | Automated |
 |                        6.5                         | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Do Not Implicitly Whitelist All Public IP Addresses                                      |        :x:         | Automated |
 |                        6.6                         | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Do Not Have Public IPs                                                                   |        :x:         | Automated |

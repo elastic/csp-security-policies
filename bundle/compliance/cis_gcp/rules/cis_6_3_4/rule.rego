@@ -1,4 +1,4 @@
-package compliance.cis_gcp.rules.cis_6_3_3
+package compliance.cis_gcp.rules.cis_6_3_4
 
 import data.compliance.lib.assert
 import data.compliance.lib.common
@@ -12,9 +12,9 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(assert.is_false(is_flag_limited)),
+		common.calculate_result(assert.is_false(is_flag_exists)),
 		{"DB Instance": data_adapter.resource},
 	)
 }
 
-is_flag_limited = audit.is_flag_limited("user connections")
+is_flag_exists = audit.is_flag_exists("user options")
