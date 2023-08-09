@@ -6,7 +6,7 @@ import data.lib.test
 
 type := "cloud-sql"
 
-subtype := "gcp-sql-instance"
+subtype := "gcp-sqladmin-instance"
 
 test_violation {
 	eval_fail with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "SQLSERVER_2019_STANDARD", "settings": {"databaseFlags": [{"name": "user options", "value": 0}]}}}, {})

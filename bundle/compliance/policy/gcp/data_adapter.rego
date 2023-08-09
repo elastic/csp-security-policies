@@ -57,7 +57,7 @@ is_compute_instance {
 }
 
 is_cloud_sql {
-	input.subType == "gcp-sql-instance"
+	input.subType == "gcp-sqladmin-instance"
 }
 
 is_sql_server {
