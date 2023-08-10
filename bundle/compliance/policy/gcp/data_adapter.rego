@@ -60,6 +60,14 @@ is_firewall_rule {
 	input.subType == "gcp-compute-firewall"
 }
 
+is_cloud_sql {
+	input.subType == "gcp-sqladmin-instance"
+}
+
+is_sql_server {
+	startswith(resource.data.databaseVersion, "SQLSERVER")
+}
+
 is_monitoring_asset {
 	input.subType == "gcp-monitoring"
 }
