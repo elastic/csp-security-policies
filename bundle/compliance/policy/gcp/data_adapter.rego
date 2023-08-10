@@ -56,7 +56,7 @@ is_compute_instance {
 	input.subType == "gcp-compute-instance"
 }
 
-is_fw_rule {
+is_firewall_rule {
 	input.subType == "gcp-compute-firewall"
 }
 

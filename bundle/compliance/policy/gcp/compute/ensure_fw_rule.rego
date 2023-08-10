@@ -7,7 +7,7 @@ import future.keywords.every
 import future.keywords.if
 import future.keywords.in
 
-rule_is_valid(port) = false if {
+is_valid_fw_rule(port) = false if {
 	some range in data_adapter.resource.data.sourceRanges
 	range == "0.0.0.0/0"
 	data_adapter.resource.data.direction == "INGRESS"

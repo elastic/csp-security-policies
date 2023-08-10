@@ -6,7 +6,7 @@ import data.compliance.policy.gcp.data_adapter
 
 finding = result {
 	# filter
-	data_adapter.is_fw_rule
+	data_adapter.is_firewall_rule
 
 	# set result
 	result := common.generate_result_without_expected(
@@ -15,4 +15,4 @@ finding = result {
 	)
 }
 
-is_rule_permissive := audit.rule_is_valid(3389) # RDP
+is_rule_permissive := audit.is_valid_fw_rule(3389) # RDP
