@@ -1,4 +1,4 @@
-package compliance.cis_gcp.rules.cis_6_1_3
+package compliance.cis_gcp.rules.cis_6_1_2
 
 import data.compliance.lib.common
 import data.compliance.policy.gcp.data_adapter
@@ -14,6 +14,6 @@ finding = result {
 
 is_local_infile_flag_disabled {
 	flags := data_adapter.resource.settings.databaseFlags[_]
-	flags.name == "local_infile"
+	flags.name == "skip_show_database"
 	flags.value == "off"
 } else = false
