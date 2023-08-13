@@ -11,20 +11,32 @@ subtype := "gcp-sqladmin-instance"
 test_violation {
 	# fail when databaseFlags is not set
 	eval_fail with input as test_data.generate_gcp_asset(
-		type, subtype, {"settings": {}},
+		type, subtype, {"data": {
+			"databaseVersion": "MYSQL_8_0_31",
+			"settings": {},
+		}},
 		{},
 	)
 
 	# fail when databaseFlags is set to off
 	eval_fail with input as test_data.generate_gcp_asset(
-		type, subtype, {"settings": {"databaseFlags": [{"name": "local_infile", "value": "on"}]}},
+		type, subtype, {"data": {
+			"databaseVersion": "MYSQL_8_0_31",
+			"settings": {"databaseFlags": [{"name": "local_infile", "value": "on"}]},
+		}},
 		{},
 	)
 }
 
 test_pass {
 	# pass when local_infile is off
-	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"settings": {"databaseFlags": [{"name": "local_infile", "value": "off"}]}}, {})
+	eval_pass with input as test_data.generate_gcp_asset(
+		type, subtype, {"data": {
+			"databaseVersion": "MYSQL_8_0_31",
+			"settings": {"databaseFlags": [{"name": "local_infile", "value": "off"}]},
+		}},
+		{},
+	)
 }
 
 test_not_evaluated {
