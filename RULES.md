@@ -275,9 +275,9 @@
 
 ## GCP CIS Benchmark
 
-### 52/84 implemented rules (62%)
+### 53/84 implemented rules (63%)
 
-#### Automated rules: 52/73 (71%)
+#### Automated rules: 53/73 (73%)
 
 #### Manual rules: 0/11 (0%)
 
