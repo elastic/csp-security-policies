@@ -8,13 +8,13 @@ finding = result {
 	data_adapter.is_cloud_my_sql
 
 	result := common.generate_result_without_expected(
-		common.calculate_result(is_local_infile_flag_disabled),
+		common.calculate_result(skip_show_database_enabled),
 		data_adapter.resource,
 	)
 }
 
-is_local_infile_flag_disabled {
+skip_show_database_enabled {
 	flags := data_adapter.resource.data.settings.databaseFlags[_]
 	flags.name == "skip_show_database"
-	flags.value == "off"
+	flags.value == "on"
 } else = false

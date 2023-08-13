@@ -22,7 +22,7 @@ test_violation {
 	eval_fail with input as test_data.generate_gcp_asset(
 		type, subtype, {"data": {
 			"databaseVersion": "MYSQL_8_0_31",
-			"settings": {"databaseFlags": [{"name": "skip_show_database", "value": "on"}]},
+			"settings": {"databaseFlags": [{"name": "skip_show_database", "value": "off"}]},
 		}},
 		{},
 	)
@@ -33,7 +33,7 @@ test_pass {
 	eval_pass with input as test_data.generate_gcp_asset(
 		type, subtype, {"data": {
 			"databaseVersion": "MYSQL_8_0_31",
-			"settings": {"databaseFlags": [{"name": "skip_show_database", "value": "off"}]},
+			"settings": {"databaseFlags": [{"name": "skip_show_database", "value": "on"}]},
 		}},
 		{},
 	)
