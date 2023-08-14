@@ -9,7 +9,7 @@ type := "cloud-sql"
 subtype := "gcp-sqladmin-instance"
 
 test_violation {
-	eval_fail with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_error_verbosity", "value": "warning"}]}}}, {})
+	eval_fail with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_error_verbosity", "value": "verbose"}]}}}, {})
 }
 
 test_pass {
@@ -17,7 +17,6 @@ test_pass {
 	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": []}}}, {})
 	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_error_verbosity", "value": "terse"}]}}}, {})
 	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_error_verbosity", "value": "default"}]}}}, {})
-	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_error_verbosity", "value": "verbose"}]}}}, {})
 }
 
 test_not_evaluated {

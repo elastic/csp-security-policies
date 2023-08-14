@@ -20,7 +20,7 @@ finding = result {
 }
 
 is_flag_as_expected {
-	audit.is_flag_configured_as_expected("log_error_verbosity", ["terse", "verbose", "default"])
+	audit.is_flag_configured_as_expected("log_error_verbosity", ["terse", "default"])
 }
 
 is_flag_as_expected {

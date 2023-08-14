@@ -9,13 +9,13 @@ type := "cloud-sql"
 subtype := "gcp-sqladmin-instance"
 
 test_violation {
-	eval_fail with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_min_duration_statement", "value": "'333'"}]}}}, {})
+	eval_fail with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_min_duration_statement", "value": "333"}]}}}, {})
 }
 
 test_pass {
 	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15"}}, {})
 	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": []}}}, {})
-	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_min_duration_statement", "value": "'-1'"}]}}}, {})
+	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_min_duration_statement", "value": "-1"}]}}}, {})
 }
 
 test_not_evaluated {

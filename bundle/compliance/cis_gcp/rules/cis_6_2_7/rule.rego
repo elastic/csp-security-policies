@@ -20,7 +20,7 @@ finding = result {
 }
 
 is_flag_as_expected {
-	audit.is_flag_configured_as_expected("log_min_duration_statement", ["'-1'"])
+	audit.is_flag_configured_as_expected("log_min_duration_statement", ["-1"])
 }
 
 is_flag_as_expected {
