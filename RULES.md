@@ -275,9 +275,9 @@
 
 ## GCP CIS Benchmark
 
-### 58/84 implemented rules (69%)
+### 61/84 implemented rules (73%)
 
-#### Automated rules: 58/73 (79%)
+#### Automated rules: 61/73 (84%)
 
 #### Manual rules: 0/11 (0%)
 
@@ -336,14 +336,14 @@
 |   [4.4](bundle/compliance/cis_gcp/rules/cis_4_4)   | Virtual Machines               | Ensure Oslogin Is Enabled for a Project                                                                                           | :white_check_mark: | Automated |
 |   [4.5](bundle/compliance/cis_gcp/rules/cis_4_5)   | Virtual Machines               | Ensure ‘Enable Connecting to Serial Ports’ Is Not Enabled for VM Instance                                                         | :white_check_mark: | Automated |
 |   [4.6](bundle/compliance/cis_gcp/rules/cis_4_6)   | Virtual Machines               | Ensure That IP Forwarding Is Not Enabled on Instances                                                                             | :white_check_mark: | Automated |
-|                        4.7                         | Virtual Machines               | Ensure VM Disks for Critical VMs Are Encrypted With Customer-Supplied Encryption Keys (CSEK)                                      |        :x:         | Automated |
+|   [4.7](bundle/compliance/cis_gcp/rules/cis_4_7)   | Virtual Machines               | Ensure VM Disks for Critical VMs Are Encrypted With Customer-Supplied Encryption Keys (CSEK)                                      | :white_check_mark: | Automated |
 |   [4.8](bundle/compliance/cis_gcp/rules/cis_4_8)   | Virtual Machines               | Ensure Compute Instances Are Launched With Shielded VM Enabled                                                                    | :white_check_mark: | Automated |
 |   [4.9](bundle/compliance/cis_gcp/rules/cis_4_9)   | Virtual Machines               | Ensure That Compute Instances Do Not Have Public IP Addresses                                                                     | :white_check_mark: | Automated |
 |   [5.1](bundle/compliance/cis_gcp/rules/cis_5_1)   | Storage                        | Ensure That Cloud Storage Bucket Is Not Anonymously or Publicly Accessible                                                        | :white_check_mark: | Automated |
 |   [5.2](bundle/compliance/cis_gcp/rules/cis_5_2)   | Storage                        | Ensure That Cloud Storage Buckets Have Uniform Bucket-Level Access Enabled                                                        | :white_check_mark: | Automated |
 |                       6.1.1                        | MySQL Database                 | Ensure That a MySQL Database Instance Does Not Allow Anyone To Connect With Administrative Privileges                             |        :x:         |  Manual   |
 |                       6.1.2                        | MySQL Database                 | Ensure ‘Skip_show_database’ Database Flag for Cloud SQL MySQL Instance Is Set to ‘On’                                             |        :x:         | Automated |
-|                       6.1.3                        | MySQL Database                 | Ensure That the ‘Local_infile’ Database Flag for a Cloud SQL MySQL Instance Is Set to ‘Off’                                       |        :x:         | Automated |
+| [6.1.3](bundle/compliance/cis_gcp/rules/cis_6_1_3) | MySQL Database                 | Ensure That the ‘Local_infile’ Database Flag for a Cloud SQL MySQL Instance Is Set to ‘Off’                                       | :white_check_mark: | Automated |
 | [6.2.1](bundle/compliance/cis_gcp/rules/cis_6_2_1) | PostgreSQL Database            | Ensure ‘Log_error_verbosity’ Database Flag for Cloud SQL PostgreSQL Instance Is Set to ‘DEFAULT’ or Stricter                      | :white_check_mark: | Automated |
 | [6.2.2](bundle/compliance/cis_gcp/rules/cis_6_2_2) | PostgreSQL Database            | Ensure That the ‘Log_connections’ Database Flag for Cloud SQL PostgreSQL Instance Is Set to ‘On’                                  | :white_check_mark: | Automated |
 | [6.2.3](bundle/compliance/cis_gcp/rules/cis_6_2_3) | PostgreSQL Database            | Ensure That the ‘Log_disconnections’ Database Flag for Cloud SQL PostgreSQL Instance Is Set to ‘On’                               | :white_check_mark: | Automated |
@@ -361,7 +361,7 @@
 | [6.3.6](bundle/compliance/cis_gcp/rules/cis_6_3_6) | SQL Server                     | Ensure '3625 (trace flag)' database flag for all Cloud SQL Server instances is set to 'on'                                        | :white_check_mark: | Automated |
 | [6.3.7](bundle/compliance/cis_gcp/rules/cis_6_3_7) | SQL Server                     | Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is set to 'off'        | :white_check_mark: | Automated |
 |   [6.4](bundle/compliance/cis_gcp/rules/cis_6_4)   | Cloud SQL Database Services    | Ensure That the Cloud SQL Database Instance Requires All Incoming Connections To Use SSL                                          | :white_check_mark: | Automated |
-|                        6.5                         | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Do Not Implicitly Whitelist All Public IP Addresses                                      |        :x:         | Automated |
+|   [6.5](bundle/compliance/cis_gcp/rules/cis_6_5)   | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Do Not Implicitly Whitelist All Public IP Addresses                                      | :white_check_mark: | Automated |
 |   [6.6](bundle/compliance/cis_gcp/rules/cis_6_6)   | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Do Not Have Public IPs                                                                   | :white_check_mark: | Automated |
 |   [6.7](bundle/compliance/cis_gcp/rules/cis_6_7)   | Cloud SQL Database Services    | Ensure That Cloud SQL Database Instances Are Configured With Automated Backups                                                    | :white_check_mark: | Automated |
 |   [7.1](bundle/compliance/cis_gcp/rules/cis_7_1)   | BigQuery                       | Ensure That BigQuery Datasets Are Not Anonymously or Publicly Accessible                                                          | :white_check_mark: | Automated |
