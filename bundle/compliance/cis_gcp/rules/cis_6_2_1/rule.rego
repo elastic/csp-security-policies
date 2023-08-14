@@ -20,7 +20,9 @@ finding = result {
 }
 
 is_flag_as_expected {
-	audit.is_flag_configured_as_expected("log_error_verbosity", ["terse", "default"])
+	# We followed the CIS benchmark recommendation and configured the expected value as "default"
+	# although the recommendation could also be interpreted as permitting a range of rules.
+	audit.is_flag_configured_as_expected("log_error_verbosity", ["default"])
 }
 
 is_flag_as_expected {

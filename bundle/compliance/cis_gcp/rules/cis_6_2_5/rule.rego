@@ -20,7 +20,9 @@ finding = result {
 }
 
 is_flag_as_expected {
-	audit.is_flag_configured_as_expected("log_min_messages", ["warning", "error", "log", "fatal", "panic"]) # minimum to 'Warning'
+	# We followed the CIS benchmark recommendation and configured the expected value as "error"
+	# although the recommendation could also be interpreted as permitting a range of rules.
+	audit.is_flag_configured_as_expected("log_min_messages", ["error"])
 }
 
 is_flag_as_expected {
