@@ -88,6 +88,10 @@ is_https_lb {
 	resource.data.protocol == "HTTPS"
 }
 
+is_postgres_sql {
+	startswith(resource.data.databaseVersion, "POSTGRES")
+}
+
 is_monitoring_asset {
 	input.subType == "gcp-monitoring"
 }
