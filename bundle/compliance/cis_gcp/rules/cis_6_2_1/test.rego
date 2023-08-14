@@ -14,6 +14,7 @@ test_violation {
 }
 
 test_pass {
+	# By default log_error_verbosity is set to DEFAULT, therefore a missing databaseFlags is a pass
 	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15"}}, {})
 	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": []}}}, {})
 	eval_pass with input as test_data.generate_gcp_asset(type, subtype, {"data": {"databaseVersion": "POSTGRES_15", "settings": {"databaseFlags": [{"name": "log_error_verbosity", "value": "default"}]}}}, {})

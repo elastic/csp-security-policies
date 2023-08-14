@@ -8,6 +8,8 @@ import future.keywords.in
 is_flag_configured_as_expected(flag_name, expected_vals) if {
 	some db_flag in data_adapter.resource.data.settings.databaseFlags
 	db_flag.name == flag_name
+
+	# not all expected values needs to be present, one is sufficient
 	some expected_val in expected_vals
 	db_flag.value == expected_val
 } else = false
