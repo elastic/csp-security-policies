@@ -1,6 +1,5 @@
 package compliance.cis_gcp.rules.cis_3_1
 
-import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.policy.gcp.data_adapter
 
@@ -11,11 +10,11 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(assert.is_false(is_default_network)),
+		common.calculate_result(is_not_default_network),
 		data_adapter.resource,
 	)
 }
 
-is_default_network {
-	data_adapter.resource.data.name == "default"
+is_not_default_network {
+	not data_adapter.resource.data.name == "default"
 } else = false
