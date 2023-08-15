@@ -31,6 +31,7 @@ test_violation {
 		type,
 		subtype,
 		{"data": {
+			"purpose": "PRIVATE",
 			"enableFlowLogs": true,
 			"logConfig": {"aggregationInterval": "INTERVAL_15_SEC"},
 		}},
@@ -42,6 +43,7 @@ test_violation {
 		type,
 		subtype,
 		{"data": {
+			"purpose": "PRIVATE",
 			"enableFlowLogs": true,
 			"logConfig": {
 				"aggregationInterval": "INTERVAL_5_SEC",
@@ -56,6 +58,7 @@ test_violation {
 		type,
 		subtype,
 		{"data": {
+			"purpose": "PRIVATE",
 			"enableFlowLogs": true,
 			"logConfig": {
 				"aggregationInterval": "INTERVAL_5_SEC",
@@ -72,12 +75,12 @@ test_pass {
 		type,
 		subtype,
 		{"data": {
+			"purpose": "PRIVATE",
 			"enableFlowLogs": true,
 			"logConfig": {
 				"aggregationInterval": "INTERVAL_5_SEC",
 				"metadata": "INCLUDE_ALL_METADATA",
 				"flowSampling": 1,
-				#  "enable":true,	
 			},
 		}},
 		null,
@@ -86,6 +89,12 @@ test_pass {
 
 test_not_evaluated {
 	not_eval with input as test_data.not_eval_resource
+	not_eval with input as test_data.generate_gcp_asset(
+		type,
+		subtype,
+		{"data": {"purpose": "INTERNAL_HTTPS_LOAD_BALANCER"}},
+		null,
+	)
 }
 
 eval_fail {
