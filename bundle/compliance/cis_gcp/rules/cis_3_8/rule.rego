@@ -19,6 +19,7 @@ is_flow_log_configured if {
 	data_adapter.resource.data.logConfig.metadata == "INCLUDE_ALL_METADATA"
 	data_adapter.resource.data.logConfig.aggregationInterval == "INTERVAL_5_SEC"
 	data_adapter.resource.data.logConfig.flowSampling == 1
+	data_adapter.resource.data.logConfig.enable == true
 } else = false
 
 not_internal_https_load_balancer if {

@@ -68,6 +68,23 @@ test_violation {
 		}},
 		null,
 	)
+
+	# fail when logConfig.enable is not set to true
+	eval_fail with input as test_data.generate_gcp_asset(
+		type,
+		subtype,
+		{"data": {
+			"purpose": "PRIVATE",
+			"enableFlowLogs": true,
+			"logConfig": {
+				"aggregationInterval": "INTERVAL_5_SEC",
+				"metadata": "INCLUDE_ALL_METADATA",
+				"flowSampling": 0.5,
+				"enable": false,
+			},
+		}},
+		null,
+	)
 }
 
 test_pass {
@@ -81,6 +98,7 @@ test_pass {
 				"aggregationInterval": "INTERVAL_5_SEC",
 				"metadata": "INCLUDE_ALL_METADATA",
 				"flowSampling": 1,
+				"enable": true,
 			},
 		}},
 		null,
