@@ -79,7 +79,7 @@ test_violation {
 			"logConfig": {
 				"aggregationInterval": "INTERVAL_5_SEC",
 				"metadata": "INCLUDE_ALL_METADATA",
-				"flowSampling": 0.5,
+				"flowSampling": 1,
 				"enable": false,
 			},
 		}},
