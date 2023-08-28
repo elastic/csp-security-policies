@@ -1,0 +1,29 @@
+metadata:
+  id: jenia
+  name: Jenia rule storage encryption
+  profile_applicability: "* Level 1"
+  description: |-
+    Bla bla bla.
+  rationale: |-
+    Bla bla bla.
+  audit: |-
+    Bla bla bla.
+  remediation: |-
+    Bla bla bla.
+  impact: |-
+    Bla bla bla.
+  default_value: ""
+  references: 1. https://cloud.google.com/bigquery/docs/customer-managed-encryption
+  section: BigQuery
+  version: "1.0"
+  tags:
+    - CIS
+    - AZURE
+    - CIS 3.2
+    - StorageAccount
+  benchmark:
+    name: CIS Azure Foundations Benchmark
+    version: v2.0.0
+    id: cis_azure
+    rule_number: "3.2"
+    posture_type: cspm
