@@ -16,12 +16,14 @@ generate_iam_policy(members, role) = generate_gcp_asset(
 	{"bindings": [{"role": role, "members": members}]},
 )
 
-generate_monitoring_asset(log_metrics, alerts) = generate_gcp_asset(
-	"monitoring",
-	"gcp-monitoring",
-	{"log_metrics": log_metrics, "alerts": alerts},
-	{},
-)
+generate_monitoring_asset(log_metrics, alerts) = {
+	"resource": {
+		"log_metrics": log_metrics,
+		"alerts": alerts,
+	},
+	"type": "monitoring",
+	"subType": "gcp-monitoring",
+}
 
 generate_kms_resource(members, rotationPeriod, nextRotationTime, primary) = generate_gcp_asset(
 	"key-management",
