@@ -53,13 +53,6 @@ generate_compute_resource(subType, info) = generate_gcp_asset(
 	{},
 )
 
-generate_iam_service_account_key(resourceData) = generate_gcp_asset(
-	"identity-management",
-	"gcp-iam-service-account-key",
-	{"data": resourceData},
-	{},
-)
-
 not_eval_resource = generate_gcp_asset(
 	"key-management",
 	"non-existing-subtype",
