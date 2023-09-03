@@ -10,7 +10,7 @@ default rule_evaluation = false
 
 finding = result if {
 	# filter
-	data_adapter.is_cloudkms_crypto_key
+	common.is_gcp_subtype("gcp-cloudkms-crypto-key")
 
 	# In order for an encryption key to be available,
 	# it needs to have a primary key version which is enabled

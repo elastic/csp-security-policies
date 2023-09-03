@@ -1,5 +1,7 @@
 package compliance.lib.common
 
+import data.compliance.policy.gcp.types as gcp
+
 # get OPA version
 opa_version := opa.runtime().version
 
@@ -115,4 +117,8 @@ generate_result_without_expected(evaluation, evidence) = result {
 		"evaluation": evaluation,
 		"evidence": evidence,
 	}
+}
+
+is_gcp_subtype(subtype) {
+	input.subType == gcp.subtypes[subtype]
 }
