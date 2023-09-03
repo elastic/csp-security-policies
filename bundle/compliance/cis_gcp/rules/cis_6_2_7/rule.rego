@@ -9,7 +9,7 @@ default is_flag_as_expected = false
 # Ensure That the ‘Log_min_duration_statement’ Database Flag for Cloud SQL PostgreSQL Instance Is Set to ‘-1′.
 finding = result {
 	# filter
-	data_adapter.is_cloud_sql
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	data_adapter.is_postgres_sql
 
 	# set result

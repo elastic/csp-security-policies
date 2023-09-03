@@ -20,7 +20,7 @@ members_with_both_roles := {m |
 }
 
 finding = result if {
-	data_adapter.is_cloud_resource_manager_project
+	common.is_gcp_subtype("gcp-cloudresourcemanager-project")
 	data_adapter.has_policy
 
 	no_admin_with_user_role := count(members_with_both_roles) == 0

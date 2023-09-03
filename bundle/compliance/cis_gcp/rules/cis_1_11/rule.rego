@@ -8,7 +8,7 @@ import future.keywords.if
 default admin_has_other_role = false
 
 finding = result if {
-	data_adapter.is_cloud_resource_manager_project
+	common.is_gcp_subtype("gcp-cloudresourcemanager-project")
 	data_adapter.has_policy
 
 	result := common.generate_result_without_expected(

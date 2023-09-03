@@ -5,7 +5,7 @@ import data.compliance.policy.gcp.data_adapter
 import future.keywords.if
 
 finding = result if {
-	data_adapter.is_sql_instance
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 
 	result := common.generate_result_without_expected(
 		common.calculate_result(backup_enabled),

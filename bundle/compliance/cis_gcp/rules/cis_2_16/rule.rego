@@ -5,7 +5,7 @@ import data.compliance.policy.gcp.data_adapter
 import future.keywords.if
 
 finding = result if {
-	data_adapter.is_backend_service
+	common.is_gcp_subtype("gcp-compute-region-backend-service")
 	data_adapter.is_https_lb
 
 	result := common.generate_result_without_expected(

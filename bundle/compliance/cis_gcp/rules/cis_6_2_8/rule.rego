@@ -7,7 +7,7 @@ import data.compliance.policy.gcp.sql.ensure_db_flag as audit
 # Ensure That 'cloudsql.enable_pgaudit' Database Flag for each Cloud Sql Postgresql Instance Is Set to 'on' For Centralized Logging.
 finding = result {
 	# filter
-	data_adapter.is_cloud_sql
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	data_adapter.is_postgres_sql
 
 	# set result

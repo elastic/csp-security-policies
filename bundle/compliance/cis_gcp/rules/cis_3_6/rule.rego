@@ -6,7 +6,7 @@ import data.compliance.policy.gcp.data_adapter
 
 finding = result {
 	# filter
-	data_adapter.is_firewall_rule
+	common.is_gcp_subtype("gcp-compute-firewall")
 
 	# set result
 	result := common.generate_result_without_expected(

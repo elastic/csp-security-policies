@@ -7,7 +7,7 @@ import future.keywords.if
 default has_cusomter_encrypted_key = false
 
 finding = result if {
-	data_adapter.is_dataproc_cluster
+	common.is_gcp_subtype("gcp-dataproc-cluster")
 
 	result := common.generate_result_without_expected(
 		common.calculate_result(has_cusomter_encrypted_key),

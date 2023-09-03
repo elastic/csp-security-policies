@@ -7,7 +7,7 @@ import future.keywords.if
 default has_valid_apikey_restrictions = false
 
 finding = result if {
-	data_adapter.is_api_key
+	common.is_gcp_subtype("gcp-apikeys-key")
 
 	result := common.generate_result_without_expected(
 		common.calculate_result(has_valid_apikey_restrictions == true),

@@ -6,7 +6,7 @@ import future.keywords.if
 import future.keywords.in
 
 finding = result if {
-	data_adapter.is_sql_instance
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	is_relevant_sql_instance
 
 	result := common.generate_result_without_expected(

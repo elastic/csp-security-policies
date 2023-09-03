@@ -7,7 +7,7 @@ import data.compliance.policy.gcp.sql.ensure_db_flag as audit
 
 finding = result {
 	# filter
-	data_adapter.is_cloud_sql
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	data_adapter.is_sql_server
 
 	# set result

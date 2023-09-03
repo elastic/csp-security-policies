@@ -7,7 +7,7 @@ import future.keywords.in
 
 finding(type) = result {
 	# filter
-	data_adapter.is_dns_managed_zone
+	common.is_gcp_subtype("gcp-dns-managed-zone")
 	data_adapter.resource.data.visibility == "PUBLIC"
 
 	# set result

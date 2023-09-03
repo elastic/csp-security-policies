@@ -9,7 +9,7 @@ default is_flag_as_expected = false
 # Ensure ‘Log_error_verbosity’ Database Flag for Cloud SQL PostgreSQL Instance Is Set to ‘DEFAULT’ or Stricter
 finding = result {
 	# filter
-	data_adapter.is_cloud_sql
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	data_adapter.is_postgres_sql
 
 	# set result

@@ -7,7 +7,7 @@ import data.compliance.policy.gcp.sql.ensure_private_ip as audit
 # Ensure Instance IP assignment is set to private.
 finding = result {
 	# filter
-	data_adapter.is_cloud_sql
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	data_adapter.is_postgres_sql
 
 	# set result

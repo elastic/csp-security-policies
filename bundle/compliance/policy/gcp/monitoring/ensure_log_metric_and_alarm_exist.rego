@@ -1,12 +1,11 @@
 package compliance.policy.gcp.monitoring.ensure_log_metric_and_alarm_exists
 
 import data.compliance.lib.common
-import data.compliance.policy.gcp.data_adapter
 import future.keywords.in
 
 finding(filter) = result {
 	# filter
-	data_adapter.is_monitoring_asset
+	common.is_gcp_subtype("gcp-monitoring")
 
 	# set result
 	result := common.generate_result_without_expected(

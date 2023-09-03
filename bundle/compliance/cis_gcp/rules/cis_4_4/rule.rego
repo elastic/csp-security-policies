@@ -7,7 +7,7 @@ import data.compliance.policy.gcp.data_adapter
 # Ensure Oslogin Is Enabled for a Project
 finding = result {
 	# filter
-	data_adapter.is_compute_instance
+	common.is_gcp_subtype("gcp-compute-instance")
 
 	# VMs created by GKE should be excluded
 	not data_adapter.is_gke_instance(data_adapter.resource.data)
