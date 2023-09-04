@@ -58,9 +58,9 @@ pull_request_rules:
   - name: automatic approval for mergify pull requests with changes in bump-rules
     conditions:
       - author=mergify[bot]
-      - check-success=Test Rego Policies (pull_request)
-      - check-success=Update rules status (pull_request)
-      - check-success=Update rules metadata (pull_request)
+      - check-success=Test Policies / Test Rego Policies (pull_request)
+      - check-success=Test Policies / Update rules status (pull_request)
+      - check-success=Test Policies / Update rules metadata (pull_request)
       - label=automation
       - files~=^\.mergify\.yml$
       - head~=^add-backport-next.*
@@ -70,9 +70,9 @@ pull_request_rules:
         message: Automatically approving mergify
   - name: automatic squash and merge with success checks and the files matching the regex ^.mergify.yml is modified.
     conditions:
-      - check-success=Test Rego Policies (pull_request)
-      - check-success=Update rules status (pull_request)
-      - check-success=Update rules metadata (pull_request)
+      - check-success=Test Policies / Test Rego Policies (pull_request)
+      - check-success=Test Policies / Update rules status (pull_request)
+      - check-success=Test Policies / Update rules metadata (pull_request)
       - label=automation
       - files~=^\.mergify\.yml$
       - head~=^add-backport-next.*
