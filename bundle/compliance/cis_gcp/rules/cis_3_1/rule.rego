@@ -6,7 +6,7 @@ import data.compliance.policy.gcp.data_adapter
 # Ensure That the Default Network Does Not Exist in a Project.
 finding = result {
 	# filter
-	data_adapter.is_compute_network
+	common.is_gcp_subtype("gcp-compute-network")
 
 	# set result
 	result := common.generate_result_without_expected(

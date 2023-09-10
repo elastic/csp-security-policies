@@ -5,7 +5,7 @@ import data.compliance.policy.gcp.data_adapter
 import data.compliance.policy.gcp.sql.ensure_private_ip as audit
 
 finding = result {
-	data_adapter.is_sql_instance
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	is_clous_sql_instance_second_gen
 
 	result := common.generate_result_without_expected(

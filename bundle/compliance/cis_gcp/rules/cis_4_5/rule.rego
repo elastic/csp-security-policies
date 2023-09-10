@@ -3,12 +3,11 @@ package compliance.cis_gcp.rules.cis_4_5
 import data.compliance.lib.assert
 import data.compliance.lib.common
 import data.compliance.policy.gcp.compute.assess_instance_metadata as audit
-import data.compliance.policy.gcp.data_adapter
 
 # Ensure ‘Enable Connecting to Serial Ports’ Is Not Enabled for VM Instance
 finding = result {
 	# filter
-	data_adapter.is_compute_instance
+	common.is_gcp_subtype("gcp-compute-instance")
 
 	# set result
 	result := common.generate_result_without_expected(

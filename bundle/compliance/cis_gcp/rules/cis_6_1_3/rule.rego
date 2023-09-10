@@ -4,7 +4,7 @@ import data.compliance.lib.common
 import data.compliance.policy.gcp.data_adapter
 
 finding = result {
-	data_adapter.is_cloud_sql
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	data_adapter.is_cloud_my_sql
 
 	result := common.generate_result_without_expected(

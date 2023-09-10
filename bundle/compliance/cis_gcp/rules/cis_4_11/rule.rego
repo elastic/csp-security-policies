@@ -9,7 +9,7 @@ default is_confidential_computing_enabled = false
 # Ensure That Compute Instances Have Confidential Computing Enabled.
 finding = result {
 	# filter
-	data_adapter.is_compute_instance
+	common.is_gcp_subtype("gcp-compute-instance")
 
 	# confidential Computing is currently only supported on N2D machines
 	startswith(gcp_common.get_machine_type_family(data_adapter.resource.data.machineType), "n2d-")

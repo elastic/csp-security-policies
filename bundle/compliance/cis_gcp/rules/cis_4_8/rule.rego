@@ -6,7 +6,7 @@ import data.compliance.policy.gcp.data_adapter
 # Ensure Compute Instances Are Launched With Shielded VM Enabled.
 finding = result {
 	# filter
-	data_adapter.is_compute_instance
+	common.is_gcp_subtype("gcp-compute-instance")
 
 	# set result
 	result := common.generate_result_without_expected(

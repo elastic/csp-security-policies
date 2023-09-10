@@ -8,7 +8,7 @@ default is_dnssec_enabled = false
 # Ensure That DNSSEC Is Enabled for Cloud DNS.
 finding = result {
 	# filter
-	data_adapter.is_dns_managed_zone
+	common.is_gcp_subtype("gcp-dns-managed-zone")
 
 	# only apply to public zones
 	data_adapter.resource.data.visibility == "PUBLIC"

@@ -9,7 +9,7 @@ default is_flag_as_expected = false
 # Ensure that the ‘Log_min_messages’ Flag for a Cloud SQL PostgreSQL Instance is set at minimum to 'Warning'.
 finding = result {
 	# filter
-	data_adapter.is_cloud_sql
+	common.is_gcp_subtype("gcp-sqladmin-instance")
 	data_adapter.is_postgres_sql
 
 	# set result

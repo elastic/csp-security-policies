@@ -5,7 +5,7 @@ import data.compliance.policy.gcp.data_adapter
 import future.keywords.if
 
 finding = result if {
-	data_adapter.is_subnetwork
+	common.is_gcp_subtype("gcp-compute-subnetwork")
 	not_internal_https_load_balancer
 
 	result := common.generate_result_without_expected(
