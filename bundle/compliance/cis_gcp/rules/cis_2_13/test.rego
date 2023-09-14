@@ -4,10 +4,6 @@ import data.cis_gcp.test_data
 import data.compliance.policy.gcp.data_adapter
 import data.lib.test
 
-type := "monitoring"
-
-subtype := "gcp-service-usage"
-
 test_violation {
 	eval_fail with input as test_data.generate_serviceusage_asset([{"resource": {"data": {"name": "workstations.googleapis.com", "state": "ENABLED"}}}])
 }
