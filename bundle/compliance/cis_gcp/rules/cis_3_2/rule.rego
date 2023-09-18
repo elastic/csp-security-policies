@@ -16,5 +16,6 @@ finding = result if {
 }
 
 is_not_legacy_network if {
+	# When autoCreateSubnetworks is set to false a legacy network is being created (https://cloud.google.com/compute/docs/reference/rest/v1/networks).
 	data_adapter.resource.data.autoCreateSubnetworks
 } else = false
