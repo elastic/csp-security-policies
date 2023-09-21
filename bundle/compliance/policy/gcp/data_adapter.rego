@@ -8,6 +8,10 @@ iam_policy = input.resource.iam_policy
 
 has_policy = common.contains_key(input.resource, "iam_policy")
 
+is_ancestors_policies {
+	input.subType == "gcp-ancestors-policies"
+}
+
 is_gke_instance(instance) {
 	startswith(instance.name, "gke-")
 }
