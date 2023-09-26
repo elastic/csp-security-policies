@@ -8,16 +8,16 @@ import future.keywords.in
 default cloud_logging_is_configured = false
 
 finding = result if {
-	data_adapter.is_ancestors_policies
+	data_adapter.is_policies_resource
 
 	result := common.generate_result_without_expected(
 		common.calculate_result(cloud_logging_is_configured),
-		input.resource.policies,
+		input.resource,
 	)
 }
 
 cloud_logging_is_configured if {
-	policy := input.resource.policies[_].iam_policy
+	policy := input.resource[_].iam_policy
 	has_read_write_logs(policy)
 	not has_exempted_members(policy)
 } else = false

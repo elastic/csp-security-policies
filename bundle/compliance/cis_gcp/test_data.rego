@@ -26,9 +26,9 @@ generate_monitoring_asset(log_metrics, alerts) = {
 }
 
 generate_policies_asset(policies) = {
-	"resource": {"policies": policies},
-	"type": "monitoring",
-	"subType": "gcp-ancestors-policies",
+	"resource": policies,
+	"type": "project-managment",
+	"subType": "gcp-policies",
 }
 
 generate_serviceusage_asset(services) = {
