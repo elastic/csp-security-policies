@@ -10,109 +10,61 @@ test_violation {
 
 	# fail when DATA_WRITE is missing from project
 	eval_fail with input as test_data.generate_policies_asset([{"iam_policy": {"audit_configs": [{
-		"audit_log_configs": [{"log_type": 2}],
+		"audit_log_configs": [{"log_type": 2}, {"log_type": 1}],
 		"service": "allServices",
 	}]}}])
 
 	# fail when DATA_READ is missing from project
 	eval_fail with input as test_data.generate_policies_asset([{"iam_policy": {"audit_configs": [{
-		"audit_log_configs": [{"log_type": 3}],
+		"audit_log_configs": [{"log_type": 3}, {"log_type": 1}],
+		"service": "allServices",
+	}]}}])
+
+	# fail when ADMIN_READ is missing from project
+	eval_fail with input as test_data.generate_policies_asset([{"iam_policy": {"audit_configs": [{
+		"audit_log_configs": [{"log_type": 3}, {"log_type": 2}],
 		"service": "allServices",
 	}]}}])
 
 	# fail when extempted members is not empty
 	eval_fail with input as test_data.generate_policies_asset([{"iam_policy": {"audit_configs": [{
-		"audit_log_configs": [{"log_type": 3, "exempted_members": ["user:a"]}, {"log_type": 2}],
+		"audit_log_configs": [
+			{
+				"log_type": 3,
+				"exempted_members": ["user:a"],
+			},
+			{"log_type": 2}, {"log_type": 1},
+		],
 		"service": "allServices",
 	}]}}])
 
 	# fail when "service": "allServices" is missing from project
-	eval_fail with input as test_data.generate_policies_asset([{"iam_policy": {"audit_configs": [{"audit_log_configs": [{"log_type": 3}, {"log_type": 2}]}]}}])
+	eval_fail with input as test_data.generate_policies_asset([{"iam_policy": {"audit_configs": [{"audit_log_configs": [{"log_type": 3}, {"log_type": 2}, {"log_type": 1}]}]}}])
 
 	# fail when DATA_READ and DATA_WRITE aren't set on the same policy
 	eval_fail with input as test_data.generate_policies_asset([
 		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 3}],
+			"audit_log_configs": [{"log_type": 3}, {"log_type": 1}],
 			"service": "allServices",
 		}]}},
 		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 2}],
+			"audit_log_configs": [{"log_type": 2}, {"log_type": 1}],
 			"service": "allServices",
 		}]}},
 	])
 }
 
 test_pass {
-	# passes when project has DATA_READ/DATA_WRITE for all services
-	eval_pass with input as test_data.generate_policies_asset([
-		# project policies
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [
-				{"log_type": 3},
-				{"log_type": 2},
-			],
-			"service": "allServices",
-		}]}},
-		# folder policies
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 2}],
-			"service": "allServices",
-		}]}},
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 3}],
-			"service": "allServices",
-		}]}},
-		# org policies
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 3}],
-			"service": "allServices",
-		}]}},
-	])
-
-	# passes when an org has DATA_READ/DATA_WRITE for all services
-	eval_pass with input as test_data.generate_policies_asset([
-		# project config without DATA_READ
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 2}],
-			"service": "allServices",
-		}]}},
-		# folder config without DATA_WRITE
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 3}],
-			"service": "allServices",
-		}]}},
-		# org config with both
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [
-				{"log_type": 3},
-				{"log_type": 2},
-			],
-			"service": "allServices",
-		}]}},
-	])
-
-	# passes when a folder has DATA_READ/DATA_WRITE for all services
-	eval_pass with input as test_data.generate_policies_asset([
-		# project config without DATA_READ
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 2}],
-			"service": "allServices",
-		}]}},
-		# folder config with both (2nd item)
-		{"iam_policy": {"audit_configs": [{"audit_log_configs": [{"log_type": 3}]}]}},
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [
-				{"log_type": 3},
-				{"log_type": 2},
-			],
-			"service": "allServices",
-		}]}},
-		# org config without DATA_WRITE
-		{"iam_policy": {"audit_configs": [{
-			"audit_log_configs": [{"log_type": 3}],
-			"service": "allServices",
-		}]}},
-	])
+	# passes when project has DATA_READ/DATA_WRITE/ADMIN_READ  
+	# for all services, and with no exempted members
+	eval_pass with input as test_data.generate_policies_asset([{"iam_policy": {"audit_configs": [{
+		"audit_log_configs": [
+			{"log_type": 1},
+			{"log_type": 2},
+			{"log_type": 3},
+		],
+		"service": "allServices",
+	}]}}])
 }
 
 test_not_evaluated {
