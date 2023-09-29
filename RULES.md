@@ -370,9 +370,9 @@
 
 ## AZURE CIS Benchmark
 
-### 1/151 implemented rules (1%)
+### 2/151 implemented rules (1%)
 
-#### Automated rules: 1/77 (1%)
+#### Automated rules: 2/77 (3%)
 
 #### Manual rules: 0/74 (0%)
 
@@ -506,7 +506,7 @@
 |                       7.1                        | Virtual Machines                        | Ensure an Azure Bastion Host Exists                                                                                                                    |        :x:         | Automated |
 |                       7.2                        | Virtual Machines                        | Ensure Virtual Machines are utilizing Managed Disks                                                                                                    |        :x:         | Automated |
 |                       7.3                        | Virtual Machines                        | Ensure that 'OS and Data' disks are encrypted with Customer Managed Key (CMK)                                                                          |        :x:         | Automated |
-|                       7.4                        | Virtual Machines                        | Ensure that 'Unattached disks' are encrypted with 'Customer Managed Key' (CMK)                                                                         |        :x:         | Automated |
+| [7.4](bundle/compliance/cis_azure/rules/cis_7_4) | Virtual Machines                        | Ensure that 'Unattached disks' are encrypted with 'Customer Managed Key' (CMK)                                                                         | :white_check_mark: | Automated |
 |                       7.5                        | Virtual Machines                        | Ensure that Only Approved Extensions Are Installed                                                                                                     |        :x:         |  Manual   |
 |                       7.6                        | Virtual Machines                        | Ensure that Endpoint Protection for all Virtual Machines is installed                                                                                  |        :x:         |  Manual   |
 |                       7.7                        | Virtual Machines                        | [Legacy] Ensure that VHDs are Encrypted                                                                                                                |        :x:         |  Manual   |
