@@ -1,12 +1,11 @@
-package compliance.cis_azure.rules.cis_4_3_1
+package compliance.cis_azure.rules.cis_4_4_1
 
 import data.compliance.lib.common
 import data.compliance.policy.azure.data_adapter
 
-
 finding = result {
 	# filter
-	data_adapter.is_postgresql_server_db
+	data_adapter.is_mysql_server_db
 
 	# set result
 	result := common.generate_result_without_expected(
@@ -16,5 +15,5 @@ finding = result {
 }
 
 ssl_enforcement_enabled {
-    data_adapter.properties.sslEnforcement == "Enabled"
+	data_adapter.properties.sslEnforcement == "Enabled"
 } else = false
