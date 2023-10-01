@@ -19,13 +19,13 @@ not_eval_storage_account_encryption = {
 }
 
 generate_activity_log_alerts_no_alerts = {
-	"type": "azure-activity-log-alerts",
+	"type": "azure-activity-log-alert",
 	"subType": "",
 	"resource": {"activity_log_alerts": []},
 }
 
 generate_activity_log_alerts(rules) = {
-	"type": "azure-activity-log-alerts",
+	"type": "azure-activity-log-alert",
 	"subType": "",
 	"resource": {"activity_log_alerts": rules},
 }
