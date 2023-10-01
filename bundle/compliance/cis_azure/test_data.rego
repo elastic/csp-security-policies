@@ -11,3 +11,9 @@ not_eval_storage_account_encryption = {
 	"subType": "",
 	"resource": {"properties": {"encryption": {}}},
 }
+
+generate_postgresql_server_with_ssl_enforcement(enabled) = {
+	"type": "azure-postgresql-server",
+	"subType": "",
+	"resource": {"properties": {"sslEnforcement": enabled}},
+}
