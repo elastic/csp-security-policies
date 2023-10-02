@@ -93,8 +93,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "-b",
         "--benchmark",
-        default=common.benchmark.keys(),
-        choices=common.benchmark.keys(),
+        default=common.benchmarks.keys(),
+        choices=common.benchmarks.keys(),
         help="benchmark to be used for the rules template generation (default: all benchmarks). "
              "for example: `--benchmark cis_eks` or `--benchmark cis_eks cis_aws`",
         nargs="+",

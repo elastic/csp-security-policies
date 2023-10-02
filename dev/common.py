@@ -5,18 +5,27 @@ import git
 import pandas as pd
 import regex as re
 from ruamel.yaml.scalarstring import PreservedScalarString as pss
+from dataclasses import dataclass
 
 repo_root = git.Repo('.', search_parent_directories=True)
 rules_dir = os.path.join(repo_root.working_dir, "bundle/compliance")
 
 CODE_BLOCK_SIZE = 100
 
-benchmark = {
-    "cis_k8s": "CIS_Kubernetes_V1.23_Benchmark_v1.0.1.xlsx",
-    "cis_eks": "CIS_Amazon_Elastic_Kubernetes_Service_(EKS)_Benchmark_v1.0.1.xlsx",
-    "cis_aws": "CIS_Amazon_Web_Services_Foundations_Benchmark_v1.5.0.xlsx",
-    "cis_gcp": "CIS_Google_Cloud_Platform_Foundation_Benchmark_v2.0.0.xlsx",
-    "cis_azure": "CIS_Microsoft_Azure_Foundations_Benchmark_v2.0.0.xlsx",
+
+# DataClass for benchmark, that includes benchmark excel path, and the benchmark version
+@dataclass
+class Benchmark:
+    path: str
+    version: str
+
+
+benchmarks = {
+    "cis_k8s": Benchmark(path="CIS_Kubernetes_V1.23_Benchmark_v1.0.1.xlsx", version="1.0.1"),
+    "cis_eks": Benchmark(path="CIS_Amazon_Elastic_Kubernetes_Service_(EKS)_Benchmark_v1.0.1.xlsx", version="1.0.1"),
+    "cis_aws": Benchmark(path="CIS_Amazon_Web_Services_Foundations_Benchmark_v1.5.0.xlsx", version="1.5.0"),
+    "cis_gcp": Benchmark(path="CIS_Google_Cloud_Platform_Foundation_Benchmark_v2.0.0.xlsx", version="2.0.0"),
+    "cis_azure": Benchmark(path="CIS_Microsoft_Azure_Foundations_Benchmark_v2.0.0.xlsx", version="2.0.0"),
 }
 
 relevant_sheets = {
@@ -74,8 +83,7 @@ def parse_rules_data_from_excel(benchmark_id, selected_columns=None, selected_ru
     if selected_columns is None:
         selected_columns = default_selected_columns_map
 
-    benchmark_name = benchmark[benchmark_id]
-    input_path = f"input/{benchmark_name}"
+    input_path = f"input/{benchmarks[benchmark_id].path}"
 
     sheets = relevant_sheets[benchmark_id]
     rules_data = pd.DataFrame()

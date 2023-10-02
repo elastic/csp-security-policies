@@ -195,7 +195,7 @@ if __name__ == "__main__":
     # Write Markdown table to file
     with open("../RULES.md", "w") as f:
         f.write(f"# Rules Status")
-        for benchmark_id in common.benchmark.keys():
+        for benchmark_id in common.benchmarks.keys():
             print(f"Generating Markdown table for '{benchmark_id}' service")
             f.write(f"\n\n## {benchmark_id.removeprefix('cis_').upper()} CIS Benchmark\n\n")
             table, description, percentage = generate_md_table(benchmark_id)
