@@ -9,7 +9,7 @@
 #### Manual rules: 19/51 (37%)
 
 |                     Rule Number                      | Section                                | Description                                                                                              |       Status       |   Type    |
-| :--------------------------------------------------: | :------------------------------------- | :------------------------------------------------------------------------------------------------------- | :----------------: | :-------: |
+|:----------------------------------------------------:|:---------------------------------------|:---------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
 |  [1.1.1](bundle/compliance/cis_k8s/rules/cis_1_1_1)  | Control Plane Node Configuration Files | Ensure that the API server pod specification file permissions are set to 644 or more restrictive         | :white_check_mark: | Automated |
 |                        1.1.10                        | Control Plane Node Configuration Files | Ensure that the Container Network Interface file ownership is set to root:root                           |        :x:         |  Manual   |
 | [1.1.11](bundle/compliance/cis_k8s/rules/cis_1_1_11) | Control Plane Node Configuration Files | Ensure that the etcd data directory permissions are set to 700 or more restrictive                       | :white_check_mark: | Automated |
@@ -66,7 +66,7 @@
 |                        1.3.1                         | Controller Manager                     | Ensure that the --terminated-pod-gc-threshold argument is set as appropriate                             |        :x:         |  Manual   |
 |  [1.3.2](bundle/compliance/cis_k8s/rules/cis_1_3_2)  | Controller Manager                     | Ensure that the --profiling argument is set to false                                                     | :white_check_mark: | Automated |
 |  [1.3.3](bundle/compliance/cis_k8s/rules/cis_1_3_3)  | Controller Manager                     | Ensure that the --use-service-account-credentials argument is set to true                                | :white_check_mark: | Automated |
-|  [1.3.4](bundle/compliance/cis_k8s/rules/cis_1_3_4)  | Controller Manager                     | Ensure that the --service-account-private-key-file argument is set as appropriate                        | :white_check_mark: | Automated |
+|  [1.3.4](bundle/compliance/cis_k8s/rules/cis_1_3_4)  | Controller Manager                     | Ensure that the --service-account-private-key-file  argument is set as appropriate                       | :white_check_mark: | Automated |
 |  [1.3.5](bundle/compliance/cis_k8s/rules/cis_1_3_5)  | Controller Manager                     | Ensure that the --root-ca-file argument is set as appropriate                                            | :white_check_mark: | Automated |
 |  [1.3.6](bundle/compliance/cis_k8s/rules/cis_1_3_6)  | Controller Manager                     | Ensure that the RotateKubeletServerCertificate argument is set to true                                   | :white_check_mark: | Automated |
 |  [1.3.7](bundle/compliance/cis_k8s/rules/cis_1_3_7)  | Controller Manager                     | Ensure that the --bind-address argument is set to 127.0.0.1                                              | :white_check_mark: | Automated |
@@ -145,7 +145,7 @@
 #### Manual rules: 17/36 (47%)
 
 |                     Rule Number                      | Section                              | Description                                                                                              |       Status       |   Type    |
-| :--------------------------------------------------: | :----------------------------------- | :------------------------------------------------------------------------------------------------------- | :----------------: | :-------: |
+|:----------------------------------------------------:|:-------------------------------------|:---------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
 |  [2.1.1](bundle/compliance/cis_eks/rules/cis_2_1_1)  | Logging                              | Enable audit Logs                                                                                        | :white_check_mark: |  Manual   |
 |  [3.1.1](bundle/compliance/cis_eks/rules/cis_3_1_1)  | Worker Node Configuration Files      | Ensure that the kubeconfig file permissions are set to 644 or more restrictive                           | :white_check_mark: |  Manual   |
 |  [3.1.2](bundle/compliance/cis_eks/rules/cis_3_1_2)  | Worker Node Configuration Files      | Ensure that the kubelet kubeconfig file ownership is set to root:root                                    | :white_check_mark: |  Manual   |
@@ -208,7 +208,7 @@
 #### Manual rules: 0/8 (0%)
 
 |                    Rule Number                     | Section                           | Description                                                                                                        |       Status       |   Type    |
-| :------------------------------------------------: | :-------------------------------- | :----------------------------------------------------------------------------------------------------------------- | :----------------: | :-------: |
+|:--------------------------------------------------:|:----------------------------------|:-------------------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
 |                        1.1                         | Identity and Access Management    | Maintain current contact details                                                                                   |        :x:         |  Manual   |
 |  [1.10](bundle/compliance/cis_aws/rules/cis_1_10)  | Identity and Access Management    | Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password                 | :white_check_mark: | Automated |
 |  [1.11](bundle/compliance/cis_aws/rules/cis_1_11)  | Identity and Access Management    | Do not setup access keys during initial user setup for all IAM users that have a console password                  | :white_check_mark: | Automated |
@@ -216,7 +216,7 @@
 |  [1.13](bundle/compliance/cis_aws/rules/cis_1_13)  | Identity and Access Management    | Ensure there is only one active access key available for any single IAM user                                       | :white_check_mark: | Automated |
 |  [1.14](bundle/compliance/cis_aws/rules/cis_1_14)  | Identity and Access Management    | Ensure access keys are rotated every 90 days or less                                                               | :white_check_mark: | Automated |
 |  [1.15](bundle/compliance/cis_aws/rules/cis_1_15)  | Identity and Access Management    | Ensure IAM Users Receive Permissions Only Through Groups                                                           | :white_check_mark: | Automated |
-|  [1.16](bundle/compliance/cis_aws/rules/cis_1_16)  | Identity and Access Management    | Ensure IAM policies that allow full "_:_" administrative privileges are not attached                               | :white_check_mark: | Automated |
+|  [1.16](bundle/compliance/cis_aws/rules/cis_1_16)  | Identity and Access Management    | Ensure IAM policies that allow full "*:*" administrative privileges are not attached                               | :white_check_mark: | Automated |
 |  [1.17](bundle/compliance/cis_aws/rules/cis_1_17)  | Identity and Access Management    | Ensure a support role has been created to manage incidents with AWS Support                                        | :white_check_mark: | Automated |
 |                        1.18                        | Identity and Access Management    | Ensure IAM instance roles are used for AWS resource access from instances                                          |        :x:         |  Manual   |
 |  [1.19](bundle/compliance/cis_aws/rules/cis_1_19)  | Identity and Access Management    | Ensure that all the expired SSL/TLS certificates stored in AWS IAM are removed                                     | :white_check_mark: | Automated |
@@ -282,7 +282,7 @@
 #### Manual rules: 0/11 (0%)
 
 |                    Rule Number                     | Section                        | Description                                                                                                                       |       Status       |   Type    |
-| :------------------------------------------------: | :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- | :----------------: | :-------: |
+|:--------------------------------------------------:|:-------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
 |                        1.1                         | Identity and Access Management | Ensure that Corporate Login Credentials are Used                                                                                  |        :x:         |  Manual   |
 |  [1.10](bundle/compliance/cis_gcp/rules/cis_1_10)  | Identity and Access Management | Ensure KMS Encryption Keys Are Rotated Within a Period of 90 Days                                                                 | :white_check_mark: | Automated |
 |  [1.11](bundle/compliance/cis_gcp/rules/cis_1_11)  | Identity and Access Management | Ensure That Separation of Duties Is Enforced While Assigning KMS Related Roles to Users                                           | :white_check_mark: | Automated |
@@ -370,14 +370,14 @@
 
 ## AZURE CIS Benchmark
 
-### 10/151 implemented rules (7%)
+### 11/151 implemented rules (7%)
 
-#### Automated rules: 10/77 (13%)
+#### Automated rules: 11/77 (14%)
 
 #### Manual rules: 0/74 (0%)
 
 |                     Rule Number                      | Section                                 | Description                                                                                                                                            |       Status       |   Type    |
-| :--------------------------------------------------: | :-------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------: | :-------: |
+|:----------------------------------------------------:|:----------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------:|:---------:|
 |                        1.1.1                         | Security Defaults                       | Ensure Security Defaults is enabled on Azure Active Directory                                                                                          |        :x:         |  Manual   |
 |                        1.1.2                         | Security Defaults                       | Ensure that 'Multi-Factor Auth Status' is 'Enabled' for all Privileged Users                                                                           |        :x:         |  Manual   |
 |                        1.1.3                         | Security Defaults                       | Ensure that 'Multi-Factor Auth Status' is 'Enabled' for all Non-Privileged Users                                                                       |        :x:         |  Manual   |
@@ -408,7 +408,7 @@
 |                         1.4                          | Identity and Access Management          | Ensure Access Review is Set Up for External Users in Azure AD Privileged Identity Management                                                           |        :x:         |  Manual   |
 |                         1.5                          | Identity and Access Management          | Ensure Guest Users Are Reviewed on a Regular Basis                                                                                                     |        :x:         |  Manual   |
 |                         1.6                          | Identity and Access Management          | Ensure That 'Number of methods required to reset' is set to '2'                                                                                        |        :x:         |  Manual   |
-|                         1.7                          | Identity and Access Management          | Ensure that a Custom Bad Password List is set to 'Enforce' for your Organization                                                                       |        :x:         |  Manual   |
+|                         1.7                          | Identity and Access Management          | Ensure that a Custom Bad Password List is set to  'Enforce' for your Organization                                                                      |        :x:         |  Manual   |
 |                         1.8                          | Identity and Access Management          | Ensure that 'Number of days before users are asked to re-confirm their authentication information' is not set to '0'                                   |        :x:         |  Manual   |
 |                         1.9                          | Identity and Access Management          | Ensure that 'Notify users on password resets?' is set to 'Yes'                                                                                         |        :x:         |  Manual   |
 |                         10.1                         | Miscellaneous                           | Ensure that Resource Locks are set for Mission-Critical Azure Resources                                                                                |        :x:         |  Manual   |
@@ -449,7 +449,7 @@
 |                         3.6                          | Storage Accounts                        | Ensure that Shared Access Signature Tokens Expire Within an Hour                                                                                       |        :x:         |  Manual   |
 |   [3.7](bundle/compliance/cis_azure/rules/cis_3_7)   | Storage Accounts                        | Ensure that 'Public access level' is disabled for storage accounts with blob containers                                                                | :white_check_mark: | Automated |
 |   [3.8](bundle/compliance/cis_azure/rules/cis_3_8)   | Storage Accounts                        | Ensure Default Network Access Rule for Storage Accounts is Set to Deny                                                                                 | :white_check_mark: | Automated |
-|                         3.9                          | Storage Accounts                        | Ensure 'Allow Azure services on the trusted services list to access this storage account' is Enabled for Storage Account Access                        |        :x:         | Automated |
+|   [3.9](bundle/compliance/cis_azure/rules/cis_3_9)   | Storage Accounts                        | Ensure 'Allow Azure services on the trusted services list to access this storage account' is Enabled for Storage Account Access                        | :white_check_mark: | Automated |
 |                        4.1.1                         | SQL Server - Auditing                   | Ensure that 'Auditing' is set to 'On'                                                                                                                  |        :x:         | Automated |
 |                        4.1.2                         | SQL Server - Auditing                   | Ensure no Azure SQL Databases allow ingress from 0.0.0.0/0 (ANY IP)                                                                                    |        :x:         | Automated |
 |                        4.1.3                         | SQL Server - Auditing                   | Ensure SQL server's Transparent Data Encryption (TDE) protector is encrypted with Customer-managed key                                                 |        :x:         | Automated |
