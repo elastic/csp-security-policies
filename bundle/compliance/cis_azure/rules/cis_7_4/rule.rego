@@ -6,7 +6,7 @@ import data.compliance.policy.azure.disk.ensure_encryption as audit
 
 finding = result {
 	# filter
-	data_adapter.is_disk
+	data_adapter.is_unattached_disk
 
 	# set result
 	result := common.generate_result_without_expected(

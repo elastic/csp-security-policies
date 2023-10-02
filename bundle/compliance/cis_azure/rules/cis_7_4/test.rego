@@ -8,7 +8,9 @@ generate_encryption_settings(type) = {
 	"type": type,
 }
 
-generate_disk_with_encryption(settings) = {
+generate_unattached_disk_with_encryption(settings) = generate_disk_with_encryption("Unattached", settings)
+
+generate_disk_with_encryption(state, settings) = {
 	"type": "azure-disk",
 	"subType": "",
 	"resource": {
@@ -22,7 +24,7 @@ generate_disk_with_encryption(settings) = {
 			"diskMBpsReadWrite": 60,
 			"diskSizeBytes": 4294967296,
 			"diskSizeGB": 4,
-			"diskState": "Unattached",
+			"diskState": state,
 			"encryption": settings,
 			"networkAccessPolicy": "DenyAll",
 			"provisioningState": "Succeeded",
@@ -38,20 +40,22 @@ generate_disk_with_encryption(settings) = {
 }
 
 test_violation {
-	eval_fail with input as generate_disk_with_encryption(null)
-	eval_fail with input as generate_disk_with_encryption({"data": "in", "unknown": "format"})
-	eval_fail with input as generate_disk_with_encryption(generate_encryption_settings("EncryptionAtRestWithPlatformKey"))
-	eval_fail with input as generate_disk_with_encryption(generate_encryption_settings("InvalidValue"))
+	eval_fail with input as generate_unattached_disk_with_encryption(null)
+	eval_fail with input as generate_unattached_disk_with_encryption({"data": "in", "unknown": "format"})
+	eval_fail with input as generate_unattached_disk_with_encryption(generate_encryption_settings("EncryptionAtRestWithPlatformKey"))
+	eval_fail with input as generate_unattached_disk_with_encryption(generate_encryption_settings("InvalidValue"))
 }
 
 test_pass {
-	eval_pass with input as generate_disk_with_encryption(generate_encryption_settings("EncryptionAtRestWithCustomerKey"))
-	eval_pass with input as generate_disk_with_encryption(generate_encryption_settings("EncryptionAtRestWithPlatformAndCustomerKeys"))
+	eval_pass with input as generate_unattached_disk_with_encryption(generate_encryption_settings("EncryptionAtRestWithCustomerKey"))
+	eval_pass with input as generate_unattached_disk_with_encryption(generate_encryption_settings("EncryptionAtRestWithPlatformAndCustomerKeys"))
 }
 
 test_not_evaluated {
 	not_eval with input as {}
 	not_eval with input as {"type": "other-type", "resource": {"encryption": {}}}
+	not_eval with input as generate_disk_with_encryption("Attached", generate_encryption_settings("EncryptionAtRestWithPlatformAndCustomerKeys"))
+	not_eval with input as generate_disk_with_encryption("OtherState", generate_encryption_settings("EncryptionAtRestWithPlatformAndCustomerKeys"))
 }
 
 eval_fail {
