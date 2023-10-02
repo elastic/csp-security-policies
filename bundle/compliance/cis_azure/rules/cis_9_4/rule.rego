@@ -9,11 +9,11 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(is_client_cert_mode_required),
+		common.calculate_result(is_client_cert_enabled),
 		data_adapter.resource,
 	)
 }
 
-is_client_cert_mode_required {
-	data_adapter.properties.clientCertMode == "Required"
+is_client_cert_enabled {
+	data_adapter.properties.clientCertEnabled == true
 } else = false

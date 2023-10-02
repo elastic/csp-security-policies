@@ -11,14 +11,14 @@ test_violation {
 	)
 	eval_fail with input as test_data.generate_azure_asset(
 		"azure-web-site",
-		{"clientCertMode": "NotRequired"},
+		{"clientCertEnabled": false},
 	)
 }
 
 test_pass {
 	eval_pass with input as test_data.generate_azure_asset(
 		"azure-web-site",
-		{"clientCertMode": "Required"},
+		{"clientCertEnabled": true},
 	)
 }
 
