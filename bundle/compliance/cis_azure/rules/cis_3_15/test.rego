@@ -15,6 +15,7 @@ test_pass {
 
 test_not_evaluated {
 	not_eval with input as test_data.not_eval_storage_account_empty
+	not_eval with input as test_data.not_eval_non_exist_type
 }
 
 eval_fail {

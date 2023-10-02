@@ -11,3 +11,9 @@ not_eval_storage_account_empty = {
 	"subType": "",
 	"resource": {"properties": {}},
 }
+
+not_eval_non_exist_type = {
+	"type": "azure-non-exist",
+	"subType": "",
+	"resource": {"properties": {}},
+}
