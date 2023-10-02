@@ -8,8 +8,6 @@ finding = result {
 	# filter
 	data_adapter.is_storage_account
 
-	print("JENIA", audit.evaluate_service("AzureServices"))
-
 	# set result
 	result := common.generate_result_without_expected(
 		common.calculate_result(audit.evaluate_service("AzureServices")),
