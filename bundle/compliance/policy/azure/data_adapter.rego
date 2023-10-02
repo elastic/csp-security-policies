@@ -18,10 +18,6 @@ private_endpoint_connections = properties.privateEndpointConnections
 network_acls = properties.networkAcls
 
 is_storage_account {
-	input.type == "azure-storage-account"
-}
-
-is_storage_account {
 	input.type == "azure-classic-storage-account"
 }
 
@@ -31,4 +27,8 @@ is_postgresql_server_db {
 
 is_mysql_server_db {
 	input.type == "azure-mysql-server-db"
+}
+
+is_website_asset {
+	input.type == "azure-web-site"
 }
