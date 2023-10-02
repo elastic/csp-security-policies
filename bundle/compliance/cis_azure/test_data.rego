@@ -6,16 +6,34 @@ not_eval_resource = {
 	"resource": {},
 }
 
-generate_storage_account_encryption(enabled) = {
+generate_storage_account_with_property(key, value) = {
 	"type": "azure-storage-account",
 	"subType": "",
-	"resource": {"properties": {"encryption": {"requireInfrastructureEncryption": enabled}}},
+	"resource": {"properties": {key: value}},
 }
 
-not_eval_storage_account_encryption = {
+not_eval_storage_account_empty = {
 	"type": "azure-storage-account",
 	"subType": "",
-	"resource": {"properties": {"encryption": {}}},
+	"resource": {"properties": {}},
+}
+
+not_eval_non_exist_type = {
+	"type": "azure-non-exist",
+	"subType": "",
+	"resource": {"properties": {}},
+}
+
+generate_postgresql_server_with_ssl_enforcement(enabled) = {
+	"type": "azure-postgresql-server-db",
+	"subType": "",
+	"resource": {"properties": {"sslEnforcement": enabled}},
+}
+
+generate_mysql_server_with_ssl_enforcement(enabled) = {
+	"type": "azure-mysql-server-db",
+	"subType": "",
+	"resource": {"properties": {"sslEnforcement": enabled}},
 }
 
 generate_activity_log_alerts_no_alerts = {
