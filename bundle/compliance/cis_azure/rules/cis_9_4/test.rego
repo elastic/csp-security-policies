@@ -7,6 +7,10 @@ import data.lib.test
 test_violation {
 	eval_fail with input as test_data.generate_azure_asset(
 		"azure-web-site",
+		{},
+	)
+	eval_fail with input as test_data.generate_azure_asset(
+		"azure-web-site",
 		{"clientCertMode": "NotRequired"},
 	)
 }
