@@ -10,10 +10,6 @@ is_storage_account {
 	input.type == "azure-storage-account"
 }
 
-is_subscription_resource {
-	input.type == "azure-subscription"
-}
-
 is_activity_log_alerts {
 	input.type == "azure-activity-log-alert"
 }
