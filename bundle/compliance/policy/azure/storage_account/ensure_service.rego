@@ -5,8 +5,8 @@ import future.keywords.if
 import future.keywords.in
 
 is_service_included(service) if {
-	some statement in data_adapter.network_acls
-	statement.bypass == service
+	data_adapter.network_acls.defaultAction == "Allow"
+	data_adapter.network_acls.bypass == service
 } else = false
 
 evaluate_service(service) = r if {

@@ -5,23 +5,13 @@ import data.compliance.policy.azure.data_adapter
 import data.lib.test
 
 test_violation {
-	eval_fail with input as test_data.generate_storage_account_with_property(
-		"networkAcls",
-		[
-			{"bypass": "dummy"},
-			{"bypass": "OtherServices"},
-		],
-	)
+	eval_fail with input as test_data.generate_storage_account_with_property("networkAcls", {"bypass": "dummy", "defaultAction": "Deny"})
+	eval_fail with input as test_data.generate_storage_account_with_property("networkAcls", {"bypass": "OtherServices", "defaultAction": "Allow"})
+	eval_fail with input as test_data.generate_storage_account_with_property("networkAcls", {"bypass": "AzureServices", "defaultAction": "Deny"})
 }
 
 test_pass {
-	eval_pass with input as test_data.generate_storage_account_with_property(
-		"networkAcls",
-		[
-			{"bypass": "dummy"},
-			{"bypass": "AzureServices"},
-		],
-	)
+	eval_pass with input as test_data.generate_storage_account_with_property("networkAcls", {"bypass": "AzureServices", "defaultAction": "Allow"})
 }
 
 test_not_evaluated {
