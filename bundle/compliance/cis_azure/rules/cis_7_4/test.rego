@@ -43,6 +43,7 @@ generate_disk_with_encryption(state, settings) = {
 
 test_violation {
 	eval_fail with input as generate_unattached_disk_with_encryption({})
+	eval_fail with input as generate_unattached_disk_with_encryption({"encryption": {}})
 	eval_fail with input as generate_unattached_disk_with_encryption({"data": "in", "unknown": "format"})
 	eval_fail with input as generate_unattached_disk_with_encryption(generate_encryption_settings("EncryptionAtRestWithPlatformKey"))
 	eval_fail with input as generate_unattached_disk_with_encryption(generate_encryption_settings("InvalidValue"))
