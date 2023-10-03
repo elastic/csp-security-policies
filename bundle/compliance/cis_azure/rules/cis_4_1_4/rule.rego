@@ -15,6 +15,5 @@ finding = result {
 }
 
 is_administrator_configured {
-	data_adapter.properties.administrators
 	data_adapter.properties.administrators.administratorType == "ActiveDirectory"
 } else = false

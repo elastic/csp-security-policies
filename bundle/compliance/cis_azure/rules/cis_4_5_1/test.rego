@@ -6,6 +6,7 @@ import data.lib.test
 
 test_violation {
 	eval_fail with input as test_data.generate_azure_asset("azure-document-db-database-account", {"isVirtualNetworkFilterEnabled": false})
+	eval_fail with input as test_data.generate_azure_asset("azure-document-db-database-account", {})
 }
 
 test_pass {
