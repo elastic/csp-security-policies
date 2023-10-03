@@ -3,10 +3,10 @@ package compliance.cis_azure.rules.cis_7_4
 import data.compliance.policy.azure.data_adapter
 import data.lib.test
 
-generate_encryption_settings(type) = {
+generate_encryption_settings(type) = {"encryption": {
 	"diskEncryptionSetId": "/subscriptions/dead-beef/resourceGroups/RESOURCEGROUP/providers/Microsoft.Compute/diskEncryptionSets/double-disk-encryption-set",
 	"type": type,
-}
+}}
 
 generate_unattached_disk_with_encryption(settings) = generate_disk_with_encryption("Unattached", settings)
 
@@ -17,21 +17,23 @@ generate_disk_with_encryption(state, settings) = {
 		"id": "/subscriptions/dead-beef/resourceGroups/resourceGroup/providers/Microsoft.Compute/disks/unattached-disk",
 		"location": "eastus",
 		"name": "unattached-disk",
-		"properties": {
-			"creationData": {"createOption": "Empty"},
-			"dataAccessAuthMode": "None",
-			"diskIOPSReadWrite": 500,
-			"diskMBpsReadWrite": 60,
-			"diskSizeBytes": 4294967296,
-			"diskSizeGB": 4,
-			"diskState": state,
-			"encryption": settings,
-			"networkAccessPolicy": "DenyAll",
-			"provisioningState": "Succeeded",
-			"publicNetworkAccess": "Disabled",
-			"timeCreated": "2023-09-28T19:05:41.631Z",
-			"uniqueId": "12345-abcdef",
-		},
+		"properties": object.union(
+			{
+				"creationData": {"createOption": "Empty"},
+				"dataAccessAuthMode": "None",
+				"diskIOPSReadWrite": 500,
+				"diskMBpsReadWrite": 60,
+				"diskSizeBytes": 4294967296,
+				"diskSizeGB": 4,
+				"diskState": state,
+				"networkAccessPolicy": "DenyAll",
+				"provisioningState": "Succeeded",
+				"publicNetworkAccess": "Disabled",
+				"timeCreated": "2023-09-28T19:05:41.631Z",
+				"uniqueId": "12345-abcdef",
+			},
+			settings,
+		),
 		"resource_group": "resourceGroup",
 		"subscription_id": "dead-beef",
 		"tenant_id": "beef-dead",
@@ -40,7 +42,7 @@ generate_disk_with_encryption(state, settings) = {
 }
 
 test_violation {
-	eval_fail with input as generate_unattached_disk_with_encryption(null)
+	eval_fail with input as generate_unattached_disk_with_encryption({})
 	eval_fail with input as generate_unattached_disk_with_encryption({"data": "in", "unknown": "format"})
 	eval_fail with input as generate_unattached_disk_with_encryption(generate_encryption_settings("EncryptionAtRestWithPlatformKey"))
 	eval_fail with input as generate_unattached_disk_with_encryption(generate_encryption_settings("InvalidValue"))
