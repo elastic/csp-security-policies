@@ -1,82 +1,80 @@
 metadata:
-  id: 02ca1a3a-559e-53d7-afcd-8e3774c4efb9
-  name: Ensure that 'Unattached disks' are encrypted with 'Customer Managed Key' (CMK)
-  profile_applicability: '* Level 2'
-  description: Ensure that unattached disks in a subscription are encrypted with a
-    Customer Managed Key (CMK).
+  id: 61ab077c-fc0f-5920-8bcf-ccc037a4139b
+  name: Ensure Virtual Machines are utilizing Managed Disks
+  profile_applicability: '* Level 1'
+  description: |-
+    Migrate blob-based VHDs to Managed Disks on Virtual Machines to exploit the default features of this configuration.
+    The features include: 
+    1) Default Disk Encryption
+    2) Resilience, as Microsoft will managed the disk storage and move around if underlying hardware goes faulty
+    3) Reduction of costs over storage accounts
   rationale: |-
-    Managed disks are encrypted by default with Platform-managed keys.
-    Using Customer-managed keys may provide an additional level of security or meet an organization's regulatory requirements.
-    Encrypting managed disks ensures that its entire content is fully unrecoverable without a key and thus protects the volume from unwarranted reads.
+    Managed disks are by default encrypted on the underlying hardware, so no additional encryption is required for basic protection.
+    It is available if additional encryption is required.
+    Managed disks are by design more resilient that storage accounts.
 
-    Even if the disk is not attached to any of the VMs, there is always a risk where a compromised user account with administrative access to VM service can mount/attach these data disks, which may lead to sensitive information disclosure and tampering.
+    For ARM-deployed Virtual Machines, Azure Adviser will at some point recommend moving VHDs to managed disks both from a security and cost management perspective.
   audit: |-
     **From Azure Portal**
 
-    1. Go to `Disks`
-    2. Click on `Add Filter`
-    3. In the `filter` field select `Disk state`
-    4. In the `Value` field select `Unattached`
-    5. Click `Apply`
-    6. for each disk listed ensure that `Encryption type` in the `encryption` blade is `Encryption at-rest with a customer-managed key'
+    1. Using the search feature, go to `Virtual Machines`
+    2. Click the `Manage view` dropdown, then select `Edit columns`
+    3. Add `Uses managed disks` to the selected columns
+    4. Select `Save`
+    5. Ensure all virtual machines listed are using managed disks
 
-    **From Azure CLI**
+    **From PowerShell**
 
-    Ensure command below does not return any output.
     ```
-    az disk list --query '[? diskstate == `Unattached`].{encryptionSettings: encryptionSettings, name: name}' -o json
+    Get-AzVM | ForEach-Object {"Name: " + $_.Name;"ManagedDisk Id: " + $_.StorageProfile.OsDisk.ManagedDisk.Id;""}
     ```
-    Sample Output:
+
+    Example output:
+
     ```
-    [
-     {
-     "encryptionSettings": null,
-     "name": "<Disk1>"
-     },
-     {
-     "encryptionSettings": null,
-     "name": "<Disk2>"
-     }
-    ]
+    Name: vm1
+    ManagedDisk Id: /disk1/id
+
+    Name: vm2
+    ManagedDisk Id: /disk2/id
     ```
+
+    If the 'ManagedDisk Id' field is empty the os disk for that vm is not managed.
   remediation: |-
-    If data stored in the disk is no longer useful, refer to Azure documentation to delete unattached data disks at:
+    **From Azure Portal**
 
-    ```
-    -https://docs.microsoft.com/en-us/rest/api/compute/disks/delete
-    -https://docs.microsoft.com/en-us/cli/azure/disk?view=azure-cli-latest#az-disk-delete
-    ```
+    1. Using the search feature, go to `Virtual Machines`
+    2. Select the virtual machine you would like to convert
+    3. Select `Disks` in the menu for the VM
+    4. At the top select `Migrate to managed disks`
+    5. You may follow the prompts to convert the disk and finish by selecting `Migrate` to start the process
 
-    If data stored in the disk is important, To encrypt the disk refer azure documentation at:
+    **NOTE** VMs will be stopped and restarted after migration is complete.
 
+    **From PowerShell**
     ```
-    -https://docs.microsoft.com/en-us/azure/virtual-machines/disks-enable-customer-managed-keys-portal
-    -https://docs.microsoft.com/en-us/rest/api/compute/disks/update#encryptionsettings
+    Stop-AzVM -ResourceGroupName $rgName -Name $vmName -Force
+    ConvertTo-AzVMManagedDisk -ResourceGroupName $rgName -VMName $vmName
+    Start-AzVM -ResourceGroupName $rgName -Name $vmName
     ```
   impact: |-
-    **NOTE:** You must have your key vault set up to utilize this.
-    Encryption is available only on Standard tier VMs. This might cost you more.
-
-    Utilizing and maintaining Customer-managed keys will require additional work to create, protect, and rotate keys.
+    There are additional costs for managed disks based off of disk space allocated. When converting to managed disks, VMs will be powered off and back on.
   default_value: ''
   references: |-
-    1. https://docs.microsoft.com/en-us/azure/security/fundamentals/azure-disk-encryption-vms-vmss
-    2. https://docs.microsoft.com/en-us/azure/security-center/security-center-disk-encryption?toc=%2fazure%2fsecurity%2ftoc.json
-    3. https://docs.microsoft.com/en-us/rest/api/compute/disks/delete
-    4. https://docs.microsoft.com/en-us/cli/azure/disk?view=azure-cli-latest#az-disk-delete
-    5. https://docs.microsoft.com/en-us/rest/api/compute/disks/update#encryptionsettings
-    6. https://docs.microsoft.com/en-us/cli/azure/disk?view=azure-cli-latest#az-disk-update
-    7. https://docs.microsoft.com/en-us/security/benchmark/azure/security-controls-v3-data-protection#dp-5-encrypt-sensitive-data-at-rest
+    1. https://docs.microsoft.com/en-us/azure/virtual-machines/windows/convert-unmanaged-to-managed-disks
+    2. https://docs.microsoft.com/en-us/security/benchmark/azure/security-controls-v3-data-protection#dp-4-enable-data-at-rest-encryption-by-default
+    3. https://docs.microsoft.com/en-us/azure/virtual-machines/faq-for-disks
+    4. https://azure.microsoft.com/en-us/pricing/details/managed-disks/
   section: Virtual Machines
   version: '1.0'
   tags:
   - CIS
   - AZURE
-  - CIS 7.4
+  - CIS 7.2
   - Virtual Machines
   benchmark:
     name: CIS Microsoft Azure Foundations
     version: v2.0.0
     id: cis_azure
-    rule_number: '7.4'
+    rule_number: '7.2'
     posture_type: cspm
