@@ -13,6 +13,10 @@ is_unattached_disk {
 	properties.diskState == "Unattached"
 }
 
+is_vm {
+	input.type = "azure-vm"
+}
+
 private_endpoint_connections = properties.privateEndpointConnections
 
 network_acls = properties.networkAcls
