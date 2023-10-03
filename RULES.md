@@ -370,9 +370,9 @@
 
 ## AZURE CIS Benchmark
 
-### 22/151 implemented rules (15%)
+### 23/151 implemented rules (15%)
 
-#### Automated rules: 22/77 (29%)
+#### Automated rules: 23/77 (30%)
 
 #### Manual rules: 0/74 (0%)
 
@@ -505,7 +505,7 @@
 |                          6.7                           | Networking                              | Ensure that Public IP addresses are Evaluated on a Periodic Basis                                                                                      |        :x:         |  Manual   |
 |                          7.1                           | Virtual Machines                        | Ensure an Azure Bastion Host Exists                                                                                                                    |        :x:         | Automated |
 |    [7.2](bundle/compliance/cis_azure/rules/cis_7_2)    | Virtual Machines                        | Ensure Virtual Machines are utilizing Managed Disks                                                                                                    | :white_check_mark: | Automated |
-|                          7.3                           | Virtual Machines                        | Ensure that 'OS and Data' disks are encrypted with Customer Managed Key (CMK)                                                                          |        :x:         | Automated |
+|    [7.3](bundle/compliance/cis_azure/rules/cis_7_3)    | Virtual Machines                        | Ensure that 'OS and Data' disks are encrypted with Customer Managed Key (CMK)                                                                          | :white_check_mark: | Automated |
 |    [7.4](bundle/compliance/cis_azure/rules/cis_7_4)    | Virtual Machines                        | Ensure that 'Unattached disks' are encrypted with 'Customer Managed Key' (CMK)                                                                         | :white_check_mark: | Automated |
 |                          7.5                           | Virtual Machines                        | Ensure that Only Approved Extensions Are Installed                                                                                                     |        :x:         |  Manual   |
 |                          7.6                           | Virtual Machines                        | Ensure that Endpoint Protection for all Virtual Machines is installed                                                                                  |        :x:         |  Manual   |

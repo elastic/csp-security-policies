@@ -1,9 +1,49 @@
 package cis_azure.test_data
 
 not_eval_resource = {
-	"type": "azure-resource",
-	"subType": "",
+	"type": "azure-resource-type",
+	"subType": "azure-resource-subtype",
 	"resource": {},
+}
+
+generate_disk_encryption_settings(type) = {"encryption": {
+	"diskEncryptionSetId": "/subscriptions/dead-beef/resourceGroups/RESOURCEGROUP/providers/Microsoft.Compute/diskEncryptionSets/double-disk-encryption-set",
+	"type": type,
+}}
+
+generate_attached_disk_with_encryption(settings) = generate_disk_with_encryption("Attached", settings)
+
+generate_unattached_disk_with_encryption(settings) = generate_disk_with_encryption("Unattached", settings)
+
+generate_disk_with_encryption(state, settings) = {
+	"type": "azure-disk",
+	"subType": "",
+	"resource": {
+		"id": "/subscriptions/dead-beef/resourceGroups/resourceGroup/providers/Microsoft.Compute/disks/unattached-disk",
+		"location": "eastus",
+		"name": "unattached-disk",
+		"properties": object.union(
+			{
+				"creationData": {"createOption": "Empty"},
+				"dataAccessAuthMode": "None",
+				"diskIOPSReadWrite": 500,
+				"diskMBpsReadWrite": 60,
+				"diskSizeBytes": 4294967296,
+				"diskSizeGB": 4,
+				"diskState": state,
+				"networkAccessPolicy": "DenyAll",
+				"provisioningState": "Succeeded",
+				"publicNetworkAccess": "Disabled",
+				"timeCreated": "2023-09-28T19:05:41.631Z",
+				"uniqueId": "12345-abcdef",
+			},
+			settings,
+		),
+		"resource_group": "resourceGroup",
+		"subscription_id": "dead-beef",
+		"tenant_id": "beef-dead",
+		"type": "microsoft.compute/disks",
+	},
 }
 
 generate_storage_account_with_property(key, value) = {
