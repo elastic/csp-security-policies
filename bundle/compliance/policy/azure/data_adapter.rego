@@ -8,7 +8,7 @@ is_bastion {
 	input.type == "azure-bastion"
 }
 
-bastions = resource.assets
+bastions = resource
 
 is_disk {
 	input.type == "azure-disk"

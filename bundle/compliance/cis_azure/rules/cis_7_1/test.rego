@@ -52,7 +52,7 @@ valid_bastion = {
 
 generate_bastions(assets) = {
 	"type": "azure-bastion",
-	"resource": {"assets": assets},
+	"resource": assets,
 }
 
 test_violation {
