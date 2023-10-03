@@ -14,9 +14,7 @@ finding = result {
 	)
 }
 
-default evaluation := false
-
 evaluation {
 	some i
 	data_adapter.bastions[i].id != ""
-}
+} else = false
