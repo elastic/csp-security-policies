@@ -15,6 +15,6 @@ finding = result {
 }
 
 ensure_retention_days {
-	data_adapter.properties.retentionPolicy.enabled == true
+	data_adapter.properties.retentionPolicy.enabled
 	data_adapter.properties.retentionPolicy.days >= 90
 } else = false
