@@ -14,8 +14,6 @@ finding = result {
 	)
 }
 
-default has_managed_disk := false
-
 has_managed_disk {
 	data_adapter.properties.storageProfile.osDisk.managedDisk.id != ""
-}
+} else = false
