@@ -4,6 +4,12 @@ resource = input.resource
 
 properties = resource.properties
 
+is_bastion {
+	input.type == "azure-bastion"
+}
+
+bastions = resource
+
 is_disk {
 	input.type == "azure-disk"
 }
@@ -50,4 +56,12 @@ is_mysql_server_db {
 
 is_website_asset {
 	input.type == "azure-web-site"
+}
+
+is_network_watchers_flow_log {
+	input.type == "azure-network-watchers-flow-log"
+}
+
+is_network_watcher {
+	input.type == "azure-network-watcher"
 }
