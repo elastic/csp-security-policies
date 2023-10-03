@@ -9,12 +9,12 @@ finding = result {
 
 	# set result
 	result := common.generate_result_without_expected(
-		common.calculate_result(evaluation),
+		common.calculate_result(at_least_one_bastion),
 		{"Resource": data_adapter.resource},
 	)
 }
 
-evaluation {
+at_least_one_bastion {
 	some i
 	data_adapter.bastions[i].id != ""
 } else = false
