@@ -22,7 +22,7 @@ process_args_list = args_list {
 parse_argument(argument) = [flag, value] {
 	# We would like to split the argument by the first delimiter
 	# The dilimiter can be either a space or an equal sign
-	splitted_argument := regex.split("\\s|\\=", argument)
+	splitted_argument := regex.split(`\s|\=`, argument)
 	flag = concat("", ["--", splitted_argument[0]])
 
 	# We would like to take the entire string after the first delimiter

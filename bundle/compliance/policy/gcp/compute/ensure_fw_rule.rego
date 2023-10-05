@@ -13,7 +13,7 @@ is_valid_fw_rule(port) = false if {
 	data_adapter.resource.data.direction == "INGRESS"
 
 	some action in data_adapter.resource.data.allowed
-	common.array_contains(["tcp", "all"], action.IPProtocol)
+	action.IPProtocol in {"tcp", "all"}
 	is_port_effective(port, object.get(action, ["ports"], []))
 } else = true
 

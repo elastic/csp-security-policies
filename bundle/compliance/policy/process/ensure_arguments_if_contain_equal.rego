@@ -1,5 +1,7 @@
 package compliance.policy.process.ensure_arguments_if_contain_equal
 
+import future.keywords.in
+
 import data.benchmark_data_adapter
 import data.compliance.lib.assert
 import data.compliance.lib.common as lib_common
@@ -12,7 +14,7 @@ default rule_evaluation = false
 rule_evaluation {
 	lib_common.contains_key_with_value(process_args, "--service-account-lookup", "true")
 } else {
-	assert.is_false(lib_common.contains_key(process_args, "--service-account-lookup"))
+	not "--service-account-lookup" in object.keys(process_args)
 }
 
 finding = result {

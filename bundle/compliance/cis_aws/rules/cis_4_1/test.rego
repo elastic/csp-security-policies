@@ -4,6 +4,7 @@ import data.cis_aws.test_data
 import data.compliance.cis_aws.data_adapter
 import data.lib.test
 
+# regal ignore:rule-length
 test_violation {
 	# No items
 	eval_fail with input as rule_input([])
@@ -52,7 +53,7 @@ test_violation {
 		"MetricTopicBinding": {"filter_1": ["arn:aws:...sns"]},
 	}])
 
-	# The event selector does include management events 
+	# The event selector does include management events
 	eval_fail with input as rule_input([{
 		"TrailInfo": {
 			"Trail": {"IsMultiRegionTrail": true},

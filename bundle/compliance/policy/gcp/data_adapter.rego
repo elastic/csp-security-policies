@@ -1,12 +1,14 @@
 package compliance.policy.gcp.data_adapter
 
+import future.keywords.in
+
 import data.compliance.lib.common
 
-resource = input.resource.resource
+resource := input.resource.resource
 
-iam_policy = input.resource.iam_policy
+iam_policy := input.resource.iam_policy
 
-has_policy = common.contains_key(input.resource, "iam_policy")
+has_policy := "iam_policy" in object.keys(input.resource)
 
 is_policies_resource {
 	input.subType == "gcp-policies"
