@@ -1,4 +1,7 @@
-# Cloud Security Posture - Rego policies
+# [DEPRECATED] Cloud Security Posture - Rego policies
+
+**This repository has been merged into the cloudbeat repository:
+https://github.com/elastic/cloudbeat/tree/main/security-policies**
 
 [![CIS K8S](https://img.shields.io/badge/CIS-Kubernetes%20(74%25)-326CE5?logo=Kubernetes)](RULES.md#k8s-cis-benchmark)
 [![CIS EKS](https://img.shields.io/badge/CIS-Amazon%20EKS%20(60%25)-FF9900?logo=Amazon+EKS)](RULES.md#eks-cis-benchmark)

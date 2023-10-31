@@ -1,4 +1,10 @@
-<!-- Thanks for submitting a pull request! We appreciate you spending the time to work on these changes. Please provide enough information so that others can review your pull request. The three fields below are mandatory. -->
+### Do not open pull requests
+
+<!--
+New contributions should go into the cloudbeat repo:
+https://github.com/elastic/cloudbeat/tree/main/security-policies
+unless if you are backporting into an older branch.
+-->
 
 ### Summary of your changes
 <!--
